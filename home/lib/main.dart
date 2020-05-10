@@ -277,10 +277,10 @@ children: <Widget>[
         ),
          BottomNavigationBarItem(
           icon:Icon(Icons.group),
-          title:Text("group"),
+          title:Text("Group"),
         ), BottomNavigationBarItem(
           icon:Icon(Icons.add),
-          title:Text("add"),
+          title:Text("Add"),
         ), BottomNavigationBarItem(
           icon:Icon(Icons.event),
           title:Text("Event"),
@@ -289,10 +289,10 @@ children: <Widget>[
           title:Text("profile"),
         ),
 
-      ]));
+      ],),);
   
 }}
-
+//hello
 class Registration extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
