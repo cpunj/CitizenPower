@@ -125,6 +125,7 @@ class LoginPageState extends State<LoginPage> {
     );
   }
 }
+
 class ProfileScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context){
