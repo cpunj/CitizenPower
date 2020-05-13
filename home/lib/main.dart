@@ -7,7 +7,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
         home: new LoginPage(),
-        theme: new ThemeData(primarySwatch: Colors.blue));
+        theme: new ThemeData(primarySwatch: Colors.white));
   }
 }
 
@@ -17,7 +17,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
   @override
+
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar:AppBar(
@@ -27,9 +29,12 @@ class LoginPageState extends State<LoginPage> {
         ),
         title:Text(
           "Login",
+          
+          
           style:TextStyle(
             fontWeight:FontWeight.bold,
             color:Colors.black
+            
         ),
         ),
       ),
@@ -37,11 +42,8 @@ class LoginPageState extends State<LoginPage> {
       body: new Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          new Image(
-            image: new AssetImage("assets/img.PNG"),
-            fit: BoxFit.cover,
-          ),
           new Form(
+             key: _formKey,
             child: new Theme(
               data: new ThemeData(
                 brightness: Brightness.dark,
@@ -53,7 +55,8 @@ class LoginPageState extends State<LoginPage> {
                   children: <Widget>[
                     new TextFormField(
                       decoration: new InputDecoration(
-                          labelText: "Enter Email Address", hintText: "Email"),
+                          labelText: "Enter Email Address", 
+                          hintText: "Email"),
                       keyboardType: TextInputType.emailAddress,
                       validator: (val) {
                          if(!val.contains('@')){
@@ -63,6 +66,7 @@ class LoginPageState extends State<LoginPage> {
                       },
                     ),
                     new TextFormField(
+                      
                       decoration: new InputDecoration(
                         labelText: "Enter Password",
                         hintText: " Password",
@@ -99,6 +103,11 @@ class LoginPageState extends State<LoginPage> {
                         materialTapTargetSize: MaterialTapTargetSize.padded,
                         child: new Text("SIGN UP/REGISTER"),
                        onPressed: ()  {
+                         if (_formKey.currentState.validate()) {
+                  // If the form is valid, display a Snackbar.
+                  Scaffold.of(context)
+                      .showSnackBar(SnackBar(content: Text('Processing Data')));
+                }
                         Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => Registration()),
