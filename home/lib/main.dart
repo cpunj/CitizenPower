@@ -133,7 +133,7 @@ class ProfileScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.black),
         title: Text(
-          " profile ",
+          " Profile ",
           style:
               TextStyle(fontWeight: FontWeight.bold, color: Colors.lightBlue),
         ),
@@ -166,7 +166,7 @@ class ProfileScreen extends StatelessWidget {
                   height: 10,
                 ),
                 Text("Grace Williams"),
-                new Text("Lives at Hoabrt , Tasmania"),
+                new Text("Lives at Hobart , Tasmania"),
               ],
             ),
           ),
