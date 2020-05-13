@@ -7,7 +7,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
         home: new LoginPage(),
-        theme: new ThemeData(primarySwatch: Colors.white));
+        theme: new ThemeData(primaryColor: Colors.white));
   }
 }
 
@@ -58,8 +58,8 @@ class LoginPageState extends State<LoginPage> {
                           labelText: "Enter Email Address", 
                           hintText: "Email"),
                       keyboardType: TextInputType.emailAddress,
-                      validator: (val) {
-                         if(!val.contains('@')){
+                      validator: (value) {
+                         if(!value.contains('  ')){
                            return "Email is not correct";
                          }
                          return null;
