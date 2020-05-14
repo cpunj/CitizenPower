@@ -152,6 +152,18 @@ class LoginPageState extends State<LoginPage> {
 class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    /*_onTap(int index) {
+      //functions to determine which page to display base on which icon is pressed
+      //on the navigation bar-Yih Jun
+      //the code below doesn't work, so it is commented out-Yih Jun
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => Electorate()),
+      );
+    }
+*/
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -360,6 +372,8 @@ class ProfileScreen extends StatelessWidget {
 
            */
         ],
+        //function for when user taps an icon on navigation bar-Yih Jun
+        //onTap: _onTap,
       ),
     );
   }
