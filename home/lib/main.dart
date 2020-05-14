@@ -270,27 +270,24 @@ class ProfileScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-
                     FlatButton(
-                    onPressed: () => {},
-                    color: Colors.orange,
+                      onPressed: () => {},
+                      color: Colors.orange,
                       padding: EdgeInsets.only(left: 2, right: 2, top: 10),
-
-                    child: Column(
-                      children: <Widget>[
-                        Icon(Icons.person_pin_circle),
-                        Text("Electorate")
+                      child: Column(
+                        children: <Widget>[
+                          Icon(Icons.person_pin_circle),
+                          Text("Electorate")
                         ],
                       ),
                     ),
 
-                  //Below code removed and replaced with flat button for electorate
+                    //Below code removed and replaced with flat button for electorate
                     /*
                     Icon(Icons.grid_on),
                     //Icon(Icons.list),
                     Icon(Icons.person_pin_circle),
                     */
-
                   ],
                 ),
               ),
@@ -328,7 +325,8 @@ class ProfileScreen extends StatelessWidget {
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             title: Text('Profile'),
-          ),BottomNavigationBarItem(
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.home),
             title: Text("Home"),
           ),
@@ -342,7 +340,6 @@ class ProfileScreen extends StatelessWidget {
           ),
 
           //Adding the fourth icon breaks the nav bar
-
 
           /*OLD NAV BAR CODE
           BottomNavigationBarItem(
