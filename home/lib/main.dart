@@ -155,7 +155,7 @@ class ProfileScreen extends StatelessWidget {
 
     /*_onTap(int index) {
       //functions to determine which page to display base on which icon is pressed
-      //on the navigation bar-Yih Jun
+      //on the navigation bar
       //the code below doesn't work, so it is commented out-Yih Jun
       Navigator.push(
         context,
