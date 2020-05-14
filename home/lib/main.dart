@@ -4,7 +4,9 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 void main() => runApp(new MyApp());
 
 const Map<int, Color> color = {
-  50: Color.fromRGBO(216, 96, 24, .1),
+  //Provides transparency parameter for all material colours
+  50: Color.fromRGBO(216, 96, 24,
+      .1), //RGB values are irrelevant, only transparency (4th) parameter is relevant
   100: Color.fromRGBO(216, 96, 24, .2),
   200: Color.fromRGBO(216, 96, 24, .3),
   300: Color.fromRGBO(216, 96, 24, .4),
@@ -16,8 +18,10 @@ const Map<int, Color> color = {
   900: Color.fromRGBO(216, 96, 24, 1),
 };
 
-const MaterialColor brightOrange = MaterialColor(0xFFD86018, color);
-const MaterialColor coolGrey = MaterialColor(0xFF53565A, color);
+const MaterialColor brightOrange =
+    MaterialColor(0xFFD86018, color); //All style guide colours implemented
+const MaterialColor coolGrey =
+    MaterialColor(0xFF53565A, color); //Any more colours needed to be added here
 const MaterialColor alloyOrange = MaterialColor(0xFFB86125, color);
 const MaterialColor darkGold = MaterialColor(0xFFC69214, color);
 const MaterialColor ashGrey = MaterialColor(0xFFBABBB1, color);
