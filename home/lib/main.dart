@@ -266,13 +266,31 @@ class ProfileScreen extends StatelessWidget {
                 color: Colors.black,
               ),
               Container(
-                margin: EdgeInsets.only(left: 50, right: 50, top: 10),
+                margin: EdgeInsets.only(left: 100, right: 100, top: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
+
+                    FlatButton(
+                    onPressed: () => {},
+                    color: Colors.orange,
+                      padding: EdgeInsets.only(left: 2, right: 2, top: 10),
+
+                    child: Column(
+                      children: <Widget>[
+                        Icon(Icons.person_pin_circle),
+                        Text("Electorate")
+                        ],
+                      ),
+                    ),
+
+                  //Below code removed and replaced with flat button for electorates
+                    /*
                     Icon(Icons.grid_on),
-                    Icon(Icons.list),
-                    Icon(Icons.tag_faces)
+                    //Icon(Icons.list),
+                    Icon(Icons.person_pin_circle),
+                    */
+
                   ],
                 ),
               ),
@@ -305,27 +323,55 @@ class ProfileScreen extends StatelessWidget {
             ])
       ]),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            title: Text('Profile'),
+          ),BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text("Dashboard"),
+            title: Text("Home"),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.group),
-            title: Text("Group"),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add),
-            title: Text("Add"),
+            icon: Icon(Icons.person_pin_circle),
+            title: Text('Electorate'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.event),
-            title: Text("Event"),
+            title: Text('Event'),
+          ),
+
+          //Adding the fourth icon breaks the nav bar
+
+
+          /*OLD NAV BAR CODE
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('Dashboard'),
+            //backgroundColor: Colors.black,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.group),
+            title: Text('Group'),
+            backgroundColor: Colors.black,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add),
+            title: Text('Add'),
+            backgroundColor: Colors.black,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.event),
+            title: Text('Event'),
+            backgroundColor: Colors.black,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            title: Text("profile"),
+            title: Text('Profile'),
+            backgroundColor: Colors.black,
           ),
+
+           */
         ],
       ),
     );
