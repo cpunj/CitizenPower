@@ -271,25 +271,12 @@ class ProfileScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
 
-                    FlatButton(
-                    onPressed: () => {},
-                    color: Colors.orange,
-                      padding: EdgeInsets.only(left: 2, right: 2, top: 10),
-
-                    child: Column(
-                      children: <Widget>[
-                        Icon(Icons.person_pin_circle),
-                        Text("Electorate")
-                        ],
-                      ),
-                    ),
-
                   //Below code removed and replaced with flat button for electorate
-                    /*
+
                     Icon(Icons.grid_on),
                     //Icon(Icons.list),
                     Icon(Icons.person_pin_circle),
-                    */
+
 
                   ],
                 ),
@@ -322,6 +309,7 @@ class ProfileScreen extends StatelessWidget {
               ),
             ])
       ]),
+
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: [
@@ -341,7 +329,6 @@ class ProfileScreen extends StatelessWidget {
             title: Text('Event'),
           ),
 
-          //Adding the fourth icon breaks the nav bar
 
 
           /*OLD NAV BAR CODE
@@ -374,6 +361,30 @@ class ProfileScreen extends StatelessWidget {
            */
         ],
       ),
+    );
+  }
+}
+
+
+class Electorate extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.black),
+        title: Text(
+          " Profile ",
+          style:
+          TextStyle(fontWeight: FontWeight.bold, color: Colors.lightBlue),
+        ),
+        actions: <Widget>[
+          Container(
+            margin: EdgeInsets.only(left: 10),
+            child: Icon(Icons.more_vert),
+          ),
+        ],
+      )
     );
   }
 }
