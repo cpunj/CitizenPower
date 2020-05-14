@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'main.dart';
 import 'ProfilePage.dart';
 import 'registration.dart';
+import 'constants.dart';
 
 class LoginPage extends StatefulWidget {
   @override

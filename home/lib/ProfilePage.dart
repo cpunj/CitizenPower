@@ -1,9 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'constants.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
+  @override
+  State createState() => new ProfileScreenState();
+}
+
+class ProfileScreenState extends State<ProfileScreen> {
+  var profileOptions = ['Edit'];
+  var currentItemSelected = 'Edit';
+
   @override
   Widget build(BuildContext context) {
+    var profileOptions = ['Edit'];
+    var currentItemSelected = 'Edit';
+
+    void choiceAction(String choice) {
+      print('working');
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -16,8 +32,16 @@ class ProfileScreen extends StatelessWidget {
         actions: <Widget>[
           Container(
             margin: EdgeInsets.only(left: 10),
-            child: Icon(Icons.more_vert),
           ),
+
+          //Going to be used to access edit page
+
+          /*PopupMenuButton<String>(
+              onSelected: choiceAction, itemBuilder: (BuildContext context) {
+                return Constants.choices.map((String choice) {
+
+                })
+          })*/
         ],
       ),
       body: CustomScrollView(slivers: <Widget>[
@@ -25,26 +49,22 @@ class ProfileScreen extends StatelessWidget {
           child: Container(
             margin: EdgeInsets.only(top: 20),
             height: 300,
-            child: Column(
-              children: <Widget>[
-                ClipRRect(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(20),
-                  ),
-                  child: Image.asset(
-                    "assets/grace.jpg",
-                    height: 230,
-                    width: 300,
-                    fit: BoxFit.cover,
-                  ),
+            child: Column(children: <Widget>[
+              ClipRRect(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(20),
                 ),
-                SizedBox(
-                  height: 10,
+                child: Image.asset(
+                  "assets/grace.jpg",
+                  height: 230,
+                  width: 300,
+                  fit: BoxFit.cover,
                 ),
-                Text("Grace Williams"),
-                new Text("Lives at Hobart , Tasmania"),
-              ],
-            ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+            ]),
           ),
         ),
         SliverToBoxAdapter(
@@ -122,14 +142,11 @@ class ProfileScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-
-                  //Below code removed and replaced with flat button for electorate
+                    //Below code removed and replaced with flat button for electorate
 
                     Icon(Icons.grid_on),
                     //Icon(Icons.list),
                     Icon(Icons.person_pin_circle),
-
-
                   ],
                 ),
               ),
@@ -161,28 +178,25 @@ class ProfileScreen extends StatelessWidget {
               ),
             ])
       ]),
-
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             title: Text('Profile'),
-          ),BottomNavigationBarItem(
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.home),
             title: Text("Home"),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_pin_circle),
             title: Text('Electorate'),
-            
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.event),
             title: Text('Event'),
           ),
-
-
 
           /*OLD NAV BAR CODE
           BottomNavigationBarItem(
