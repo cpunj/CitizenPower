@@ -310,6 +310,7 @@ class ProfileScreen extends StatelessWidget {
 
 //hello
 class Registration extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -361,11 +362,6 @@ class Registration extends StatelessWidget {
                       validator: (val) =>
                           val.length < 6 ? 'Please Insert password' : null,
                       obscureText: true,
-                    ),
-                    new TextFormField(
-                      decoration: new InputDecoration(
-                          labelText: "Male or female", hintText: "Gender"),
-                      keyboardType: TextInputType.text,
                     ),
                     new Padding(padding: const EdgeInsets.only(top: 10.0)),
                     Flex(direction: Axis.horizontal),
