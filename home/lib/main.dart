@@ -50,7 +50,7 @@ class LoginPageState extends State<LoginPage> {
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
         ),
       ),
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: coolGrey,
       body: new Stack(
         fit: StackFit.expand,
         children: <Widget>[
