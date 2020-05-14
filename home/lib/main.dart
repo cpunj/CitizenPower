@@ -284,7 +284,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ),
 
-                  //Below code removed and replaced with flat button for electorate
+                  //Below code removed and replaced with flat button for electorates
                     /*
                     Icon(Icons.grid_on),
                     //Icon(Icons.list),
