@@ -365,7 +365,7 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-
+//Starting Electorate page which needs to be linked to the NavBar
 class Electorate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -374,7 +374,7 @@ class Electorate extends StatelessWidget {
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.black),
         title: Text(
-          " Profile ",
+          " Electorate ",
           style:
           TextStyle(fontWeight: FontWeight.bold, color: Colors.lightBlue),
         ),
