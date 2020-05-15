@@ -68,12 +68,12 @@ class ProfileScreenState extends State<ProfileScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: brightOrange,
         iconTheme: IconThemeData(color: Colors.black),
         title: Text(
           " Profile ",
           style:
-              TextStyle(fontWeight: FontWeight.bold, color: Colors.lightBlue),
+              TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
         ),
         actions: <Widget>[
           Container(

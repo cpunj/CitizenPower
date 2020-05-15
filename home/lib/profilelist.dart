@@ -1,3 +1,4 @@
+import 'package:citizenpower/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -14,7 +15,11 @@ class AppState extends State<AppHome>{
   Widget build(BuildContext context){
     return new Scaffold(
       appBar:AppBar(
-        title:new Text("Connections"),
+        backgroundColor: brightOrange,
+        iconTheme: IconThemeData(color: Colors.black),
+        title:new Text("Connections",
+          style:
+            TextStyle(fontWeight: FontWeight.bold, color: Colors.black),),
       ),
       body:new Container(
         child:new ListView.builder(

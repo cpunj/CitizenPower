@@ -50,6 +50,7 @@ flutter:
     - assets/Wineglass-Bay-Tasmania-scaled.jpg
     - assets/grace.jpg
     - assets/Wilkie.jpeg
+    - assets/CitizenLogo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
