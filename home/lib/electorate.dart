@@ -61,7 +61,7 @@ class Electorate extends StatelessWidget {
                 Column(
                   children: <Widget>[
                     Text(
-                      "Current MP",
+                      "04",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -70,7 +70,7 @@ class Electorate extends StatelessWidget {
                     SizedBox(
                       height: 3,
                     ),
-                    Text("Andrew Wilkie"),
+                    Text("Posts"),
                   ],
                 ),
                 Divider(
@@ -80,7 +80,7 @@ class Electorate extends StatelessWidget {
                 Column(
                   children: <Widget>[
                     Text(
-                      "Party",
+                      "213",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -89,7 +89,7 @@ class Electorate extends StatelessWidget {
                     SizedBox(
                       height: 3,
                     ),
-                    Text("Independent"),
+                    Text("Connections"),
                   ],
                 ),
                 Divider(
@@ -99,7 +99,7 @@ class Electorate extends StatelessWidget {
                 Column(
                   children: <Widget>[
                     Text(
-                      "74K",
+                      "1K",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -108,21 +108,15 @@ class Electorate extends StatelessWidget {
                     SizedBox(
                       height: 3,
                     ),
-                    Text("Population"),
+                    Text("Linked To"),
                   ],
                 ),
               ],
             ),
           ),
         ),
-        SliverToBoxAdapter(
-          child: RaisedButton( //button to get in touch with mp
-            color: brightOrange,
-            child: Text('Get In Touch'),
-            onPressed: (){},
-          ),
-          ),
-        ]),
+
+            ])
       );
   }
 }
