@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'constants.dart';
+import 'electorate.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -10,6 +11,14 @@ class ProfileScreen extends StatefulWidget {
 class ProfileScreenState extends State<ProfileScreen> {
   var profileOptions = ['Edit'];
   var currentItemSelected = 'Edit';
+
+  _onTap(int index){
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => Electorate()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -227,6 +236,7 @@ class ProfileScreenState extends State<ProfileScreen> {
 
            */
         ],
+        onTap: _onTap,
       ),
     );
   }
