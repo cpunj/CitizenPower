@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'settings.dart';
 import 'constants.dart';
 import 'electorate.dart';
 
@@ -13,11 +14,38 @@ class ProfileScreenState extends State<ProfileScreen> {
   var currentItemSelected = 'Edit';
 
   _onTap(int index){ //This acts as a navigator for the Nav Bar
-     if (index == 2) { //Index 2 links to the electorate page *TO DO* add other indexes to navigate
+
+     if (index == 0) {
        Navigator.push(
          context,
-         MaterialPageRoute( // Currently, all buttons will lead to the electorate page
+         MaterialPageRoute(
+             builder: (context) => ProfileScreen()),
+       );
+     } else if (index == 1) {
+       /*Navigator.push(
+         context,
+         MaterialPageRoute(
+             builder: (context) => Home()),
+       ); */
+     } else if (index == 2) {
+       Navigator.push(
+         context,
+         MaterialPageRoute(
              builder: (context) => Electorate()),
+       );
+     } else if (index == 3) {
+       /*
+       Navigator.push(
+
+         context,
+         MaterialPageRoute(
+             builder: (context) => Electorate()),
+       ); */
+     } else if (index == 4) {
+       Navigator.push(
+         context,
+         MaterialPageRoute(
+             builder: (context) => Setting()),
        );
      }
   }
@@ -205,11 +233,14 @@ class ProfileScreenState extends State<ProfileScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.person_pin_circle),
             title: Text('Electorate'),
-
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.event),
             title: Text('Event'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            title: Text('Settings'),
           ),
         ],
         onTap: (index){
