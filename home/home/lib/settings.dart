@@ -18,23 +18,20 @@ class _SettingState extends State<Setting> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        title: new Text("settings page"),
+        title: new Text("Settings"),
       ),
       body: Center(
-        child: widgetOptions.elementAt(selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: Icon(Icons.local_drink), title: Text('Beers')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.add_a_photo), title: Text('New Beer')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.favorite), title: Text('Favourites')),
-        ],
-        currentIndex: selectedIndex,
-        fixedColor: Colors.lightBlue,
-        onTap: onItemTapped,
+        //child: widgetOptions.elementAt(selectedIndex),
+        child:
+        RaisedButton( // This button is simple directs the user back to the login page, and is not a logout
+          child: Text('Logout'),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LoginPage()),
+            );
+          },
+        ),
       ),
     );
   }
