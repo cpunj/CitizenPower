@@ -12,22 +12,24 @@ class ProfileScreenState extends State<ProfileScreen> {
   var profileOptions = ['Edit'];
   var currentItemSelected = 'Edit';
 
-  _onTap(int index){
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-          builder: (context) => Electorate()),
-    );
+  _onTap(int index){ //This acts as a navigator for the Nav Bar
+     if (index == 2) { //Index 2 links to the electorate page *TO DO* add other indexes to navigate
+       Navigator.push(
+         context,
+         MaterialPageRoute( // Currently, all buttons will lead to the electorate page
+             builder: (context) => Electorate()),
+       );
+     }
   }
 
   @override
   Widget build(BuildContext context) {
     var profileOptions = ['Edit'];
     var currentItemSelected = 'Edit';
-
     void choiceAction(String choice) {
       print('working');
     }
+
 
     return Scaffold(
       appBar: AppBar(
@@ -189,6 +191,8 @@ class ProfileScreenState extends State<ProfileScreen> {
       ]),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
+
+
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
@@ -201,42 +205,19 @@ class ProfileScreenState extends State<ProfileScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.person_pin_circle),
             title: Text('Electorate'),
+
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.event),
             title: Text('Event'),
           ),
-
-          /*OLD NAV BAR CODE
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Dashboard'),
-            //backgroundColor: Colors.black,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.group),
-            title: Text('Group'),
-            backgroundColor: Colors.black,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add),
-            title: Text('Add'),
-            backgroundColor: Colors.black,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.event),
-            title: Text('Event'),
-            backgroundColor: Colors.black,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            title: Text('Profile'),
-            backgroundColor: Colors.black,
-          ),
-
-           */
         ],
-        onTap: _onTap,
+        onTap: (index){
+          setState(() {
+            _onTap(index);
+          });
+        }
+        //onTap: _onTap,
       ),
     );
   }

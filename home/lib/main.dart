@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'loginpage.dart';
 import 'constants.dart';
+import 'electorate.dart';
+
 
 void main() => runApp(new MyApp());
 
