@@ -116,7 +116,7 @@ class Electorate extends StatelessWidget {
           ),
         ),
         SliverToBoxAdapter(
-          child: RaisedButton(
+          child: RaisedButton( //button to get in touch with mp
             color: brightOrange,
             child: Text('Get In Touch'),
             onPressed: (){},
