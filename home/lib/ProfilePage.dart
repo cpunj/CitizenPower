@@ -96,16 +96,9 @@ class ProfileScreenState extends State<ProfileScreen> {
             margin: EdgeInsets.only(top: 20),
             height: 300,
             child: Column(children: <Widget>[
-              ClipRRect(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(20),
-                ),
-                child: Image.asset(
-                  "assets/grace.jpg",
-                  height: 230,
-                  width: 300,
-                  fit: BoxFit.cover,
-                ),
+              CircleAvatar(
+                radius: 100.0,
+                backgroundImage: AssetImage('assets/grace.jpg'),
               ),
               SizedBox(
                 height: 10,
