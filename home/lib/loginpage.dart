@@ -49,7 +49,7 @@ class LoginPageState extends State<LoginPage> {
                       new TextFormField(
                         decoration: new InputDecoration(
                             errorStyle: TextStyle(
-                              color: Colors.yellowAccent,
+                              color: Colors.redAccent,
                               fontSize: 15.0,
                             ),
                             labelText: "Email",
@@ -65,7 +65,7 @@ class LoginPageState extends State<LoginPage> {
                       new TextFormField(
                         decoration: new InputDecoration(
                           errorStyle: TextStyle(
-                            color: Colors.yellowAccent,
+                            color: Colors.redAccent,
                             fontSize: 15,
                           ),
                           labelText: "Password",
@@ -122,7 +122,7 @@ class LoginPageState extends State<LoginPage> {
                       Center(
                         child: Container(
                           height: 320,
-                          padding: EdgeInsets.only(top:30),
+                          padding: EdgeInsets.only(top: 30),
                           child: Image(
                             image: AssetImage('assets/CitizenLogo.png'),
                           ),
