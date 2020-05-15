@@ -13,16 +13,22 @@ class LoginPageState extends State<LoginPage> {
   var _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    //Start of widget tree
     return new Scaffold(
+      backgroundColor: Colors.white,
+      //Prevents pixels error
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: brightOrange,
         iconTheme: IconThemeData(color: Colors.black),
-        title: Text(
-          "Login",
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+        //Move around title as wanted, I think this looks best - Jack
+        title: Center(
+          child: Text(
+            "Citizen Power",
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+          ),
         ),
       ),
-      backgroundColor: coolGrey,
       body: new Stack(
         fit: StackFit.expand,
         children: <Widget>[
@@ -30,14 +36,13 @@ class LoginPageState extends State<LoginPage> {
             key: _formKey,
             child: new Theme(
               data: new ThemeData(
-                brightness: Brightness.dark,
+                brightness: Brightness.light,
               ),
               child: new Container(
                 padding: const EdgeInsets.all(5.0),
                 height: 160,
                 width: 100,
                 child: new Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     new TextFormField(
                       decoration: new InputDecoration(
@@ -73,39 +78,54 @@ class LoginPageState extends State<LoginPage> {
                     new Padding(
                       padding: const EdgeInsets.only(top: 20),
                     ),
-                    new MaterialButton(
-                        color: Colors.green,
-                        textColor: Colors.black87,
-                        child: new Text("LOGIN"),
-                        onPressed: () {
-                          if (_formKey.currentState.validate())
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ProfileScreen()),
-                            );
-                        }),
+                    Center(
+                      child: new MaterialButton(
+                          color: darkGold,
+                          textColor: Colors.black87,
+                          child: new Text("LOGIN"),
+                          onPressed: () {
+                            if (_formKey.currentState.validate())
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ProfileScreen()),
+                              );
+                          }),
+                    ),
                     new Padding(
                       padding: const EdgeInsets.only(top: 20.0),
                     ),
-                    new MaterialButton(
-                        color: Colors.indigo,
-                        textColor: Colors.tealAccent,
-                        minWidth: 50,
-                        materialTapTargetSize: MaterialTapTargetSize.padded,
-                        child: new Text("SIGN UP/REGISTER"),
-                        onPressed: () {
-                          if (_formKey.currentState.validate()) {
-                            // If the form is valid, display a Snackbar.
-                            Scaffold.of(context).showSnackBar(
-                                SnackBar(content: Text('Processing Data')));
-                          }
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Registration()),
-                          );
-                        }),
+                    Center(
+                      child: new MaterialButton(
+                          color: darkGold,
+                          textColor: Colors.black,
+                          minWidth: 50,
+                          materialTapTargetSize: MaterialTapTargetSize.padded,
+                          child: new Text("REGISTER"),
+                          onPressed: () {
+                            if (_formKey.currentState.validate()) {
+                              // If the form is valid, display a Snackbar.
+                              Scaffold.of(context).showSnackBar(
+                                  SnackBar(content: Text('Processing Data')));
+                            }
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Registration()),
+                            );
+                          }),
+                    ),
+
+                    //Contains Citizen logo in column
+                    Center(
+                      child: Container(
+                        height: 320,
+                        padding: EdgeInsets.only(top:30),
+                        child: Image(
+                          image: AssetImage('assets/CitizenLogo.png'),
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),

@@ -7,14 +7,14 @@ class Registration extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: brightOrange,
         iconTheme: IconThemeData(color: Colors.black),
         title: Text(
           "Register ",
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
         ),
       ),
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: coolGrey,
       body: new Stack(
         children: <Widget>[
           new Form(
@@ -58,7 +58,7 @@ class Registration extends StatelessWidget {
                     new Padding(padding: const EdgeInsets.only(top: 10.0)),
                     Flex(direction: Axis.horizontal),
                     new MaterialButton(
-                        color: Colors.tealAccent,
+                        color: darkGold,
                         textColor: Colors.black,
                         child: new Text("SUBMIT"),
                         onPressed: () {})
