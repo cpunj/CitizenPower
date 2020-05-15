@@ -39,12 +39,11 @@ class Electorate extends StatelessWidget {
                   Radius.circular(20),
                 ),
 
-
                 child: Image.asset(
                   "assets/Wilkie.jpeg",
                   height: 230,
                   width: 300,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.scaleDown,
                 ),
               ),
               SizedBox(
