@@ -61,7 +61,7 @@ class Electorate extends StatelessWidget {
                 Column(
                   children: <Widget>[
                     Text(
-                      "04",
+                      "Current MP",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -70,7 +70,7 @@ class Electorate extends StatelessWidget {
                     SizedBox(
                       height: 3,
                     ),
-                    Text("Posts"),
+                    Text("Andrew Wilkie"),
                   ],
                 ),
                 Divider(
@@ -80,7 +80,7 @@ class Electorate extends StatelessWidget {
                 Column(
                   children: <Widget>[
                     Text(
-                      "213",
+                      "Party",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -89,7 +89,7 @@ class Electorate extends StatelessWidget {
                     SizedBox(
                       height: 3,
                     ),
-                    Text("Connections"),
+                    Text("Independent"),
                   ],
                 ),
                 Divider(
@@ -99,7 +99,7 @@ class Electorate extends StatelessWidget {
                 Column(
                   children: <Widget>[
                     Text(
-                      "1K",
+                      "74K",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -108,15 +108,22 @@ class Electorate extends StatelessWidget {
                     SizedBox(
                       height: 3,
                     ),
-                    Text("Linked To"),
+                    Text("Population"),
                   ],
                 ),
               ],
             ),
           ),
         ),
-
-            ])
+        SliverToBoxAdapter(
+          child: RaisedButton(
+            color: brightOrange,
+            textColor: Colors.black87,
+            child: Text('Get In Touch'),
+            onPressed: (){},
+          ),
+        ),
+      ])
       );
   }
 }
