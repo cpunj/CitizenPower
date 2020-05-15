@@ -3,6 +3,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'settings.dart';
 import 'constants.dart';
 import 'electorate.dart';
+import 'profilelist.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -22,6 +23,12 @@ class ProfileScreenState extends State<ProfileScreen> {
              builder: (context) => ProfileScreen()),
        );
      } else if (index == 1) {
+       Navigator.push(
+         context,
+         MaterialPageRoute(
+             builder: (context) => AppHome()),
+       );
+
        /*Navigator.push(
          context,
          MaterialPageRoute(
