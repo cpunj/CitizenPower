@@ -131,7 +131,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                   color: Colors.black,
                 ),
 
-                Column( //This is the 'connection'
+                Column( //This is the 'connection' to profile list
                   children: <Widget>[
                     InkWell(
                       onTap: () {
