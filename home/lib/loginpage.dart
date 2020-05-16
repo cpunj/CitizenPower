@@ -12,6 +12,7 @@ class LoginPage extends StatefulWidget {
 
 class LoginPageState extends State<LoginPage> {
   var _formKey = GlobalKey<FormState>();
+  String email="citizentasmania@gmail.com";
   @override
   Widget build(BuildContext context) {
     //Start of widget tree
@@ -57,7 +58,7 @@ class LoginPageState extends State<LoginPage> {
                             hintText: "Enter Email address"),
                         keyboardType: TextInputType.emailAddress,
                         validator: (String val) {
-                          if (val.isEmpty) {
+                          if (val !=(email) ) {
                             return "Invalid email address";
                           }
                           return null;
