@@ -2,7 +2,7 @@ import 'package:citizenpower/main.dart';
 import 'package:flutter/material.dart';
 import 'package:citizenpower/loginpage.dart';
 import 'package:flutter/widgets.dart';
-
+import 'constants.dart';
 class Setting extends StatefulWidget {
   Setting({Key key}) : super(key: key);
   @override
@@ -19,12 +19,11 @@ class _SettingState extends State<Setting> {
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
       appBar: AppBar(
-        brightness: Brightness.light,
-        iconTheme: IconThemeData(color: Colors.black),
-        backgroundColor: Colors.white,
+        backgroundColor: brightOrange,
+        iconTheme: IconThemeData(color: Colors.white),
         title: Text(
           "Settings",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.white),
         ),
       ),
       body: Stack(

@@ -1,3 +1,4 @@
+import 'package:citizenpower/AppHome.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'ProfilePage.dart';
@@ -90,7 +91,7 @@ class LoginPageState extends State<LoginPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => ProfileScreen()),
+                                      builder: (context) => AppHome()),
                                 );
                             }),
                       ),

@@ -21,14 +21,17 @@ class ProfileScreenState extends State<ProfileScreen> {
        Navigator.push(
          context,
          MaterialPageRoute(
-             builder: (context) => ProfileScreen()),
+             builder: (context) => AppHome()),
        );
      } else if (index == 1) {
         //Need to implement home page, AppHome()
        Navigator.push(
          context,
          MaterialPageRoute(
-             builder: (context) => AppHome()),
+             builder: (context) => ProfileScreen(
+
+             )
+         ),
        );
 
      } else if (index == 2) {
@@ -66,11 +69,11 @@ class ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: brightOrange,
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme: IconThemeData(color: Colors.white),
         title: Text(
           " Profile ",
           style:
-              TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+              TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         actions: <Widget>[
           Container(
@@ -245,13 +248,14 @@ class ProfileScreenState extends State<ProfileScreen> {
 
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            title: Text('Profile'),
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.home),
             title: Text("Home"),
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            title: Text('Profile'),
+          ),
+
           BottomNavigationBarItem(
             icon: Icon(Icons.person_pin_circle),
             title: Text('Electorate'),
@@ -275,3 +279,4 @@ class ProfileScreenState extends State<ProfileScreen> {
     );
   }
 }
+

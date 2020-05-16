@@ -16,10 +16,10 @@ class Electorate extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: brightOrange,
-          iconTheme: IconThemeData(color: Colors.black),
+          iconTheme: IconThemeData(color: Colors.white),
           title: Text(
             " Electorate ",
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
           ),
           actions: <Widget>[
             Container(
