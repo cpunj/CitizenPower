@@ -61,7 +61,7 @@ class _AppHomeState extends State<AppHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        title: new Text("Dashboard ",
+        title: new Text("Home ",
           style:
           TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
@@ -71,9 +71,39 @@ class _AppHomeState extends State<AppHome> {
             child: Icon(Icons.more_vert),
           ),
         ],
+      ),
+        body:ListView(
+          physics:AlwaysScrollableScrollPhysics(),
+          children: <Widget>[
+            Row(
+              children:<Widget>[
+                Text(
+                  'Citizen Power',
+                  style:TextStyle(fontFamily:'Billabong',
+                  fontSize:24.0,
+                  )
+                ),
+          Row(
+            children:<Widget>[
+              IconButton(
+                icon:Icon(Icons.live_tv),
+                iconSize:20.0,
+                onPressed:()=>print('CitizenTV'),
+              ),
+              SizedBox(width: 16.0),
+              IconButton(
+                icon:Icon(Icons.send),
+                iconSize:20.0,
+                onPressed:()=>print('Direct messages'),
 
-
-      ) ,
+                
+              ),
+            ],
+          ),
+              ]
+            )
+          ],
+        ),
       bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
 
