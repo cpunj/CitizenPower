@@ -23,17 +23,14 @@ class ProfileScreenState extends State<ProfileScreen> {
              builder: (context) => ProfileScreen()),
        );
      } else if (index == 1) {
+       /* //Need to implement home page, AppHome()
        Navigator.push(
          context,
          MaterialPageRoute(
              builder: (context) => AppHome()),
        );
+       */
 
-       /*Navigator.push(
-         context,
-         MaterialPageRoute(
-             builder: (context) => Home()),
-       ); */
      } else if (index == 2) {
        Navigator.push(
          context,
@@ -91,10 +88,11 @@ class ProfileScreenState extends State<ProfileScreen> {
         ],
       ),
       body: CustomScrollView(slivers: <Widget>[
-        SliverToBoxAdapter(
+
+        SliverToBoxAdapter( //Container for profile image
           child: Container(
             margin: EdgeInsets.only(top: 20),
-            height: 300,
+            height: 240,
             child: Column(children: <Widget>[
               CircleAvatar(
                 radius: 100.0,
@@ -106,7 +104,8 @@ class ProfileScreenState extends State<ProfileScreen> {
             ]),
           ),
         ),
-        SliverToBoxAdapter(
+
+        SliverToBoxAdapter( //Container for the profile stats bar
           child: Container(
             margin: EdgeInsets.only(left: 30, right: 30),
             child: Row(
@@ -131,6 +130,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                   height: 10,
                   color: Colors.black,
                 ),
+
                 Column(
                   children: <Widget>[
                     Text(
@@ -143,13 +143,26 @@ class ProfileScreenState extends State<ProfileScreen> {
                     SizedBox(
                       height: 3,
                     ),
-                    Text("Connections"),
+
+                    InkWell( // Connecting profile to list of connections
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProfileList()),
+                        );
+                      },
+                      child: new Text("Connections"),
+                    ),
+
                   ],
                 ),
+
                 Divider(
                   height: 10,
                   color: Colors.black,
                 ),
+
                 Column(
                   children: <Widget>[
                     Text(
@@ -162,7 +175,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                     SizedBox(
                       height: 3,
                     ),
-                    Text("Linked To"),
+                    Text("Network"),
                   ],
                 ),
               ],

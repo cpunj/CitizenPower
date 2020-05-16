@@ -2,14 +2,14 @@ import 'package:citizenpower/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-class AppHome extends StatefulWidget {
+class ProfileList extends StatefulWidget {
   @override
-  State<AppHome> createState() {
+  State<ProfileList> createState() {
     return new AppState();
   }
 }
 
-class AppState extends State<AppHome> {
+class AppState extends State<ProfileList> {
   List<String> Names = [
     'Harry Fawcett',
     'Salman Md Farsy',

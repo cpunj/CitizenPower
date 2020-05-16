@@ -1,3 +1,4 @@
+import 'package:citizenpower/main.dart';
 import 'package:flutter/material.dart';
 import 'package:citizenpower/loginpage.dart';
 import 'package:flutter/widgets.dart';
@@ -160,23 +161,10 @@ class _SettingState extends State<Setting> {
               ],
             ),
           ),
-          Positioned(
-            bottom: 0,
-            right: 0,
-            child: Container(
-              width: 50,
-              height: 50,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Colors.purpleAccent,
-                shape: BoxShape.rectangle,
-              ),
-              //  child: Icon(Icons.offline_bolt),
-            ),
-          ),
+
           Positioned(
               bottom: 0,
-              right: -12,
+              right: 10,
               child: RaisedButton(
                   child: Text(
                     "Logout",
@@ -184,7 +172,7 @@ class _SettingState extends State<Setting> {
                   ),
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => LoginPage()));
+                        MaterialPageRoute(builder: (context) => new MyApp()));
                   }))
         ],
       ),

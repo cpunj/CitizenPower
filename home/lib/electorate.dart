@@ -29,16 +29,29 @@ class Electorate extends StatelessWidget {
           ],
     ),
       body: CustomScrollView(slivers: <Widget>[
+
+        SliverToBoxAdapter(
+          child: Padding(
+          padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
+            child: Text("Clark",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          )
+        ),
+
         SliverToBoxAdapter(
           child: Container(
-            margin: EdgeInsets.only(top: 20),
-            height: 300,
+            margin: EdgeInsets.only(top: 0),
+            height: 250,
             child: Column(children: <Widget>[
               ClipRRect(
                 borderRadius: BorderRadius.all(
-                  Radius.circular(20),
+                  Radius.circular(10),
                 ),
-
                 child: Image.asset(
                   "assets/Wilkie.jpeg",
                   height: 230,
@@ -47,11 +60,13 @@ class Electorate extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 0,
               ),
             ]),
           ),
         ),
+
+
         SliverToBoxAdapter(
           child: Container(
             margin: EdgeInsets.only(left: 30, right: 30),

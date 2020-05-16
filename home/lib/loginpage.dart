@@ -57,7 +57,7 @@ class LoginPageState extends State<LoginPage> {
                         keyboardType: TextInputType.emailAddress,
                         validator: (String val) {
                           if (val.isEmpty) {
-                            return "please Insert a valid Email address";
+                            return "Invalid email address";
                           }
                           return null;
                         },
@@ -69,11 +69,11 @@ class LoginPageState extends State<LoginPage> {
                             fontSize: 15,
                           ),
                           labelText: "Password",
-                          hintText: " Enter Password",
+                          hintText: "Insert password",
                         ),
                         keyboardType: TextInputType.text,
                         validator: (val) => val.length < 6
-                            ? 'Insert Password/Incorrect Password'
+                            ? 'Invalid Password'
                             : null,
                         obscureText: true,
                       ),
