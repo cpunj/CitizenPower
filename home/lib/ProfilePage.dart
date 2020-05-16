@@ -131,7 +131,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                   color: Colors.black,
                 ),
 
-                Column(
+                Column( //This is the 'connection'
                   children: <Widget>[
                     Text(
                       "213",
