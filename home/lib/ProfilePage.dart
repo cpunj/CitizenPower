@@ -133,11 +133,20 @@ class ProfileScreenState extends State<ProfileScreen> {
 
                 Column( //This is the 'connection'
                   children: <Widget>[
-                    Text(
-                      "213",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                    InkWell(
+                      onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ProfileList()),
+                      );
+                    },
+                      child: Text(
+                        "213",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
                       ),
                     ),
                     SizedBox(
