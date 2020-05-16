@@ -4,6 +4,7 @@ import 'settings.dart';
 import 'constants.dart';
 import 'electorate.dart';
 import 'profilelist.dart';
+import 'AppHome.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -23,13 +24,12 @@ class ProfileScreenState extends State<ProfileScreen> {
              builder: (context) => ProfileScreen()),
        );
      } else if (index == 1) {
-       /* //Need to implement home page, AppHome()
+        //Need to implement home page, AppHome()
        Navigator.push(
          context,
          MaterialPageRoute(
              builder: (context) => AppHome()),
        );
-       */
 
      } else if (index == 2) {
        Navigator.push(
