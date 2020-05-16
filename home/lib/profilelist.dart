@@ -27,7 +27,7 @@ class AppState extends State<ProfileList> {
         iconTheme: IconThemeData(color: Colors.black),
         title: new Text(
           "Connections",
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
       ),
       body: new Container(
