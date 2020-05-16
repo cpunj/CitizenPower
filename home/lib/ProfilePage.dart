@@ -108,7 +108,7 @@ class ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
 
-        SliverToBoxAdapter( //Container for the profile stats bar
+        SliverToBoxAdapter( //Container for the profile stats bar jenny
           child: Container(
             margin: EdgeInsets.only(left: 30, right: 30),
             child: Row(
