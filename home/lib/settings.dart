@@ -49,7 +49,10 @@ class _SettingState extends State<Setting> {
                       "Profile settings",
                       style: TextStyle(color: Colors.black87),
                     ),
-                    leading: CircleAvatar(),
+                    leading: CircleAvatar(
+                      radius: 20,
+                      backgroundImage: AssetImage("assets/grace.jpg"),
+                    ),
                     trailing: Icon(Icons.edit),
                   ),
                 ),
@@ -161,7 +164,6 @@ class _SettingState extends State<Setting> {
               ],
             ),
           ),
-
           Positioned(
               bottom: 0,
               right: 10,
