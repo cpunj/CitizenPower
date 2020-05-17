@@ -180,6 +180,11 @@ class ProfileScreenState extends State<ProfileScreen> {
               ),
             ])
       ]),
+
+
+      /* COMMENTING OUR PROFILE PAGE NAV BAR TEMPORARILY
+
+
       bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           items: [
@@ -211,6 +216,8 @@ class ProfileScreenState extends State<ProfileScreen> {
           }
           //onTap: _onTap,
           ),
+       */ //REMOVE COMMENT WHEN RE-ENABLING NAV BAR
+
     );
   }
 }
