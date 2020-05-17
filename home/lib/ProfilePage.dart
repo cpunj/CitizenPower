@@ -109,7 +109,10 @@ class ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   color: darkGold,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ProfileList()));
+                  },
                 ),
                 Text(
                     "With Grace",

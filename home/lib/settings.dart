@@ -18,7 +18,7 @@ class _SettingState extends State<Setting> {
   ];
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ashGrey,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: brightOrange,
         iconTheme: IconThemeData(color: Colors.white),
@@ -47,13 +47,16 @@ class _SettingState extends State<Setting> {
                     },
                     title: Text(
                       "Profile settings",
-                      style: TextStyle(color: Colors.black87),
+                      style: TextStyle(color: Colors.white),
                     ),
                     leading: CircleAvatar(
                       radius: 20,
                       backgroundImage: AssetImage("assets/grace.jpg"),
                     ),
-                    trailing: Icon(Icons.edit),
+                    trailing: Icon(
+                      Icons.edit,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
                 const SizedBox(
@@ -65,16 +68,26 @@ class _SettingState extends State<Setting> {
                   margin: const EdgeInsets.symmetric(
                       vertical: 0.0, horizontal: 30.0),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0)),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  color: darkGold,
                   child: Column(
                     children: <Widget>[
                       ListTile(
                         leading: Icon(
                           Icons.lock_outline,
-                          color: Colors.deepOrange,
+                          color: Colors.white,
                         ),
-                        title: Text("Change password"),
-                        trailing: Icon(Icons.keyboard_arrow_right),
+                        title: Text(
+                          "Change password",
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                        trailing: Icon(
+                          Icons.keyboard_arrow_right,
+                          color: Colors.white,
+                        ),
                         onTap: () {
                           //change password
                         },
@@ -88,10 +101,14 @@ class _SettingState extends State<Setting> {
                       ListTile(
                         leading: Icon(
                           Icons.perm_identity,
-                          color: Colors.deepOrange,
+                          color: Colors.white,
                         ),
-                        title: Text("Change Name"),
-                        trailing: Icon(Icons.keyboard_arrow_right),
+                        title: Text(
+                          "Change Name",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        trailing: Icon(Icons.keyboard_arrow_right,
+                            color: Colors.white),
                         onTap: () {
                           //change password
                         },
@@ -105,10 +122,18 @@ class _SettingState extends State<Setting> {
                       ListTile(
                         leading: Icon(
                           Icons.notifications,
-                          color: Colors.deepOrange,
+                          color: Colors.white,
                         ),
-                        title: Text("Notifications"),
-                        trailing: Icon(Icons.keyboard_arrow_right),
+                        title: Text(
+                          "Notifications",
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                        trailing: Icon(
+                          Icons.keyboard_arrow_right,
+                          color: Colors.white,
+                        ),
                         onTap: () {
                           //change password
                         },
@@ -122,10 +147,16 @@ class _SettingState extends State<Setting> {
                       ListTile(
                         leading: Icon(
                           Icons.settings,
-                          color: Colors.deepOrange,
+                          color: Colors.white,
                         ),
-                        title: Text("Pages Settings"),
-                        trailing: Icon(Icons.keyboard_arrow_right),
+                        title: Text(
+                          "Pages Settings",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        trailing: Icon(
+                          Icons.keyboard_arrow_right,
+                          color: Colors.white,
+                        ),
                         onTap: () {
                           //change password
                         },
@@ -141,22 +172,22 @@ class _SettingState extends State<Setting> {
                   style: TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,
-                      color: Colors.blue),
+                      color: Colors.black),
                 ),
                 SwitchListTile(
-                    activeColor: Colors.deepOrangeAccent,
+                    activeColor: darkGold,
                     contentPadding: const EdgeInsets.all(0),
                     value: true,
                     title: Text("Notification"),
                     onChanged: (val) {}),
                 SwitchListTile(
-                    activeColor: Colors.deepOrangeAccent,
+                    activeColor: darkGold,
                     contentPadding: const EdgeInsets.all(0),
                     value: false,
                     title: Text("Location"),
                     onChanged: (val) {}),
                 SwitchListTile(
-                    activeColor: Colors.deepOrangeAccent,
+                    activeColor: darkGold,
                     contentPadding: const EdgeInsets.all(0),
                     value: true,
                     title: Text("Recieve App update"),

@@ -29,8 +29,14 @@ class Registration extends StatelessWidget {
                   children: <Widget>[
                     new TextFormField(
                       decoration: new InputDecoration(
-                          labelText: "Name ",
-                          hintText: "Enter Your Full name "),
+                          labelText: " First Name ",
+                          hintText: "Enter Your first name "),
+                      keyboardType: TextInputType.text,
+                    ),
+                    new TextFormField(
+                      decoration: new InputDecoration(
+                          labelText: " Last Name ",
+                          hintText: "Enter Last name "),
                       keyboardType: TextInputType.text,
                     ),
                     new TextFormField(
