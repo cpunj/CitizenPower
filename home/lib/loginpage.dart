@@ -52,9 +52,10 @@ class LoginPageState extends State<LoginPage> {
                         margin: EdgeInsets.all(5.0),
                         color: ashGrey,
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
                           child: new TextFormField(
                             decoration: new InputDecoration(
+                                hintStyle: TextStyle(color: Colors.white),
                                 errorStyle: TextStyle(
                                   color: Colors.redAccent,
                                   fontSize: 15.0,
@@ -75,9 +76,12 @@ class LoginPageState extends State<LoginPage> {
                         margin: EdgeInsets.all(5),
                         color: ashGrey,
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
                           child: new TextFormField(
                             decoration: new InputDecoration(
+                              hintStyle: TextStyle(
+                                color: Colors.white,
+                              ),
                               errorStyle: TextStyle(
                                 color: Colors.redAccent,
                                 fontSize: 15,
