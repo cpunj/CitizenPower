@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:citizenpower/loginpage.dart';
 import 'package:flutter/widgets.dart';
 import 'constants.dart';
+
 class Setting extends StatefulWidget {
   Setting({Key key}) : super(key: key);
   @override
@@ -17,7 +18,7 @@ class _SettingState extends State<Setting> {
   ];
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
+      backgroundColor: ashGrey,
       appBar: AppBar(
         backgroundColor: brightOrange,
         iconTheme: IconThemeData(color: Colors.white),
@@ -39,7 +40,7 @@ class _SettingState extends State<Setting> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0)),
                   margin: const EdgeInsets.all(8.0),
-                  color: Colors.deepOrange,
+                  color: darkGold,
                   child: ListTile(
                     onTap: () {
                       //edit profile

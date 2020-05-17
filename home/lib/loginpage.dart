@@ -12,7 +12,7 @@ class LoginPage extends StatefulWidget {
 
 class LoginPageState extends State<LoginPage> {
   var _formKey = GlobalKey<FormState>();
-  String email="citizentasmania@gmail.com";
+  String email = "citizentasmania@gmail.com";
   @override
   Widget build(BuildContext context) {
     //Start of widget tree
@@ -22,12 +22,12 @@ class LoginPageState extends State<LoginPage> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: brightOrange,
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme: IconThemeData(color: Colors.white),
         //Move around title as wanted, I think this looks best - Jack
         title: Center(
           child: Text(
             "Citizen Power",
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
           ),
         ),
       ),
@@ -43,41 +43,54 @@ class LoginPageState extends State<LoginPage> {
                   brightness: Brightness.light,
                 ),
                 child: new Container(
-                  padding: const EdgeInsets.all(5.0),
+                  padding: const EdgeInsets.all(10.0),
                   height: 160,
                   width: 100,
                   child: new Column(
                     children: <Widget>[
-                      new TextFormField(
-                        decoration: new InputDecoration(
-                            errorStyle: TextStyle(
-                              color: Colors.redAccent,
-                              fontSize: 15.0,
-                            ),
-                            labelText: "Email",
-                            hintText: "Enter Email address"),
-                        keyboardType: TextInputType.emailAddress,
-                        validator: (String val) {
-                          if (val !=(email) ) {
-                            return "Invalid email address";
-                          }
-                          return null;
-                        },
-                      ),
-                      new TextFormField(
-                        decoration: new InputDecoration(
-                          errorStyle: TextStyle(
-                            color: Colors.redAccent,
-                            fontSize: 15,
+                      Card(
+                        margin: EdgeInsets.all(5.0),
+                        color: ashGrey,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: new TextFormField(
+                            decoration: new InputDecoration(
+                                errorStyle: TextStyle(
+                                  color: Colors.redAccent,
+                                  fontSize: 15.0,
+                                ),
+                                labelText: "Email",
+                                hintText: "Enter Email address"),
+                            keyboardType: TextInputType.emailAddress,
+                            validator: (String val) {
+                              if (val != (email)) {
+                                return "Invalid email address";
+                              }
+                              return null;
+                            },
                           ),
-                          labelText: "Password",
-                          hintText: "Insert password",
                         ),
-                        keyboardType: TextInputType.text,
-                        validator: (val) => val.length < 6
-                            ? 'Invalid Password'
-                            : null,
-                        obscureText: true,
+                      ),
+                      Card(
+                        margin: EdgeInsets.all(5),
+                        color: ashGrey,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: new TextFormField(
+                            decoration: new InputDecoration(
+                              errorStyle: TextStyle(
+                                color: Colors.redAccent,
+                                fontSize: 15,
+                              ),
+                              labelText: "Password",
+                              hintText: "Insert password",
+                            ),
+                            keyboardType: TextInputType.text,
+                            validator: (val) =>
+                                val.length < 6 ? 'Invalid Password' : null,
+                            obscureText: true,
+                          ),
+                        ),
                       ),
                       new Padding(
                         padding: const EdgeInsets.only(top: 20),
@@ -85,7 +98,7 @@ class LoginPageState extends State<LoginPage> {
                       Center(
                         child: new MaterialButton(
                             color: darkGold,
-                            textColor: Colors.black87,
+                            textColor: Colors.white,
                             child: new Text("LOGIN"),
                             onPressed: () {
                               if (_formKey.currentState.validate())
@@ -102,7 +115,7 @@ class LoginPageState extends State<LoginPage> {
                       Center(
                         child: new MaterialButton(
                             color: darkGold,
-                            textColor: Colors.black,
+                            textColor: Colors.white,
                             minWidth: 50,
                             materialTapTargetSize: MaterialTapTargetSize.padded,
                             child: new Text("REGISTER"),
@@ -123,7 +136,7 @@ class LoginPageState extends State<LoginPage> {
                       //Contains Citizen logo in column
                       Center(
                         child: Container(
-                          height: 320,
+                          height: 200,
                           padding: EdgeInsets.only(top: 30),
                           child: Image(
                             image: AssetImage('assets/CitizenLogo.png'),
