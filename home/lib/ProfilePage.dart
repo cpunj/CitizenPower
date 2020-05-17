@@ -15,46 +15,39 @@ class ProfileScreenState extends State<ProfileScreen> {
   var profileOptions = ['Edit'];
   var currentItemSelected = 'Edit';
 
-  _onTap(int index){ //This acts as a navigator for the Nav Bar
+  _onTap(int index) {
+    //This acts as a navigator for the Nav Bar
 
-     if (index == 0) {
-       Navigator.push(
-         context,
-         MaterialPageRoute(
-             builder: (context) => AppHome()),
-       );
-     } else if (index == 1) {
-        //Need to implement home page, AppHome()
-       Navigator.push(
-         context,
-         MaterialPageRoute(
-             builder: (context) => ProfileScreen(
-
-             )
-         ),
-       );
-
-     } else if (index == 2) {
-       Navigator.push(
-         context,
-         MaterialPageRoute(
-             builder: (context) => Electorate()),
-       );
-     } else if (index == 3) {
-       /*
+    if (index == 0) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => AppHome()),
+      );
+    } else if (index == 1) {
+      //Need to implement home page, AppHome()
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ProfileScreen()),
+      );
+    } else if (index == 2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Electorate()),
+      );
+    } else if (index == 3) {
+      /*
        Navigator.push(
 
          context,
          MaterialPageRoute(
              builder: (context) => Electorate()),
        ); */
-     } else if (index == 4) {
-       Navigator.push(
-         context,
-         MaterialPageRoute(
-             builder: (context) => Setting()),
-       );
-     }
+    } else if (index == 4) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Setting()),
+      );
+    }
   }
 
   @override
@@ -65,15 +58,13 @@ class ProfileScreenState extends State<ProfileScreen> {
       print('working');
     }
 
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: brightOrange,
         iconTheme: IconThemeData(color: Colors.white),
         title: Text(
           " Profile ",
-          style:
-              TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         actions: <Widget>[
           Container(
@@ -91,107 +82,53 @@ class ProfileScreenState extends State<ProfileScreen> {
         ],
       ),
       body: CustomScrollView(slivers: <Widget>[
-
-        SliverToBoxAdapter( //Container for profile image
+        SliverToBoxAdapter(
+          //Container for profile image
           child: Container(
             margin: EdgeInsets.only(top: 20),
-            height: 240,
-            child: Column(children: <Widget>[
-              CircleAvatar(
-                radius: 100.0,
-                backgroundImage: AssetImage('assets/grace.jpg'),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-            ]),
-          ),
-        ),
-
-        SliverToBoxAdapter( //Container for the profile stats bar jenny
-          child: Container(
-            margin: EdgeInsets.only(left: 30, right: 30),
+            height: 160,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    Text(
-                      "04",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 3,
-                    ),
-                    Text("Posts"),
-                  ],
-                ),
-                Divider(
-                  height: 10,
-                  color: Colors.black,
-                ),
 
-                Column( //This is the 'connection' to profile list
-                  children: <Widget>[
-                    InkWell(
-                      onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ProfileList()),
-                      );
-                    },
-                      child: Text(
-                        "213",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 3,
-                    ),
-
-                    InkWell( // Connecting profile to list of connections
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ProfileList()),
-                        );
-                      },
-                      child: new Text("Connections"),
-                    ),
-
-                  ],
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: CircleAvatar(
+                    radius: 70.0,
+                    backgroundImage: AssetImage('assets/grace.jpg'),
+                  ),
                 ),
+                //Needs to link to a profile list
 
-                Divider(
-                  height: 10,
-                  color: Colors.black,
-                ),
-
-                Column(
-                  children: <Widget>[
-                    Text(
-                      "1K",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
+                MaterialButton(
+                  child: Text(
+                    "Community",
+                    style: TextStyle(
+                      color: Colors.white,
                     ),
-                    SizedBox(
-                      height: 3,
-                    ),
-                    Text("Network"),
-                  ],
+                  ),
+                  color: darkGold,
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ProfileList()));
+                  },
                 ),
+                Text(
+                    "With Grace",
+                    style: TextStyle(
+                      color: Colors.black,
+                        fontSize: 18,
+                        letterSpacing: 1,
+                        wordSpacing: 2,
+                        height: 1.2,
+                        fontWeight: FontWeight.w600
+                    )
+                )
               ],
+
             ),
+
           ),
         ),
         SliverToBoxAdapter(
@@ -218,6 +155,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                 height: 10,
                 color: Colors.black,
               ),
+
             ],
           ),
         ),
@@ -242,41 +180,44 @@ class ProfileScreenState extends State<ProfileScreen> {
               ),
             ])
       ]),
+
+
+      /* COMMENTING OUR PROFILE PAGE NAV BAR TEMPORARILY
+
+
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
+          type: BottomNavigationBarType.fixed,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              title: Text("Home"),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              title: Text('Profile'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person_pin_circle),
+              title: Text('Electorate'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.event),
+              title: Text('Event'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              title: Text('Settings'),
+            ),
+          ],
+          onTap: (index) {
+            setState(() {
+              _onTap(index);
+            });
+          }
+          //onTap: _onTap,
+          ),
+       */ //REMOVE COMMENT WHEN RE-ENABLING NAV BAR
 
-
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text("Home"),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            title: Text('Profile'),
-          ),
-
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_pin_circle),
-            title: Text('Electorate'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.event),
-            title: Text('Event'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            title: Text('Settings'),
-          ),
-        ],
-        onTap: (index){
-          setState(() {
-            _onTap(index);
-          });
-        }
-        //onTap: _onTap,
-      ),
     );
   }
 }
-

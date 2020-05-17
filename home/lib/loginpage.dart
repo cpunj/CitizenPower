@@ -12,7 +12,7 @@ class LoginPage extends StatefulWidget {
 
 class LoginPageState extends State<LoginPage> {
   var _formKey = GlobalKey<FormState>();
-  String email="citizentasmania@gmail.com";
+  String email = "citizentasmania@gmail.com";
   @override
   Widget build(BuildContext context) {
     //Start of widget tree
@@ -22,12 +22,12 @@ class LoginPageState extends State<LoginPage> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: brightOrange,
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme: IconThemeData(color: Colors.white),
         //Move around title as wanted, I think this looks best - Jack
         title: Center(
           child: Text(
             "Citizen Power",
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
           ),
         ),
       ),
@@ -43,13 +43,18 @@ class LoginPageState extends State<LoginPage> {
                   brightness: Brightness.light,
                 ),
                 child: new Container(
-                  padding: const EdgeInsets.all(5.0),
+                  padding: const EdgeInsets.all(10.0),
                   height: 160,
                   width: 100,
                   child: new Column(
                     children: <Widget>[
                       new TextFormField(
                         decoration: new InputDecoration(
+                            contentPadding:
+                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30.0)),
+                            hintStyle: TextStyle(color: Colors.white),
                             errorStyle: TextStyle(
                               color: Colors.redAccent,
                               fontSize: 15.0,
@@ -58,14 +63,22 @@ class LoginPageState extends State<LoginPage> {
                             hintText: "Enter Email address"),
                         keyboardType: TextInputType.emailAddress,
                         validator: (String val) {
-                          if (val !=(email) ) {
+                          if (val != (email)) {
                             return "Invalid email address";
                           }
                           return null;
                         },
                       ),
+                      SizedBox(
+                        height: 20,
+                      ),
                       new TextFormField(
                         decoration: new InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30.0)),
+                          hintStyle: TextStyle(
+                            color: Colors.white,
+                          ),
                           errorStyle: TextStyle(
                             color: Colors.redAccent,
                             fontSize: 15,
@@ -74,56 +87,64 @@ class LoginPageState extends State<LoginPage> {
                           hintText: "Insert password",
                         ),
                         keyboardType: TextInputType.text,
-                        validator: (val) => val.length < 6
-                            ? 'Invalid Password'
-                            : null,
+                        validator: (val) =>
+                            val.length < 6 ? 'Invalid Password' : null,
                         obscureText: true,
                       ),
                       new Padding(
                         padding: const EdgeInsets.only(top: 20),
                       ),
                       Center(
-                        child: new MaterialButton(
-                            color: darkGold,
-                            textColor: Colors.black87,
-                            child: new Text("LOGIN"),
-                            onPressed: () {
-                              if (_formKey.currentState.validate())
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => AppHome()),
-                                );
-                            }),
+                        child: Material(
+                          elevation: 5.0,
+                          borderRadius: BorderRadius.circular(20.0),
+                          color: darkGold,
+                          child: new MaterialButton(
+                              textColor: Colors.white,
+                              child: new Text("LOGIN"),
+                              onPressed: () {
+                                if (_formKey.currentState.validate())
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => AppHome()),
+                                  );
+                              }),
+                        ),
                       ),
                       new Padding(
                         padding: const EdgeInsets.only(top: 20.0),
                       ),
                       Center(
-                        child: new MaterialButton(
-                            color: darkGold,
-                            textColor: Colors.black,
-                            minWidth: 50,
-                            materialTapTargetSize: MaterialTapTargetSize.padded,
-                            child: new Text("REGISTER"),
-                            onPressed: () {
-                              if (_formKey.currentState.validate()) {
-                                // If the form is valid, display a Snackbar.
-                                Scaffold.of(context).showSnackBar(
-                                    SnackBar(content: Text('Processing Data')));
-                              }
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Registration()),
-                              );
-                            }),
+                        child: Material(
+                          elevation: 5.0,
+                          borderRadius: BorderRadius.circular(20.0),
+                          color: darkGold,
+                          child: new MaterialButton(
+                              textColor: Colors.white,
+                              minWidth: 50,
+                              materialTapTargetSize:
+                                  MaterialTapTargetSize.padded,
+                              child: new Text("REGISTER"),
+                              onPressed: () {
+                                if (_formKey.currentState.validate()) {
+                                  // If the form is valid, display a Snackbar.
+                                  Scaffold.of(context).showSnackBar(SnackBar(
+                                      content: Text('Processing Data')));
+                                }
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Registration()),
+                                );
+                              }),
+                        ),
                       ),
 
                       //Contains Citizen logo in column
                       Center(
                         child: Container(
-                          height: 320,
+                          height: 200,
                           padding: EdgeInsets.only(top: 30),
                           child: Image(
                             image: AssetImage('assets/CitizenLogo.png'),

@@ -9,7 +9,6 @@ import 'constants.dart';
 - Put in button to email/get in touch
  */
 
-
 class Electorate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -27,118 +26,122 @@ class Electorate extends StatelessWidget {
               child: Icon(Icons.more_vert),
             ),
           ],
-    ),
-      body: CustomScrollView(slivers: <Widget>[
-
-        SliverToBoxAdapter(
-          child: Padding(
-          padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
-            child: Text("Clark",
+        ),
+        body: CustomScrollView(slivers: <Widget>[
+          SliverToBoxAdapter(
+              child: Padding(
+            padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
+            child: Text(
+              "Clark",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 30,
               ),
               textAlign: TextAlign.center,
             ),
-          )
-        ),
-
-        SliverToBoxAdapter(
-          child: Container(
-            margin: EdgeInsets.only(top: 0),
-            height: 250,
-            child: Column(children: <Widget>[
-              ClipRRect(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(10),
+          )),
+          SliverToBoxAdapter(
+            child: Container(
+              margin: EdgeInsets.only(top: 0),
+              height: 175,
+              child: Column(children: <Widget>[
+                ClipRRect(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                  child: Image.asset(
+                    "assets/Wilkie.jpeg",
+                    height: 150,
+                    width: 200,
+                    fit: BoxFit.scaleDown,
+                  ),
                 ),
-                child: Image.asset(
-                  "assets/Wilkie.jpeg",
-                  height: 230,
-                  width: 300,
-                  fit: BoxFit.scaleDown,
-                ),
-              ),
-              SizedBox(
-                height: 0,
-              ),
-            ]),
-          ),
-        ),
-
-
-        SliverToBoxAdapter(
-          child: Container(
-            margin: EdgeInsets.only(left: 30, right: 30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    Text(
-                      "Current MP",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 3,
-                    ),
-                    Text("Andrew Wilkie"),
-                  ],
-                ),
-                Divider(
-                  height: 10,
-                  color: Colors.black,
-                ),
-                Column(
-                  children: <Widget>[
-                    Text(
-                      "Party",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 3,
-                    ),
-                    Text("Independent"),
-                  ],
-                ),
-                Divider(
-                  height: 10,
-                  color: Colors.black,
-                ),
-                Column(
-                  children: <Widget>[
-                    Text(
-                      "74K",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 3,
-                    ),
-                    Text("Population"),
-                  ],
-                ),
-              ],
+              ]),
             ),
           ),
-        ),
-        SliverToBoxAdapter(
-          child: RaisedButton(
-            color: darkGold,
-            textColor: Colors.black,
-            child: Text('Get In Touch'),
-            onPressed: (){},
+          SliverToBoxAdapter(
+            child: Container(
+              margin: EdgeInsets.only(left: 30, right: 30),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      Text(
+                        "Current MP",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      Text("Andrew Wilkie"),
+                    ],
+                  ),
+                  Divider(
+                    height: 10,
+                    color: Colors.black,
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Text(
+                        "Party",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      Text("Independent"),
+                    ],
+                  ),
+                  Divider(
+                    height: 10,
+                    color: Colors.black,
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Text(
+                        "74K",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      Text("Population"),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ),
-        ),
-      ])
-      );
+          SliverToBoxAdapter(
+            child: RaisedButton(
+              color: darkGold,
+              textColor: Colors.white,
+              child: Text('Get In Touch'),
+              onPressed: () {},
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Card(
+              margin: EdgeInsets.all(40),
+              color: ashGrey,
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Image(
+                  image: AssetImage('assets/editClark.png'),
+                ),
+              ),
+            ),
+          )
+        ]));
   }
 }
