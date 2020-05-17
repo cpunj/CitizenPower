@@ -88,8 +88,10 @@ class ProfileScreenState extends State<ProfileScreen> {
             margin: EdgeInsets.only(top: 20),
             height: 160,
             child: Row(
+
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
+
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: CircleAvatar(
@@ -98,6 +100,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
                 //Needs to link to a profile list
+
                 MaterialButton(
                   child: Text(
                     "Community",
@@ -111,8 +114,21 @@ class ProfileScreenState extends State<ProfileScreen> {
                         MaterialPageRoute(builder: (context) => ProfileList()));
                   },
                 ),
+                Text(
+                    "With Grace",
+                    style: TextStyle(
+                      color: Colors.black,
+                        fontSize: 18,
+                        letterSpacing: 1,
+                        wordSpacing: 2,
+                        height: 1.2,
+                        fontWeight: FontWeight.w600
+                    )
+                )
               ],
+
             ),
+
           ),
         ),
         SliverToBoxAdapter(
@@ -139,6 +155,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                 height: 10,
                 color: Colors.black,
               ),
+
             ],
           ),
         ),
