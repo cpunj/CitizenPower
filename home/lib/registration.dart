@@ -19,7 +19,7 @@ class _RegistrationState extends State<Registration> {
       controller: emailcontroller,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          hintText: "Email address",
+          labelText: "Email address",
           border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(30.0))),
     );
@@ -28,7 +28,7 @@ class _RegistrationState extends State<Registration> {
       controller: namecontroller,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          hintText: "Full Name",
+          labelText: "Full name",
           border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(30.0))),
     );
@@ -37,7 +37,7 @@ class _RegistrationState extends State<Registration> {
       controller: mobilecontroller,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          hintText: "Mobile Number",
+          labelText: "Mobile Number",
           border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(30.0))),
     );
@@ -46,7 +46,7 @@ class _RegistrationState extends State<Registration> {
       controller: passcontroller,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          hintText: "New Password",
+          labelText: "New Password",
           border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(30.0))),
     );
@@ -56,8 +56,8 @@ class _RegistrationState extends State<Registration> {
       borderRadius: BorderRadius.circular(20.0),
       color: darkGold,
       child: MaterialButton(
-        minWidth: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.fromLTRB(50.0, 15.0, 50.0, 15.0),
+        padding: EdgeInsets.symmetric(
+            vertical: 15, horizontal: 40), //fromLTRB(50.0, 15.0, 50.0, 15.0),
         onPressed: () {
           User user = User();
           user.email = emailcontroller.text;

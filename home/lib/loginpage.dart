@@ -48,93 +48,97 @@ class LoginPageState extends State<LoginPage> {
                   width: 100,
                   child: new Column(
                     children: <Widget>[
-                      Card(
-                        margin: EdgeInsets.all(5.0),
-                        color: ashGrey,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
-                          child: new TextFormField(
-                            decoration: new InputDecoration(
-                                hintStyle: TextStyle(color: Colors.white),
-                                errorStyle: TextStyle(
-                                  color: Colors.redAccent,
-                                  fontSize: 15.0,
-                                ),
-                                labelText: "Email",
-                                hintText: "Enter Email address"),
-                            keyboardType: TextInputType.emailAddress,
-                            validator: (String val) {
-                              if (val != (email)) {
-                                return "Invalid email address";
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                      ),
-                      Card(
-                        margin: EdgeInsets.all(5),
-                        color: ashGrey,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
-                          child: new TextFormField(
-                            decoration: new InputDecoration(
-                              hintStyle: TextStyle(
-                                color: Colors.white,
-                              ),
-                              errorStyle: TextStyle(
-                                color: Colors.redAccent,
-                                fontSize: 15,
-                              ),
-                              labelText: "Password",
-                              hintText: "Insert password",
+                      new TextFormField(
+                        decoration: new InputDecoration(
+                            contentPadding:
+                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30.0)),
+                            hintStyle: TextStyle(color: Colors.white),
+                            errorStyle: TextStyle(
+                              color: Colors.redAccent,
+                              fontSize: 15.0,
                             ),
-                            keyboardType: TextInputType.text,
-                            validator: (val) =>
-                                val.length < 6 ? 'Invalid Password' : null,
-                            obscureText: true,
+                            labelText: "Email",
+                            hintText: "Enter Email address"),
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (String val) {
+                          if (val != (email)) {
+                            return "Invalid email address";
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      new TextFormField(
+                        decoration: new InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30.0)),
+                          hintStyle: TextStyle(
+                            color: Colors.white,
                           ),
+                          errorStyle: TextStyle(
+                            color: Colors.redAccent,
+                            fontSize: 15,
+                          ),
+                          labelText: "Password",
+                          hintText: "Insert password",
                         ),
+                        keyboardType: TextInputType.text,
+                        validator: (val) =>
+                            val.length < 6 ? 'Invalid Password' : null,
+                        obscureText: true,
                       ),
                       new Padding(
                         padding: const EdgeInsets.only(top: 20),
                       ),
                       Center(
-                        child: new MaterialButton(
-                            color: darkGold,
-                            textColor: Colors.white,
-                            child: new Text("LOGIN"),
-                            onPressed: () {
-                              if (_formKey.currentState.validate())
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => AppHome()),
-                                );
-                            }),
+                        child: Material(
+                          elevation: 5.0,
+                          borderRadius: BorderRadius.circular(20.0),
+                          color: darkGold,
+                          child: new MaterialButton(
+                              textColor: Colors.white,
+                              child: new Text("LOGIN"),
+                              onPressed: () {
+                                if (_formKey.currentState.validate())
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => AppHome()),
+                                  );
+                              }),
+                        ),
                       ),
                       new Padding(
                         padding: const EdgeInsets.only(top: 20.0),
                       ),
                       Center(
-                        child: new MaterialButton(
-                            color: darkGold,
-                            textColor: Colors.white,
-                            minWidth: 50,
-                            materialTapTargetSize: MaterialTapTargetSize.padded,
-                            child: new Text("REGISTER"),
-                            onPressed: () {
-                              if (_formKey.currentState.validate()) {
-                                // If the form is valid, display a Snackbar.
-                                Scaffold.of(context).showSnackBar(
-                                    SnackBar(content: Text('Processing Data')));
-                              }
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Registration()),
-                              );
-                            }),
+                        child: Material(
+                          elevation: 5.0,
+                          borderRadius: BorderRadius.circular(20.0),
+                          color: darkGold,
+                          child: new MaterialButton(
+                              textColor: Colors.white,
+                              minWidth: 50,
+                              materialTapTargetSize:
+                                  MaterialTapTargetSize.padded,
+                              child: new Text("REGISTER"),
+                              onPressed: () {
+                                if (_formKey.currentState.validate()) {
+                                  // If the form is valid, display a Snackbar.
+                                  Scaffold.of(context).showSnackBar(SnackBar(
+                                      content: Text('Processing Data')));
+                                }
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Registration()),
+                                );
+                              }),
+                        ),
                       ),
 
                       //Contains Citizen logo in column
