@@ -17,7 +17,7 @@ class AppState extends State<ProfileList> {
     'Jianyi Li',
     'Khern',
     'Chandan Punj',
-    'Jack Lennard'
+    'Jack Lennard',
   ];
   @override
   Widget build(BuildContext context) {
