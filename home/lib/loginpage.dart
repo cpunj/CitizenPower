@@ -43,7 +43,7 @@ class LoginPageState extends State<LoginPage> {
                   brightness: Brightness.light,
                 ),
                 child: new Container(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.only(top: 25),
                   height: 160,
                   width: 100,
                   child: new Column(
@@ -51,9 +51,9 @@ class LoginPageState extends State<LoginPage> {
                       new TextFormField(
                         decoration: new InputDecoration(
                             contentPadding:
-                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 25.0),
                             border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30.0)),
+                                borderRadius: BorderRadius.circular(40.0)),
                             hintStyle: TextStyle(color: Colors.white),
                             errorStyle: TextStyle(
                               color: Colors.redAccent,
@@ -72,27 +72,39 @@ class LoginPageState extends State<LoginPage> {
                       SizedBox(
                         height: 20,
                       ),
-                      new TextFormField(
-                        decoration: new InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30.0)),
-                          hintStyle: TextStyle(
-                            color: Colors.white,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: <Widget>[
+                          new TextFormField(
+                            decoration: new InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30.0)),
+                              hintStyle: TextStyle(
+                                color: Colors.white,
+                              ),
+                              errorStyle: TextStyle(
+                                color: Colors.redAccent,
+                                fontSize: 15,
+                              ),
+                              labelText: "Password",
+                              hintText: "Insert password",
+                            ),
+                            keyboardType: TextInputType.text,
+                            validator: (val) =>
+                                val.length < 6 ? 'Invalid Password' : null,
+                            obscureText: true,
                           ),
-                          errorStyle: TextStyle(
-                            color: Colors.redAccent,
-                            fontSize: 15,
+                          SizedBox(
+                            height: 15.0,
                           ),
-                          labelText: "Password",
-                          hintText: "Insert password",
-                        ),
-                        keyboardType: TextInputType.text,
-                        validator: (val) =>
-                            val.length < 6 ? 'Invalid Password' : null,
-                        obscureText: true,
+                          Text(
+                            "Forgot Password?",
+                            style: TextStyle(color: Colors.red),
+                          ),
+                        ],
                       ),
                       new Padding(
-                        padding: const EdgeInsets.only(top: 20),
+                        padding: const EdgeInsets.only(top: 80),
                       ),
                       Center(
                         child: Material(
@@ -122,7 +134,7 @@ class LoginPageState extends State<LoginPage> {
                           color: darkGold,
                           child: new MaterialButton(
                               textColor: Colors.white,
-                              minWidth: 50,
+                              minWidth: 150,
                               materialTapTargetSize:
                                   MaterialTapTargetSize.padded,
                               child: new Text("REGISTER"),
@@ -145,10 +157,8 @@ class LoginPageState extends State<LoginPage> {
                       Center(
                         child: Container(
                           height: 200,
-                          padding: EdgeInsets.only(top: 30),
-                          child: Image(
-                            image: AssetImage('assets/CitizenLogo.png'),
-                          ),
+                          padding: EdgeInsets.only(top: 150),
+                          child: new Text("Together We Stand"),
                         ),
                       )
                     ],
