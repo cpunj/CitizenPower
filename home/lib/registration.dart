@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Registration extends StatefulWidget {
   @override
@@ -7,6 +8,19 @@ class Registration extends StatefulWidget {
 }
 
 class _RegistrationState extends State<Registration> {
+  User user=User();
+  GlobalKey<FormState> _formkey = GlobalKey();
+  FirebaseAuth _firebaseAuth=FirebaseAuth.instance;
+
+  save(){
+    if(_formkey.currentState.validate()){
+      _formkey.currentState.save();
+      _firebaseAuth.createUserWithEmailAndPassword(
+        email:user.email,
+        password:user.pass,
+      );
+    }
+  }
   final emailcontroller = TextEditingController();
   final namecontroller = TextEditingController();
   final mobilecontroller = TextEditingController();
@@ -14,7 +28,9 @@ class _RegistrationState extends State<Registration> {
 
   @override
   Widget build(BuildContext context) {
-    final emailField = TextField(
+    final emailField = TextFormField(
+      onSaved: (text)=>user.email=text,
+
       obscureText: false,
       controller: emailcontroller,
       decoration: InputDecoration(
@@ -23,7 +39,8 @@ class _RegistrationState extends State<Registration> {
           border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(30.0))),
     );
-    final name = TextField(
+    final name = TextFormField(
+      onSaved: (text)=>user.name=text,
       obscureText: false,
       controller: namecontroller,
       decoration: InputDecoration(
@@ -32,7 +49,8 @@ class _RegistrationState extends State<Registration> {
           border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(30.0))),
     );
-    final mobile = TextField(
+    final mobile = TextFormField(
+      onSaved: (number)=>user.mobile=number,
       obscureText: false,
       controller: mobilecontroller,
       decoration: InputDecoration(
@@ -41,7 +59,8 @@ class _RegistrationState extends State<Registration> {
           border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(30.0))),
     );
-    final passwordField = TextField(
+    final passwordField = TextFormField(
+      onSaved: (text)=>user.pass=text,
       obscureText: true,
       controller: passcontroller,
       decoration: InputDecoration(
@@ -58,15 +77,7 @@ class _RegistrationState extends State<Registration> {
       child: MaterialButton(
         padding: EdgeInsets.symmetric(
             vertical: 15, horizontal: 40), //fromLTRB(50.0, 15.0, 50.0, 15.0),
-        onPressed: () {
-          User user = User();
-          user.email = emailcontroller.text;
-          user.name = namecontroller.text;
-          user.mobile = mobilecontroller.text;
-          user.pass = passcontroller.text;
-
-          showAlertDialog(context, user);
-        },
+        onPressed: save, 
         child: Text(
           "Submit",
           textAlign: TextAlign.center,
@@ -144,6 +155,13 @@ class User {
   String name;
   String mobile;
   String pass;
+  User({
+    this.email,
+    this.name,
+    this.mobile,
+    this.pass,
+
+  });
 }
 
 /*
