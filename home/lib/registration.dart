@@ -9,12 +9,12 @@ class Registration extends StatefulWidget {
 
 class _RegistrationState extends State<Registration> {
   User user=User();
-  GlobalKey<FormState> _formkey = GlobalKey();
+  GlobalKey<FormState> _formKey = GlobalKey();
   FirebaseAuth _firebaseAuth=FirebaseAuth.instance;
 
   save(){
-    if(_formkey.currentState.validate()){
-      _formkey.currentState.save();
+    if(_formKey.currentState.validate()){
+      _formKey.currentState.save();
       _firebaseAuth.createUserWithEmailAndPassword(
         email:user.email,
         password:user.pass,
@@ -28,126 +28,151 @@ class _RegistrationState extends State<Registration> {
 
   @override
   Widget build(BuildContext context) {
-    final emailField = TextFormField(
-      onSaved: (text)=>user.email=text,
 
-      obscureText: false,
-      controller: emailcontroller,
-      decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          labelText: "Email address",
-          border:
-              OutlineInputBorder(borderRadius: BorderRadius.circular(30.0))),
-    );
-    final name = TextFormField(
-      onSaved: (text)=>user.name=text,
-      obscureText: false,
-      controller: namecontroller,
-      decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          labelText: "Full name",
-          border:
-              OutlineInputBorder(borderRadius: BorderRadius.circular(30.0))),
-    );
-    final mobile = TextFormField(
-      onSaved: (number)=>user.mobile=number,
-      obscureText: false,
-      controller: mobilecontroller,
-      decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          labelText: "Mobile Number",
-          border:
-              OutlineInputBorder(borderRadius: BorderRadius.circular(30.0))),
-    );
-    final passwordField = TextFormField(
-      onSaved: (text)=>user.pass=text,
-      obscureText: true,
-      controller: passcontroller,
-      decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          labelText: "New Password",
-          border:
-              OutlineInputBorder(borderRadius: BorderRadius.circular(30.0))),
-    );
 
-    final loginButon = Material(
-      elevation: 5.0,
-      borderRadius: BorderRadius.circular(20.0),
-      color: darkGold,
-      child: MaterialButton(
-        padding: EdgeInsets.symmetric(
-            vertical: 15, horizontal: 40), //fromLTRB(50.0, 15.0, 50.0, 15.0),
-        onPressed: save, 
-        child: Text(
-          "Submit",
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.white),
+   return new Scaffold(
+      backgroundColor: Colors.white,
+      //Prevents pixels error
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        backgroundColor: brightOrange,
+        iconTheme: IconThemeData(color: Colors.white),
+        //Move around title as wanted, I think this looks best - Jack
+        title: Center(
+          child: Text(
+            "Citizen Power",
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          ),
         ),
       ),
-    );
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(title: Text("Registration ")),
-      body: Center(
-        child: Container(
-          color: Colors.white,
-          child: Padding(
-            padding: const EdgeInsets.all(36.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "REGISTRATION FORM",
-                  style: TextStyle(color: darkGold, fontSize: 20),
+      //Q: Any particular reason for using a stack rather than a column here? -Jack
+      body: SafeArea(
+        child: new Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            new Form(
+              key: _formKey,
+              child: new Theme(
+                data: new ThemeData(
+                  brightness: Brightness.light,
                 ),
-                SizedBox(height: 40.0),
-                emailField,
-                SizedBox(height: 20.0),
-                name,
-                SizedBox(height: 25.0),
-                mobile,
-                SizedBox(height: 25.0),
-                passwordField,
-                SizedBox(
-                  height: 35.0,
+                child: new Container(
+                  padding: const EdgeInsets.all(10.0),
+                  height: 160,
+                  width: 100,
+                  child: new Column(
+                    children: <Widget>[
+                      new TextFormField(
+                        decoration: new InputDecoration(
+                            contentPadding:
+                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30.0)),
+                            hintStyle: TextStyle(color: Colors.white),
+                            errorStyle: TextStyle(
+                              color: Colors.redAccent,
+                              fontSize: 15.0,
+                            ),
+                            labelText: "Name",
+                            hintText: "Enter your name"),
+                      
+                        onSaved: (text)=>user.name=text
+                       
+                      ),
+                      new TextFormField(
+                        decoration: new InputDecoration(
+                            contentPadding:
+                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30.0)),
+                            hintStyle: TextStyle(color: Colors.white),
+                            errorStyle: TextStyle(
+                              color: Colors.redAccent,
+                              fontSize: 15.0,
+                            ),
+                            labelText: "Email",
+                            hintText: "Enter Email address"),
+                        keyboardType: TextInputType.emailAddress,
+                        onSaved: (text)=>user.email=text
+                       
+                      ),
+                      new TextFormField(
+                        decoration: new InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30.0)),
+                          hintStyle: TextStyle(
+                            color: Colors.white,
+                          ),
+                          errorStyle: TextStyle(
+                            color: Colors.redAccent,
+                            fontSize: 15,
+                          ),
+                          labelText: "Password",
+                          hintText: "Insert password",
+                        ),
+                     
+                        keyboardType: TextInputType.text,
+                         onSaved: (text)=>user.pass=text,
+                        validator: (val) =>
+                            val.length < 6 ? 'Invalid Password' : null,
+                        obscureText: true,
+                      ),
+                      new Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                      ),
+                      Center(
+                        child: Material(
+                          elevation: 5.0,
+                          borderRadius: BorderRadius.circular(20.0),
+                          color: darkGold,
+                          child: new MaterialButton(
+                              textColor: Colors.white,
+                              child: new Text("REGISTER"),
+                              
+                              onPressed: save, 
+                        ),
+                      ),
+                      ),
+                      new Padding(
+                        padding: const EdgeInsets.only(top: 20.0),
+                      ),
+                      Center(
+                        child: Material(
+                          elevation: 5.0,
+                          borderRadius: BorderRadius.circular(20.0),
+                          color: darkGold,
+                          child: new MaterialButton(
+                              textColor: Colors.white,
+                              minWidth: 50,
+                              materialTapTargetSize:
+                                  MaterialTapTargetSize.padded,
+                              child: new Text("REGISTER"),
+                               onPressed: save,
+                    
+                              ),
+                      ),
+                      ),
+
+                      //Contains Citizen logo in column
+                      Center(
+                        child: Container(
+                          height: 200,
+                          padding: EdgeInsets.only(top: 30),
+                          child: Image(
+                            image: AssetImage('assets/CitizenLogo.png'),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-                loginButon,
-                SizedBox(
-                  height: 15.0,
-                ),
-              ],
-            ),
-          ),
+              ),
+            )
+          ],
         ),
       ),
     );
   }
-}
-
-showAlertDialog(BuildContext context, User user) {
-  Widget gotIt = FlatButton(
-    child: Text("Got It"),
-    onPressed: () {
-      Navigator.of(context, rootNavigator: true).pop('alert');
-    },
-  );
-
-  AlertDialog alert = AlertDialog(
-    title: Text(" Welcome to Citizen "),
-    content: Text(
-        user.email + "\n" + user.name + "\n" + user.mobile + "\n" + user.pass),
-    actions: [
-      gotIt,
-    ],
-  );
-
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return alert;
-    },
-  );
 }
 
 class User {
