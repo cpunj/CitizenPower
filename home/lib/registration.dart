@@ -8,19 +8,20 @@ class Registration extends StatefulWidget {
 }
 
 class _RegistrationState extends State<Registration> {
-  User user=User();
+  User user = User();
   GlobalKey<FormState> _formKey = GlobalKey();
-  FirebaseAuth _firebaseAuth=FirebaseAuth.instance;
+  FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  save(){
-    if(_formKey.currentState.validate()){
+  save() {
+    if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       _firebaseAuth.createUserWithEmailAndPassword(
-        email:user.email,
-        password:user.pass,
+        email: user.email,
+        password: user.pass,
       );
     }
   }
+
   final emailcontroller = TextEditingController();
   final namecontroller = TextEditingController();
   final mobilecontroller = TextEditingController();
@@ -28,9 +29,7 @@ class _RegistrationState extends State<Registration> {
 
   @override
   Widget build(BuildContext context) {
-
-
-   return new Scaffold(
+    return new Scaffold(
       backgroundColor: Colors.white,
       //Prevents pixels error
       resizeToAvoidBottomInset: false,
@@ -63,39 +62,34 @@ class _RegistrationState extends State<Registration> {
                   child: new Column(
                     children: <Widget>[
                       new TextFormField(
-                        decoration: new InputDecoration(
-                            contentPadding:
-                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30.0)),
-                            hintStyle: TextStyle(color: Colors.white),
-                            errorStyle: TextStyle(
-                              color: Colors.redAccent,
-                              fontSize: 15.0,
-                            ),
-                            labelText: "Name",
-                            hintText: "Enter your name"),
-                      
-                        onSaved: (text)=>user.name=text
-                       
-                      ),
+                          decoration: new InputDecoration(
+                              contentPadding:
+                                  EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30.0)),
+                              hintStyle: TextStyle(color: Colors.white),
+                              errorStyle: TextStyle(
+                                color: Colors.redAccent,
+                                fontSize: 15.0,
+                              ),
+                              labelText: "Name",
+                              hintText: "Enter your name"),
+                          onSaved: (text) => user.name = text),
                       new TextFormField(
-                        decoration: new InputDecoration(
-                            contentPadding:
-                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30.0)),
-                            hintStyle: TextStyle(color: Colors.white),
-                            errorStyle: TextStyle(
-                              color: Colors.redAccent,
-                              fontSize: 15.0,
-                            ),
-                            labelText: "Email",
-                            hintText: "Enter Email address"),
-                        keyboardType: TextInputType.emailAddress,
-                        onSaved: (text)=>user.email=text
-                       
-                      ),
+                          decoration: new InputDecoration(
+                              contentPadding:
+                                  EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30.0)),
+                              hintStyle: TextStyle(color: Colors.white),
+                              errorStyle: TextStyle(
+                                color: Colors.redAccent,
+                                fontSize: 15.0,
+                              ),
+                              labelText: "Email",
+                              hintText: "Enter Email address"),
+                          keyboardType: TextInputType.emailAddress,
+                          onSaved: (text) => user.email = text),
                       new TextFormField(
                         decoration: new InputDecoration(
                           border: OutlineInputBorder(
@@ -110,9 +104,8 @@ class _RegistrationState extends State<Registration> {
                           labelText: "Password",
                           hintText: "Insert password",
                         ),
-                     
                         keyboardType: TextInputType.text,
-                         onSaved: (text)=>user.pass=text,
+                        onSaved: (text) => user.pass = text,
                         validator: (val) =>
                             val.length < 6 ? 'Invalid Password' : null,
                         obscureText: true,
@@ -120,19 +113,7 @@ class _RegistrationState extends State<Registration> {
                       new Padding(
                         padding: const EdgeInsets.only(top: 20),
                       ),
-                      Center(
-                        child: Material(
-                          elevation: 5.0,
-                          borderRadius: BorderRadius.circular(20.0),
-                          color: darkGold,
-                          child: new MaterialButton(
-                              textColor: Colors.white,
-                              child: new Text("REGISTER"),
-                              
-                              onPressed: save, 
-                        ),
-                      ),
-                      ),
+
                       new Padding(
                         padding: const EdgeInsets.only(top: 20.0),
                       ),
@@ -142,27 +123,16 @@ class _RegistrationState extends State<Registration> {
                           borderRadius: BorderRadius.circular(20.0),
                           color: darkGold,
                           child: new MaterialButton(
-                              textColor: Colors.white,
-                              minWidth: 50,
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.padded,
-                              child: new Text("REGISTER"),
-                               onPressed: save,
-                    
-                              ),
-                      ),
+                            textColor: Colors.white,
+                            minWidth: 50,
+                            materialTapTargetSize: MaterialTapTargetSize.padded,
+                            child: new Text("REGISTER"),
+                            onPressed: save,
+                          ),
+                        ),
                       ),
 
                       //Contains Citizen logo in column
-                      Center(
-                        child: Container(
-                          height: 200,
-                          padding: EdgeInsets.only(top: 30),
-                          child: Image(
-                            image: AssetImage('assets/CitizenLogo.png'),
-                          ),
-                        ),
-                      )
                     ],
                   ),
                 ),
@@ -185,7 +155,6 @@ class User {
     this.name,
     this.mobile,
     this.pass,
-
   });
 }
 

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'ProfilePage.dart';
 import 'constants.dart';
+import 'leader.dart';
+import 'poll.dart';
 
 /*TODO:
 - Create a 'Clark' electorate profile
@@ -47,7 +49,7 @@ class Electorate extends StatelessWidget {
               child: Column(children: <Widget>[
                 ClipRRect(
                   borderRadius: BorderRadius.all(
-                    Radius.circular(10),
+                    Radius.circular(450),
                   ),
                   child: Image.asset(
                     "assets/Wilkie.jpeg",
@@ -60,8 +62,12 @@ class Electorate extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(
+            child: Text(
+                " Andrew Damien Wilkie is an Australian politician and independent federal member for Clark. Before entering politics Wilkie was an infantry officer in the Australian Army. Wilkie served with the Australian Army from 1980 to 2004. "),
+          ),
+          SliverToBoxAdapter(
             child: Container(
-              margin: EdgeInsets.only(left: 30, right: 30),
+              margin: EdgeInsets.only(left: 30, right: 30, top: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -131,17 +137,27 @@ class Electorate extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(
-            child: Card(
-              margin: EdgeInsets.all(40),
-              color: ashGrey,
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Image(
-                  image: AssetImage('assets/editClark.png'),
-                ),
-              ),
+            child: RaisedButton(
+              color: darkGold,
+              textColor: Colors.white,
+              child: Text('Leaders'),
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Leader()));
+              },
             ),
-          )
+          ),
+          SliverToBoxAdapter(
+            child: RaisedButton(
+              color: darkGold,
+              textColor: Colors.white,
+              child: Text('POLLs'),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => PollPage()));
+              },
+            ),
+          ),
         ]));
   }
 }
