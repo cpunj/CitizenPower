@@ -147,10 +147,14 @@ class _RegistrationState extends State<Registration> {
                               materialTapTargetSize:
                                   MaterialTapTargetSize.padded,
                               child: new Text("REGISTER"),
+                              
                               onPressed: () {
+                              save();
                                 Navigator.push(
                                     context,
+                                    
                                     MaterialPageRoute(
+                                      
                                         builder: (context) => LoginPage()));
                               }),
                         ),
