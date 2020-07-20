@@ -142,12 +142,17 @@ class _RegistrationState extends State<Registration> {
                           borderRadius: BorderRadius.circular(20.0),
                           color: darkGold,
                           child: new MaterialButton(
-                            textColor: Colors.white,
-                            minWidth: 50,
-                            materialTapTargetSize: MaterialTapTargetSize.padded,
-                            child: new Text("REGISTER"),
-                            onPressed: save,
-                          ),
+                              textColor: Colors.white,
+                              minWidth: 50,
+                              materialTapTargetSize:
+                                  MaterialTapTargetSize.padded,
+                              child: new Text("REGISTER"),
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => LoginPage()));
+                              }),
                         ),
                       ),
 
