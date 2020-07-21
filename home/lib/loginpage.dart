@@ -1,12 +1,8 @@
 import 'package:citizenpower/AppHome.dart';
-import 'package:citizenpower/functions.dart';
 import 'package:flutter/material.dart';
-import 'main.dart';
-import 'ProfilePage.dart';
 import 'registration.dart';
 import 'constants.dart';
 import 'AppHome.dart';
-import 'leader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {

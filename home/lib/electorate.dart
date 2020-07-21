@@ -1,13 +1,6 @@
-import 'package:citizenpower/contactview.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'ProfilePage.dart';
-import 'settings.dart';
 import 'constants.dart';
-
-import 'profilelist.dart';
 import 'leader.dart';
-import 'AppHome.dart';
 import 'functions.dart';
 
 /*TODO:

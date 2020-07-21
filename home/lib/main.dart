@@ -4,7 +4,6 @@ import 'package:citizenpower/electorateprofiledetails.dart';
 import 'package:flutter/material.dart';
 import 'loginpage.dart';
 import 'constants.dart';
-import 'electorate.dart';
 
 //Testing Github: Jack Lennard
 

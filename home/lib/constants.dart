@@ -1,12 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'ProfilePage.dart';
-import 'settings.dart';
-import 'constants.dart';
-import 'electorate.dart';
-import 'profilelist.dart';
-import 'leader.dart';
-import 'AppHome.dart';
 
 //Provides transparency parameter for all material colours
 //RGB values are irrelevant, only transparency (4th) parameter is relevant

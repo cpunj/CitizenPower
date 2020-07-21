@@ -2,7 +2,7 @@ import 'package:citizenpower/loginpage.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'functions.dart';
+import 'TextStyles.dart';
 
 class Registration extends StatefulWidget {
   @override

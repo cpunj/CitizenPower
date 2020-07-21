@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'ProfilePage.dart';
-import 'settings.dart';
 import 'constants.dart';
-import 'electorate.dart';
 import 'profilelist.dart';
-import 'leader.dart';
-import 'AppHome.dart';
 import 'functions.dart';
 
 class ProfileScreen extends StatefulWidget {
