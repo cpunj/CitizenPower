@@ -6,7 +6,7 @@ import 'constants.dart';
 import 'electorate.dart';
 import 'profilelist.dart';
 import 'leader.dart';
-import'AppHome.dart';
+import 'AppHome.dart';
 
 //Layout of standard top app bar
 
