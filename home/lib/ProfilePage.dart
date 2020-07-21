@@ -106,6 +106,7 @@ class ProfileScreenState extends State<ProfileScreen> {
 
     return Scaffold(
       appBar: topAppBarLayout('Profile'),
+      drawer: new Drawer(),
       body: CustomScrollView(slivers: <Widget>[
         SliverToBoxAdapter(
           child: topProfileLayout(),

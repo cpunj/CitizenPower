@@ -9,19 +9,15 @@ import 'profilelist.dart';
 import 'leader.dart';
 
 class AppHome extends StatefulWidget {
-
-  const AppHome({
-    Key key,
-    @required this.user
-  }):super(key:key);
+  const AppHome({Key key, @required this.user}) : super(key: key);
   final FirebaseUser user;
-    @override
+
+  @override
   _AppHomeState createState() => _AppHomeState();
 }
 
 class _AppHomeState extends State<AppHome> {
   @override
-  
   _onTap(int index) {
     //This acts as a navigator for the Nav Bar
 
@@ -66,8 +62,6 @@ class _AppHomeState extends State<AppHome> {
           'Home',
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
-      
-        
         actions: <Widget>[
           Container(
             margin: EdgeInsets.only(left: 10),

@@ -1,4 +1,5 @@
 import 'package:citizenpower/AppHome.dart';
+import 'package:citizenpower/functions.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'ProfilePage.dart';
@@ -55,7 +56,7 @@ class LoginPageState extends State<LoginPage> {
                       new TextFormField(
                         decoration: new InputDecoration(
                             contentPadding:
-                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 25.0),
+                                EdgeInsets.fromLTRB(15.0, 20.0, 15.0, 20.0),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(40.0)),
                             hintStyle: TextStyle(color: Colors.white),
@@ -65,13 +66,10 @@ class LoginPageState extends State<LoginPage> {
                             ),
                             labelText: "Email",
                             hintText: "Enter Email address"),
-                            onSaved:(input)=>email=input,
+                        onSaved: (input) => email = input,
                         keyboardType: TextInputType.emailAddress,
                         validator: (val) =>
-                        
-                                val.isEmpty ? 'Invalid email' : null,
-                        
-                    
+                            val.isEmpty ? 'Invalid email' : null,
                       ),
                       SizedBox(
                         height: 20,
@@ -92,11 +90,9 @@ class LoginPageState extends State<LoginPage> {
                               ),
                               labelText: "Password",
                               hintText: "Insert password",
-                              
                             ),
-                            
                             keyboardType: TextInputType.text,
-                            onSaved:(input)=>password=input,
+                            onSaved: (input) => password = input,
                             validator: (val) =>
                                 val.length < 6 ? 'Invalid Password' : null,
                             obscureText: true,
@@ -123,14 +119,10 @@ class LoginPageState extends State<LoginPage> {
                               child: new Text("LOGIN"),
                               onPressed: () {
                                 signIn();
-                               
+
                                 if (_formKey.currentState.validate())
-                                
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => AppHome()),
-                                  );
+                                  Navigator.of(context)
+                                      .pushReplacementNamed("/x");
                               }),
                         ),
                       ),
@@ -182,19 +174,19 @@ class LoginPageState extends State<LoginPage> {
     );
   }
 
-
-Future<void> signIn() async{
-  final formState= _formKey.currentState;
-  if(formState.validate()){
-    formState.save();
-    try{
-    FirebaseUser user= (await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password)) as FirebaseUser;
-    Navigator.push(context,MaterialPageRoute(builder:(context)=>AppHome(user:user)));
+  Future<void> signIn() async {
+    final formState = _formKey.currentState;
+    if (formState.validate()) {
+      formState.save();
+      try {
+        FirebaseUser user = (await FirebaseAuth.instance
+                .signInWithEmailAndPassword(email: email, password: password))
+            as FirebaseUser;
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => AppHome(user: user)));
+      } catch (e) {
+        print(e.message);
+      }
     }
-    catch(e){
-print(e.message);
-    }
-
   }
-}
 }

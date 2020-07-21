@@ -1,9 +1,10 @@
+import 'package:citizenpower/contactview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'ProfilePage.dart';
 import 'settings.dart';
 import 'constants.dart';
-import 'electorate.dart';
+
 import 'profilelist.dart';
 import 'leader.dart';
 import 'AppHome.dart';
@@ -16,20 +17,53 @@ import 'functions.dart';
 - Put in button to email/get in touch
  */
 
-class Electorate extends StatelessWidget {
+class Electorate extends StatefulWidget {
+  @override
+  _ElectorateState createState() => _ElectorateState();
+}
+
+class _ElectorateState extends State<Electorate> {
+  bool isExpanded = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: topAppBarLayout('Electorate'),
+      appBar: topAppBarLayout('Leader'),
+      drawer: new Drawer(
+        child: new ListView(
+          children: <Widget>[
+            new UserAccountsDrawerHeader(
+              accountName: new Text("Andrew Wilkie"),
+              accountEmail: new Text("andrewwilkie@gmail.com"),
+              currentAccountPicture: new CircleAvatar(
+                backgroundColor: darkGold,
+                child: new Text(
+                  "AW",
+                  style: TextStyle(color: Colors.black87),
+                ),
+              ),
+            ),
+            new ListTile(
+              title: new Text("About me "),
+              onTap: () => Navigator.of(context).pushNamed("/a"),
+            ),
+            new ListTile(
+              title: new Text("Electorate details"),
+              onTap: () => Navigator.of(context).pushNamed("/b"),
+            )
+          ],
+        ),
+      ),
       body: CustomScrollView(slivers: <Widget>[
         SliverToBoxAdapter(
             child: Padding(
           padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
-          child: Text(
+          child: new Text(
             "Clark",
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 30,
+              fontSize: 20,
+              color: coolGrey,
             ),
             textAlign: TextAlign.center,
           ),
@@ -41,7 +75,7 @@ class Electorate extends StatelessWidget {
             child: Column(children: <Widget>[
               ClipRRect(
                 borderRadius: BorderRadius.all(
-                  Radius.circular(450),
+                  Radius.circular(550),
                 ),
                 child: Image.asset(
                   "assets/Wilkie.jpeg",
@@ -54,8 +88,30 @@ class Electorate extends StatelessWidget {
           ),
         ),
         SliverToBoxAdapter(
-          child: Text(
-              " Andrew Damien Wilkie is an Australian politician and independent federal member for Clark. Before entering politics Wilkie was an infantry officer in the Australian Army. Wilkie served with the Australian Army from 1980 to 2004. "),
+          child: GestureDetector(
+            onTap: () {
+              setState(() {
+                isExpanded = !isExpanded;
+              });
+            },
+            child: Card(
+              elevation: 2.5,
+              margin: EdgeInsets.symmetric(vertical: 3.0, horizontal: 20.0),
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    'Bio:',
+                  ),
+                  Padding(padding: EdgeInsets.only(top: 0)),
+                  Text(
+                    'I am an Australian politician and independent federal member for Clark. Before entering politics i was an infantry officer in the Australian Army. I served with the Australian Army from 1980 to 2004',
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: isExpanded ? null : 100,
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
         SliverToBoxAdapter(
           child: Container(
@@ -113,7 +169,7 @@ class Electorate extends StatelessWidget {
                     SizedBox(
                       height: 3,
                     ),
-                    Text("Population"),
+                    Text("population"),
                   ],
                 ),
               ],
@@ -124,7 +180,7 @@ class Electorate extends StatelessWidget {
           child: RaisedButton(
             color: darkGold,
             textColor: Colors.white,
-            child: Text('Get In Touch'),
+            child: Text('Connect with me'),
             onPressed: () {},
           ),
         ),
@@ -132,7 +188,7 @@ class Electorate extends StatelessWidget {
           child: RaisedButton(
             color: darkGold,
             textColor: Colors.white,
-            child: Text('Leaders'),
+            child: Text('Electorate'),
             onPressed: () {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Leader()));
@@ -143,7 +199,7 @@ class Electorate extends StatelessWidget {
           child: RaisedButton(
             color: darkGold,
             textColor: Colors.white,
-            child: Text('POLLs'),
+            child: Text('Issues'),
             onPressed: () {
               /*  Navigator.push(
                   context, MaterialPageRoute(builder: (context) => PollPage()));*/
