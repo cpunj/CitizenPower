@@ -21,6 +21,7 @@ class AppHome extends StatefulWidget {
 
 class _AppHomeState extends State<AppHome> {
   @override
+  
   _onTap(int index) {
     //This acts as a navigator for the Nav Bar
 
@@ -62,9 +63,11 @@ class _AppHomeState extends State<AppHome> {
     return Scaffold(
       appBar: new AppBar(
         title: new Text(
-          "Home ",
+          'Home',
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
+      
+        
         actions: <Widget>[
           Container(
             margin: EdgeInsets.only(left: 10),
