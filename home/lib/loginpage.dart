@@ -67,12 +67,11 @@ class LoginPageState extends State<LoginPage> {
                             hintText: "Enter Email address"),
                             onSaved:(input)=>email=input,
                         keyboardType: TextInputType.emailAddress,
-                        validator: (email) {
-                          if (email != (email)) {
-                            return "Invalid email address";
-                          }
-                          return null;
-                        },
+                        validator: (val) =>
+                        
+                                val.isEmpty ? 'Invalid email' : null,
+                        
+                    
                       ),
                       SizedBox(
                         height: 20,
@@ -124,6 +123,7 @@ class LoginPageState extends State<LoginPage> {
                               child: new Text("LOGIN"),
                               onPressed: () {
                                 signIn();
+                               
                                 if (_formKey.currentState.validate())
                                 
                                   Navigator.push(

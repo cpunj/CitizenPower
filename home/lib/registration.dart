@@ -130,7 +130,7 @@ class _RegistrationState extends State<Registration> {
                         keyboardType: TextInputType.text,
                         onSaved: (text) => user.pass = text,
                         validator: (val) =>
-                            val.length < 6 ? 'Invalid Password' : null,
+                            val.length < 6 ? 'Password should be longer than 6 characters' : null,
                         obscureText: true,
                       ),
                       new Padding(
