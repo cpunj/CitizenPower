@@ -5,6 +5,7 @@ import 'ProfilePage.dart';
 import 'registration.dart';
 import 'constants.dart';
 import 'leader.dart';
+import 'functions.dart';
 
 class LoginPage extends StatefulWidget {
   @override

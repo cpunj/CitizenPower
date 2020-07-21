@@ -6,6 +6,7 @@ import 'constants.dart';
 import 'electorate.dart';
 import 'profilelist.dart';
 import 'leader.dart';
+import 'functions.dart';
 
 class AppHome extends StatefulWidget {
   @override

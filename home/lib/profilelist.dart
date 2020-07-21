@@ -2,6 +2,7 @@ import 'package:citizenpower/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'constants.dart';
+import 'functions.dart';
 
 class ProfileList extends StatefulWidget {
   @override

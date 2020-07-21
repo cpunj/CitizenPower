@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:citizenpower/loginpage.dart';
 import 'package:flutter/widgets.dart';
 import 'constants.dart';
+import 'functions.dart';
 
 class Setting extends StatefulWidget {
   Setting({Key key}) : super(key: key);

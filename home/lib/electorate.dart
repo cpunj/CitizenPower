@@ -7,6 +7,7 @@ import 'electorate.dart';
 import 'profilelist.dart';
 import 'leader.dart';
 import 'AppHome.dart';
+import 'functions.dart';
 
 /*TODO:
 - Create a 'Clark' electorate profile
