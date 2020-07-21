@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'electorate.dart';
 import 'package:flutter/widgets.dart';
 import 'package:citizenpower/poll.dart';
+import 'constants.dart';
 
 class PollPage extends StatefulWidget {
   @override

@@ -1,6 +1,7 @@
 import 'package:citizenpower/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'constants.dart';
 
 class ProfileList extends StatefulWidget {
   @override
@@ -27,7 +28,7 @@ class AppState extends State<ProfileList> {
         iconTheme: IconThemeData(color: Colors.black),
         title: new Text(
           "Connections",
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          style: appBarStyle(),
         ),
       ),
       body: new Container(

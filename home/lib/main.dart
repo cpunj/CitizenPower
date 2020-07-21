@@ -5,7 +5,6 @@ import 'electorate.dart';
 
 //Testing Github: Jack Lennard
 
-
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {

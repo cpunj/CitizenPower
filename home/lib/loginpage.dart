@@ -28,7 +28,7 @@ class LoginPageState extends State<LoginPage> {
         title: Center(
           child: Text(
             "Citizen Power",
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+            style: appBarStyle(),
           ),
         ),
       ),

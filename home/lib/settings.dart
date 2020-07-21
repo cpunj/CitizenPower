@@ -24,7 +24,7 @@ class _SettingState extends State<Setting> {
         iconTheme: IconThemeData(color: Colors.white),
         title: Text(
           "Settings",
-          style: TextStyle(color: Colors.white),
+          style: appBarStyle(),
         ),
       ),
       body: Stack(

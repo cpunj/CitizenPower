@@ -42,7 +42,7 @@ class _RegistrationState extends State<Registration> {
         title: Center(
           child: Text(
             "Registration Page",
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+            style: appBarStyle(),
           ),
         ),
       ),

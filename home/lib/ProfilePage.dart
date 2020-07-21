@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'ProfilePage.dart';
 import 'settings.dart';
 import 'constants.dart';
 import 'electorate.dart';
 import 'profilelist.dart';
-import 'AppHome.dart';
 import 'leader.dart';
+import 'AppHome.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -15,6 +16,7 @@ class ProfileScreen extends StatefulWidget {
 class ProfileScreenState extends State<ProfileScreen> {
   var profileOptions = ['Edit'];
   var currentItemSelected = 'Edit';
+  bool isExpanded = true;
 
   _onTap(int index) {
     //This acts as a navigator for the Nav Bar
@@ -36,19 +38,89 @@ class ProfileScreenState extends State<ProfileScreen> {
         MaterialPageRoute(builder: (context) => Electorate()),
       );
     } else if (index == 3) {
-      /*
-       Navigator.push(
-
-         context,
-         MaterialPageRoute(
-             builder: (context) => Electorate()),
-       ); */
     } else if (index == 4) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => Setting()),
       );
     }
+  }
+
+  //Layout function for top of profile page
+  Widget topProfileLayout() {
+    return Container(
+      margin: EdgeInsets.only(top: 20),
+      height: 160,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: CircleAvatar(
+                  radius: 50.0,
+                  backgroundImage: AssetImage('assets/grace.jpg'),
+                ),
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              MaterialButton(
+                child: Text(
+                  "Grace's Community",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                color: darkGold,
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ProfileList()));
+                },
+              ),
+            ],
+          ),
+          //Needs to link to a profile list
+          Column(
+            children: <Widget>[
+              SizedBox(
+                height: 10.0,
+              ),
+              Text(
+                "Grace Williams",
+                style: profileNameStyle(),
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              MaterialButton(
+                child: Text(
+                  "Connect with Grace",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                color: darkGold,
+                onPressed: () {},
+              ),
+              SizedBox(
+                height: 18.0,
+              ),
+              MaterialButton(
+                  child: Text(
+                    "Message Grace",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  color: darkGold,
+                  onPressed: () {}),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -65,150 +137,70 @@ class ProfileScreenState extends State<ProfileScreen> {
         iconTheme: IconThemeData(color: Colors.white),
         title: Text(
           " Profile ",
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          style: appBarStyle(),
         ),
         actions: <Widget>[
           Container(
             margin: EdgeInsets.only(left: 10),
+            child: Icon(Icons.more_vert),
           ),
-
-          //Going to be used to access edit page
-
-          /*PopupMenuButton<String>(
-              onSelected: choiceAction, itemBuilder: (BuildContext context) {
-                return Constants.choices.map((String choice) {
-
-                })
-          })*/
         ],
       ),
       body: CustomScrollView(slivers: <Widget>[
         SliverToBoxAdapter(
-          //Container for profile image
-          child: Container(
-            margin: EdgeInsets.only(top: 20),
-            height: 160,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: CircleAvatar(
-                    radius: 70.0,
-                    backgroundImage: AssetImage('assets/grace.jpg'),
+          child: topProfileLayout(),
+        ),
+        SliverToBoxAdapter(
+          child: Divider(
+            height: 10,
+            color: Colors.black,
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: GestureDetector(
+            onTap: () {
+              setState(() {
+                isExpanded = !isExpanded;
+              });
+            },
+            child: Card(
+              elevation: 2.5,
+              margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    'About Me',
                   ),
-                ),
-                //Needs to link to a profile list
-
-                MaterialButton(
-                  child: Text(
-                    "Community",
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
+                  Text(
+                    'I am the director and founder of Citizen Tasmania. I live in Tasmania where I run Citizen Tasmania',
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: isExpanded ? null : 100,
                   ),
-                  color: darkGold,
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ProfileList()));
-                  },
-                ),
-                Text("With Grace",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        letterSpacing: 1,
-                        wordSpacing: 2,
-                        height: 1.2,
-                        fontWeight: FontWeight.w600))
-              ],
+                ],
+              ),
             ),
           ),
         ),
         SliverToBoxAdapter(
-          child: Column(
-            children: <Widget>[
-              Divider(
-                height: 10,
-                color: Colors.black,
-              ),
-              Container(
-                margin: EdgeInsets.only(left: 100, right: 100, top: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    //Below code removed and replaced with flat button for electorate
-
-                    Icon(Icons.grid_on),
-                    //Icon(Icons.list),
-                    Icon(Icons.person_pin_circle),
-                  ],
-                ),
-              ),
-              Divider(
-                height: 10,
-                color: Colors.black,
-              ),
-            ],
-          ),
+          child: SizedBox(height: 1.0),
         ),
-        SliverStaggeredGrid.count(
-            crossAxisCount: 2,
-            mainAxisSpacing: 10,
-            crossAxisSpacing: 10,
-            staggeredTiles: [
-              StaggeredTile.count(1, 2),
-              StaggeredTile.count(1, 1),
-              StaggeredTile.count(1, 1),
-            ],
-            children: <Widget>[
-              ClipRect(
-                child: Image.asset("assets/img.png", fit: BoxFit.cover),
-              ),
-              ClipRect(
-                child: Image.asset("assets/img.png", fit: BoxFit.cover),
-              ),
-              ClipRect(
-                child: Image.asset("assets/img.png", fit: BoxFit.cover),
-              ),
-            ])
+        SliverToBoxAdapter(
+          child: Divider(
+            height: 10,
+            color: Colors.black,
+          ),
+        )
       ]),
-
-      /* COMMENTING OUR PROFILE PAGE NAV BAR TEMPORARILY
-
-
       bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              title: Text("Home"),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              title: Text('Profile'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person_pin_circle),
-              title: Text('Electorate'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.event),
-              title: Text('Event'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              title: Text('Settings'),
-            ),
-          ],
+          items: bottomNavBarItems(),
           onTap: (index) {
             setState(() {
-              _onTap(index);
+              onTap(index, context);
             });
           }
           //onTap: _onTap,
           ),
-       */ //REMOVE COMMENT WHEN RE-ENABLING NAV BAR
     );
   }
 }
