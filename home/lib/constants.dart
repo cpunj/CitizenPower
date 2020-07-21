@@ -42,6 +42,23 @@ class ProfileOptions {
   ];
 }
 
+//Layout of standard top app bar
+
+Widget topAppBarLayout(String title) {
+  return AppBar(
+    title: new Text(
+      title,
+      style: appBarStyle(),
+    ),
+    actions: <Widget>[
+      Container(
+        margin: EdgeInsets.only(left: 10),
+        child: Icon(Icons.more_vert),
+      ),
+    ],
+  );
+}
+
 //For top app bar, change as needed
 TextStyle appBarStyle() {
   return TextStyle(fontWeight: FontWeight.bold, color: Colors.white);

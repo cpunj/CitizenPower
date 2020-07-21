@@ -19,14 +19,7 @@ class _SettingState extends State<Setting> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: brightOrange,
-        iconTheme: IconThemeData(color: Colors.white),
-        title: Text(
-          "Settings",
-          style: appBarStyle(),
-        ),
-      ),
+      appBar: topAppBarLayout('Settings'),
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[

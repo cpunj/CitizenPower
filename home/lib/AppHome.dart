@@ -16,18 +16,7 @@ class _AppHomeState extends State<AppHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new AppBar(
-        title: new Text(
-          "Home",
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-        ),
-        actions: <Widget>[
-          Container(
-            margin: EdgeInsets.only(left: 10),
-            child: Icon(Icons.more_vert),
-          ),
-        ],
-      ),
+      appBar: topAppBarLayout('Home'),
       body: ListView(
         physics: AlwaysScrollableScrollPhysics(),
       ),

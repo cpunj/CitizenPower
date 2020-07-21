@@ -19,20 +19,7 @@ class Electorate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: brightOrange,
-        iconTheme: IconThemeData(color: Colors.white),
-        title: Text(
-          " Electorate ",
-          style: appBarStyle(),
-        ),
-        actions: <Widget>[
-          Container(
-            margin: EdgeInsets.only(left: 10),
-            child: Icon(Icons.more_vert),
-          ),
-        ],
-      ),
+      appBar: topAppBarLayout('Electorate'),
       body: CustomScrollView(slivers: <Widget>[
         SliverToBoxAdapter(
             child: Padding(

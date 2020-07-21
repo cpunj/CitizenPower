@@ -21,17 +21,7 @@ class LoginPageState extends State<LoginPage> {
       backgroundColor: Colors.white,
       //Prevents pixels error
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        backgroundColor: brightOrange,
-        iconTheme: IconThemeData(color: Colors.white),
-        //Move around title as wanted, I think this looks best - Jack
-        title: Center(
-          child: Text(
-            "Citizen Power",
-            style: appBarStyle(),
-          ),
-        ),
-      ),
+      appBar: topAppBarLayout('Citizen Power'),
       //Q: Any particular reason for using a stack rather than a column here? -Jack
       body: SafeArea(
         child: new Stack(

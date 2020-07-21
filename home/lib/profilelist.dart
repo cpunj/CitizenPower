@@ -23,14 +23,7 @@ class AppState extends State<ProfileList> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: AppBar(
-        backgroundColor: brightOrange,
-        iconTheme: IconThemeData(color: Colors.black),
-        title: new Text(
-          "Connections",
-          style: appBarStyle(),
-        ),
-      ),
+      appBar: topAppBarLayout('Connections'),
       body: new Container(
         child: new ListView.builder(
           reverse: true,

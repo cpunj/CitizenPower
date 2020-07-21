@@ -18,34 +18,6 @@ class ProfileScreenState extends State<ProfileScreen> {
   var currentItemSelected = 'Edit';
   bool isExpanded = true;
 
-  _onTap(int index) {
-    //This acts as a navigator for the Nav Bar
-
-    if (index == 0) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => AppHome()),
-      );
-    } else if (index == 1) {
-      //Need to implement home page, AppHome()
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => ProfileScreen()),
-      );
-    } else if (index == 2) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => Electorate()),
-      );
-    } else if (index == 3) {
-    } else if (index == 4) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => Setting()),
-      );
-    }
-  }
-
   //Layout function for top of profile page
   Widget topProfileLayout() {
     return Container(
@@ -132,20 +104,7 @@ class ProfileScreenState extends State<ProfileScreen> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: brightOrange,
-        iconTheme: IconThemeData(color: Colors.white),
-        title: Text(
-          " Profile ",
-          style: appBarStyle(),
-        ),
-        actions: <Widget>[
-          Container(
-            margin: EdgeInsets.only(left: 10),
-            child: Icon(Icons.more_vert),
-          ),
-        ],
-      ),
+      appBar: topAppBarLayout('Profile'),
       body: CustomScrollView(slivers: <Widget>[
         SliverToBoxAdapter(
           child: topProfileLayout(),
