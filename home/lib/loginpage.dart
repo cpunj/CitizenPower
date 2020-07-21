@@ -4,8 +4,9 @@ import 'main.dart';
 import 'ProfilePage.dart';
 import 'registration.dart';
 import 'constants.dart';
+import 'AppHome.dart';
 import 'leader.dart';
-import 'functions.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -13,8 +14,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> {
-  var _formKey = GlobalKey<FormState>();
-  String email = "citizentasmania@gmail.com";
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  String email;
+  String password;
   @override
   Widget build(BuildContext context) {
     //Start of widget tree
@@ -22,7 +24,17 @@ class LoginPageState extends State<LoginPage> {
       backgroundColor: Colors.white,
       //Prevents pixels error
       resizeToAvoidBottomInset: false,
-      appBar: topAppBarLayout('Citizen Power'),
+      appBar: AppBar(
+        backgroundColor: brightOrange,
+        iconTheme: IconThemeData(color: Colors.white),
+        //Move around title as wanted, I think this looks best - Jack
+        title: Center(
+          child: Text(
+            "Citizen Power",
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          ),
+        ),
+      ),
       //Q: Any particular reason for using a stack rather than a column here? -Jack
       body: SafeArea(
         child: new Stack(
@@ -53,9 +65,10 @@ class LoginPageState extends State<LoginPage> {
                             ),
                             labelText: "Email",
                             hintText: "Enter Email address"),
+                            onSaved:(input)=>email=input,
                         keyboardType: TextInputType.emailAddress,
-                        validator: (String val) {
-                          if (val != (email)) {
+                        validator: (email) {
+                          if (email != (email)) {
                             return "Invalid email address";
                           }
                           return null;
@@ -80,8 +93,11 @@ class LoginPageState extends State<LoginPage> {
                               ),
                               labelText: "Password",
                               hintText: "Insert password",
+                              
                             ),
+                            
                             keyboardType: TextInputType.text,
+                            onSaved:(input)=>password=input,
                             validator: (val) =>
                                 val.length < 6 ? 'Invalid Password' : null,
                             obscureText: true,
@@ -107,7 +123,9 @@ class LoginPageState extends State<LoginPage> {
                               textColor: Colors.white,
                               child: new Text("LOGIN"),
                               onPressed: () {
+                                signIn();
                                 if (_formKey.currentState.validate())
+                                
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -163,4 +181,20 @@ class LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
+
+Future<void> signIn() async{
+  final formState= _formKey.currentState;
+  if(formState.validate()){
+    formState.save();
+    try{
+    FirebaseUser user= (await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password)) as FirebaseUser;
+    Navigator.push(context,MaterialPageRoute(builder:(context)=>AppHome(user:user)));
+    }
+    catch(e){
+print(e.message);
+    }
+
+  }
+}
 }

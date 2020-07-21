@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'ProfilePage.dart';
@@ -9,7 +10,13 @@ import 'leader.dart';
 import 'functions.dart';
 
 class AppHome extends StatefulWidget {
-  @override
+
+  const AppHome({
+    Key key,
+    @required this.user
+  }):super(key:key);
+  final FirebaseUser user;
+    @override
   _AppHomeState createState() => _AppHomeState();
 }
 
