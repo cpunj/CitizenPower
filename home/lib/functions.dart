@@ -34,7 +34,7 @@ TextStyle appBarStyle() {
 TextStyle profileNameStyle() {
   return TextStyle(
       color: Colors.black,
-      fontSize: 20,
+      fontSize: 25,
       letterSpacing: 1,
       wordSpacing: 2,
       height: 1.2,
