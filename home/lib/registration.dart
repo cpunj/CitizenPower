@@ -1,5 +1,6 @@
 import 'package:citizenpower/loginpage.dart';
 import 'package:flutter/material.dart';
+import 'Layouts/GenericLayouts.dart';
 import 'constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'TextStyles.dart';
@@ -36,18 +37,7 @@ class _RegistrationState extends State<Registration> {
 
       //Prevents pixels error
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        backgroundColor: brightOrange,
-        iconTheme: IconThemeData(color: Colors.white),
-        //Move around title as wanted, I think this looks best - Jack
-        title: Center(
-          child: Text(
-            "Registration Page",
-            style: appBarStyle(),
-          ),
-        ),
-      ),
-
+      appBar: topAppBarLayout('Registration Page'),
       //Q: Any particular reason for using a stack rather than a column here? -Jack
       body: SafeArea(
         child: new Stack(
@@ -66,67 +56,24 @@ class _RegistrationState extends State<Registration> {
                   child: new Column(
                     children: <Widget>[
                       new TextFormField(
-                          decoration: new InputDecoration(
-                              contentPadding:
-                                  EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(30.0)),
-                              hintStyle: TextStyle(color: Colors.white),
-                              errorStyle: TextStyle(
-                                color: Colors.redAccent,
-                                fontSize: 15.0,
-                              ),
-                              labelText: "Name",
-                              hintText: "Enter your name"),
+                          decoration: textFormDec(
+                              label: 'Name', hint: 'Enter your name'),
                           onSaved: (text) => user.name = text),
                       Padding(padding: const EdgeInsets.only(top: 30.0)),
                       new TextFormField(
-                          decoration: new InputDecoration(
-                              contentPadding:
-                                  EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(30.0)),
-                              hintStyle: TextStyle(color: Colors.white),
-                              errorStyle: TextStyle(
-                                color: Colors.redAccent,
-                                fontSize: 15.0,
-                              ),
-                              labelText: "Phone",
-                              hintText: "Enter your Phone Number"),
+                          decoration: textFormDec(
+                              label: 'Phone', hint: 'Enter your phone number'),
                           onSaved: (text) => user.mobile = text),
                       Padding(padding: const EdgeInsets.only(top: 30.0)),
                       new TextFormField(
-                          decoration: new InputDecoration(
-                              contentPadding:
-                                  EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(30.0)),
-                              hintStyle: TextStyle(color: Colors.white),
-                              errorStyle: TextStyle(
-                                color: Colors.redAccent,
-                                fontSize: 15.0,
-                              ),
-                              labelText: "Email",
-                              hintText: "Enter Email address"),
+                          decoration: textFormDec(
+                              label: 'Email', hint: 'Enter your email address'),
                           keyboardType: TextInputType.emailAddress,
                           onSaved: (text) => user.email = text),
                       Padding(padding: const EdgeInsets.only(top: 30.0)),
                       new TextFormField(
-                        decoration: new InputDecoration(
-                          contentPadding:
-                              EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30.0)),
-                          hintStyle: TextStyle(
-                            color: Colors.white,
-                          ),
-                          errorStyle: TextStyle(
-                            color: Colors.redAccent,
-                            fontSize: 15,
-                          ),
-                          labelText: "Password",
-                          hintText: "Insert password",
-                        ),
+                        decoration: textFormDec(
+                            label: 'Password', hint: 'Enter password'),
                         keyboardType: TextInputType.text,
                         onSaved: (text) => user.pass = text,
                         validator: (val) => val.length < 6
@@ -184,83 +131,3 @@ class User {
     this.pass,
   });
 }
-
-/*
-class Registration extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: AppBar(
-        backgroundColor: brightOrange,
-        iconTheme: IconThemeData(color: Colors.black),
-        title: Text(
-          "Register ",
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-        ),
-      ),
-      backgroundColor: coolGrey,
-      body: new Stack(
-        children: <Widget>[
-          new Form(
-            child: new Theme(
-              data: new ThemeData(
-                brightness: Brightness.dark,
-              ),
-              child: new Container(
-                padding: const EdgeInsets.all(10.0),
-                child: new Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    new TextFormField(
-                      decoration: new InputDecoration(
-                          labelText: " First Name ",
-                          hintText: "Enter Your first name "),
-                      keyboardType: TextInputType.text,
-                    ),
-                    new TextFormField(
-                      decoration: new InputDecoration(
-                          labelText: " Last Name ",
-                          hintText: "Enter Last name "),
-                      keyboardType: TextInputType.text,
-                    ),
-                    new TextFormField(
-                      decoration: new InputDecoration(
-                          labelText: "Email/phone",
-                          hintText: "Enter Email address"),
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (val) {
-                        if (val.isEmpty) {
-                          return "please insert valid email";
-                        }
-                        return null;
-                      },
-                    ),
-                    new TextFormField(
-                      decoration: new InputDecoration(
-                        labelText: "Enter Password",
-                        hintText: " Password",
-                      ),
-                      keyboardType: TextInputType.text,
-                      validator: (val) =>
-                      val.length < 6 ? 'Please Insert password' : null,
-                      obscureText: true,
-                    ),
-                    new Padding(padding: const EdgeInsets.only(top: 10.0)),
-                    Flex(direction: Axis.horizontal),
-                    new MaterialButton(
-                        color: darkGold,
-                        textColor: Colors.black,
-                        child: new Text("SUBMIT"),
-                        onPressed: () {})
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
- */

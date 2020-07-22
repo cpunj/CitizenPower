@@ -1,6 +1,9 @@
+import 'package:citizenpower/Navigator/NavigatorPushes.dart';
 import 'package:flutter/material.dart';
 import 'package:citizenpower/constants.dart';
 import 'package:citizenpower/TextStyles.dart';
+
+import '../electorateprofiledetails.dart';
 
 //Leader view header layout
 Widget leaderViewHeader(
@@ -114,6 +117,37 @@ Widget leaderViewDataLayout(
           ),
         ],
       ),
+    ),
+  );
+}
+
+Widget leaderDrawer(BuildContext context) {
+  return new Drawer(
+    child: new ListView(
+      children: <Widget>[
+        new UserAccountsDrawerHeader(
+          accountName: new Text("Andrew Wilkie"),
+          accountEmail: new Text("andrewwilkie@gmail.com"),
+          currentAccountPicture: new CircleAvatar(
+            backgroundColor: darkGold,
+            child: new Text(
+              "AW",
+              style: TextStyle(color: Colors.black87),
+            ),
+          ),
+        ),
+        new ListTile(
+          title: new Text("About me "),
+          onTap: () => goContactDetails(context),
+        ),
+        new ListTile(
+          title: new Text("Electorate details"),
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ElectorateDetails()),
+          ),
+        )
+      ],
     ),
   );
 }

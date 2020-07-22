@@ -1,10 +1,7 @@
+import 'package:citizenpower/Navigator/NavigatorPushes.dart';
 import 'package:flutter/material.dart';
-import '../AppHome.dart';
-import '../ProfilePage.dart';
 import '../TextStyles.dart';
 import '../constants.dart';
-import '../electorate.dart';
-import '../settings.dart';
 
 //Top app bar layout
 Widget topAppBarLayout(String title) {
@@ -56,29 +53,40 @@ Widget bioLayout(String info) {
   );
 }
 
+//2nd bio layout (can be expanded)
+//Needs a GestureDetector
+
+Widget bioLayout2(String info, bool expanded) {
+  return Card(
+    elevation: 2.5,
+    margin: EdgeInsets.symmetric(vertical: 3.0, horizontal: 20.0),
+    child: Column(
+      children: <Widget>[
+        Text(
+          'Bio:',
+        ),
+        Padding(padding: EdgeInsets.only(top: 0)),
+        Text(
+          '$info',
+          overflow: TextOverflow.ellipsis,
+          maxLines: expanded ? null : 100,
+        ),
+      ],
+    ),
+  );
+}
+
 //This acts as a navigator for the bottom Nav Bar
 void onTap(int index, BuildContext context) {
   if (index == 0) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => AppHome()),
-    );
+    goHome(context);
   } else if (index == 1) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => ProfileScreen()),
-    );
+    goProfile(context);
   } else if (index == 2) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => Electorate()),
-    );
+    goElectorate(context);
   } else if (index == 4) {
   } else if (index == 5) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => Setting()),
-    );
+    goSettings(context);
   }
 }
 

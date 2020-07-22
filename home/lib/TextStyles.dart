@@ -28,3 +28,17 @@ TextStyle profileNameStyle() {
       height: 1.2,
       fontWeight: FontWeight.w600);
 }
+
+InputDecoration textFormDec({String label, String hint}) {
+  return InputDecoration(
+    contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+    border: OutlineInputBorder(borderRadius: BorderRadius.circular(30.0)),
+    hintStyle: TextStyle(color: Colors.white),
+    errorStyle: TextStyle(
+      color: Colors.redAccent,
+      fontSize: 15.0,
+    ),
+    labelText: '$label',
+    hintText: '$hint',
+  );
+}
