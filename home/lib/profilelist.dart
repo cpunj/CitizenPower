@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'functions.dart';
+import 'Layouts/GenericLayouts.dart';
 
 class ProfileList extends StatefulWidget {
   @override

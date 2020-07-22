@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'functions.dart';
+import 'Layouts/GenericLayouts.dart';
 
 class AppHome extends StatefulWidget {
   const AppHome({Key key, @required this.user}) : super(key: key);

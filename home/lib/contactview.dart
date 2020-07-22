@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'functions.dart';
+import 'Layouts/Buttons.dart';
+import 'Layouts/GenericLayouts.dart';
+import 'package:citizenpower/Layouts/LeaderViewLayouts.dart';
 
 class AboutMe extends StatelessWidget {
   final String title;

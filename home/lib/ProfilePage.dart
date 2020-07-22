@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'Layouts/GenericLayouts.dart';
 import 'constants.dart';
 import 'profilelist.dart';
-import 'functions.dart';
+import 'TextStyles.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override

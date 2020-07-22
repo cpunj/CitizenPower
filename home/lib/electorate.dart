@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'Layouts/GenericLayouts.dart';
 import 'constants.dart';
 import 'leader.dart';
-import 'functions.dart';
+import 'contactview.dart';
+import 'electorateprofiledetails.dart';
 
 /*TODO:
 - Create a 'Clark' electorate profile
@@ -38,11 +40,17 @@ class _ElectorateState extends State<Electorate> {
             ),
             new ListTile(
               title: new Text("About me "),
-              onTap: () => Navigator.of(context).pushNamed("/a"),
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AboutMe()),
+              ),
             ),
             new ListTile(
               title: new Text("Electorate details"),
-              onTap: () => Navigator.of(context).pushNamed("/b"),
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ElectorateDetails()),
+              ),
             )
           ],
         ),

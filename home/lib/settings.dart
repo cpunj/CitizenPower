@@ -1,8 +1,8 @@
 import 'package:citizenpower/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'Layouts/GenericLayouts.dart';
 import 'constants.dart';
-import 'functions.dart';
 
 class Setting extends StatefulWidget {
   Setting({Key key}) : super(key: key);

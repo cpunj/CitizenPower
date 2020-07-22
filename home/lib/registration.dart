@@ -129,8 +129,9 @@ class _RegistrationState extends State<Registration> {
                         ),
                         keyboardType: TextInputType.text,
                         onSaved: (text) => user.pass = text,
-                        validator: (val) =>
-                            val.length < 6 ? 'Password should be longer than 6 characters' : null,
+                        validator: (val) => val.length < 6
+                            ? 'Password should be longer than 6 characters'
+                            : null,
                         obscureText: true,
                       ),
                       new Padding(
@@ -148,14 +149,11 @@ class _RegistrationState extends State<Registration> {
                               materialTapTargetSize:
                                   MaterialTapTargetSize.padded,
                               child: new Text("REGISTER"),
-                              
                               onPressed: () {
-                              save();
+                                save();
                                 Navigator.push(
                                     context,
-                                    
                                     MaterialPageRoute(
-                                      
                                         builder: (context) => LoginPage()));
                               }),
                         ),

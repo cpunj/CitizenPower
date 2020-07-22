@@ -1,4 +1,3 @@
-import 'package:citizenpower/AppHome.dart';
 import 'package:flutter/material.dart';
 import 'registration.dart';
 import 'constants.dart';
@@ -114,11 +113,19 @@ class LoginPageState extends State<LoginPage> {
                               textColor: Colors.white,
                               child: new Text("LOGIN"),
                               onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => AppHome()));
+
+                                //Commented out to access app
+
+                                /*
                                 signIn();
 
                                 if (_formKey.currentState.validate())
                                   Navigator.of(context)
-                                      .pushReplacementNamed("/x");
+                                      .pushReplacementNamed("/x");*/
                               }),
                         ),
                       ),
