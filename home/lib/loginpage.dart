@@ -32,7 +32,7 @@ class LoginPageState extends State<LoginPage> {
         ),
       ),
       //Q: Any particular reason for using a stack rather than a column here? -Jack
-      body: SingleChildScrollView(
+      body: SafeArea(
         child: new Stack(
           fit: StackFit.expand,
           children: <Widget>[
