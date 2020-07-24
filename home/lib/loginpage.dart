@@ -113,17 +113,11 @@ class LoginPageState extends State<LoginPage> {
                               textColor: Colors.white,
                               child: new Text("LOGIN"),
                               onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => AppHome()));
-
                                 //Commented out to access app
 
-                                /*
                                 signIn();
 
-                                if (_formKey.currentState.validate())
+                                /* if (_formKey.currentState.validate())
                                   Navigator.of(context)
                                       .pushReplacementNamed("/x");*/
                               }),
@@ -182,9 +176,12 @@ class LoginPageState extends State<LoginPage> {
     if (formState.validate()) {
       formState.save();
       try {
-        FirebaseUser user = (await FirebaseAuth.instance
-                .signInWithEmailAndPassword(email: email, password: password))
-            as FirebaseUser;
+        print('hello');
+        AuthResult result = await FirebaseAuth.instance
+            .signInWithEmailAndPassword(email: email, password: password);
+
+        FirebaseUser user = result.user;
+
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => AppHome(user: user)));
       } catch (e) {
