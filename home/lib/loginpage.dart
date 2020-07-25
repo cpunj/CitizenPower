@@ -11,8 +11,11 @@ class LoginPage extends StatefulWidget {
 
 class LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  
   String email;
   String password;
+  
+  
   @override
   Widget build(BuildContext context) {
     //Start of widget tree
@@ -31,7 +34,7 @@ class LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
-      //Q: Any particular reason for using a stack rather than a column here? -Jackdsd
+      //Q: Any particular reason for using a stack rather than a column here? -Jack
       body: SafeArea(
         child: new Stack(
           fit: StackFit.expand,
@@ -64,7 +67,7 @@ class LoginPageState extends State<LoginPage> {
                         onSaved: (input) => email = input,
                         keyboardType: TextInputType.emailAddress,
                         validator: (val) =>
-                            val.isEmpty ? 'Invalid email' : null,
+                            val != email ? 'Invalid email' : null,
                       ),
                       SizedBox(
                         height: 20,
@@ -113,11 +116,18 @@ class LoginPageState extends State<LoginPage> {
                               textColor: Colors.white,
                               child: new Text("LOGIN"),
                               onPressed: () {
+                                
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => AppHome()));
+
                                 //Commented out to access app
 
+                                /*
                                 signIn();
 
-                                /* if (_formKey.currentState.validate())
+                                if (_formKey.currentState.validate())
                                   Navigator.of(context)
                                       .pushReplacementNamed("/x");*/
                               }),
@@ -176,17 +186,15 @@ class LoginPageState extends State<LoginPage> {
     if (formState.validate()) {
       formState.save();
       try {
-        print('hello');
-        AuthResult result = await FirebaseAuth.instance
-            .signInWithEmailAndPassword(email: email, password: password);
-
-        FirebaseUser user = result.user;
-
+        AuthResult result = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);  
+         FirebaseUser user = result.user;
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => AppHome(user: user)));
       } catch (e) {
         print(e.message);
       }
     }
-  }
+ 
+ }
+ 
 }

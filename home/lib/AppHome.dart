@@ -17,8 +17,10 @@ class _AppHomeState extends State<AppHome> {
       appBar: topAppBarLayout('Home'),
       body: ListView(
           physics: AlwaysScrollableScrollPhysics(), children: <Widget>[]),
+          
       bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
+
           items: bottomNavBarItems(),
           onTap: (index) {
             setState(() {
