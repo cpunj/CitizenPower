@@ -4,6 +4,7 @@ import 'Layouts/GenericLayouts.dart';
 import 'constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'TextStyles.dart';
+import 'database.dart';
 
 class Registration extends StatefulWidget {
   @override
@@ -21,7 +22,11 @@ class _RegistrationState extends State<Registration> {
       _firebaseAuth.createUserWithEmailAndPassword(
         email: user.email,
         password: user.pass,
+        
       );
+
+
+     
     }
   }
 
@@ -129,5 +134,7 @@ class User {
     this.name,
     this.mobile,
     this.pass,
+    
   });
+  
 }

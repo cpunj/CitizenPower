@@ -3,6 +3,7 @@ import 'registration.dart';
 import 'constants.dart';
 import 'AppHome.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'database.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -66,8 +67,13 @@ class LoginPageState extends State<LoginPage> {
                             hintText: "Enter Email address"),
                         onSaved: (input) => email = input,
                         keyboardType: TextInputType.emailAddress,
-                        validator: (val) =>
-                            val != email ? 'Invalid email' : null,
+                        validator: (val){
+                            if(val.isEmpty || !val.contains('@') || !val.contains('.') || val.length < 8){
+return "Please enter a valid email";
+                            } 
+                            return null;
+  }
+
                       ),
                       SizedBox(
                         height: 20,
@@ -117,19 +123,12 @@ class LoginPageState extends State<LoginPage> {
                               child: new Text("LOGIN"),
                               onPressed: () {
                                 
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => AppHome()));
 
-                                //Commented out to access app
 
-                                /*
+                                
+
+                              
                                 signIn();
-
-                                if (_formKey.currentState.validate())
-                                  Navigator.of(context)
-                                      .pushReplacementNamed("/x");*/
                               }),
                         ),
                       ),
@@ -188,6 +187,7 @@ class LoginPageState extends State<LoginPage> {
       try {
         AuthResult result = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);  
          FirebaseUser user = result.user;
+            await DatabaseService(uid:user.uid).updateUserData('1',903923029,'password','mobile');
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => AppHome(user: user)));
       } catch (e) {
