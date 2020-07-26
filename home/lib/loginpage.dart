@@ -187,7 +187,7 @@ return "Please enter a valid email";
       try {
         AuthResult result = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);  
          FirebaseUser user = result.user;
-            await DatabaseService(uid:user.uid).updateUserData('1',903923029,'password','mobile');
+    
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => AppHome(user: user)));
       } catch (e) {
