@@ -140,7 +140,7 @@ class AboutMe extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    "Bio:",
+                    "About Andrew :",
                     style: TextStyle(
                         color: darkGold,
                         fontStyle: FontStyle.normal,
@@ -162,6 +162,23 @@ class AboutMe extends StatelessWidget {
                 ],
               ),
             ),
+          ),
+          Container(
+            width: 380,
+            child: new Text("Email : andrewwilkie@gmail.com",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+          ),
+          Container(
+            width: 380,
+            child: new Text(
+              "Phone : 045953455600 ",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+            ),
+          ),
+          Container(
+            width: 380,
+            child: new Text("Address : 188 Collins Street Hobart, TAS, 7001",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
           ),
           SizedBox(
             height: 20.0,
@@ -187,7 +204,7 @@ class AboutMe extends StatelessWidget {
                         BoxConstraints(maxWidth: 300.0, minHeight: 40.0),
                     alignment: Alignment.center,
                     child: Text(
-                      "Contact me",
+                      "Contact Andrew",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 16.0,

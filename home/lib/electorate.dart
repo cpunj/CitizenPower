@@ -1,5 +1,7 @@
 import 'package:citizenpower/contactview.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'ProfilePage.dart';
 import 'settings.dart';
@@ -24,7 +26,8 @@ class Electorate extends StatefulWidget {
 
 class _ElectorateState extends State<Electorate> {
   bool isExpanded = true;
-
+  String issues;
+  List<String> _locations = ['Issue 1', 'Issue 2', 'Issue 3'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,16 +74,16 @@ class _ElectorateState extends State<Electorate> {
         SliverToBoxAdapter(
           child: Container(
             margin: EdgeInsets.only(top: 0),
-            height: 175,
+            height: 75,
             child: Column(children: <Widget>[
               ClipRRect(
                 borderRadius: BorderRadius.all(
-                  Radius.circular(550),
+                  Radius.circular(450),
                 ),
                 child: Image.asset(
                   "assets/Wilkie.jpeg",
-                  height: 150,
-                  width: 200,
+                  height: 70,
+                  width: 100,
                   fit: BoxFit.scaleDown,
                 ),
               ),
@@ -95,14 +98,14 @@ class _ElectorateState extends State<Electorate> {
               });
             },
             child: Card(
-              elevation: 2.5,
-              margin: EdgeInsets.symmetric(vertical: 3.0, horizontal: 20.0),
+              elevation: 2,
+              margin: EdgeInsets.symmetric(vertical: 1.0, horizontal: 2.0),
               child: Column(
                 children: <Widget>[
                   Text(
                     'Bio:',
                   ),
-                  Padding(padding: EdgeInsets.only(top: 0)),
+                  Padding(padding: EdgeInsets.only(top: 0, bottom: 0)),
                   Text(
                     'I am an Australian politician and independent federal member for Clark. Before entering politics i was an infantry officer in the Australian Army. I served with the Australian Army from 1980 to 2004',
                     overflow: TextOverflow.ellipsis,
@@ -196,14 +199,23 @@ class _ElectorateState extends State<Electorate> {
           ),
         ),
         SliverToBoxAdapter(
-          child: RaisedButton(
-            color: darkGold,
-            textColor: Colors.white,
-            child: Text('Issues'),
-            onPressed: () {
-              /*  Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => PollPage()));*/
+          child: DropdownButton(
+            hint: Text(
+              "Top issues",
+              style: TextStyle(color: darkGold),
+            ),
+            value: issues,
+            onChanged: (newValue) {
+              setState(() {
+                issues = newValue;
+              });
             },
+            items: _locations.map((location) {
+              return DropdownMenuItem(
+                child: new Text(location),
+                value: location,
+              );
+            }).toList(),
           ),
         ),
       ]),

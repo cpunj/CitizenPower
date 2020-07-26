@@ -1,3 +1,4 @@
+import 'package:citizenpower/leaderslist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'ProfilePage.dart';
@@ -59,6 +60,10 @@ void onTap(int index, BuildContext context) {
       MaterialPageRoute(builder: (context) => Electorate()),
     );
   } else if (index == 4) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => LeadersList()),
+    );
   } else if (index == 5) {
     Navigator.push(
       context,
