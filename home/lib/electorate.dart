@@ -184,7 +184,9 @@ class _ElectorateState extends State<Electorate> {
             color: darkGold,
             textColor: Colors.white,
             child: Text('Connect with me'),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed("/c");
+            },
           ),
         ),
         SliverToBoxAdapter(

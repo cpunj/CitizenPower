@@ -12,11 +12,10 @@ class LoginPage extends StatefulWidget {
 
 class LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  
+
   String email;
   String password;
-  
-  
+
   @override
   Widget build(BuildContext context) {
     //Start of widget tree
@@ -53,28 +52,29 @@ class LoginPageState extends State<LoginPage> {
                   child: new Column(
                     children: <Widget>[
                       new TextFormField(
-                        decoration: new InputDecoration(
-                            contentPadding:
-                                EdgeInsets.fromLTRB(15.0, 20.0, 15.0, 20.0),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(40.0)),
-                            hintStyle: TextStyle(color: Colors.white),
-                            errorStyle: TextStyle(
-                              color: Colors.redAccent,
-                              fontSize: 15.0,
-                            ),
-                            labelText: "Email",
-                            hintText: "Enter Email address"),
-                        onSaved: (input) => email = input,
-                        keyboardType: TextInputType.emailAddress,
-                        validator: (val){
-                            if(val.isEmpty || !val.contains('@') || !val.contains('.') || val.length < 8){
-return "Please enter a valid email";
-                            } 
+                          decoration: new InputDecoration(
+                              contentPadding:
+                                  EdgeInsets.fromLTRB(15.0, 20.0, 15.0, 20.0),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(40.0)),
+                              hintStyle: TextStyle(color: Colors.white),
+                              errorStyle: TextStyle(
+                                color: Colors.redAccent,
+                                fontSize: 15.0,
+                              ),
+                              labelText: "Email",
+                              hintText: "Enter Email address"),
+                          onSaved: (input) => email = input,
+                          keyboardType: TextInputType.emailAddress,
+                          validator: (val) {
+                            if (val.isEmpty ||
+                                !val.contains('@') ||
+                                !val.contains('.') ||
+                                val.length < 8) {
+                              return "Please enter a valid email";
+                            }
                             return null;
-  }
-
-                      ),
+                          }),
                       SizedBox(
                         height: 20,
                       ),
@@ -122,12 +122,6 @@ return "Please enter a valid email";
                               textColor: Colors.white,
                               child: new Text("LOGIN"),
                               onPressed: () {
-                                
-
-
-                                
-
-                              
                                 signIn();
                               }),
                         ),
@@ -185,16 +179,15 @@ return "Please enter a valid email";
     if (formState.validate()) {
       formState.save();
       try {
-        AuthResult result = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);  
-         FirebaseUser user = result.user;
-    
-        Navigator.push(context,
+        AuthResult result = await FirebaseAuth.instance
+            .signInWithEmailAndPassword(email: email, password: password);
+        FirebaseUser user = result.user;
+
+        Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => AppHome(user: user)));
       } catch (e) {
         print(e.message);
       }
     }
- 
- }
- 
+  }
 }
