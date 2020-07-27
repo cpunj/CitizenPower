@@ -12,23 +12,15 @@ class Registration extends StatefulWidget {
 }
 
 class _RegistrationState extends State<Registration> {
-  User user = User();
-  GlobalKey<FormState> _formKey = GlobalKey();
-  FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+ 
+   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  save() {
-    if (_formKey.currentState.validate()) {
-      _formKey.currentState.save();
-      _firebaseAuth.createUserWithEmailAndPassword(
-        email: user.email,
-        password: user.pass,
-        
-      );
+ String email;
+  String password;
+  String phone;
+  String name;
 
-
-     
-    }
-  }
+ 
 
   final emailcontroller = TextEditingController();
   final namecontroller = TextEditingController();
@@ -63,32 +55,32 @@ class _RegistrationState extends State<Registration> {
                       new TextFormField(
                           decoration: textFormDec(
                               label: 'Name', hint: 'Enter your name'),
-                          onSaved: (text) => user.name = text),
-                      Padding(padding: const EdgeInsets.only(top: 30.0)),
+                         onSaved: (input) => name = input,
+                      
+                      ),
                       new TextFormField(
                           decoration: textFormDec(
                               label: 'Phone', hint: 'Enter your phone number'),
-                          onSaved: (text) => user.mobile = text),
-                      Padding(padding: const EdgeInsets.only(top: 30.0)),
+                          onSaved: (input) => phone = input,
+                      ),
+                      
                       new TextFormField(
                           decoration: textFormDec(
                               label: 'Email', hint: 'Enter your email address'),
                           keyboardType: TextInputType.emailAddress,
-                          onSaved: (text) => user.email = text),
-                      Padding(padding: const EdgeInsets.only(top: 30.0)),
+                          onSaved: (input) => email = input,
+                      ),
                       new TextFormField(
                         decoration: textFormDec(
                             label: 'Password', hint: 'Enter password'),
                         keyboardType: TextInputType.text,
-                        onSaved: (text) => user.pass = text,
+                  onSaved: (input) => password = input,
                         validator: (val) => val.length < 6
                             ? 'Password should be longer than 6 characters'
                             : null,
                         obscureText: true,
                       ),
-                      new Padding(
-                        padding: const EdgeInsets.only(top: 30),
-                      ),
+                   
 
                       Center(
                         child: Material(
@@ -102,7 +94,7 @@ class _RegistrationState extends State<Registration> {
                                   MaterialTapTargetSize.padded,
                               child: new Text("REGISTER"),
                               onPressed: () {
-                                save();
+                                registerUser();
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -122,19 +114,22 @@ class _RegistrationState extends State<Registration> {
       ),
     );
   }
-}
 
-class User {
-  String email;
-  String name;
-  String mobile;
-  String pass;
-  User({
-    this.email,
-    this.name,
-    this.mobile,
-    this.pass,
-    
-  });
+
+ Future<void> registerUser() async {
+    final formState = _formKey.currentState;
+    if (formState.validate()) {
+      formState.save();
+      try {
+        AuthResult result = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);  
+         FirebaseUser user = result.user;
+            await DatabaseService(uid:user.uid).updateUserData(email,phone,name,password);
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => LoginPage()));
+      } catch (e) {
+        print(e.message);
+      }
+    }
   
+}
 }
