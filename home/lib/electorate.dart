@@ -1,9 +1,16 @@
-import 'package:citizenpower/Layouts/ElectorateLayouts.dart';
-import 'package:citizenpower/Layouts/LeaderViewLayouts.dart';
+import 'package:citizenpower/contactview.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'Layouts/GenericLayouts.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'ProfilePage.dart';
+import 'settings.dart';
 import 'constants.dart';
+
+import 'profilelist.dart';
 import 'leader.dart';
+import 'AppHome.dart';
+import 'functions.dart';
 
 /*TODO:
 - Create a 'Clark' electorate profile
@@ -19,12 +26,37 @@ class Electorate extends StatefulWidget {
 
 class _ElectorateState extends State<Electorate> {
   bool isExpanded = true;
-
+  String issues;
+  List<String> _locations = ['Issue 1', 'Issue 2', 'Issue 3'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: topAppBarLayout('Leader'),
-      drawer: leaderDrawer(context),
+      drawer: new Drawer(
+        child: new ListView(
+          children: <Widget>[
+            new UserAccountsDrawerHeader(
+              accountName: new Text("Andrew Wilkie"),
+              accountEmail: new Text("andrewwilkie@gmail.com"),
+              currentAccountPicture: new CircleAvatar(
+                backgroundColor: darkGold,
+                child: new Text(
+                  "AW",
+                  style: TextStyle(color: Colors.black87),
+                ),
+              ),
+            ),
+            new ListTile(
+              title: new Text("About me "),
+              onTap: () => Navigator.of(context).pushNamed("/a"),
+            ),
+            new ListTile(
+              title: new Text("Electorate details"),
+              onTap: () => Navigator.of(context).pushNamed("/b"),
+            )
+          ],
+        ),
+      ),
       body: CustomScrollView(slivers: <Widget>[
         SliverToBoxAdapter(
             child: Padding(
@@ -42,16 +74,16 @@ class _ElectorateState extends State<Electorate> {
         SliverToBoxAdapter(
           child: Container(
             margin: EdgeInsets.only(top: 0),
-            height: 175,
+            height: 75,
             child: Column(children: <Widget>[
               ClipRRect(
                 borderRadius: BorderRadius.all(
-                  Radius.circular(550),
+                  Radius.circular(450),
                 ),
                 child: Image.asset(
                   "assets/Wilkie.jpeg",
-                  height: 150,
-                  width: 200,
+                  height: 70,
+                  width: 100,
                   fit: BoxFit.scaleDown,
                 ),
               ),
@@ -60,24 +92,101 @@ class _ElectorateState extends State<Electorate> {
         ),
         SliverToBoxAdapter(
           child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  isExpanded = !isExpanded;
-                });
-              },
-              child: bioLayout2(
-                  'I am an Australian politician and independent federal member for Clark. Before entering politics i was an infantry officer in the Australian Army. I served with the Australian Army from 1980 to 2004',
-                  isExpanded)),
+            onTap: () {
+              setState(() {
+                isExpanded = !isExpanded;
+              });
+            },
+            child: Card(
+              elevation: 2,
+              margin: EdgeInsets.symmetric(vertical: 1.0, horizontal: 2.0),
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    'Bio:',
+                  ),
+                  Padding(padding: EdgeInsets.only(top: 0, bottom: 0)),
+                  Text(
+                    'I am an Australian politician and independent federal member for Clark. Before entering politics i was an infantry officer in the Australian Army. I served with the Australian Army from 1980 to 2004',
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: isExpanded ? null : 100,
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
         SliverToBoxAdapter(
-          child: electorateInfoLayout(),
+          child: Container(
+            margin: EdgeInsets.only(left: 30, right: 30, top: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    Text(
+                      "Current MP",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 3,
+                    ),
+                    Text("Andrew Wilkie"),
+                  ],
+                ),
+                Divider(
+                  height: 10,
+                  color: Colors.black,
+                ),
+                Column(
+                  children: <Widget>[
+                    Text(
+                      "Party",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 3,
+                    ),
+                    Text("Independent"),
+                  ],
+                ),
+                Divider(
+                  height: 10,
+                  color: Colors.black,
+                ),
+                Column(
+                  children: <Widget>[
+                    Text(
+                      "74K",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 3,
+                    ),
+                    Text("population"),
+                  ],
+                ),
+              ],
+            ),
+          ),
         ),
         SliverToBoxAdapter(
           child: RaisedButton(
             color: darkGold,
             textColor: Colors.white,
             child: Text('Connect with me'),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed("/c");
+            },
           ),
         ),
         SliverToBoxAdapter(
@@ -92,14 +201,23 @@ class _ElectorateState extends State<Electorate> {
           ),
         ),
         SliverToBoxAdapter(
-          child: RaisedButton(
-            color: darkGold,
-            textColor: Colors.white,
-            child: Text('Issues'),
-            onPressed: () {
-              /*  Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => PollPage()));*/
+          child: DropdownButton(
+            hint: Text(
+              "Top issues",
+              style: TextStyle(color: darkGold),
+            ),
+            value: issues,
+            onChanged: (newValue) {
+              setState(() {
+                issues = newValue;
+              });
             },
+            items: _locations.map((location) {
+              return DropdownMenuItem(
+                child: new Text(location),
+                value: location,
+              );
+            }).toList(),
           ),
         ),
       ]),
