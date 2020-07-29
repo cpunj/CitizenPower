@@ -1,4 +1,4 @@
-import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/Views/settings.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'Layouts/GenericLayouts.dart';
@@ -18,7 +18,7 @@ class _AppHomeState extends State<AppHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: topAppBarLayout('Home'),
+      appBar: topAppBarLayout('Home ${widget.user.email}'),
       body: ListView(
           physics: AlwaysScrollableScrollPhysics(), children: <Widget>[]),
       bottomNavigationBar: BottomNavigationBar(

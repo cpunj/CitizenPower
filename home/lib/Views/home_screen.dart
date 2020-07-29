@@ -1,4 +1,4 @@
-import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/Views/recent_chat.dart';
+
 import 'package:flutter/material.dart';
 
 import 'MessageViews/catagory.dart';
@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               child: Column(
                 children: <Widget>[
-                  RecentChats(),
+                  //
                 ],
               ),
             ),

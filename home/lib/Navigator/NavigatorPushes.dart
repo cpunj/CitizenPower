@@ -1,4 +1,4 @@
-import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/Views/contactview.dart';
+
 import 'package:flutter/material.dart';
 import '../AppHome.dart';
 import '../Views/ProfileViews/ProfilePage.dart';
@@ -46,7 +46,7 @@ goElectorateDetails(BuildContext context) {
 goContactDetails(BuildContext context) {
   Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => AboutMe()),
+    MaterialPageRoute(builder: (context) => AppHome()),
   );
 }
 

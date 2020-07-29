@@ -1,5 +1,4 @@
-import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/Views/home_screen.dart';
-import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/Views/recent_chat.dart';
+
 import 'package:flutter/material.dart';
 import 'AppHome.dart';
 import 'Views/MessageViews/chatscreen.dart';
@@ -22,7 +21,7 @@ class MyApp extends StatelessWidget {
         routes: <String, WidgetBuilder>{
           "/a": (BuildContext context) => new AboutMe(),
           "/b": (BuildContext context) => new ElectorateDetails(),
-          "/c": (BuildContext context) => new HomeScreen(),
+          "/c": (BuildContext context) => new AppHome(),
           "/x": (BuildContext context) => new AppHome(user: null),
         },
         theme: new ThemeData(
