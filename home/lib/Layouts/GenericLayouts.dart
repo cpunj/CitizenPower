@@ -2,6 +2,7 @@ import 'package:citizenpower/Navigator/NavigatorPushes.dart';
 import 'package:flutter/material.dart';
 import '../TextStyles.dart';
 import '../constants.dart';
+import '../profilelist.dart';
 
 //Top app bar layout
 Widget topAppBarLayout(String title) {
@@ -16,6 +17,141 @@ Widget topAppBarLayout(String title) {
         child: Icon(Icons.more_vert),
       ),
     ],
+  );
+}
+
+//Layout function for top of profile page
+Widget topProfileLayout(BuildContext context) {
+  return Container(
+    margin: EdgeInsets.only(top: 20),
+    height: 160,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: CircleAvatar(
+                radius: 50.0,
+                backgroundImage: AssetImage('assets/grace.jpg'),
+              ),
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            MaterialButton(
+              child: Text(
+                "Grace's Community",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              color: darkGold,
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ProfileList()));
+              },
+            ),
+          ],
+        ),
+        //Needs to link to a profile list
+        Column(
+          children: <Widget>[
+            SizedBox(
+              height: 10.0,
+            ),
+            Text(
+              "Grace Williams",
+              style: profileNameStyle(),
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            MaterialButton(
+              child: Text(
+                "Connect with Grace",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              color: darkGold,
+              onPressed: () {},
+            ),
+            SizedBox(
+              height: 18.0,
+            ),
+            MaterialButton(
+                child: Text(
+                  "Message Grace",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                color: darkGold,
+                onPressed: () {}),
+          ],
+        ),
+      ],
+    ),
+  );
+}
+
+//Allows for profile picture editing
+
+Widget topProfileLayoutEdit(BuildContext context) {
+  return Container(
+    margin: EdgeInsets.only(top: 20),
+    height: 110,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        Column(
+          children: <Widget>[
+            FlatButton(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: CircleAvatar(
+                  radius: 50.0,
+                  backgroundImage: AssetImage('assets/grace.jpg'),
+                ),
+              ),
+              onPressed: () {
+                //TODO:Edit function for current logged in user's profile picture
+              },
+            ),
+          ],
+        ),
+        //Needs to link to a profile list
+        Column(
+          children: <Widget>[
+            SizedBox(
+              height: 10.0,
+            ),
+            Text(
+              "Grace Williams",
+              style: profileNameStyle(),
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            MaterialButton(
+              child: Text(
+                "Grace's Community",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              color: darkGold,
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ProfileList()));
+              },
+            ),
+          ],
+        ),
+      ],
+    ),
   );
 }
 
@@ -81,12 +217,10 @@ void onTap(int index, BuildContext context) {
   if (index == 0) {
     goHome(context);
   } else if (index == 1) {
-    goProfile(context);
+    goProfilePageEdit(context);
   } else if (index == 2) {
-    goElectorate(context);
   } else if (index == 4) {
-  } else if (index == 5) {
-    goSettings(context);
+    goElectorate(context);
   }
 }
 
@@ -102,20 +236,16 @@ List<BottomNavigationBarItem> bottomNavBarItems() {
       title: Text('Profile'),
     ),
     BottomNavigationBarItem(
+      icon: Icon(Icons.plus_one),
+      title: Text('New Post'),
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.group),
+      title: Text('Social'),
+    ),
+    BottomNavigationBarItem(
       icon: Icon(Icons.person_pin_circle),
       title: Text('Electorate'),
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.event),
-      title: Text('Event'),
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.perm_identity),
-      title: Text('leader'),
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.settings),
-      title: Text('Settings'),
     ),
   ];
 }

@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'Layouts/GenericLayouts.dart';
 import 'ProfilePage.dart';
 import 'settings.dart';
 import 'constants.dart';
@@ -225,7 +226,9 @@ class _ElectorateState extends State<Electorate> {
           type: BottomNavigationBarType.fixed,
           items: bottomNavBarItems(),
           onTap: (index) {
-            onTap(index, context);
+            setState(() {
+              onTap(index, context);
+            });
           }
           //onTap: _onTap,
           ),

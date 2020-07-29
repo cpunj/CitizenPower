@@ -56,32 +56,7 @@ class _AppHomeState extends State<AppHome> {
           physics: AlwaysScrollableScrollPhysics(), children: <Widget>[]),
       bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              title: Text("Home"),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              title: Text('Profile'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person_pin_circle),
-              title: Text('Electorate'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.event),
-              title: Text('Event'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.perm_identity),
-              title: Text('leader'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              title: Text('Settings'),
-            ),
-          ],
+          items: bottomNavBarItems(),
           onTap: (index) {
             setState(() {
               onTap(index, context);

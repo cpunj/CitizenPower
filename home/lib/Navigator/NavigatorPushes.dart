@@ -2,8 +2,10 @@ import 'package:citizenpower/contactview.dart';
 import 'package:flutter/material.dart';
 import '../AppHome.dart';
 import '../ProfilePage.dart';
+import '../ProfilePageEdit.dart';
 import '../electorate.dart';
 import '../electorateprofiledetails.dart';
+import '../profilelist.dart';
 import '../settings.dart';
 
 goHome(BuildContext context) {
@@ -46,4 +48,14 @@ goContactDetails(BuildContext context) {
     context,
     MaterialPageRoute(builder: (context) => AboutMe()),
   );
+}
+
+goProfileList(BuildContext context) {
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => ProfileList()));
+}
+
+goProfilePageEdit(BuildContext context) {
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => ProfilePageEdit()));
 }

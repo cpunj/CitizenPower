@@ -1,3 +1,4 @@
+import 'package:citizenpower/Navigator/NavigatorPushes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'Layouts/GenericLayouts.dart';
@@ -40,19 +41,24 @@ class EachList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Card(
-      child: new Container(
-        padding: EdgeInsets.all(8.0),
-        child: new Row(
-          children: <Widget>[
-            new CircleAvatar(
-              child: new Text(name[0]),
-            ),
-            new Padding(padding: EdgeInsets.only(right: 10.0)),
-            new Text(
-              name,
-              style: TextStyle(fontSize: 20.0),
-            )
-          ],
+      child: FlatButton(
+        onPressed: () {
+          goProfile(context);
+        },
+        child: new Container(
+          padding: EdgeInsets.all(8.0),
+          child: new Row(
+            children: <Widget>[
+              new CircleAvatar(
+                child: new Text(name[0]),
+              ),
+              new Padding(padding: EdgeInsets.only(right: 10.0)),
+              new Text(
+                name,
+                style: TextStyle(fontSize: 20.0),
+              )
+            ],
+          ),
         ),
       ),
     );
