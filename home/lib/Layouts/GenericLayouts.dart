@@ -219,6 +219,8 @@ void onTap(int index, BuildContext context) {
   } else if (index == 1) {
     goProfilePageEdit(context);
   } else if (index == 2) {
+  } else if (index == 3) {
+    goSocialMenu(context);
   } else if (index == 4) {
     goElectorate(context);
   }

@@ -12,6 +12,11 @@ TextStyle buttonTextStyle1() {
       color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.w300);
 }
 
+TextStyle buttonTextStyle1Large() {
+  return TextStyle(
+      color: Colors.white, fontSize: 24.0, fontWeight: FontWeight.w300);
+}
+
 //Data text styles
 TextStyle textStyleBold() {
   return TextStyle(

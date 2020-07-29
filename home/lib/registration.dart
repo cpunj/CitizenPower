@@ -12,15 +12,12 @@ class Registration extends StatefulWidget {
 }
 
 class _RegistrationState extends State<Registration> {
- 
-   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
- String email;
+  String email;
   String password;
   String phone;
   String name;
-
- 
 
   final emailcontroller = TextEditingController();
   final namecontroller = TextEditingController();
@@ -53,34 +50,32 @@ class _RegistrationState extends State<Registration> {
                   child: new Column(
                     children: <Widget>[
                       new TextFormField(
-                          decoration: textFormDec(
-                              label: 'Name', hint: 'Enter your name'),
-                         onSaved: (input) => name = input,
-                      
+                        decoration:
+                            textFormDec(label: 'Name', hint: 'Enter your name'),
+                        onSaved: (input) => name = input,
                       ),
                       new TextFormField(
-                          decoration: textFormDec(
-                              label: 'Phone', hint: 'Enter your phone number'),
-                          onSaved: (input) => phone = input,
+                        decoration: textFormDec(
+                            label: 'Phone', hint: 'Enter your phone number'),
+                        onSaved: (input) => phone = input,
                       ),
-                      
+
                       new TextFormField(
-                          decoration: textFormDec(
-                              label: 'Email', hint: 'Enter your email address'),
-                          keyboardType: TextInputType.emailAddress,
-                          onSaved: (input) => email = input,
+                        decoration: textFormDec(
+                            label: 'Email', hint: 'Enter your email address'),
+                        keyboardType: TextInputType.emailAddress,
+                        onSaved: (input) => email = input,
                       ),
                       new TextFormField(
                         decoration: textFormDec(
                             label: 'Password', hint: 'Enter password'),
                         keyboardType: TextInputType.text,
-                  onSaved: (input) => password = input,
+                        onSaved: (input) => password = input,
                         validator: (val) => val.length < 6
                             ? 'Password should be longer than 6 characters'
                             : null,
                         obscureText: true,
                       ),
-                   
 
                       Center(
                         child: Material(
@@ -115,21 +110,21 @@ class _RegistrationState extends State<Registration> {
     );
   }
 
-
- Future<void> registerUser() async {
+  Future<void> registerUser() async {
     final formState = _formKey.currentState;
     if (formState.validate()) {
       formState.save();
       try {
-        AuthResult result = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);  
-         FirebaseUser user = result.user;
-            await DatabaseService(uid:user.uid).updateUserData(email,phone,name,password);
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => LoginPage()));
+        AuthResult result = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(email: email, password: password);
+        FirebaseUser user = result.user;
+        await DatabaseService(uid: user.uid)
+            .updateUserData(email, phone, name, password);
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => LoginPage()));
       } catch (e) {
         print(e.message);
       }
     }
-  
-}
+  }
 }

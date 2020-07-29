@@ -1,4 +1,4 @@
-
+import 'package:citizenpower/Views/SocialMenu.dart';
 import 'package:flutter/material.dart';
 import '../AppHome.dart';
 import '../Views/ProfileViews/ProfilePage.dart';
@@ -58,4 +58,9 @@ goProfileList(BuildContext context) {
 goProfilePageEdit(BuildContext context) {
   Navigator.push(
       context, MaterialPageRoute(builder: (context) => ProfilePageEdit()));
+}
+
+goSocialMenu(BuildContext context) {
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => SocialMenu()));
 }
