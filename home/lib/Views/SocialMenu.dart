@@ -1,4 +1,5 @@
 import 'package:citizenpower/Layouts/GenericLayouts.dart';
+import 'package:citizenpower/Navigator/NavigatorPushes.dart';
 import 'package:citizenpower/TextStyles.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,7 @@ class SocialMenu extends StatefulWidget {
 }
 //TODO: Find background pictures for buttons
 
-Widget socialButton(String title, BuildContext context) {
+Widget socialButton(String title, BuildContext context, Function f) {
   return Expanded(
     child: FlatButton(
       color: Colors.blueAccent,
@@ -32,15 +33,44 @@ class _SocialMenuState extends State<SocialMenu> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              socialButton("Events", context),
+              Expanded(
+                child: FlatButton(
+                  color: Colors.blueAccent,
+                  onPressed: () {},
+                  child: Text(
+                    "Events",
+                    style: buttonTextStyle1Large(),
+                  ),
+                ),
+              ),
               SizedBox(
                 height: 10,
               ),
-              socialButton("Groups", context),
+              Expanded(
+                child: FlatButton(
+                  color: Colors.blueAccent,
+                  onPressed: () {},
+                  child: Text(
+                    "Groups",
+                    style: buttonTextStyle1Large(),
+                  ),
+                ),
+              ),
               SizedBox(
                 height: 10,
               ),
-              socialButton("Messages", context),
+              Expanded(
+                child: FlatButton(
+                  color: Colors.blueAccent,
+                  onPressed: () {
+                    goHomeScreen(context);
+                  },
+                  child: Text(
+                    "Messages",
+                    style: buttonTextStyle1Large(),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
