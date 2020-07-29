@@ -1,8 +1,7 @@
-import 'package:citizenpower/recent_chat.dart';
+import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/Views/recent_chat.dart';
 import 'package:flutter/material.dart';
 
-import 'Recent_chat_list.dart';
-import 'catagory.dart';
+import 'MessageViews/catagory.dart';
 
 class HomeScreen extends StatefulWidget {
   @override

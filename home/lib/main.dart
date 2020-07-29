@@ -1,12 +1,12 @@
-import 'package:citizenpower/home_screen.dart';
-import 'package:citizenpower/recent_chat.dart';
+import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/Views/home_screen.dart';
+import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/Views/recent_chat.dart';
 import 'package:flutter/material.dart';
 import 'AppHome.dart';
-import 'chatscreen.dart';
-import 'chatscreen.dart';
-import 'chatscreen.dart';
-import 'contactview.dart';
-import 'electorateprofiledetails.dart';
+import 'Views/MessageViews/chatscreen.dart';
+import 'Views/MessageViews/chatscreen.dart';
+import 'Views/MessageViews/chatscreen.dart';
+import 'Views/contactview.dart';
+import 'Views/ElectorateViews/electorateprofiledetails.dart';
 import 'loginpage.dart';
 import 'constants.dart';
 

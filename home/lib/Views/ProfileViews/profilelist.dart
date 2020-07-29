@@ -1,7 +1,7 @@
 import 'package:citizenpower/Navigator/NavigatorPushes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'Layouts/GenericLayouts.dart';
+import '../../Layouts/GenericLayouts.dart';
 
 class ProfileList extends StatefulWidget {
   @override

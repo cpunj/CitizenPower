@@ -1,12 +1,12 @@
-import 'package:citizenpower/contactview.dart';
+import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/Views/contactview.dart';
 import 'package:flutter/material.dart';
 import '../AppHome.dart';
-import '../ProfilePage.dart';
-import '../ProfilePageEdit.dart';
-import '../electorate.dart';
-import '../electorateprofiledetails.dart';
-import '../profilelist.dart';
-import '../settings.dart';
+import '../Views/ProfileViews/ProfilePage.dart';
+import '../Views/ProfileViews/ProfilePageEdit.dart';
+import '../Views/ElectorateViews/electorate.dart';
+import '../Views/ElectorateViews/electorateprofiledetails.dart';
+import '../Views/ProfileViews/profilelist.dart';
+import '../Views/settings.dart';
 
 goHome(BuildContext context) {
   Navigator.push(

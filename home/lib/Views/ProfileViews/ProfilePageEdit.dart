@@ -1,9 +1,9 @@
 import 'package:citizenpower/Navigator/NavigatorPushes.dart';
 import 'package:flutter/material.dart';
-import 'Layouts/GenericLayouts.dart';
-import 'constants.dart';
+import '../../Layouts/GenericLayouts.dart';
+import '../../constants.dart';
 import 'profilelist.dart';
-import 'TextStyles.dart';
+import '../../TextStyles.dart';
 
 class ProfilePageEdit extends StatefulWidget {
   @override

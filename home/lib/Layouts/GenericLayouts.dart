@@ -2,7 +2,7 @@ import 'package:citizenpower/Navigator/NavigatorPushes.dart';
 import 'package:flutter/material.dart';
 import '../TextStyles.dart';
 import '../constants.dart';
-import '../profilelist.dart';
+import '../Views/ProfileViews/profilelist.dart';
 
 //Top app bar layout
 Widget topAppBarLayout(String title) {

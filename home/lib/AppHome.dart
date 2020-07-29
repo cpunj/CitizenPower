@@ -1,10 +1,10 @@
-import 'package:citizenpower/settings.dart';
+import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/Views/settings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'Layouts/GenericLayouts.dart';
-import 'ProfilePage.dart';
-import 'electorate.dart';
-import 'leaderslist.dart';
+import 'Views/ProfileViews/ProfilePage.dart';
+import 'Views/ElectorateViews/electorate.dart';
+import 'Views/ElectorateViews/leaderslist.dart';
 
 class AppHome extends StatefulWidget {
   const AppHome({Key key, @required this.user}) : super(key: key);
@@ -16,39 +16,6 @@ class AppHome extends StatefulWidget {
 
 class _AppHomeState extends State<AppHome> {
   @override
-  _onTap(int index) {
-    //This acts as a navigator for the Nav Bar
-
-    if (index == 0) {
-      BuildContext context;
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => AppHome()),
-      );
-    } else if (index == 1) {
-      //Need to implement home page, AppHome()
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => ProfileScreen()),
-      );
-    } else if (index == 2) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => Electorate()),
-      );
-    } else if (index == 4) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => LeadersList()),
-      );
-    } else if (index == 5) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => Setting()),
-      );
-    }
-  }
-
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: topAppBarLayout('Home'),

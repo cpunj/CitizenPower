@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:citizenpower/constants.dart';
 import 'package:citizenpower/TextStyles.dart';
 
-import '../electorateprofiledetails.dart';
+import '../Views/ElectorateViews/electorateprofiledetails.dart';
 
 //Leader view header layout
 Widget leaderViewHeader(

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'massage_model.dart';
-import 'chatscreen.dart';
-import 'recent_chat.dart';
-import 'Recent_chat_list.dart';
+import '../Views/MessageViews/chatscreen.dart';
+import '../Views/recent_chat.dart';
 
 class User {
   final int id;

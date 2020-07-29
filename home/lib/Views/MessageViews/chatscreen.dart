@@ -1,9 +1,9 @@
-import 'package:citizenpower/recent_chat.dart';
+import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/Views/recent_chat.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'massage_model.dart';
-import 'user_model.dart';
+import '../../Models/massage_model.dart';
+import '../../Models/user_model.dart';
 
 class ChatScreen extends StatefulWidget {
   final user;
