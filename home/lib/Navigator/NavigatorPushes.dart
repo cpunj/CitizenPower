@@ -16,7 +16,7 @@ goHome(BuildContext context, FirebaseUser user) {
     Navigator.push(
       
       context,
-      MaterialPageRoute(builder: (context) => AppHome(user:null),
+      MaterialPageRoute(builder: (context) => AppHome(user:user),
     ));
   }
   
