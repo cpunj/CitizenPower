@@ -1,4 +1,5 @@
 import 'package:citizenpower/Navigator/NavigatorPushes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:citizenpower/constants.dart';
 import 'package:citizenpower/TextStyles.dart';
@@ -121,7 +122,7 @@ Widget leaderViewDataLayout(
   );
 }
 
-Widget leaderDrawer(BuildContext context) {
+Widget leaderDrawer(BuildContext context, FirebaseUser user) {
   return new Drawer(
     child: new ListView(
       children: <Widget>[
@@ -138,16 +139,13 @@ Widget leaderDrawer(BuildContext context) {
         ),
         new ListTile(
           title: new Text("About me "),
-          onTap: () => goContactDetails(context),
+          onTap: () => goContactDetails(context, user),
         ),
         new ListTile(
           title: new Text("Electorate details"),
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => ElectorateDetails()),
+          onTap: () => goElectorateDetails(context, user),
           ),
-        )
-      ],
+        ],
     ),
-  );
+    );
 }

@@ -1,9 +1,13 @@
 import 'package:citizenpower/Navigator/NavigatorPushes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import '../../Layouts/GenericLayouts.dart';
 
 class ProfileList extends StatefulWidget {
+  const ProfileList({Key key, @required this.user}) : super(key: key);
+  final FirebaseUser user;
+
   @override
   State<ProfileList> createState() {
     return new AppState();
@@ -20,6 +24,7 @@ class AppState extends State<ProfileList> {
     'Chandan Punj',
     'Jack Lennard',
   ];
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -27,7 +32,8 @@ class AppState extends State<ProfileList> {
       body: new Container(
         child: new ListView.builder(
           reverse: true,
-          itemBuilder: (_, int index) => EachList(this.names[index]),
+          itemBuilder: (_, int index) =>
+              EachList(this.names[index], widget.user),
           itemCount: this.names.length,
         ),
       ),
@@ -36,14 +42,16 @@ class AppState extends State<ProfileList> {
 }
 
 class EachList extends StatelessWidget {
+  final FirebaseUser user;
   final String name;
-  EachList(this.name);
+  EachList(this.name, this.user);
+
   @override
   Widget build(BuildContext context) {
     return new Card(
       child: FlatButton(
         onPressed: () {
-          goProfile(context);
+          goProfile(context, user);
         },
         child: new Container(
           padding: EdgeInsets.all(8.0),

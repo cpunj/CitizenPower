@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'Layouts/GenericLayouts.dart';
@@ -26,7 +25,7 @@ class _AppHomeState extends State<AppHome> {
           items: bottomNavBarItems(),
           onTap: (index) {
             setState(() {
-              onTap(index, context);
+              onTap(index, context, widget.user);
             });
           }
           //onTap: _onTap,

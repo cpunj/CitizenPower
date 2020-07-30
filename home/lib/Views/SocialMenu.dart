@@ -1,12 +1,17 @@
 import 'package:citizenpower/Layouts/GenericLayouts.dart';
 import 'package:citizenpower/Navigator/NavigatorPushes.dart';
 import 'package:citizenpower/TextStyles.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SocialMenu extends StatefulWidget {
+  const SocialMenu({Key key, @required this.user}) : super(key: key);
+  final FirebaseUser user;
+
   @override
   _SocialMenuState createState() => _SocialMenuState();
 }
+
 //TODO: Find background pictures for buttons
 
 Widget socialButton(String title, BuildContext context, Function f) {
@@ -63,7 +68,7 @@ class _SocialMenuState extends State<SocialMenu> {
                 child: FlatButton(
                   color: Colors.blueAccent,
                   onPressed: () {
-                    goHomeScreen(context);
+                    goHomeScreen(context, widget.user);
                   },
                   child: Text(
                     "Messages",
@@ -80,7 +85,7 @@ class _SocialMenuState extends State<SocialMenu> {
           items: bottomNavBarItems(),
           onTap: (index) {
             setState(() {
-              onTap(index, context);
+              onTap(index, context, widget.user);
             });
           }
           //onTap: _onTap,

@@ -1,5 +1,6 @@
 import 'package:citizenpower/Views/SocialMenu.dart';
 import 'package:citizenpower/Views/home_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../AppHome.dart';
 import '../Views/ProfileViews/ProfilePage.dart';
@@ -9,64 +10,64 @@ import '../Views/ElectorateViews/electorateprofiledetails.dart';
 import '../Views/ProfileViews/profilelist.dart';
 import '../Views/settings.dart';
 
-goHome(BuildContext context) {
-  Navigator.push(
+goHome(BuildContext context, FirebaseUser user) {
+  Navigator.pushReplacement(
     context,
-    MaterialPageRoute(builder: (context) => AppHome()),
+    MaterialPageRoute(builder: (context) => AppHome(user: user)),
   );
 }
 
-goProfile(BuildContext context) {
+goProfile(BuildContext context, FirebaseUser user) {
   Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => ProfileScreen()),
+    MaterialPageRoute(builder: (context) => ProfileScreen(user: user)),
   );
 }
 
-goElectorate(BuildContext context) {
+goElectorate(BuildContext context, FirebaseUser user) {
   Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => Electorate()),
+    MaterialPageRoute(builder: (context) => Electorate(user: user)),
   );
 }
 
-goSettings(BuildContext context) {
+goSettings(BuildContext context, FirebaseUser user) {
   Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => Setting()),
+    MaterialPageRoute(builder: (context) => Setting(user: user)),
   );
 }
 
-goElectorateDetails(BuildContext context) {
+goElectorateDetails(BuildContext context, FirebaseUser user) {
   Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => ElectorateDetails()),
+    MaterialPageRoute(builder: (context) => ElectorateDetails(user: user)),
   );
 }
 
-goContactDetails(BuildContext context) {
+goContactDetails(BuildContext context, FirebaseUser user) {
   Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => AppHome()),
+    MaterialPageRoute(builder: (context) => AppHome(user: user)),
   );
 }
 
-goProfileList(BuildContext context) {
+goProfileList(BuildContext context, FirebaseUser user) {
   Navigator.push(
-      context, MaterialPageRoute(builder: (context) => ProfileList()));
+      context, MaterialPageRoute(builder: (context) => ProfileList(user: user)));
 }
 
-goProfilePageEdit(BuildContext context) {
+goProfilePageEdit(BuildContext context, FirebaseUser user) {
   Navigator.push(
-      context, MaterialPageRoute(builder: (context) => ProfilePageEdit()));
+      context, MaterialPageRoute(builder: (context) => ProfilePageEdit(user: user)));
 }
 
-goSocialMenu(BuildContext context) {
+goSocialMenu(BuildContext context, FirebaseUser user) {
   Navigator.push(
-      context, MaterialPageRoute(builder: (context) => SocialMenu()));
+      context, MaterialPageRoute(builder: (context) => SocialMenu(user: user)));
 }
 
-goHomeScreen(BuildContext context) {
+goHomeScreen(BuildContext context, FirebaseUser user) {
   Navigator.push(
-      context, MaterialPageRoute(builder: (context) => HomeScreen()));
+      context, MaterialPageRoute(builder: (context) => HomeScreen(user: user)));
 }

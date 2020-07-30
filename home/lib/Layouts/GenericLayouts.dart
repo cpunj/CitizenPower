@@ -1,4 +1,5 @@
 import 'package:citizenpower/Navigator/NavigatorPushes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../TextStyles.dart';
 import '../constants.dart';
@@ -213,16 +214,16 @@ Widget bioLayout2(String info, bool expanded) {
 }
 
 //This acts as a navigator for the bottom Nav Bar
-void onTap(int index, BuildContext context) {
+void onTap(int index, BuildContext context, FirebaseUser user) {
   if (index == 0) {
-    goHome(context);
+    goHome(context, user);
   } else if (index == 1) {
-    goProfilePageEdit(context);
+    goProfilePageEdit(context, user);
   } else if (index == 2) {
   } else if (index == 3) {
-    goSocialMenu(context);
+    goSocialMenu(context, user);
   } else if (index == 4) {
-    goElectorate(context);
+    goElectorate(context, user);
   }
 }
 

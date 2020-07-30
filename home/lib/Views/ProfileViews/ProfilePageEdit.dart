@@ -1,4 +1,5 @@
 import 'package:citizenpower/Navigator/NavigatorPushes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../Layouts/GenericLayouts.dart';
 import '../../constants.dart';
@@ -6,6 +7,9 @@ import 'profilelist.dart';
 import '../../TextStyles.dart';
 
 class ProfilePageEdit extends StatefulWidget {
+  const ProfilePageEdit({Key key, @required this.user}) : super(key: key);
+  final FirebaseUser user;
+
   @override
   _ProfilePageEditState createState() => _ProfilePageEditState();
 }
@@ -80,7 +84,7 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
           items: bottomNavBarItems(),
           onTap: (index) {
             setState(() {
-              onTap(index, context);
+              onTap(index, context, widget.user);
             });
           }
           //onTap: _onTap,

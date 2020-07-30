@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../Layouts/GenericLayouts.dart';
 import '../../constants.dart';
@@ -5,6 +6,9 @@ import 'profilelist.dart';
 import '../../TextStyles.dart';
 
 class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({Key key, @required this.user}) : super(key: key);
+  final FirebaseUser user;
+
   @override
   State createState() => new ProfileScreenState();
 }
@@ -13,8 +17,6 @@ class ProfileScreenState extends State<ProfileScreen> {
   var profileOptions = ['Edit'];
   var currentItemSelected = 'Edit';
   bool isExpanded = true;
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +65,7 @@ class ProfileScreenState extends State<ProfileScreen> {
           items: bottomNavBarItems(),
           onTap: (index) {
             setState(() {
-              onTap(index, context);
+              onTap(index, context, widget.user);
             });
           }
           //onTap: _onTap,

@@ -1,4 +1,5 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -20,6 +21,9 @@ import '../../AppHome.dart';
  */
 
 class Electorate extends StatefulWidget {
+  const Electorate({Key key, @required this.user}) : super(key: key);
+  final FirebaseUser user;
+
   @override
   _ElectorateState createState() => _ElectorateState();
 }
@@ -226,7 +230,7 @@ class _ElectorateState extends State<Electorate> {
           items: bottomNavBarItems(),
           onTap: (index) {
             setState(() {
-              onTap(index, context);
+              onTap(index, context, widget.user);
             });
           }
           //onTap: _onTap,

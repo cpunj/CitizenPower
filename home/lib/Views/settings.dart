@@ -6,7 +6,8 @@ import '../Layouts/GenericLayouts.dart';
 import '../constants.dart';
 
 class Setting extends StatefulWidget {
-  Setting({Key key}) : super(key: key);
+  const Setting({Key key, @required this.user}) : super(key: key);
+  final FirebaseUser user;
   @override
   _SettingState createState() => _SettingState();
 }
