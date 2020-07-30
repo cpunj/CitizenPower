@@ -10,63 +10,62 @@ import '../Views/ProfileViews/profilelist.dart';
 import '../Views/settings.dart';
 import '../loginpage.dart';
 
-
+//pushReplacement used for views accessed from bottom nav bar
 
 goHome(BuildContext context, FirebaseUser user) {
-    Navigator.push(
-      
+  Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => AppHome(user:null),
-    ));
-  }
-  
+      MaterialPageRoute(
+        builder: (context) => AppHome(user: user),
+      ));
+}
 
 goProfile(BuildContext context, FirebaseUser user) {
   Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => ProfileScreen()),
+    MaterialPageRoute(builder: (context) => ProfileScreen(user: user)),
   );
 }
 
-goElectorate(BuildContext context) {
-  Navigator.push(
+goElectorate(BuildContext context, FirebaseUser user) {
+  Navigator.pushReplacement(
     context,
-    MaterialPageRoute(builder: (context) => Electorate()),
+    MaterialPageRoute(builder: (context) => Electorate(user: user)),
   );
 }
 
-goSettings(BuildContext context) {
+goSettings(BuildContext context, FirebaseUser user) {
   Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => Setting()),
+    MaterialPageRoute(builder: (context) => Setting(user: user)),
   );
 }
 
 goElectorateDetails(BuildContext context, FirebaseUser user) {
   Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => ElectorateDetails()),
+    MaterialPageRoute(builder: (context) => ElectorateDetails(user: user)),
   );
 }
 
 goContactDetails(BuildContext context, FirebaseUser user) {
   Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => AppHome()),
+    MaterialPageRoute(builder: (context) => AppHome(user: user)),
   );
 }
 
-goProfileList(BuildContext context) {
-  Navigator.push(
-      context, MaterialPageRoute(builder: (context) => ProfileList()));
+goProfileList(BuildContext context, FirebaseUser user) {
+  Navigator.push(context,
+      MaterialPageRoute(builder: (context) => ProfileList(user: user)));
 }
 
-goProfilePageEdit(BuildContext context) {
-  Navigator.push(
-      context, MaterialPageRoute(builder: (context) => ProfilePageEdit()));
+goProfilePageEdit(BuildContext context, FirebaseUser user) {
+  Navigator.pushReplacement(context,
+      MaterialPageRoute(builder: (context) => ProfilePageEdit(user: user)));
 }
 
-goSocialMenu(BuildContext context) {
-  Navigator.push(
-      context, MaterialPageRoute(builder: (context) => SocialMenu()));
+goSocialMenu(BuildContext context, FirebaseUser user) {
+  Navigator.pushReplacement(
+      context, MaterialPageRoute(builder: (context) => SocialMenu(user: user)));
 }

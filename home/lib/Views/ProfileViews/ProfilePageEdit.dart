@@ -18,6 +18,8 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
   var profileOptions = ['Edit'];
   var currentItemSelected = 'Edit';
   bool isExpanded = true;
+  //Used to prevent re-entering same view in bottom nav bar
+  int currentIndex = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +87,7 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
           items: bottomNavBarItems(),
           onTap: (index) {
             setState(() {
-              onTap(index, context, widget.user);
+              onTap(index, context, widget.user, currentIndex);
             });
           }
           //onTap: _onTap,

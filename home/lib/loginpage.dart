@@ -1,3 +1,4 @@
+import 'package:citizenpower/TextStyles.dart';
 import 'package:flutter/material.dart';
 import 'registration.dart';
 import 'constants.dart';
@@ -58,10 +59,7 @@ class LoginPageState extends State<LoginPage> {
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(40.0)),
                               hintStyle: TextStyle(color: Colors.white),
-                              errorStyle: TextStyle(
-                                color: Colors.redAccent,
-                                fontSize: 15.0,
-                              ),
+                              errorStyle: errorTextStyle1(),
                               labelText: "Email",
                               hintText: "Enter Email address"),
                           onSaved: (input) => email = input,

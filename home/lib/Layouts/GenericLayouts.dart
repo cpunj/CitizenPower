@@ -5,9 +5,9 @@ import '../TextStyles.dart';
 import '../constants.dart';
 import '../Views/ProfileViews/profilelist.dart';
 import '../database.dart';
+
 //Top app bar layout
 Widget topAppBarLayout(String title) {
-  
   return AppBar(
     title: new Text(
       title,
@@ -215,16 +215,17 @@ Widget bioLayout2(String info, bool expanded) {
 }
 
 //This acts as a navigator for the bottom Nav Bar
-void onTap(int index, BuildContext context, FirebaseUser user) {
-  if (index == 0) {
-    goHome(context,user);
-  } else if (index == 1) {
-    goProfilePageEdit(context);
+void onTap(
+    int index, BuildContext context, FirebaseUser user, int currentIndex) {
+  if (index == 0 && currentIndex != 0) {
+    goHome(context, user);
+  } else if (index == 1 && currentIndex != 1) {
+    goProfilePageEdit(context, user);
   } else if (index == 2) {
-  } else if (index == 3) {
-    goSocialMenu(context);
-  } else if (index == 4) {
-    goElectorate(context);
+  } else if (index == 3 && currentIndex != 3) {
+    goSocialMenu(context, user);
+  } else if (index == 4 && currentIndex != 4) {
+    goElectorate(context, user);
   }
 }
 
