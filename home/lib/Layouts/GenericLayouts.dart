@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import '../TextStyles.dart';
 import '../constants.dart';
 import '../Views/ProfileViews/profilelist.dart';
-
+import '../database.dart';
 //Top app bar layout
 Widget topAppBarLayout(String title) {
+  
   return AppBar(
     title: new Text(
       title,
@@ -216,14 +217,14 @@ Widget bioLayout2(String info, bool expanded) {
 //This acts as a navigator for the bottom Nav Bar
 void onTap(int index, BuildContext context, FirebaseUser user) {
   if (index == 0) {
-    goHome(context, user);
+    goHome(context,user);
   } else if (index == 1) {
-    goProfilePageEdit(context, user);
+    goProfilePageEdit(context);
   } else if (index == 2) {
   } else if (index == 3) {
-    goSocialMenu(context, user);
+    goSocialMenu(context);
   } else if (index == 4) {
-    goElectorate(context, user);
+    goElectorate(context);
   }
 }
 
