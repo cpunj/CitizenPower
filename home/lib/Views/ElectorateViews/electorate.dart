@@ -189,7 +189,7 @@ class _ElectorateState extends State<Electorate> {
             textColor: Colors.white,
             child: Text('Connect with me'),
             onPressed: () {
-              goHomeScreen(context, widget.user);
+              goHome(context, widget.user);
             },
           ),
         ),
