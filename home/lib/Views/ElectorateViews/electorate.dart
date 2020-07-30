@@ -1,4 +1,4 @@
-
+import 'package:citizenpower/Navigator/NavigatorPushes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -189,7 +189,7 @@ class _ElectorateState extends State<Electorate> {
             textColor: Colors.white,
             child: Text('Connect with me'),
             onPressed: () {
-              Navigator.of(context).pushNamed("/c");
+              goHomeScreen(context, widget.user);
             },
           ),
         ),
@@ -226,6 +226,7 @@ class _ElectorateState extends State<Electorate> {
         ),
       ]),
       bottomNavigationBar: BottomNavigationBar(
+          currentIndex: 4,
           type: BottomNavigationBarType.fixed,
           items: bottomNavBarItems(),
           onTap: (index) {

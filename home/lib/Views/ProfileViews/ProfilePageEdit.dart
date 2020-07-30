@@ -80,6 +80,7 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
         ]),
       ),
       bottomNavigationBar: BottomNavigationBar(
+          currentIndex: 1,
           type: BottomNavigationBarType.fixed,
           items: bottomNavBarItems(),
           onTap: (index) {

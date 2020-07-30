@@ -1,5 +1,5 @@
 import 'package:citizenpower/Views/SocialMenu.dart';
-import 'package:citizenpower/Views/home_screen.dart';
+import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/Views/MessageViews/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../AppHome.dart';
@@ -53,13 +53,13 @@ goContactDetails(BuildContext context, FirebaseUser user) {
 }
 
 goProfileList(BuildContext context, FirebaseUser user) {
-  Navigator.push(
-      context, MaterialPageRoute(builder: (context) => ProfileList(user: user)));
+  Navigator.push(context,
+      MaterialPageRoute(builder: (context) => ProfileList(user: user)));
 }
 
 goProfilePageEdit(BuildContext context, FirebaseUser user) {
-  Navigator.push(
-      context, MaterialPageRoute(builder: (context) => ProfilePageEdit(user: user)));
+  Navigator.push(context,
+      MaterialPageRoute(builder: (context) => ProfilePageEdit(user: user)));
 }
 
 goSocialMenu(BuildContext context, FirebaseUser user) {

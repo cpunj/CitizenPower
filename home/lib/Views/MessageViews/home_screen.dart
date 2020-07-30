@@ -1,7 +1,8 @@
+import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/Views/MessageViews/recent_chat.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'MessageViews/catagory.dart';
+import 'catagory.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key, @required this.user}) : super(key: key);
@@ -54,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               child: Column(
                 children: <Widget>[
+                  RecentChats(),
                   //
                 ],
               ),

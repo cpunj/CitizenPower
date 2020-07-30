@@ -81,6 +81,7 @@ class _SocialMenuState extends State<SocialMenu> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+          currentIndex: 3,
           type: BottomNavigationBarType.fixed,
           items: bottomNavBarItems(),
           onTap: (index) {

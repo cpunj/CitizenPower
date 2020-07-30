@@ -4,7 +4,7 @@ import 'AppHome.dart';
 import 'Views/MessageViews/chatscreen.dart';
 import 'Views/MessageViews/chatscreen.dart';
 import 'Views/MessageViews/chatscreen.dart';
-import 'Views/contactview.dart';
+import 'Views/ElectorateViews/contactview.dart';
 import 'Views/ElectorateViews/electorateprofiledetails.dart';
 import 'loginpage.dart';
 import 'constants.dart';
