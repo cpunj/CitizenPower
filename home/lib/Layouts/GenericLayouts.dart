@@ -23,7 +23,7 @@ Widget topAppBarLayout(String title) {
 }
 
 //Layout function for top of profile page
-Widget topProfileLayout(BuildContext context) {
+Widget topProfileLayout(BuildContext context,FirebaseUser user) {
   return Container(
     margin: EdgeInsets.only(top: 20),
     height: 160,
@@ -52,7 +52,7 @@ Widget topProfileLayout(BuildContext context) {
               color: darkGold,
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ProfileList()));
+                    MaterialPageRoute(builder: (context) => ProfileList(user:user)));
               },
             ),
           ],
@@ -64,7 +64,7 @@ Widget topProfileLayout(BuildContext context) {
               height: 10.0,
             ),
             Text(
-              "Grace Williams",
+              "${user.email}",
               style: profileNameStyle(),
             ),
             SizedBox(

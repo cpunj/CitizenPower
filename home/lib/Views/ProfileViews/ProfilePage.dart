@@ -20,6 +20,8 @@ class ProfileScreenState extends State<ProfileScreen> {
   //Used to decide with buttons function on bottom nav bar, 5 = all functional
   int currentIndex = 5;
 
+  FirebaseUser get user => null;
+
   @override
   Widget build(BuildContext context) {
     var profileOptions = ['Edit'];
@@ -33,7 +35,7 @@ class ProfileScreenState extends State<ProfileScreen> {
       drawer: new Drawer(),
       body: CustomScrollView(slivers: <Widget>[
         SliverToBoxAdapter(
-          child: topProfileLayout(context),
+          child: topProfileLayout(context,user),
         ),
         SliverToBoxAdapter(
           child: Divider(
