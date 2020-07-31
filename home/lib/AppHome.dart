@@ -14,6 +14,7 @@ class AppHome extends StatefulWidget {
 }
 
 class _AppHomeState extends State<AppHome> {
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +26,7 @@ class _AppHomeState extends State<AppHome> {
           items: bottomNavBarItems(),
           onTap: (index) {
             setState(() {
-              onTap(index, context, widget.user);
+              onTap(index, context, widget.user, currentIndex);
             });
           }
           //onTap: _onTap,

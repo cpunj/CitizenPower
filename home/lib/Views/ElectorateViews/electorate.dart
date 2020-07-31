@@ -32,6 +32,8 @@ class _ElectorateState extends State<Electorate> {
   bool isExpanded = true;
   String issues;
   List<String> _locations = ['Issue 1', 'Issue 2', 'Issue 3'];
+  //Used for bottom nav bar functions
+  int currentIndex = 4;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -226,12 +228,12 @@ class _ElectorateState extends State<Electorate> {
         ),
       ]),
       bottomNavigationBar: BottomNavigationBar(
-          currentIndex: 4,
+          currentIndex: currentIndex,
           type: BottomNavigationBarType.fixed,
           items: bottomNavBarItems(),
           onTap: (index) {
             setState(() {
-              onTap(index, context, widget.user);
+              onTap(index, context, widget.user, currentIndex);
             });
           }
           //onTap: _onTap,

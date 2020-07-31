@@ -6,6 +6,14 @@ TextStyle appBarStyle() {
   return TextStyle(fontWeight: FontWeight.bold, color: Colors.white);
 }
 
+//Error text styles
+TextStyle errorTextStyle1() {
+  return TextStyle(
+    color: Colors.redAccent,
+    fontSize: 15.0,
+  );
+}
+
 //Button text styles
 TextStyle buttonTextStyle1() {
   return TextStyle(

@@ -17,6 +17,8 @@ class ProfileScreenState extends State<ProfileScreen> {
   var profileOptions = ['Edit'];
   var currentItemSelected = 'Edit';
   bool isExpanded = true;
+  //Used to decide with buttons function on bottom nav bar, 5 = all functional
+  int currentIndex = 5;
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +67,7 @@ class ProfileScreenState extends State<ProfileScreen> {
           items: bottomNavBarItems(),
           onTap: (index) {
             setState(() {
-              onTap(index, context, widget.user);
+              onTap(index, context, widget.user, currentIndex);
             });
           }
           //onTap: _onTap,

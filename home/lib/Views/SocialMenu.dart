@@ -14,20 +14,10 @@ class SocialMenu extends StatefulWidget {
 
 //TODO: Find background pictures for buttons
 
-Widget socialButton(String title, BuildContext context, Function f) {
-  return Expanded(
-    child: FlatButton(
-      color: Colors.blueAccent,
-      onPressed: () {},
-      child: Text(
-        "$title",
-        style: buttonTextStyle1Large(),
-      ),
-    ),
-  );
-}
-
 class _SocialMenuState extends State<SocialMenu> {
+  //used to prevent re-entering the same view in bottom nav bar
+  int currentIndex = 3;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,7 +76,7 @@ class _SocialMenuState extends State<SocialMenu> {
           items: bottomNavBarItems(),
           onTap: (index) {
             setState(() {
-              onTap(index, context, widget.user);
+              onTap(index, context, widget.user, currentIndex);
             });
           }
           //onTap: _onTap,
