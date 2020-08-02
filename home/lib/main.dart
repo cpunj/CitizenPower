@@ -10,6 +10,8 @@ import 'constants.dart';
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
+
+  int testNumber = 1;
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
