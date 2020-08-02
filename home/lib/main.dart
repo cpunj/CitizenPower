@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'AppHome.dart';
-import 'Views/MessageViews/chatscreen.dart';
-import 'Views/MessageViews/chatscreen.dart';
-import 'Views/MessageViews/chatscreen.dart';
 import 'Views/ElectorateViews/contactview.dart';
 import 'Views/ElectorateViews/electorateprofiledetails.dart';
 import 'loginpage.dart';
