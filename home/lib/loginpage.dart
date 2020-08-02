@@ -4,7 +4,6 @@ import 'registration.dart';
 import 'constants.dart';
 import 'AppHome.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'database.dart';
 
 class LoginPage extends StatefulWidget {
   @override

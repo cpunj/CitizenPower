@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import '../TextStyles.dart';
 import '../constants.dart';
 import '../Views/ProfileViews/profilelist.dart';
-import '../database.dart';
 
 //Top app bar layout
 Widget topAppBarLayout(String title) {
@@ -23,7 +22,7 @@ Widget topAppBarLayout(String title) {
 }
 
 //Layout function for top of profile page
-Widget topProfileLayout(BuildContext context,FirebaseUser user) {
+Widget topProfileLayout(BuildContext context, FirebaseUser user) {
   return Container(
     margin: EdgeInsets.only(top: 20),
     height: 160,
@@ -51,8 +50,10 @@ Widget topProfileLayout(BuildContext context,FirebaseUser user) {
               ),
               color: darkGold,
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ProfileList(user:user)));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ProfileList(user: user)));
               },
             ),
           ],
