@@ -1,9 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../Layouts/GenericLayouts.dart';
-import '../../constants.dart';
-import 'profilelist.dart';
-import '../../TextStyles.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key key, @required this.user}) : super(key: key);
@@ -24,18 +21,12 @@ class ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var profileOptions = ['Edit'];
-    var currentItemSelected = 'Edit';
-    void choiceAction(String choice) {
-      print('working');
-    }
-
     return Scaffold(
       appBar: topAppBarLayout('Profile'),
       drawer: new Drawer(),
       body: CustomScrollView(slivers: <Widget>[
         SliverToBoxAdapter(
-          child: topProfileLayout(context,user),
+          child: topProfileLayout(context, user),
         ),
         SliverToBoxAdapter(
           child: Divider(

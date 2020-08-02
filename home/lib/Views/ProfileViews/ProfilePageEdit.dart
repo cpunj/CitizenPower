@@ -1,10 +1,6 @@
-import 'package:citizenpower/Navigator/NavigatorPushes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../Layouts/GenericLayouts.dart';
-import '../../constants.dart';
-import 'profilelist.dart';
-import '../../TextStyles.dart';
 
 class ProfilePageEdit extends StatefulWidget {
   const ProfilePageEdit({Key key, @required this.user}) : super(key: key);
@@ -23,12 +19,6 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
 
   @override
   Widget build(BuildContext context) {
-    var profileOptions = ['Edit'];
-    var currentItemSelected = 'Edit';
-    void choiceAction(String choice) {
-      print('working');
-    }
-
     return Scaffold(
       appBar: topAppBarLayout('Profile'),
       drawer: new Drawer(),

@@ -3,15 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import '../../Layouts/GenericLayouts.dart';
-import '../ProfileViews/ProfilePage.dart';
-import '../settings.dart';
 import '../../constants.dart';
 
-import '../ProfileViews/profilelist.dart';
 import 'leader.dart';
-import '../../AppHome.dart';
 
 /*TODO:
 - Create a 'Clark' electorate profile
