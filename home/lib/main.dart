@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'AppHome.dart';
+import 'Views/MessageViews/chatscreen.dart';
+import 'Views/MessageViews/chatscreen.dart';
+import 'Views/MessageViews/chatscreen.dart';
 import 'Views/ElectorateViews/contactview.dart';
 import 'Views/ElectorateViews/electorateprofiledetails.dart';
 import 'loginpage.dart';
 import 'constants.dart';
 
-//I am going to write the electorate view in this branch - Jack
+//Testing Github: Jack Lennard
 
 void main() => runApp(new MyApp());
 

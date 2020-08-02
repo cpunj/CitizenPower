@@ -8,6 +8,7 @@ import '../Views/ElectorateViews/electorate.dart';
 import '../Views/ElectorateViews/electorateprofiledetails.dart';
 import '../Views/ProfileViews/profilelist.dart';
 import '../Views/settings.dart';
+import '../loginpage.dart';
 
 //pushReplacement used for views accessed from bottom nav bar
 
