@@ -5,7 +5,7 @@ import 'Views/ElectorateViews/electorateprofiledetails.dart';
 import 'loginpage.dart';
 import 'constants.dart';
 
-//Testing Github: I will be creating the electorate branch in this branch
+//Testing Github: I will be creating the electorate branch in this branch blah blah
 
 void main() => runApp(new MyApp());
 
