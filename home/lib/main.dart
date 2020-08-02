@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-        home: new LoginPage(),
+        home: new LoginPage(),//PLayingwith github
         routes: <String, WidgetBuilder>{
           "/a": (BuildContext context) => new AboutMe(),
           "/b": (BuildContext context) => new ElectorateDetails(),
