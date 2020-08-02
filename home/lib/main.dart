@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'AppHome.dart';
 import 'Views/MessageViews/chatscreen.dart';
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-        home: new LoginPage(),//PLayingwith github
+        home: new LoginPage(),
         routes: <String, WidgetBuilder>{
           "/a": (BuildContext context) => new AboutMe(),
           "/b": (BuildContext context) => new ElectorateDetails(),
