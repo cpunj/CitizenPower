@@ -7,6 +7,11 @@
           <option name="HIGHLIGHT_POLICY" value="BY_LINE" />
         </PlaceSettings>
       </entry>
+      <entry key="Merge">
+        <PlaceSettings>
+          <option name="HIGHLIGHT_POLICY" value="BY_LINE" />
+        </PlaceSettings>
+      </entry>
     </option>
   </component>
 </application>
