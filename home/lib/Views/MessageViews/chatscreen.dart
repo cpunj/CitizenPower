@@ -1,7 +1,9 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import '../../Models/massage_model.dart';
+import '../../Models/user_model.dart';
 
 class ChatScreen extends StatefulWidget {
   final user;

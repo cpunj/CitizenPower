@@ -15,7 +15,9 @@ class Setting extends StatefulWidget {
 class _SettingState extends State<Setting> {
   FirebaseAuth auth = FirebaseAuth.instance;
 
-  Future<void> logOut() async {}
+  Future<void> logOut() async {
+    FirebaseUser user = auth.signOut() as FirebaseUser;
+  }
 
   int selectedIndex = 0;
   final widgetOptions = [

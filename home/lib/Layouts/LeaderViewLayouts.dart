@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:citizenpower/constants.dart';
 import 'package:citizenpower/TextStyles.dart';
 
+import '../Views/ElectorateViews/electorateprofiledetails.dart';
+
 //Leader view header layout
 Widget leaderViewHeader(
     {String name, int postNumber, int connectionNumber, int followNumber}) {
@@ -142,8 +144,8 @@ Widget leaderDrawer(BuildContext context, FirebaseUser user) {
         new ListTile(
           title: new Text("Electorate details"),
           onTap: () => goElectorateDetails(context, user),
-        ),
-      ],
+          ),
+        ],
     ),
-  );
+    );
 }
