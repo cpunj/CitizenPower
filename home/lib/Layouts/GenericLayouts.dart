@@ -225,7 +225,7 @@ void onTap(
   } else if (index == 3 && currentIndex != 3) {
     goSocialMenu(context, user);
   } else if (index == 4 && currentIndex != 4) {
-    goElectorateView(context, user);
+    goElectorate(context, user);
   }
 }
 
