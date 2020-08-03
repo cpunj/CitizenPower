@@ -1,3 +1,5 @@
+import 'package:citizenpower/Views/ElectorateViews/electorateview.dart';
+import 'package:citizenpower/Views/ElectorateViews/imageview.dart';
 import 'package:citizenpower/Views/SocialMenu.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -73,4 +75,16 @@ goSocialMenu(BuildContext context, FirebaseUser user) {
 goMessage(BuildContext context, FirebaseUser user) {
   Navigator.push(
       context, MaterialPageRoute(builder: (context) => HomeScreen(user: user)));
+}
+
+goElectorateView(BuildContext context, FirebaseUser user) {
+  Navigator.push(context,
+      MaterialPageRoute(builder: (context) => ElectorateView(user: user)));
+}
+
+goImageView(BuildContext context, String image) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => ImageView(image: image)),
+  );
 }

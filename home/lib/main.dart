@@ -1,8 +1,8 @@
+import 'package:citizenpower/Views/ElectorateViews/electorateview.dart';
 import 'package:flutter/material.dart';
 import 'AppHome.dart';
 import 'Views/ElectorateViews/contactview.dart';
 import 'Views/ElectorateViews/electorateprofiledetails.dart';
-import 'loginpage.dart';
 import 'constants.dart';
 
 //Testing Github: Helllo I am changing this comment
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-        home: new LoginPage(),
+        home: new ElectorateView(user: null),
         routes: <String, WidgetBuilder>{
           "/a": (BuildContext context) => new AboutMe(),
           "/b": (BuildContext context) => new ElectorateDetails(
