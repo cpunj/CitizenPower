@@ -58,7 +58,7 @@ class _SocialMenuState extends State<SocialMenu> {
                 child: FlatButton(
                   color: Colors.blueAccent,
                   onPressed: () {
-                    goHome(context, widget.user);
+                    goHomeScreen(context, widget.user);
                   },
                   child: Text(
                     "Messages",
