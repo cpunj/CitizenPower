@@ -33,44 +33,44 @@ class User {
 final User currentUser = User(
   id: 0,
   name: 'Current User',
-  imageUrl: 'assets/wilkie.jpeg',
+  imageUrl: 'assets/Wilkie.jpeg',
 );
 
 // USERS
 final User ejaz = User(
   id: 1,
   name: 'Ejaz Ahmed',
-  imageUrl: "assets/grace",
+  imageUrl: "assets/grace.jpg",
 );
 final User jack = User(
   id: 2,
   name: 'Jack ',
-  imageUrl: 'assets/wilkie.jpeg',
+  imageUrl: 'assets/Wilkie.jpeg',
 );
 final User harry = User(
   id: 3,
   name: 'Harrison',
-  imageUrl: 'assets/wilkie.jpeg',
+  imageUrl: 'assets/Wilkie.jpeg',
 );
 final User salman = User(
   id: 4,
   name: 'Salman',
-  imageUrl: 'assets/wilkie.jpeg',
+  imageUrl: 'assets/Wilkie.jpeg',
 );
 final User chandan = User(
   id: 5,
   name: 'Chandan',
-  imageUrl: 'assets/wilkie.jpeg',
+  imageUrl: 'assets/Wilkie.jpeg',
 );
 final User khern = User(
   id: 6,
   name: 'Khern',
-  imageUrl: 'assets/wilkie.jpeg',
+  imageUrl: 'assets/Wilkie.jpeg',
 );
 final User jenny = User(
   id: 7,
   name: 'Jenny',
-  imageUrl: 'assets/wilkie.jpeg',
+  imageUrl: 'assets/Wilkie.jpeg',
 );
 
 // FAVORITE CONTACTS

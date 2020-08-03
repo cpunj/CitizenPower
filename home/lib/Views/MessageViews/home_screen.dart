@@ -1,8 +1,8 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'catagory.dart';
+import 'recent_chat.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key, @required this.user}) : super(key: key);
@@ -18,11 +18,13 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          iconSize: 30.0,
-          color: Colors.white,
-          onPressed: () {},
+        leading: Container(
+          padding: EdgeInsets.only(left: 15, top: 4, bottom: 4),
+          child: CircleAvatar(
+            backgroundColor: Colors.transparent,
+            radius: 15,
+            backgroundImage: AssetImage("assets/Wilkie.jpeg"),
+          ),
         ),
         title: Text(
           'Chats',
@@ -33,11 +35,31 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         elevation: 1.0,
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            iconSize: 30.0,
-            color: Colors.white,
-            onPressed: () {},
+          CircleAvatar(
+            backgroundColor: Colors.white30,
+            child: IconButton(
+              icon: Icon(
+                Icons.photo_camera,
+                size: 22,
+                color: Color.fromRGBO(195, 195, 195, 1),
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          CircleAvatar(
+            backgroundColor: Colors.white10,
+            child: IconButton(
+              icon: Icon(
+                Icons.edit,
+                size: 22,
+                color: Color.fromRGBO(195, 195, 195, 1),
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 16,
           ),
         ],
       ),
@@ -55,7 +77,30 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               child: Column(
                 children: <Widget>[
-                  
+                  /*
+                  Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Container(
+                      padding: EdgeInsets.only(left: 16, top: 4, bottom: 4),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(30)),
+                          color: Colors.white10),
+                      child: TextField(
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            icon: Icon(Icons.search, color: Colors.white),
+                            hintText: "search",
+                            hintStyle: TextStyle(
+                              color: Colors.white,
+                            )),
+                      ),
+                    ),
+                  )
+
+                   */
+
+                  RecentChats()
+
                   //
                 ],
               ),

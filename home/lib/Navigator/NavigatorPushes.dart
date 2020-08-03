@@ -2,6 +2,7 @@ import 'package:citizenpower/Views/SocialMenu.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../AppHome.dart';
+import '../Views/MessageViews/home_screen.dart';
 import '../Views/ProfileViews/ProfilePage.dart';
 import '../Views/ProfileViews/ProfilePageEdit.dart';
 import '../Views/ElectorateViews/electorate.dart';
@@ -67,4 +68,9 @@ goProfilePageEdit(BuildContext context, FirebaseUser user) {
 goSocialMenu(BuildContext context, FirebaseUser user) {
   Navigator.pushReplacement(
       context, MaterialPageRoute(builder: (context) => SocialMenu(user: user)));
+}
+
+goMessage(BuildContext context, FirebaseUser user) {
+  Navigator.pushReplacement(
+      context, MaterialPageRoute(builder: (context) => HomeScreen(user: user)));
 }

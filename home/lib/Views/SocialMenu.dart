@@ -4,6 +4,8 @@ import 'package:citizenpower/TextStyles.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../Navigator/NavigatorPushes.dart';
+
 class SocialMenu extends StatefulWidget {
   const SocialMenu({Key key, @required this.user}) : super(key: key);
   final FirebaseUser user;
@@ -58,7 +60,7 @@ class _SocialMenuState extends State<SocialMenu> {
                 child: FlatButton(
                   color: Colors.blueAccent,
                   onPressed: () {
-                    goHome(context, widget.user);
+                    goMessage(context, widget.user);
                   },
                   child: Text(
                     "Messages",
