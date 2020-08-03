@@ -1,4 +1,4 @@
-
+import 'package:citizenpower/Views/MessageViews/recent_chat.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               child: Column(
                 children: <Widget>[
-                  
+                  RecentChats(),
                   //
                 ],
               ),
