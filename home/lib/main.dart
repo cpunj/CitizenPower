@@ -10,15 +10,18 @@ import 'constants.dart';
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
         home: new LoginPage(),
         routes: <String, WidgetBuilder>{
           "/a": (BuildContext context) => new AboutMe(),
-          "/b": (BuildContext context) => new ElectorateDetails(),
-          "/c": (BuildContext context) => new AppHome(),
+          "/b": (BuildContext context) => new ElectorateDetails(
+                user: null,
+              ),
+          "/c": (BuildContext context) => new AppHome(
+                user: null,
+              ),
           "/x": (BuildContext context) => new AppHome(user: null),
         },
         theme: new ThemeData(
