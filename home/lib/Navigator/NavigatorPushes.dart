@@ -71,6 +71,6 @@ goSocialMenu(BuildContext context, FirebaseUser user) {
 }
 
 goMessage(BuildContext context, FirebaseUser user) {
-  Navigator.pushReplacement(
+  Navigator.push(
       context, MaterialPageRoute(builder: (context) => HomeScreen(user: user)));
 }

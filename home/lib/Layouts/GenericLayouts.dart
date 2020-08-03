@@ -50,10 +50,7 @@ Widget topProfileLayout(BuildContext context, FirebaseUser user) {
               ),
               color: darkGold,
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ProfileList(user: user)));
+                goProfile(context, user);
               },
             ),
           ],
@@ -147,8 +144,10 @@ Widget topProfileLayoutEdit(BuildContext context) {
               ),
               color: darkGold,
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ProfileList()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ProfileList(user: null)));
               },
             ),
           ],
