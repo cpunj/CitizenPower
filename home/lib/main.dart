@@ -5,7 +5,7 @@ import 'Views/ElectorateViews/contactview.dart';
 import 'Views/ElectorateViews/electorateprofiledetails.dart';
 import 'constants.dart';
 
-//Testing Github: Helllo I am changing this comment
+//Testing Github: Hello I am changing this comment
 
 void main() => runApp(new MyApp());
 
