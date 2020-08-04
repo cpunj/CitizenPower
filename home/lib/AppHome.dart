@@ -20,8 +20,36 @@ class _AppHomeState extends State<AppHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: new Drawer(
+        child: new ListView(
+          children: <Widget>[
+            new UserAccountsDrawerHeader(
+              accountName: new Text("Citizen Tasmania"),
+              accountEmail: new Text("email: citizentasmania@gmail.com"),
+              currentAccountPicture: new CircleAvatar(
+                backgroundColor: darkGold,
+                child: new Text(
+                  "ElectNow",
+                  style: TextStyle(color: Colors.black87),
+                ),
+              ),
+            ),
+            new ListTile(
+              title: new Text("About Citzen "),
+              onTap: () => Navigator.of(context).pushNamed("/a"),
+            ),
+            new ListTile(
+              title: new Text("Settings"),
+              onTap: () => Navigator.of(context).pushNamed("/d"),
+            )
+          ],
+        ),
+      ),
       appBar: new AppBar(
-        title: Text('Home' " "),
+        title: Text(
+          'Home',
+          textAlign: TextAlign.center,
+        ),
         leading: Container(
           padding: EdgeInsets.all(12.0),
           child: CircleAvatar(
@@ -43,7 +71,7 @@ class _AppHomeState extends State<AppHome> {
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(10),
                           color: darkGold),
                       child: TextField(
                         decoration: InputDecoration(
@@ -159,24 +187,24 @@ class _AppHomeState extends State<AppHome> {
                           height: 20,
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
                             makeLike(),
                             Transform.translate(
-                              offset: Offset(-15, 10),
+                              offset: Offset(0, 10),
                             ),
                             SizedBox(
-                              width: 5,
+                              width: 15,
                             ),
                             Text(
-                              "12.2k",
+                              "400 comments",
                               style: TextStyle(
                                   fontSize: 14,
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              "238 comments,",
+                              "238 shares",
                               style: TextStyle(
                                   fontSize: 14,
                                   color: Colors.black,
@@ -201,131 +229,400 @@ class _AppHomeState extends State<AppHome> {
                 ),
               ),
             ),
-            SizedBox(
-              width: 10,
-              height: 50,
-            ),
             Container(
-              margin: EdgeInsets.only(right: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Container(
-                            width: 50,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                image: AssetImage("assets/Wilkie.jpeg"),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Text(
-                                "" "Andrew Wilkie",
-                                style: TextStyle(
-                                    color: Colors.grey[900],
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 1),
-                              ),
-                              SizedBox(
-                                height: 3,
-                              ),
-                              Text(
-                                "1 hour ago",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.grey,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Container(
+                  margin: EdgeInsets.only(right: 10),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                      image: AssetImage("assets/Wilkie.jpeg"),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
                                 ),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                      IconButton(
-                        icon: Icon(
-                          Icons.more_horiz,
-                          size: 30,
-                          color: Colors.grey[600],
+                                Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text(
+                                      "" " Ejaz Ahmed",
+                                      style: TextStyle(
+                                          color: Colors.grey[900],
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          letterSpacing: 1),
+                                    ),
+                                    SizedBox(
+                                      height: 3,
+                                    ),
+                                    Text(
+                                      "1 hour ago",
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        color: Colors.grey,
+                                      ),
+                                    )
+                                  ],
+                                )
+                              ],
+                            ),
+                            IconButton(
+                              icon: Icon(
+                                Icons.more_horiz,
+                                size: 30,
+                                color: Colors.grey[600],
+                              ),
+                              onPressed: () {},
+                            ),
+                          ],
                         ),
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Hey there, My name is Andrew , I am current Mp for Clark , nsdkjacnksjdncjksdncjksdncjkndjcnsadkjncjkdsncjksndcjnssdn cjsdcjn ",
-                    style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.grey[800],
-                        height: 1.1,
-                        letterSpacing: .6),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    height: 210,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                          image: AssetImage("assets/Wilkie.jpeg"),
-                          fit: BoxFit.cover),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Hey there, My name is Ejaz Ahmed , I am current studying at university of TAsmania. ",
+                          style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.grey[800],
+                              height: 1.1,
+                              letterSpacing: .6),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          height: 210,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: DecorationImage(
+                                image: AssetImage("assets/Wilkie.jpeg"),
+                                fit: BoxFit.cover),
+                          ),
+                        ),
+                        Container(),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: <Widget>[
+                            makeLike(),
+                            Transform.translate(
+                              offset: Offset(0, 10),
+                            ),
+                            SizedBox(
+                              width: 15,
+                            ),
+                            Text(
+                              "400 comments",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "238 shares",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            makeSupportButton(isActive: true),
+                            makeCommentButton(),
+                            makeShareButton(),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
-                  Container(),
-                  SizedBox(
-                    height: 20,
+                ),
+              ),
+            ),
+            Container(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Container(
+                  margin: EdgeInsets.only(right: 10),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                      image: AssetImage("assets/Wilkie.jpeg"),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text(
+                                      "" " Ejaz Ahmed",
+                                      style: TextStyle(
+                                          color: Colors.grey[900],
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          letterSpacing: 1),
+                                    ),
+                                    SizedBox(
+                                      height: 3,
+                                    ),
+                                    Text(
+                                      "1 hour ago",
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        color: Colors.grey,
+                                      ),
+                                    )
+                                  ],
+                                )
+                              ],
+                            ),
+                            IconButton(
+                              icon: Icon(
+                                Icons.more_horiz,
+                                size: 30,
+                                color: Colors.grey[600],
+                              ),
+                              onPressed: () {},
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Hey there, My name is Ejaz Ahmed , I am current studying at university of TAsmania. ",
+                          style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.grey[800],
+                              height: 1.1,
+                              letterSpacing: .6),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          height: 210,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: DecorationImage(
+                                image: AssetImage("assets/Wilkie.jpeg"),
+                                fit: BoxFit.cover),
+                          ),
+                        ),
+                        Container(),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: <Widget>[
+                            makeLike(),
+                            Transform.translate(
+                              offset: Offset(0, 10),
+                            ),
+                            SizedBox(
+                              width: 15,
+                            ),
+                            Text(
+                              "400 comments",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "238 shares",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            makeSupportButton(isActive: true),
+                            makeCommentButton(),
+                            makeShareButton(),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      makeLike(),
-                      Transform.translate(
-                        offset: Offset(-15, 10),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        "12.2k",
-                        style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        "238 comments,",
-                        style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold),
-                      )
-                    ],
+                ),
+              ),
+            ),
+            Container(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Container(
+                  margin: EdgeInsets.only(right: 10),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                      image: AssetImage("assets/Wilkie.jpeg"),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text(
+                                      "" " Ejaz Ahmed",
+                                      style: TextStyle(
+                                          color: Colors.grey[900],
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          letterSpacing: 1),
+                                    ),
+                                    SizedBox(
+                                      height: 3,
+                                    ),
+                                    Text(
+                                      "1 hour ago",
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        color: Colors.grey,
+                                      ),
+                                    )
+                                  ],
+                                )
+                              ],
+                            ),
+                            IconButton(
+                              icon: Icon(
+                                Icons.more_horiz,
+                                size: 30,
+                                color: Colors.grey[600],
+                              ),
+                              onPressed: () {},
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Hey there, My name is Ejaz Ahmed , I am current studying at university of TAsmania. ",
+                          style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.grey[800],
+                              height: 1.1,
+                              letterSpacing: .6),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          height: 210,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: DecorationImage(
+                                image: AssetImage("assets/Wilkie.jpeg"),
+                                fit: BoxFit.cover),
+                          ),
+                        ),
+                        Container(),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: <Widget>[
+                            makeLike(),
+                            Transform.translate(
+                              offset: Offset(0, 10),
+                            ),
+                            SizedBox(
+                              width: 15,
+                            ),
+                            Text(
+                              "400 comments",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "238 shares",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            makeSupportButton(isActive: true),
+                            makeCommentButton(),
+                            makeShareButton(),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      makeSupportButton(isActive: true),
-                      makeCommentButton(),
-                      makeShareButton(),
-                    ],
-                  ),
-                ],
+                ),
               ),
             ),
           ],

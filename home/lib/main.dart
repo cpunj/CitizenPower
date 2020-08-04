@@ -1,3 +1,5 @@
+import 'package:citizenpower/Views/SocialMenu.dart';
+import 'package:citizenpower/Views/settings.dart';
 import 'package:flutter/material.dart';
 import 'AppHome.dart';
 import 'Views/ElectorateViews/contactview.dart';
@@ -23,6 +25,7 @@ class MyApp extends StatelessWidget {
                 user: null,
               ),
           "/x": (BuildContext context) => new AppHome(user: null),
+          "/d": (BuildContext context) => new Setting(user: null),
         },
         theme: new ThemeData(
             primaryColor: brightOrange, accentColor: Color(0xFFFEF9EB)));
