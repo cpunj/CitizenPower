@@ -36,7 +36,7 @@ class _AppHomeState extends State<AppHome> {
             ),
             new ListTile(
               title: new Text("About Citzen "),
-              onTap: () => Navigator.of(context).pushNamed("/a"),
+              onTap: () => Navigator.of(context).pushNamed("/e"),
             ),
             new ListTile(
               title: new Text("Settings"),
