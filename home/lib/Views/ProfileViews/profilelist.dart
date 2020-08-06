@@ -14,6 +14,8 @@ class ProfileList extends StatefulWidget {
   }
 }
 
+//TODO: How to move FirebaseUser into stateless widget???
+//The only broken function in master branch ^^^^
 class AppState extends State<ProfileList> {
   List<String> names = [
     'Harry Fawcett',

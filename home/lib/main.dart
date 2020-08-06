@@ -1,14 +1,17 @@
+
 import 'package:citizenpower/Views/SocialMenu.dart';
 import 'package:citizenpower/Views/aboutcitzen/aboutcitizen.dart';
 import 'package:citizenpower/Views/settings.dart';
+
+import 'package:citizenpower/loginpage.dart';
+
 import 'package:flutter/material.dart';
 import 'AppHome.dart';
 import 'Views/ElectorateViews/contactview.dart';
 import 'Views/ElectorateViews/electorateprofiledetails.dart';
-import 'loginpage.dart';
 import 'constants.dart';
 
-//Testing Github: Helllo I am changing this comment
+//Testing Github: Hello I am changing this comment
 
 void main() => runApp(new MyApp());
 

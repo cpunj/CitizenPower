@@ -46,6 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
           CircleAvatar(
             backgroundColor: Colors.white30,
             child: IconButton(
+              onPressed: () {},
               icon: Icon(
                 Icons.photo_camera,
                 size: 22,
@@ -60,6 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
           CircleAvatar(
             backgroundColor: Colors.white10,
             child: IconButton(
+              onPressed: () {},
               icon: Icon(
                 Icons.edit,
                 size: 22,
