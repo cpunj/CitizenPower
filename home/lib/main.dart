@@ -1,4 +1,10 @@
+
+import 'package:citizenpower/Views/SocialMenu.dart';
+import 'package:citizenpower/Views/aboutcitzen/aboutcitizen.dart';
+import 'package:citizenpower/Views/settings.dart';
+
 import 'package:citizenpower/loginpage.dart';
+
 import 'package:flutter/material.dart';
 import 'AppHome.dart';
 import 'Views/ElectorateViews/contactview.dart';
@@ -19,10 +25,9 @@ class MyApp extends StatelessWidget {
           "/b": (BuildContext context) => new ElectorateDetails(
                 user: null,
               ),
-          "/c": (BuildContext context) => new AppHome(
-                user: null,
-              ),
+          "/e": (BuildContext context) => new AboutCitizenInfo(),
           "/x": (BuildContext context) => new AppHome(user: null),
+          "/d": (BuildContext context) => new Setting(user: null),
         },
         theme: new ThemeData(
             primaryColor: brightOrange, accentColor: Color(0xFFFEF9EB)));

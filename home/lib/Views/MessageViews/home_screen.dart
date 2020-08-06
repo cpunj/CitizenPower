@@ -1,4 +1,6 @@
 import 'package:citizenpower/Views/MessageViews/recent_chat.dart';
+import 'package:citizenpower/Views/SocialMenu.dart';
+import 'package:citizenpower/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -20,11 +22,16 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
         leading: Container(
-          padding: EdgeInsets.only(left: 15, top: 4, bottom: 4),
+          padding: EdgeInsets.only(left: 5, top: 4, bottom: 4),
           child: CircleAvatar(
-            backgroundColor: Colors.transparent,
-            radius: 15,
-            backgroundImage: AssetImage("assets/Wilkie.jpeg"),
+            child: IconButton(
+                icon: Icon(Icons.arrow_back),
+                color: Colors.white,
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SocialMenu()));
+                }),
+            backgroundColor: brightOrange,
           ),
         ),
         title: Text(
@@ -45,6 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 size: 22,
                 color: Color.fromRGBO(195, 195, 195, 1),
               ),
+              onPressed: () {},
             ),
           ),
           SizedBox(
@@ -59,10 +67,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 size: 22,
                 color: Color.fromRGBO(195, 195, 195, 1),
               ),
+              onPressed: () {},
             ),
           ),
           SizedBox(
             width: 16,
+          ),
+          CircleAvatar(
+            backgroundColor: Colors.transparent,
+            radius: 29,
+            backgroundImage: AssetImage("assets/Wilkie.jpeg"),
           ),
         ],
       ),
@@ -104,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   RecentChats()
 
-                  //
+                  //hey jack
                 ],
               ),
             ),
