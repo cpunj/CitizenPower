@@ -47,7 +47,7 @@ class _AppHomeState extends State<AppHome> {
       ),
       appBar: new AppBar(
         title: Text(
-          'Home',
+          "                    " 'Home',
           textAlign: TextAlign.center,
         ),
         leading: Container(
@@ -171,7 +171,7 @@ class _AppHomeState extends State<AppHome> {
                               letterSpacing: .6),
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 30,
                         ),
                         Container(
                           height: 210,
@@ -228,6 +228,9 @@ class _AppHomeState extends State<AppHome> {
                   ),
                 ),
               ),
+            ),
+            SizedBox(
+              height: 50,
             ),
             Container(
               child: SingleChildScrollView(
@@ -360,6 +363,9 @@ class _AppHomeState extends State<AppHome> {
                   ),
                 ),
               ),
+            ),
+            SizedBox(
+              height: 50,
             ),
             Container(
               child: SingleChildScrollView(

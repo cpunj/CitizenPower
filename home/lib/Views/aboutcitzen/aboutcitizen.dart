@@ -97,7 +97,7 @@ class _AboutCitizenInfoState extends State<AboutCitizenInfo> {
                     ),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 80,
                   ),
                   MaterialButton(
                     color: darkGold,
