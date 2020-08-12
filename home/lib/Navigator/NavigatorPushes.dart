@@ -30,7 +30,7 @@ goProfile(BuildContext context, FirebaseUser user) {
 }
 
 goElectorate(BuildContext context, FirebaseUser user) {
-  Navigator.pushReplacement(
+  Navigator.push(
     context,
     MaterialPageRoute(builder: (context) => Electorate(user: user)),
   );

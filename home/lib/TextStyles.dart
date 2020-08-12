@@ -31,6 +31,14 @@ TextStyle textStyleBold() {
       color: darkGold, fontSize: 22.0, fontWeight: FontWeight.bold);
 }
 
+TextStyle textStyleListGrey() {
+  return TextStyle(
+    color: Colors.grey,
+    fontSize: 15.0,
+    fontWeight: FontWeight.bold,
+  );
+}
+
 //For profile name, change as needed
 TextStyle profileNameStyle() {
   return TextStyle(
