@@ -25,8 +25,8 @@ class Electorate extends StatefulWidget {
 
 class _ElectorateState extends State<Electorate> {
   bool isExpanded = true;
-  String issues;
-  List<String> _locations = ['Issue 1', 'Issue 2', 'Issue 3'];
+String issues;
+  List<String> _locations = ['Poverty', 'Pollution', 'Homeless'];
   //Used for bottom nav bar functions
   int currentIndex = 4;
   @override
@@ -208,7 +208,9 @@ class _ElectorateState extends State<Electorate> {
               style: TextStyle(color: darkGold),
             ),
             value: issues,
+            
             onChanged: (newValue) {
+          
               setState(() {
                 issues = newValue;
               });

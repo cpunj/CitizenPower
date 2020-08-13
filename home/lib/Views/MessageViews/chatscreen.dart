@@ -88,7 +88,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   _buildMessageComposer() {
       sendsms(){
-            String sms1="sms:CitizenTas";
+            String sms1="sms:9292";
             launch(sms1);
           }
     return Container(
