@@ -210,17 +210,25 @@ String issues;
             value: issues,
             
             onChanged: (newValue) {
-          
+      
               setState(() {
                 issues = newValue;
-              });
+              }
+
+                
+              
+
+              );
             },
             items: _locations.map((location) {
               return DropdownMenuItem(
                 child: new Text(location),
                 value: location,
+                
+              
               );
             }).toList(),
+
           ),
         ),
       ]),
