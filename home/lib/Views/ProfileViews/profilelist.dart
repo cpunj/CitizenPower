@@ -31,12 +31,17 @@ class AppState extends State<ProfileList> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: topAppBarLayout('Connections'),
-      body: new Container(
-        child: new ListView.builder(
-          reverse: true,
-          itemBuilder: (_, int index) =>
-              EachList(this.names[index], widget.user),
-          itemCount: this.names.length,
+      //Trying to push to the edit profile page, user class not transferring properly
+      body: GestureDetector(
+        onTap: () {
+          goProfile(context, widget.user);
+        },
+        child: new Container(
+          child: new ListView.builder(
+            reverse: true,
+            itemBuilder: (_, int index) => EachList(this.names[index]),
+            itemCount: this.names.length,
+          ),
         ),
       ),
     );
@@ -44,31 +49,25 @@ class AppState extends State<ProfileList> {
 }
 
 class EachList extends StatelessWidget {
-  final FirebaseUser user;
   final String name;
-  EachList(this.name, this.user);
+  EachList(this.name);
 
   @override
   Widget build(BuildContext context) {
     return new Card(
-      child: FlatButton(
-        onPressed: () {
-          goProfile(context, user);
-        },
-        child: new Container(
-          padding: EdgeInsets.all(8.0),
-          child: new Row(
-            children: <Widget>[
-              new CircleAvatar(
-                child: new Text(name[0]),
-              ),
-              new Padding(padding: EdgeInsets.only(right: 10.0)),
-              new Text(
-                name,
-                style: TextStyle(fontSize: 20.0),
-              )
-            ],
-          ),
+      child: new Container(
+        padding: EdgeInsets.all(8.0),
+        child: new Row(
+          children: <Widget>[
+            new CircleAvatar(
+              child: new Text(name[0]),
+            ),
+            new Padding(padding: EdgeInsets.only(right: 10.0)),
+            new Text(
+              name,
+              style: TextStyle(fontSize: 20.0),
+            )
+          ],
         ),
       ),
     );

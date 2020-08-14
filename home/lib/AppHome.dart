@@ -2,9 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'Layouts/GenericLayouts.dart';
-import 'Layouts/GenericLayouts.dart';
-import 'constants.dart';
-import 'constants.dart';
 import 'constants.dart';
 
 class AppHome extends StatefulWidget {

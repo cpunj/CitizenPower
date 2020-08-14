@@ -52,7 +52,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 size: 22,
                 color: Color.fromRGBO(195, 195, 195, 1),
               ),
-              //onPressed: () {},
             ),
           ),
           SizedBox(
@@ -67,7 +66,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 size: 22,
                 color: Color.fromRGBO(195, 195, 195, 1),
               ),
-              //onPressed: () {},
             ),
           ),
           SizedBox(
