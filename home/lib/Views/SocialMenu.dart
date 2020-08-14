@@ -23,7 +23,7 @@ class _SocialMenuState extends State<SocialMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlueAccent,
+      //backgroundColor: Colors.brown,
       appBar: topAppBarLayout("Social"),
       body: SafeArea(
         child: Container(
@@ -31,92 +31,149 @@ class _SocialMenuState extends State<SocialMenu> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              MaterialButton(
-                padding: EdgeInsets.only(
-                    top: 80.0, left: 120, right: 120, bottom: 40),
-
-                textColor: darkGold,
-                splashColor: Colors.orangeAccent,
-                elevation: 8.0,
-                child: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(''), fit: BoxFit.cover),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                      "EVENTS",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
+              Container(
+                decoration: new BoxDecoration(
+                  boxShadow: [
+                    //background color of box
+                    BoxShadow(
+                      color: darkGold,
+                      blurRadius: 5.0, // soften the shadow
+                      //extend the shadow
+                    )
+                  ],
+                ),
+                child: MaterialButton(
+                  padding: EdgeInsets.only(
+                      top: 80.0, left: 120, right: 120, bottom: 40),
+                  textColor: darkGold,
+                  splashColor: Colors.orangeAccent,
+                  elevation: 8.0,
+                  child: Container(
+                    decoration: new BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.greenAccent,
+                          blurRadius: 5,
+                        ),
+                      ],
+                      image: DecorationImage(
+                          image: AssetImage(''), fit: BoxFit.cover),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        "EVENTS",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
                       ),
                     ),
                   ),
+                  // ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/f");
+                  },
                 ),
-                // ),
-                onPressed: () {},
               ),
 
               //  top: 80.0, left: 120, right: 120, bottom: 40),
               SizedBox(
                 height: 10,
               ),
-              MaterialButton(
-                padding: EdgeInsets.only(
-                    top: 80.0, left: 120, right: 120, bottom: 40),
-                textColor: darkGold,
-                splashColor: Colors.orangeAccent,
-                elevation: 8.0,
-                child: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(''), fit: BoxFit.cover),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                      "GROUPS",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
+              Container(
+                decoration: new BoxDecoration(
+                  boxShadow: [
+                    //background color of box
+                    BoxShadow(
+                      color: darkGold,
+                      blurRadius: 5.0, // soften the shadow
+                      //extend the shadow
+                    )
+                  ],
+                ),
+                child: MaterialButton(
+                  padding: EdgeInsets.only(
+                      top: 80.0, left: 120, right: 120, bottom: 40),
+                  textColor: darkGold,
+                  splashColor: Colors.orangeAccent,
+                  elevation: 8.0,
+                  child: Container(
+                    decoration: new BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.greenAccent,
+                          blurRadius: 5,
+                        ),
+                      ],
+                      image: DecorationImage(
+                          image: AssetImage(''), fit: BoxFit.cover),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        "  GROUPS",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
                       ),
                     ),
                   ),
+                  // ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/g");
+                  },
                 ),
-                // ),
-                onPressed: () {},
               ),
 
               SizedBox(
                 height: 10,
               ),
-              MaterialButton(
-                padding: EdgeInsets.only(
-                    top: 80.0, left: 120, right: 120, bottom: 40),
-                textColor: darkGold,
-                splashColor: Colors.orangeAccent,
-                elevation: 8.0,
-                child: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(''), fit: BoxFit.cover),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                      "Messages",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
+              Container(
+                decoration: new BoxDecoration(
+                  boxShadow: [
+                    //background color of box
+                    BoxShadow(
+                      color: darkGold,
+                      blurRadius: 5.0, // soften the shadow
+                      //extend the shadow
+                    )
+                  ],
+                ),
+                child: MaterialButton(
+                  padding: EdgeInsets.only(
+                      top: 80.0, left: 120, right: 120, bottom: 40),
+                  textColor: darkGold,
+                  splashColor: Colors.orangeAccent,
+                  elevation: 8.0,
+                  child: Container(
+                    decoration: new BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.greenAccent,
+                          blurRadius: 5,
+                        ),
+                      ],
+                      image: DecorationImage(
+                          image: AssetImage(''), fit: BoxFit.cover),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        "Messages",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
                       ),
                     ),
                   ),
+                  // ),
+                  onPressed: () {
+                    goMessage(context, widget.user);
+                  },
                 ),
-                // ),
-                onPressed: () {
-                  goMessage(context, widget.user);
-                },
               ),
             ],
           ),

@@ -69,7 +69,7 @@ class _AppHomeState extends State<AppHome> {
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: darkGold),
+                          color: Colors.white10),
                       child: TextField(
                         decoration: InputDecoration(
                             prefixIcon: Icon(Icons.search, color: Colors.white),
@@ -160,7 +160,7 @@ class _AppHomeState extends State<AppHome> {
                           height: 20,
                         ),
                         Text(
-                          "Hey there, My name is Ejaz Ahmed , I am current studying at university of TAsmania. ",
+                          "Hey there, My name is Ejaz Ahmed , I am currently studying at university of Tasmania. ",
                           style: TextStyle(
                               fontSize: 15,
                               color: Colors.grey[800],
@@ -295,7 +295,7 @@ class _AppHomeState extends State<AppHome> {
                           height: 20,
                         ),
                         Text(
-                          "Hey there, My name is Ejaz Ahmed , I am current studying at university of TAsmania. ",
+                          "Hey there, My name is Ejaz Ahmed , I am currently studying at university of Tasmania. ",
                           style: TextStyle(
                               fontSize: 15,
                               color: Colors.grey[800],
@@ -430,7 +430,7 @@ class _AppHomeState extends State<AppHome> {
                           height: 20,
                         ),
                         Text(
-                          "Hey there, My name is Ejaz Ahmed , I am current studying at university of TAsmania. ",
+                          "Hey there, My name is Ejaz Ahmed , I am currently studying at university of Tasmania. ",
                           style: TextStyle(
                               fontSize: 15,
                               color: Colors.grey[800],
@@ -495,6 +495,9 @@ class _AppHomeState extends State<AppHome> {
                   ),
                 ),
               ),
+            ),
+            SizedBox(
+              height: 50,
             ),
             Container(
               child: SingleChildScrollView(
@@ -562,7 +565,7 @@ class _AppHomeState extends State<AppHome> {
                           height: 20,
                         ),
                         Text(
-                          "Hey there, My name is Ejaz Ahmed , I am current studying at university of TAsmania. ",
+                          "Hey there, My name is Ejaz Ahmed , I am currently studying at university of Tasmania.",
                           style: TextStyle(
                               fontSize: 15,
                               color: Colors.grey[800],
