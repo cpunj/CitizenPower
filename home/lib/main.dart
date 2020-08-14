@@ -1,5 +1,3 @@
-
-import 'package:citizenpower/Views/SocialMenu.dart';
 import 'package:citizenpower/Views/aboutcitzen/aboutcitizen.dart';
 import 'package:citizenpower/Views/settings.dart';
 

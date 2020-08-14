@@ -28,8 +28,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: Icon(Icons.arrow_back),
                 color: Colors.white,
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SocialMenu()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SocialMenu(user: widget.user)));
                 }),
             backgroundColor: brightOrange,
           ),
@@ -52,7 +54,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 size: 22,
                 color: Color.fromRGBO(195, 195, 195, 1),
               ),
-              
             ),
           ),
           SizedBox(
@@ -67,7 +68,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 size: 22,
                 color: Color.fromRGBO(195, 195, 195, 1),
               ),
-        
             ),
           ),
           SizedBox(

@@ -1,7 +1,5 @@
 import 'package:citizenpower/Layouts/GenericLayouts.dart';
 import 'package:citizenpower/Navigator/NavigatorPushes.dart';
-import 'package:citizenpower/TextStyles.dart';
-import 'package:citizenpower/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +22,6 @@ class _SocialMenuState extends State<SocialMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlueAccent,
       appBar: topAppBarLayout("Social"),
       body: SafeArea(
         child: Container(
@@ -32,92 +29,82 @@ class _SocialMenuState extends State<SocialMenu> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              MaterialButton(
-                padding: EdgeInsets.only(
-                    top: 80.0, left: 120, right: 120, bottom: 40),
-
-                textColor: darkGold,
-                splashColor: Colors.orangeAccent,
-                elevation: 8.0,
+              Expanded(
                 child: Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage(''), fit: BoxFit.cover),
+                        image: AssetImage('assets/event.jpg'),
+                        fit: BoxFit.cover),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                      "EVENTS",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
+                  child: MaterialButton(
+                    elevation: 8.0,
+                    onPressed: () {},
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        "Events",
+                        style: TextStyle(
+                          fontSize: 50,
+                        ),
                       ),
                     ),
                   ),
                 ),
-                // ),
-                onPressed: () {},
               ),
 
               //  top: 80.0, left: 120, right: 120, bottom: 40),
               SizedBox(
                 height: 10,
               ),
-              MaterialButton(
-                padding: EdgeInsets.only(
-                    top: 80.0, left: 120, right: 120, bottom: 40),
-                textColor: darkGold,
-                splashColor: Colors.orangeAccent,
-                elevation: 8.0,
+              Expanded(
                 child: Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage(''), fit: BoxFit.cover),
+                        image: AssetImage('assets/group.jpg'),
+                        fit: BoxFit.cover),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                      "GROUPS",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
+                  child: MaterialButton(
+                    elevation: 8.0,
+                    onPressed: () {},
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        "Groups",
+                        style: TextStyle(
+                          fontSize: 50,
+                        ),
                       ),
                     ),
                   ),
                 ),
-                // ),
-                onPressed: () {},
               ),
 
               SizedBox(
                 height: 10,
               ),
-              MaterialButton(
-                padding: EdgeInsets.only(
-                    top: 80.0, left: 120, right: 120, bottom: 40),
-                textColor: darkGold,
-                splashColor: Colors.orangeAccent,
-                elevation: 8.0,
+              Expanded(
                 child: Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage(''), fit: BoxFit.cover),
+                        image: AssetImage('assets/letter.jpg'),
+                        fit: BoxFit.cover),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                      "Messages",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
+                  child: MaterialButton(
+                    elevation: 8.0,
+                    onPressed: () {
+                      goMessage(context, widget.user);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        "Messages",
+                        style: TextStyle(
+                          fontSize: 50,
+                        ),
                       ),
                     ),
                   ),
                 ),
-                // ),
-                onPressed: () {
-                  goMessage(context, widget.user);
-                },
               ),
             ],
           ),
