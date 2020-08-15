@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'Layouts/GenericLayouts.dart';
+import 'commentspage.dart';
 import 'constants.dart';
 
 class AppHome extends StatefulWidget {
@@ -712,32 +713,49 @@ class _makeSupportButtonState extends State<makeSupportButton> {
   }
 }
 
-Widget makeCommentButton() {
-  return Container(
-    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 0),
-    decoration: BoxDecoration(
-      border: Border.all(color: Colors.grey[200]),
-      borderRadius: BorderRadius.circular(50),
-    ),
-    child: Center(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          IconButton(
-            icon: Icon(Icons.chat, color: Colors.grey, size: 18),
-            onPressed: () {},
-          ),
-          SizedBox(
-            width: 5,
-          ),
-          Text(
-            "Comment",
-            style: TextStyle(color: Colors.grey),
-          )
-        ],
+// ignore: camel_case_types
+class makeCommentButton extends StatefulWidget {
+  @override
+  _makeCommentButtonState createState() => _makeCommentButtonState();
+}
+
+// ignore: camel_case_types
+class _makeCommentButtonState extends State<makeCommentButton> {
+  _commentButtonPressed() {
+    setState(() {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => CommentsPage()));
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 0),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey[200]),
+        borderRadius: BorderRadius.circular(50),
       ),
-    ),
-  );
+      child: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            IconButton(
+              icon: Icon(Icons.chat, color: Colors.grey, size: 18),
+              onPressed: () => _commentButtonPressed(),
+            ),
+            SizedBox(
+              width: 5,
+            ),
+            Text(
+              "Comment",
+              style: TextStyle(color: Colors.grey),
+            )
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 Widget makeShareButton() {
