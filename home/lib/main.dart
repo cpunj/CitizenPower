@@ -1,4 +1,3 @@
-
 import 'package:citizenpower/Views/SocialMenu.dart';
 
 import 'package:citizenpower/Views/aboutcitzen/aboutcitizen.dart';
@@ -14,7 +13,7 @@ import 'AppHome.dart';
 import 'Views/ElectorateViews/contactview.dart';
 import 'Views/ElectorateViews/electorateprofiledetails.dart';
 import 'constants.dart';
-
+import 'commentspage.dart';
 //Testing Github: Hello I am changing this comment
 
 void main() => runApp(new MyApp());
