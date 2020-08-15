@@ -215,7 +215,7 @@ class _AppHomeState extends State<AppHome> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            makeSupportButton(isActive: true),
+                            makeSupportButton(),
                             makeCommentButton(),
                             makeShareButton(),
                           ],
@@ -350,7 +350,7 @@ class _AppHomeState extends State<AppHome> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            makeSupportButton(isActive: true),
+                            makeSupportButton(),
                             makeCommentButton(),
                             makeShareButton(),
                           ],
@@ -485,7 +485,7 @@ class _AppHomeState extends State<AppHome> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            makeSupportButton(isActive: true),
+                            makeSupportButton(),
                             makeCommentButton(),
                             makeShareButton(),
                           ],
@@ -620,7 +620,7 @@ class _AppHomeState extends State<AppHome> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            makeSupportButton(isActive: true),
+                            makeSupportButton(),
                             makeCommentButton(),
                             makeShareButton(),
                           ],
@@ -663,38 +663,58 @@ Widget makeLike() {
   );
 }
 
-Widget makeSupportButton({isActive}) {
-  return Container(
-    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-    decoration: BoxDecoration(
-      border: Border.all(color: Colors.grey[200]),
-      borderRadius: BorderRadius.circular(50),
-    ),
-    child: SingleChildScrollView(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Icon(
-            Icons.thumbs_up_down,
-            color: isActive ? Colors.blue : Colors.grey,
-            size: 18,
-          ),
-          SizedBox(
-            width: 5,
-          ),
-          Text(
-            "Support",
-            style: TextStyle(color: isActive ? Colors.blue : Colors.grey),
-          )
-        ],
+// ignore: camel_case_types
+class makeSupportButton extends StatefulWidget {
+  @override
+  _makeSupportButtonState createState() => _makeSupportButtonState();
+}
+
+// ignore: camel_case_types
+class _makeSupportButtonState extends State<makeSupportButton> {
+  bool isActive = false;
+  _pressed() {
+    setState(() {
+      isActive = !isActive;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 0),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey[200]),
+        borderRadius: BorderRadius.circular(40),
       ),
-    ),
-  );
+      child: SingleChildScrollView(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            IconButton(
+              icon: Icon(
+                isActive ? Icons.thumbs_up_down : Icons.thumb_up,
+                color: isActive ? Colors.blue : Colors.grey,
+                size: 18,
+              ),
+              onPressed: () => _pressed(),
+            ),
+            SizedBox(
+              width: 5,
+            ),
+            Text(
+              "Support",
+              style: TextStyle(color: isActive ? Colors.blue : Colors.grey),
+            )
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 Widget makeCommentButton() {
   return Container(
-    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 0),
     decoration: BoxDecoration(
       border: Border.all(color: Colors.grey[200]),
       borderRadius: BorderRadius.circular(50),
@@ -703,7 +723,10 @@ Widget makeCommentButton() {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Icon(Icons.chat, color: Colors.grey, size: 18),
+          IconButton(
+            icon: Icon(Icons.chat, color: Colors.grey, size: 18),
+            onPressed: () {},
+          ),
           SizedBox(
             width: 5,
           ),
@@ -719,7 +742,7 @@ Widget makeCommentButton() {
 
 Widget makeShareButton() {
   return Container(
-    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 0),
     decoration: BoxDecoration(
       border: Border.all(color: Colors.grey[200]),
       borderRadius: BorderRadius.circular(50),
@@ -728,7 +751,14 @@ Widget makeShareButton() {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Icon(Icons.share, color: Colors.grey, size: 18),
+          IconButton(
+            icon: Icon(
+              Icons.share,
+              color: Colors.grey,
+              size: 18,
+            ),
+            onPressed: () {},
+          ),
           SizedBox(
             width: 5,
           ),

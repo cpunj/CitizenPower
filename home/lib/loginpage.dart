@@ -152,7 +152,7 @@ class LoginPageState extends State<LoginPage> {
                         ),
                       ),
 
-                      //Contains Citizen logo in column
+                      //Contains Citizen logo
                       Center(
                         child: Container(
                           height: 200,
