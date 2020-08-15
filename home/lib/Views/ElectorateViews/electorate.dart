@@ -211,6 +211,23 @@ class _ElectorateState extends State<Electorate> {
             onChanged: (newValue) {
               setState(() {
                 issues = newValue;
+                if(issues=="Issue 1"){
+                  return Column(children: <Widget>[
+  Text("Hello")]);
+                  
+                }
+                 if(issues=="Issue 2"){
+                    return Column(children: <Widget>[
+  Text("This")]);
+                  
+                }
+    
+                 if(issues=="Issue 3"){
+                  return Column(children: <Widget>[
+  Text("is")]);
+                  
+                }
+
               });
             },
             items: _locations.map((location) {
@@ -222,6 +239,7 @@ class _ElectorateState extends State<Electorate> {
           ),
         ),
       ]),
+      
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,
           type: BottomNavigationBarType.fixed,
