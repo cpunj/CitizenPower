@@ -222,6 +222,7 @@ void onTap(
   } else if (index == 1 && currentIndex != 1) {
     goProfilePageEdit(context, user);
   } else if (index == 2) {
+    goNewPost(context, user);
   } else if (index == 3 && currentIndex != 3) {
     goSocialMenu(context, user);
   } else if (index == 4 && currentIndex != 4) {

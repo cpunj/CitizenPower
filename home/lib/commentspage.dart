@@ -68,9 +68,6 @@ class _CommentsPageState extends State<CommentsPage> {
                       hintText: "Write a comment... "),
                 ),
               ),
-              Container(
-                child: IconButton(icon: Icon(Icons.send), onPressed: () {}),
-              )
             ],
           ),
         ));

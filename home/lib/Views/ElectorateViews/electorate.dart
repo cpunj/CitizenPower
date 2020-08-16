@@ -184,16 +184,6 @@ class _ElectorateState extends State<Electorate> {
           child: RaisedButton(
             color: darkGold,
             textColor: Colors.white,
-            child: Text('Connect with me'),
-            onPressed: () {
-              goHome(context, widget.user);
-            },
-          ),
-        ),
-        SliverToBoxAdapter(
-          child: RaisedButton(
-            color: darkGold,
-            textColor: Colors.white,
             child: Text('Electorate'),
             onPressed: () {
               Navigator.push(

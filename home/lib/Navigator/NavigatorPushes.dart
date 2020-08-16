@@ -1,6 +1,7 @@
 import 'package:citizenpower/Views/ElectorateViews/electorateview.dart';
 import 'package:citizenpower/Views/ElectorateViews/imageview.dart';
 import 'package:citizenpower/Views/SocialMenu.dart';
+import 'package:citizenpower/Views/createpostview.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../AppHome.dart';
@@ -29,8 +30,16 @@ goProfile(BuildContext context, FirebaseUser user) {
   );
 }
 
-goElectorate(BuildContext context, FirebaseUser user) {
+goNewPost(BuildContext context, FirebaseUser user) {
   Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => NewPost(),
+      ));
+}
+
+goElectorate(BuildContext context, FirebaseUser user) {
+  Navigator.pushReplacement(
     context,
     MaterialPageRoute(builder: (context) => Electorate(user: user)),
   );

@@ -72,7 +72,7 @@ class _SocialMenuState extends State<SocialMenu> {
                   ),
                   // ),
                   onPressed: () {
-                    Navigator.pushNamed(context, "/n");
+                    Navigator.pushNamed(context, "/f");
                   },
                 ),
               ),

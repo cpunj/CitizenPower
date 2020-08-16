@@ -87,13 +87,18 @@ class _AppHomeState extends State<AppHome> {
                       color: darkGold,
                       size: 35,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      ScaffoldState sState = Scaffold.of(context);
+                      sState.showSnackBar(
+                          SnackBar(content: Text("Notifications")));
+                    },
                   ),
                 ],
               ),
             ),
             SizedBox(
               width: 10,
+              height: 10,
             ),
             Container(
               child: SingleChildScrollView(
@@ -180,7 +185,6 @@ class _AppHomeState extends State<AppHome> {
                                 fit: BoxFit.cover),
                           ),
                         ),
-                        Container(),
                         SizedBox(
                           height: 20,
                         ),
@@ -788,4 +792,16 @@ Widget makeShareButton() {
       ),
     ),
   );
+}
+
+// ignore: camel_case_types
+class PageWrapper extends StatelessWidget {
+  final Widget page;
+  PageWrapper(this.page);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: page,
+    );
+  }
 }
