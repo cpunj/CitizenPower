@@ -131,7 +131,7 @@ class _AppHomeState extends State<AppHome> {
                                       MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     Text(
-                                      "" " Ejaz Ahmed",
+                                      "" " Andrew Wilkie",
                                       style: TextStyle(
                                           color: Colors.grey[900],
                                           fontSize: 18,
@@ -265,7 +265,7 @@ class _AppHomeState extends State<AppHome> {
                                       MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     Text(
-                                      "" " Ejaz Ahmed",
+                                      "" " Andrew Wilkie",
                                       style: TextStyle(
                                           color: Colors.grey[900],
                                           fontSize: 18,

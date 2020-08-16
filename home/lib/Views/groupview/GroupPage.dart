@@ -103,42 +103,51 @@ class _GroupPageState extends State<GroupPage> {
                   ),
                   const Divider(
                     height: 10.0,
-                    thickness: 0.5,
+                    thickness: 0.2,
                   ),
-                  Row(
-                    children: <Widget>[
-                      FlatButton.icon(
-                          onPressed: () {
-                            _showChoiceDialog(context);
-                          },
-                          icon: const Icon(
-                            Icons.photo,
-                            color: Colors.orangeAccent,
-                          ),
-                          label: Text("Photo")),
-                      const VerticalDivider(
-                        width: 7,
-                      ),
-                      FlatButton.icon(
-                          onPressed: () {
-                            _showChoiceDialog(context);
-                          },
-                          icon: const Icon(
-                            Icons.videocam,
-                            color: Colors.redAccent,
-                          ),
-                          label: Text("Videos")),
-                      const VerticalDivider(
-                        width: 25,
-                      ),
-                      FlatButton.icon(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.send,
-                            color: darkGold,
-                          ),
-                          label: Text("Post")),
-                    ],
+                  SafeArea(
+                    child: Row(
+                      children: <Widget>[
+                        FlatButton.icon(
+                            onPressed: () {
+                              _showChoiceDialog(context);
+                            },
+                            icon: const Icon(
+                              Icons.photo,
+                              color: Colors.orangeAccent,
+                            ),
+                            label: Text("Photo")),
+                        const VerticalDivider(
+                          width: 2,
+                        ),
+                        FlatButton.icon(
+                            onPressed: () {
+                              _showChoiceDialog(context);
+                            },
+                            icon: const Icon(
+                              Icons.videocam,
+                              color: Colors.redAccent,
+                            ),
+                            label: Text("Videos")),
+                        const VerticalDivider(
+                          width: 2,
+                        ),
+                        FlatButton.icon(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.info,
+                              color: Colors.orange,
+                            ),
+                            label: Text("Info")),
+                        FlatButton.icon(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.send,
+                              color: darkGold,
+                            ),
+                            label: Text("Post")),
+                      ],
+                    ),
                   )
                 ],
               ),
