@@ -10,14 +10,11 @@ class _GroupPictureState extends State<GroupPicture> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 185,
-      width: 200,
-      child: Padding(
-        padding: EdgeInsets.all(10),
-        child: Image(
-          image: AssetImage("assets/CitizenLogo.png"),
-          fit: BoxFit.cover,
-        ),
+      height: 200,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        image: DecorationImage(
+            image: AssetImage("assets/CitizenLogo.png"), fit: BoxFit.cover),
       ),
     );
   }

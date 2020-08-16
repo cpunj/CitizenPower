@@ -2,7 +2,8 @@ import 'package:citizenpower/Views/SocialMenu.dart';
 
 import 'package:citizenpower/Views/aboutcitzen/aboutcitizen.dart';
 import 'package:citizenpower/Views/createpostview.dart';
-import 'package:citizenpower/Views/eventview.dart';
+import 'Views/eventview/eventpage.dart';
+import 'file:///C:/src/Electnow/home/lib/Views/eventview/eventview.dart';
 import 'package:citizenpower/Views/groupview/GroupPage.dart';
 import 'file:///C:/src/Electnow/home/lib/Views/groupview/groupview.dart';
 import 'package:citizenpower/Views/settings.dart';
@@ -32,9 +33,12 @@ class MyApp extends StatelessWidget {
           "/e": (BuildContext context) => new AboutCitizenInfo(),
           "/x": (BuildContext context) => new AppHome(user: null),
           "/d": (BuildContext context) => new Setting(user: null),
-          "/g": (BuildContext context) => new GroupView(),
+          "/g": (BuildContext context) => new GroupView(
+                user: null,
+              ),
           "/f": (BuildContext context) => new EventView(),
           "/i": (BuildContext context) => new GroupPage(),
+          "/j": (BuildContext context) => new EventPage(),
         },
         theme: new ThemeData(
             primaryColor: brightOrange, accentColor: Color(0xFFFEF9EB)));

@@ -119,7 +119,7 @@ class _NewPostState extends State<NewPost> {
                     ),
                     label: Text("Location")),
               ],
-            )
+            ),
           ],
         ),
         color: Colors.grey[100],
