@@ -4,9 +4,9 @@ import 'package:citizenpower/Views/SocialMenu.dart';
 import 'package:citizenpower/Views/aboutcitzen/aboutcitizen.dart';
 import 'package:citizenpower/Views/createpostview.dart';
 import 'Views/eventview/eventpage.dart';
-import 'file:///C:/src/Electnow/home/lib/Views/eventview/eventview.dart';
+import 'package:citizenpower/Views/eventview/eventview.dart';
 import 'package:citizenpower/Views/groupview/GroupPage.dart';
-import 'file:///C:/src/Electnow/home/lib/Views/groupview/groupview.dart';
+import 'package:citizenpower/Views/groupview/groupview.dart';
 import 'package:citizenpower/Views/settings.dart';
 
 import 'package:citizenpower/loginpage.dart';
