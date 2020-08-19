@@ -86,11 +86,10 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   _buildMessageComposer() {
-     sendsms(){
+      sendsms(){
             String sms1="sms:9292";
             launch(sms1);
           }
-  
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 8.0),
       height: 70.0,
@@ -119,7 +118,10 @@ class _ChatScreenState extends State<ChatScreen> {
             onPressed: () {
               sendsms();
             },
+
+            
           ),
+        
         ],
       ),
     );

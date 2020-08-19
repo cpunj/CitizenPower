@@ -1,6 +1,5 @@
 import 'package:citizenpower/Views/ProfileViews/ProfilePage.dart';
 import 'package:citizenpower/Views/SocialMenu.dart';
-
 import 'package:citizenpower/Views/aboutcitzen/aboutcitizen.dart';
 import 'package:citizenpower/Views/createpostview.dart';
 import 'Views/eventview/eventpage.dart';

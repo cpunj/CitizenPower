@@ -1,13 +1,14 @@
 import 'package:citizenpower/Navigator/NavigatorPushes.dart';
+import 'package:citizenpower/Views/ProfileViews/profilelist.dart';
 import 'package:citizenpower/Views/ElectorateViews/leaderslist.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import '../../Layouts/GenericLayouts.dart';
+import '../../TextStyles.dart';
 import '../../constants.dart';
 
-import 'leader.dart';
 
 /*TODO:
 - Create a 'Clark' electorate profile
@@ -27,14 +28,14 @@ class Electorate extends StatefulWidget {
 class _ElectorateState extends State<Electorate> {
   bool isExpanded = true;
   String issues;
-  List<String> _locations = ['Issue 1', 'Issue 2', 'Issue 3'];
+  List<String> _locations = ['Poverty', 'Pollution', 'Homeless'];
   //Used for bottom nav bar functions
   int currentIndex = 4;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: topAppBarLayout('Leader'),
-      drawer: new Drawer(
+      endDrawer: new Drawer(
         child: new ListView(
           children: <Widget>[
             new UserAccountsDrawerHeader(
@@ -61,35 +62,67 @@ class _ElectorateState extends State<Electorate> {
       ),
       body: CustomScrollView(slivers: <Widget>[
         SliverToBoxAdapter(
-            child: Padding(
-          padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
-          child: new Text(
-            "Clark",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-              color: coolGrey,
-            ),
-            textAlign: TextAlign.center,
+          child: SizedBox(
+            height: 15,
           ),
-        )),
+        ),
         SliverToBoxAdapter(
-          child: Container(
-            margin: EdgeInsets.only(top: 0),
-            height: 75,
-            child: Column(children: <Widget>[
-              ClipRRect(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(450),
-                ),
-                child: Image.asset(
-                  "assets/Wilkie.jpeg",
-                  height: 70,
-                  width: 100,
-                  fit: BoxFit.scaleDown,
-                ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  FlatButton(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: CircleAvatar(
+                        radius: 50.0,
+                        backgroundImage: AssetImage('assets/Wilkie.jpeg'),
+                      ),
+                    ),
+                    onPressed: () {
+                      //TODO:Edit function for current logged in user's profile picture
+                    },
+                  ),
+                ],
               ),
-            ]),
+              //Needs to link to a profile list
+              Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Text(
+                    "Andrew Wilkie",
+                    style: profileNameStyle(),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  MaterialButton(
+                    child: Text(
+                      "Follow Andrew",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    color: darkGold,
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProfileList(user: null)));
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: Divider(
+            height: 15,
+            color: Colors.black,
           ),
         ),
         SliverToBoxAdapter(
@@ -120,14 +153,14 @@ class _ElectorateState extends State<Electorate> {
         ),
         SliverToBoxAdapter(
           child: Container(
-            margin: EdgeInsets.only(left: 30, right: 30, top: 20),
+            margin: EdgeInsets.only(left: 30, right: 30, top: 15),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Column(
                   children: <Widget>[
                     Text(
-                      "Current MP",
+                      "Electorate",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -136,7 +169,7 @@ class _ElectorateState extends State<Electorate> {
                     SizedBox(
                       height: 3,
                     ),
-                    Text("Andrew Wilkie"),
+                    Text("Tasmania - Clark"),
                   ],
                 ),
                 Divider(
@@ -165,7 +198,7 @@ class _ElectorateState extends State<Electorate> {
                 Column(
                   children: <Widget>[
                     Text(
-                      "74K",
+                      "In Power",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -174,7 +207,7 @@ class _ElectorateState extends State<Electorate> {
                     SizedBox(
                       height: 3,
                     ),
-                    Text("population"),
+                    Text("Since 2010"),
                   ],
                 ),
               ],
@@ -185,6 +218,16 @@ class _ElectorateState extends State<Electorate> {
           child: RaisedButton(
             color: darkGold,
             textColor: Colors.white,
+            child: Text('Connect with me'),
+            onPressed: () {},
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: RaisedButton(
+            color: darkGold,
+            textColor: Colors.white,
+            child: Text('Electorate'),
+            onPressed: () {
             child: Text('Leader'),
             onPressed: () {
               Navigator.push(context,

@@ -28,8 +28,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: Icon(Icons.arrow_back),
                 color: Colors.white,
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SocialMenu()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SocialMenu(user: widget.user)));
                 }),
             backgroundColor: brightOrange,
           ),
