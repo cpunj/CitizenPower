@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'Layouts/GenericLayouts.dart';
+import 'commentspage.dart';
 import 'constants.dart';
 
 class AppHome extends StatefulWidget {
@@ -69,7 +70,7 @@ class _AppHomeState extends State<AppHome> {
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: darkGold),
+                          color: Colors.white10),
                       child: TextField(
                         decoration: InputDecoration(
                             prefixIcon: Icon(Icons.search, color: Colors.white),
@@ -86,13 +87,18 @@ class _AppHomeState extends State<AppHome> {
                       color: darkGold,
                       size: 35,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      ScaffoldState sState = Scaffold.of(context);
+                      sState.showSnackBar(
+                          SnackBar(content: Text("Notifications")));
+                    },
                   ),
                 ],
               ),
             ),
             SizedBox(
               width: 10,
+              height: 10,
             ),
             Container(
               child: SingleChildScrollView(
@@ -125,7 +131,7 @@ class _AppHomeState extends State<AppHome> {
                                       MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     Text(
-                                      "" " Ejaz Ahmed",
+                                      "" " Andrew Wilkie",
                                       style: TextStyle(
                                           color: Colors.grey[900],
                                           fontSize: 18,
@@ -160,7 +166,7 @@ class _AppHomeState extends State<AppHome> {
                           height: 20,
                         ),
                         Text(
-                          "Hey there, My name is Ejaz Ahmed , I am current studying at university of TAsmania. ",
+                          "Hey there, My name is Ejaz Ahmed , I am currently studying at university of Tasmania. ",
                           style: TextStyle(
                               fontSize: 15,
                               color: Colors.grey[800],
@@ -179,6 +185,140 @@ class _AppHomeState extends State<AppHome> {
                                 fit: BoxFit.cover),
                           ),
                         ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: <Widget>[
+                            makeLike(),
+                            Transform.translate(
+                              offset: Offset(0, 10),
+                            ),
+                            SizedBox(
+                              width: 15,
+                            ),
+                            Text(
+                              "400 comments",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "238 shares",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            makeSupportButton(),
+                            makeCommentButton(),
+                            makeShareButton(),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            Container(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Container(
+                  margin: EdgeInsets.only(right: 10),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                      image: AssetImage("assets/Wilkie.jpeg"),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text(
+                                      "" " Andrew Wilkie",
+                                      style: TextStyle(
+                                          color: Colors.grey[900],
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          letterSpacing: 1),
+                                    ),
+                                    SizedBox(
+                                      height: 3,
+                                    ),
+                                    Text(
+                                      "1 hour ago",
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        color: Colors.grey,
+                                      ),
+                                    )
+                                  ],
+                                )
+                              ],
+                            ),
+                            IconButton(
+                              icon: Icon(
+                                Icons.more_horiz,
+                                size: 30,
+                                color: Colors.grey[600],
+                              ),
+                              onPressed: () {},
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Hey there, My name is Ejaz Ahmed , I am currently studying at university of Tasmania. ",
+                          style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.grey[800],
+                              height: 1.1,
+                              letterSpacing: .6),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          height: 210,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: DecorationImage(
+                                image: AssetImage("assets/Wilkie.jpeg"),
+                                fit: BoxFit.cover),
+                          ),
+                        ),
                         Container(),
                         SizedBox(
                           height: 20,
@@ -215,7 +355,7 @@ class _AppHomeState extends State<AppHome> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            makeSupportButton(isActive: true),
+                            makeSupportButton(),
                             makeCommentButton(),
                             makeShareButton(),
                           ],
@@ -295,7 +435,7 @@ class _AppHomeState extends State<AppHome> {
                           height: 20,
                         ),
                         Text(
-                          "Hey there, My name is Ejaz Ahmed , I am current studying at university of TAsmania. ",
+                          "Hey there, My name is Ejaz Ahmed , I am currently studying at university of Tasmania. ",
                           style: TextStyle(
                               fontSize: 15,
                               color: Colors.grey[800],
@@ -350,7 +490,7 @@ class _AppHomeState extends State<AppHome> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            makeSupportButton(isActive: true),
+                            makeSupportButton(),
                             makeCommentButton(),
                             makeShareButton(),
                           ],
@@ -430,7 +570,7 @@ class _AppHomeState extends State<AppHome> {
                           height: 20,
                         ),
                         Text(
-                          "Hey there, My name is Ejaz Ahmed , I am current studying at university of TAsmania. ",
+                          "Hey there, My name is Ejaz Ahmed , I am currently studying at university of Tasmania.",
                           style: TextStyle(
                               fontSize: 15,
                               color: Colors.grey[800],
@@ -485,139 +625,7 @@ class _AppHomeState extends State<AppHome> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            makeSupportButton(isActive: true),
-                            makeCommentButton(),
-                            makeShareButton(),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Container(
-                  margin: EdgeInsets.only(right: 10),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Row(
-                              children: <Widget>[
-                                Container(
-                                  width: 50,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    image: DecorationImage(
-                                      image: AssetImage("assets/Wilkie.jpeg"),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    Text(
-                                      "" " Ejaz Ahmed",
-                                      style: TextStyle(
-                                          color: Colors.grey[900],
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
-                                          letterSpacing: 1),
-                                    ),
-                                    SizedBox(
-                                      height: 3,
-                                    ),
-                                    Text(
-                                      "1 hour ago",
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        color: Colors.grey,
-                                      ),
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                            IconButton(
-                              icon: Icon(
-                                Icons.more_horiz,
-                                size: 30,
-                                color: Colors.grey[600],
-                              ),
-                              onPressed: () {},
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          "Hey there, My name is Ejaz Ahmed , I am current studying at university of TAsmania. ",
-                          style: TextStyle(
-                              fontSize: 15,
-                              color: Colors.grey[800],
-                              height: 1.1,
-                              letterSpacing: .6),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Container(
-                          height: 210,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            image: DecorationImage(
-                                image: AssetImage("assets/Wilkie.jpeg"),
-                                fit: BoxFit.cover),
-                          ),
-                        ),
-                        Container(),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: <Widget>[
-                            makeLike(),
-                            Transform.translate(
-                              offset: Offset(0, 10),
-                            ),
-                            SizedBox(
-                              width: 15,
-                            ),
-                            Text(
-                              "400 comments",
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              "238 shares",
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            makeSupportButton(isActive: true),
+                            makeSupportButton(),
                             makeCommentButton(),
                             makeShareButton(),
                           ],
@@ -660,63 +668,103 @@ Widget makeLike() {
   );
 }
 
-Widget makeSupportButton({isActive}) {
-  return Container(
-    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-    decoration: BoxDecoration(
-      border: Border.all(color: Colors.grey[200]),
-      borderRadius: BorderRadius.circular(50),
-    ),
-    child: SingleChildScrollView(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Icon(
-            Icons.thumbs_up_down,
-            color: isActive ? Colors.blue : Colors.grey,
-            size: 18,
-          ),
-          SizedBox(
-            width: 5,
-          ),
-          Text(
-            "Support",
-            style: TextStyle(color: isActive ? Colors.blue : Colors.grey),
-          )
-        ],
-      ),
-    ),
-  );
+// ignore: camel_case_types
+class makeSupportButton extends StatefulWidget {
+  @override
+  _makeSupportButtonState createState() => _makeSupportButtonState();
 }
 
-Widget makeCommentButton() {
-  return Container(
-    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-    decoration: BoxDecoration(
-      border: Border.all(color: Colors.grey[200]),
-      borderRadius: BorderRadius.circular(50),
-    ),
-    child: Center(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Icon(Icons.chat, color: Colors.grey, size: 18),
-          SizedBox(
-            width: 5,
-          ),
-          Text(
-            "Comment",
-            style: TextStyle(color: Colors.grey),
-          )
-        ],
+// ignore: camel_case_types
+class _makeSupportButtonState extends State<makeSupportButton> {
+  bool isActive = false;
+  _pressed() {
+    setState(() {
+      isActive = !isActive;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 0),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey[200]),
+        borderRadius: BorderRadius.circular(40),
       ),
-    ),
-  );
+      child: SingleChildScrollView(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            IconButton(
+              icon: Icon(
+                isActive ? Icons.thumbs_up_down : Icons.thumb_up,
+                color: isActive ? Colors.blue : Colors.grey,
+                size: 18,
+              ),
+              onPressed: () => _pressed(),
+            ),
+            SizedBox(
+              width: 5,
+            ),
+            Text(
+              "Support",
+              style: TextStyle(color: isActive ? Colors.blue : Colors.grey),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ignore: camel_case_types
+class makeCommentButton extends StatefulWidget {
+  @override
+  _makeCommentButtonState createState() => _makeCommentButtonState();
+}
+
+// ignore: camel_case_types
+class _makeCommentButtonState extends State<makeCommentButton> {
+  _commentButtonPressed() {
+    setState(() {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => CommentsPage()));
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 0),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey[200]),
+        borderRadius: BorderRadius.circular(50),
+      ),
+      child: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            IconButton(
+              icon: Icon(Icons.chat, color: Colors.grey, size: 18),
+              onPressed: () => _commentButtonPressed(),
+            ),
+            SizedBox(
+              width: 5,
+            ),
+            Text(
+              "Comment",
+              style: TextStyle(color: Colors.grey),
+            )
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 Widget makeShareButton() {
   return Container(
-    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 0),
     decoration: BoxDecoration(
       border: Border.all(color: Colors.grey[200]),
       borderRadius: BorderRadius.circular(50),
@@ -725,7 +773,14 @@ Widget makeShareButton() {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Icon(Icons.share, color: Colors.grey, size: 18),
+          IconButton(
+            icon: Icon(
+              Icons.share,
+              color: Colors.grey,
+              size: 18,
+            ),
+            onPressed: () {},
+          ),
           SizedBox(
             width: 5,
           ),
@@ -737,4 +792,16 @@ Widget makeShareButton() {
       ),
     ),
   );
+}
+
+// ignore: camel_case_types
+class PageWrapper extends StatelessWidget {
+  final Widget page;
+  PageWrapper(this.page);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: page,
+    );
+  }
 }

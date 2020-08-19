@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import '../../Models/message_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
 class ChatScreen extends StatefulWidget {
   final user;
 
@@ -119,6 +118,7 @@ class _ChatScreenState extends State<ChatScreen> {
             onPressed: () {
               sendsms();
             },
+
             
           ),
         

@@ -57,7 +57,7 @@ class AboutMe extends StatelessWidget {
                                     Text(
                                       "Posts",
                                       style: TextStyle(
-                                        color: brightOrange,
+                                        color: darkGold,
                                         fontSize: 22.0,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -151,13 +151,7 @@ class AboutMe extends StatelessWidget {
                   ),
                   Text(
                     'Andrew Damien Wilkie is an Australian politician and independent federal member for Clark. Before entering politics Wilkie was an infantry officer in the Australian Army. Wilkie served with the Australian Army from 1980 to 2004.',
-                    style: TextStyle(
-                      fontSize: 14.0,
-                      fontStyle: FontStyle.italic,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                      letterSpacing: 2.0,
-                    ),
+                    style: TextStyle(),
                   ),
                 ],
               ),

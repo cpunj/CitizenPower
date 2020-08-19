@@ -54,10 +54,16 @@ class _RegistrationState extends State<Registration> {
                             textFormDec(label: 'Name', hint: 'Enter your name'),
                         onSaved: (input) => name = input,
                       ),
+                      SizedBox(
+                        height: 20,
+                      ),
                       new TextFormField(
                         decoration: textFormDec(
                             label: 'Phone', hint: 'Enter your phone number'),
                         onSaved: (input) => phone = input,
+                      ),
+                      SizedBox(
+                        height: 20,
                       ),
 
                       new TextFormField(
@@ -65,6 +71,9 @@ class _RegistrationState extends State<Registration> {
                             label: 'Email', hint: 'Enter your email address'),
                         keyboardType: TextInputType.emailAddress,
                         onSaved: (input) => email = input,
+                      ),
+                      SizedBox(
+                        height: 20,
                       ),
                       new TextFormField(
                         decoration: textFormDec(
@@ -75,6 +84,9 @@ class _RegistrationState extends State<Registration> {
                             ? 'Password should be longer than 6 characters'
                             : null,
                         obscureText: true,
+                      ),
+                      SizedBox(
+                        height: 30,
                       ),
 
                       Center(

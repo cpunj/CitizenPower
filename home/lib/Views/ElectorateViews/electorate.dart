@@ -1,5 +1,6 @@
 import 'package:citizenpower/Navigator/NavigatorPushes.dart';
 import 'package:citizenpower/Views/ProfileViews/profilelist.dart';
+import 'package:citizenpower/Views/ElectorateViews/leaderslist.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -227,7 +228,10 @@ class _ElectorateState extends State<Electorate> {
             textColor: Colors.white,
             child: Text('Electorate'),
             onPressed: () {
-              goElectorateView(context, widget.user);
+            child: Text('Leader'),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => LeadersList()));
             },
           ),
         ),
@@ -239,8 +243,22 @@ class _ElectorateState extends State<Electorate> {
             ),
             value: issues,
             onChanged: (newValue) {
+              // ignore: missing_return
               setState(() {
                 issues = newValue;
+                if (issues == "Issue 1") {
+                  print(Text("This has been a major issue for this company"));
+                  return Column(children: <Widget>[
+                    Text(" This has been a major issue for this company")
+                  ]);
+                }
+                if (issues == "Issue 2") {
+                  return Column(children: <Widget>[Text("This")]);
+                }
+
+                if (issues == "Issue 3") {
+                  return Column(children: <Widget>[Text("is")]);
+                }
               });
             },
             items: _locations.map((location) {

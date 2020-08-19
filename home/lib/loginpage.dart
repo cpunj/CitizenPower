@@ -45,11 +45,13 @@ class LoginPageState extends State<LoginPage> {
                 data: new ThemeData(
                   brightness: Brightness.light,
                 ),
+
                 child: new Container(
                   padding: const EdgeInsets.only(top: 25),
                   height: 160,
                   width: 100,
                   child: new Column(
+
                     children: <Widget>[
                       new TextFormField(
                           decoration: new InputDecoration(
@@ -152,7 +154,7 @@ class LoginPageState extends State<LoginPage> {
                         ),
                       ),
 
-                      //Contains Citizen logo in column
+                      //Contains Citizen logo
                       Center(
                         child: Container(
                           height: 200,
