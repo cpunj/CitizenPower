@@ -1,4 +1,3 @@
-import 'package:citizenpower/constants.dart';
 import 'package:flutter/material.dart';
 
 class GroupPicture extends StatefulWidget {

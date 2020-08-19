@@ -1,10 +1,7 @@
 import 'package:citizenpower/Layouts/GenericLayouts.dart';
-import 'package:citizenpower/Views/MessageViews/catagory.dart';
-import 'package:citizenpower/Views/groupview/GroupPage.dart';
 import 'package:citizenpower/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'GroupPage.dart';
 
 import 'package:flutter/widgets.dart';
 

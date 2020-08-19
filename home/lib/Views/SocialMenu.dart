@@ -1,6 +1,5 @@
 import 'package:citizenpower/Layouts/GenericLayouts.dart';
 import 'package:citizenpower/Navigator/NavigatorPushes.dart';
-import 'package:citizenpower/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -39,7 +38,9 @@ class _SocialMenuState extends State<SocialMenu> {
                   ),
                   child: MaterialButton(
                     elevation: 8.0,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/f");
+                    },
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Text(
@@ -50,10 +51,6 @@ class _SocialMenuState extends State<SocialMenu> {
                       ),
                     ),
                   ),
-                  // ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/f");
-                  },
                 ),
               ),
 
@@ -70,7 +67,9 @@ class _SocialMenuState extends State<SocialMenu> {
                   ),
                   child: MaterialButton(
                     elevation: 8.0,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/g");
+                    },
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Text(
@@ -81,10 +80,6 @@ class _SocialMenuState extends State<SocialMenu> {
                       ),
                     ),
                   ),
-                  // ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/g");
-                  },
                 ),
               ),
 
@@ -113,10 +108,6 @@ class _SocialMenuState extends State<SocialMenu> {
                       ),
                     ),
                   ),
-                  // ),
-                  onPressed: () {
-                    goMessage(context, widget.user);
-                  },
                 ),
               ),
             ],

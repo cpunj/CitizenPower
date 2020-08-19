@@ -1,6 +1,4 @@
-import 'package:citizenpower/Navigator/NavigatorPushes.dart';
 import 'package:citizenpower/Views/ProfileViews/profilelist.dart';
-import 'package:citizenpower/Views/ElectorateViews/leaderslist.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +6,6 @@ import 'package:flutter/painting.dart';
 import '../../Layouts/GenericLayouts.dart';
 import '../../TextStyles.dart';
 import '../../constants.dart';
-
 
 /*TODO:
 - Create a 'Clark' electorate profile
@@ -227,12 +224,7 @@ class _ElectorateState extends State<Electorate> {
             color: darkGold,
             textColor: Colors.white,
             child: Text('Electorate'),
-            onPressed: () {
-            child: Text('Leader'),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => LeadersList()));
-            },
+            onPressed: () {},
           ),
         ),
         SliverToBoxAdapter(
