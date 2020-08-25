@@ -116,7 +116,7 @@ class LoginPageState extends State<LoginPage> {
                         child: Material(
                           elevation: 5.0,
                           borderRadius: BorderRadius.circular(20.0),
-                          color: Colors.blue,
+                          color: darkGold,
                           child: new MaterialButton(
                               textColor: Colors.white,
                               child: new Text("LOGIN"),
