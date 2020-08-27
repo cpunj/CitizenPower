@@ -1,3 +1,5 @@
+import 'package:citizenpower/controllers/profileController.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../Layouts/GenericLayouts.dart';
@@ -17,8 +19,12 @@ class ProfileScreenState extends State<ProfileScreen> {
   //Used to decide with buttons function on bottom nav bar, 5 = all functional
   int currentIndex = 5;
 
+  ProfileController profileController = ProfileController();
+
   @override
   Widget build(BuildContext context) {
+    profileController.downloadProfile("Jack");
+
     return Scaffold(
       appBar: topAppBarLayout('Profile'),
       drawer: new Drawer(),

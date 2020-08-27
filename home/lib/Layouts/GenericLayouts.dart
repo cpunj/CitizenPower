@@ -5,6 +5,16 @@ import '../TextStyles.dart';
 import '../constants.dart';
 import '../Views/ProfileViews/profilelist.dart';
 
+String getFirstWord(String text) {
+  int index = text.indexOf(' ');
+  if (index > -1) {
+    // Check if there is more than one word.
+    return text.substring(0, index).trim(); // Extract first word.
+  } else {
+    return text; // Text is the first word itself.
+  }
+}
+
 //Top app bar layout
 Widget topAppBarLayout(String title) {
   return AppBar(
@@ -43,7 +53,7 @@ Widget topProfileLayout(BuildContext context, FirebaseUser user) {
             ),
             MaterialButton(
               child: Text(
-                "Grace's Community",
+                "s Community",
                 style: TextStyle(
                   color: Colors.white,
                 ),
@@ -99,7 +109,7 @@ Widget topProfileLayout(BuildContext context, FirebaseUser user) {
 
 //Allows for profile picture editing
 
-Widget topProfileLayoutEdit(BuildContext context) {
+Widget topProfileLayoutEdit(BuildContext context, String name) {
   return Container(
     margin: EdgeInsets.only(top: 20),
     height: 110,
@@ -129,7 +139,7 @@ Widget topProfileLayoutEdit(BuildContext context) {
               height: 10.0,
             ),
             Text(
-              "Grace Williams",
+              name,
               style: profileNameStyle(),
             ),
             SizedBox(
@@ -137,7 +147,7 @@ Widget topProfileLayoutEdit(BuildContext context) {
             ),
             MaterialButton(
               child: Text(
-                "Grace's Community",
+                getFirstWord(name) + "'s Community",
                 style: TextStyle(
                   color: Colors.white,
                 ),
