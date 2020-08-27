@@ -1,3 +1,4 @@
+import 'package:citizenpower/Navigator/NavigatorPushes.dart';
 import 'package:citizenpower/Views/ProfileViews/profilelist.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -216,7 +217,9 @@ class _ElectorateState extends State<Electorate> {
             color: darkGold,
             textColor: Colors.white,
             child: Text('Connect with me'),
-            onPressed: () {},
+            onPressed: () {
+              goMessage(context, widget.user);
+            },
           ),
         ),
         SliverToBoxAdapter(
