@@ -24,6 +24,7 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
   Widget build(BuildContext context) {
     //Gets profile data to fill in ProfilePageEdit View
     profileController.getProfile(widget.user.email.toString()).then((val) {
+      //'then()' only runs once FS data has been downloaded
       setState(() {});
     });
     //While profileSnapshot is downloading loading indicator is shown
