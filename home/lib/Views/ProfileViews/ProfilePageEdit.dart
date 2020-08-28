@@ -1,8 +1,10 @@
-import 'package:citizenpower/databaseServices/database.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:citizenpower/controllers/profileController.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../Layouts/GenericLayouts.dart';
+
+//Handles profile downloading methods and storage
+ProfileController profileController = ProfileController();
 
 class ProfilePageEdit extends StatefulWidget {
   const ProfilePageEdit({Key key, @required this.user}) : super(key: key);
@@ -13,39 +15,19 @@ class ProfilePageEdit extends StatefulWidget {
 }
 
 class _ProfilePageEditState extends State<ProfilePageEdit> {
-  var profileOptions = ['Edit'];
-  var currentItemSelected = 'Edit';
+  //Used for Bio expansion
   bool isExpanded = true;
   //Used to prevent re-entering same view in bottom nav bar
   int currentIndex = 1;
-  //Profile for for storing FS data
-  //Holds Firestore Snapshot once it is downloaded
-  QuerySnapshot profileSnapshot;
-
-  //Class containing methods for downloading from FS
-  ProfileDatabaseMethods profileDatabaseMethods = ProfileDatabaseMethods();
-
-  //Used to get profile data then rebuild app once data is downloaded
-  getProfile() {
-    profileDatabaseMethods
-        //Downloads profile based on the email stored in user from login, uses string to search
-        //TODO: Having the same email in "users" collection will cause issues, downlaod by id?
-        .getUserByEmail(widget.user.email.toString())
-        //getUBE() returns a Future (main thread continues), 'then' only runs once Future is downloaded
-        //Once QuerySnapshot is downloaded snapshot is stored in profileSnapshot and widget is rebuilt
-        .then((val) {
-      setState(() {
-        profileSnapshot = val;
-      });
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     //Gets profile data to fill in ProfilePageEdit View
-    getProfile();
+    profileController.getProfile(widget.user.email.toString()).then((val) {
+      setState(() {});
+    });
     //While profileSnapshot is downloading loading indicator is shown
-    return profileSnapshot != null
+    return profileController.profileSnapshot != null
         ? Scaffold(
             appBar: topAppBarLayout('Profile'),
             drawer: new Drawer(),
@@ -53,7 +35,7 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
               child: CustomScrollView(slivers: <Widget>[
                 SliverToBoxAdapter(
                   child: topProfileLayoutEdit(
-                      context, profileSnapshot.documents[0].data["name"]),
+                      context, profileController.getName()),
                 ),
                 SliverToBoxAdapter(
                   child: Divider(
