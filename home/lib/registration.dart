@@ -5,7 +5,6 @@ import 'Layouts/GenericLayouts.dart';
 import 'constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'TextStyles.dart';
-import 'database.dart';
 
 class Registration extends StatefulWidget {
   @override
