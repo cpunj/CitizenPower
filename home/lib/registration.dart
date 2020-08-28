@@ -14,7 +14,6 @@ class Registration extends StatefulWidget {
 class _RegistrationState extends State<Registration> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  //Does it matter that we're using variables not controllers? - Jack
   final emailController = TextEditingController();
   final nameController = TextEditingController();
   final mobileController = TextEditingController();
@@ -37,14 +36,13 @@ class _RegistrationState extends State<Registration> {
             .createUserWithEmailAndPassword(
                 email: emailController.text, password: passController.text);
         FirebaseUser user = result.user;
+        //Uploads the user info to database
+        profileDatabaseMethods.uploadRegistrationInfo(userInfoMap, user);
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => LoginPage()));
       } catch (e) {
         print(e.message);
       }
-
-      //Uploads the user info to database
-      profileDatabaseMethods.uploadRegistrationInfo(userInfoMap);
     }
   }
 

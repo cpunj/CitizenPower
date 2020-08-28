@@ -1,3 +1,4 @@
+import 'package:citizenpower/TextStyles.dart';
 import 'package:citizenpower/controllers/profileController.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +8,10 @@ import '../../Layouts/GenericLayouts.dart';
 ProfileController profileController = ProfileController();
 
 class ProfilePageEdit extends StatefulWidget {
-  const ProfilePageEdit({Key key, @required this.user}) : super(key: key);
+  const ProfilePageEdit({Key key, @required this.user, this.toggleView})
+      : super(key: key);
   final FirebaseUser user;
+  final Function toggleView;
 
   @override
   _ProfilePageEditState createState() => _ProfilePageEditState();
@@ -20,13 +23,16 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
   //Used to prevent re-entering same view in bottom nav bar
   int currentIndex = 1;
 
+  final bioController = TextEditingController(text: profileController.getBio());
+
   @override
   Widget build(BuildContext context) {
     //Gets profile data to fill in ProfilePageEdit View
-    profileController.getProfile(widget.user.email.toString()).then((val) {
+    profileController.getProfile(widget.user.uid).then((val) {
       //'then()' only runs once FS data has been downloaded
       setState(() {});
     });
+
     //While profileSnapshot is downloading loading indicator is shown
     return profileController.profileSnapshot != null
         ? Scaffold(
@@ -45,15 +51,16 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
                   ),
                 ),
                 SliverToBoxAdapter(
-                  child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          isExpanded = !isExpanded;
-                        });
-                      },
-                      child: bioLayout2(
-                          'I am the director and founder of Citizen Tasmania. I live in Tasmania where I run the company.',
-                          isExpanded)),
+                  child: Container(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                    child: TextFormField(
+                      minLines: 1,
+                      maxLines: 10,
+                      decoration: textFormDec(label: 'Bio'),
+                      controller: bioController,
+                    ),
+                  ),
                 ),
                 SliverToBoxAdapter(
                   child: SizedBox(height: 9),
@@ -66,10 +73,13 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: RaisedButton(
                           child: Text(
-                            "Edit",
+                            "Done",
                           ),
                           onPressed: () {
-                            //TODO: Function to edit current logged in user's bio
+                            print(profileController.getBio());
+                            profileController.updateBio(
+                                widget.user.uid, bioController.text);
+                            widget.toggleView();
                           }),
                     ),
                   ],

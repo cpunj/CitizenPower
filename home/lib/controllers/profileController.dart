@@ -1,11 +1,12 @@
 import 'package:citizenpower/Models/profile.dart';
 import 'package:citizenpower/databaseServices/database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ProfileController {
-  //Holds Firestore Snapshot once it is downloaded
-  QuerySnapshot profileSnapshot;
-
+  //Holds FS Snapshot once it is downloaded
+  DocumentSnapshot profileSnapshot;
+  //Holds the current logged in user
   //The profile that will be loaded into profile View
   Profile profile = Profile();
   //Class containing methods for downloading from FS
@@ -16,17 +17,28 @@ class ProfileController {
     return profile.name;
   }
 
+  //get bio of downloaded profile
+  String getBio() {
+    return profile.bio;
+  }
+
+  updateBio(String uID, String bio) {
+    if (bio != null) {
+      profileDatabaseMethods.updateUser(bio, uID);
+    }
+  }
+
   //Used to get profile data, async to allow setState use in view
-  getProfile(String email) async {
+  getProfile(String uID) async {
     profileDatabaseMethods
-        //Downloads profile based on the email stored in user from app login, uses the given string to search
-        //TODO: Having the same email in "users" collection will cause issues, download by id?
-        .getUserByEmail(email)
-        //getUserByEmail() returns a Future (main program thread continues), 'then' only runs once Future is actually downloaded
-        //Once QuerySnapshot is downloaded snapshot is stored in profileSnapshot and widget is rebuilt in view
+        //Downloads profile based on the UID stored in user from app login
+        .getUserByUID(uID)
+        //getUserByUID() returns a Future (main program thread continues), 'then()' only runs once Future is actually downloaded as a DocumentSnapshot
+        //Once DocumentSnapshot is downloaded snapshot is stored in profileSnapshot and widget is rebuilt in view using SetState
         .then((val) {
       profileSnapshot = val;
-      profile.name = profileSnapshot.documents[0].data["name"];
+      profile.name = profileSnapshot.data["name"];
+      profile.bio = profileSnapshot.data["bio"];
     });
   }
 }
