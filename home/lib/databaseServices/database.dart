@@ -13,10 +13,19 @@ class ProfileDatabaseMethods {
     return await Firestore.instance.collection("users").document(uID).get();
   }
 
-  updateUser(String bio, String uID) {
+  updateUserBio(String bio, String uID) {
     Firestore.instance
         .collection("users")
         .document(uID)
         .updateData({"bio": bio});
+    print('This just ran`');
+  }
+
+  updateUserName(String name, String uID) {
+    Firestore.instance
+        .collection("users")
+        .document(uID)
+        .updateData({"name": name});
+    print('This just ran1');
   }
 }

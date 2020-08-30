@@ -3,6 +3,9 @@ import 'package:citizenpower/controllers/profileController.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../Layouts/GenericLayouts.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+
+FirebaseStorage storage = FirebaseStorage();
 
 //Handles profile downloading methods and storage
 ProfileController profileController = ProfileController();
@@ -24,6 +27,8 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
   int currentIndex = 1;
 
   final bioController = TextEditingController(text: profileController.getBio());
+  final nameController =
+      TextEditingController(text: profileController.getName());
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +46,46 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
             body: Container(
               child: CustomScrollView(slivers: <Widget>[
                 SliverToBoxAdapter(
-                  child: topProfileLayoutEdit(
-                      context, profileController.getName()),
+                  child: Container(
+                    margin: EdgeInsets.only(top: 20),
+                    height: 110,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Column(
+                          children: <Widget>[
+                            FlatButton(
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 20),
+                                child: CircleAvatar(
+                                  radius: 50.0,
+                                  backgroundImage:
+                                      AssetImage('assets/grace.jpg'),
+                                ),
+                              ),
+                              onPressed: () {
+                                //TODO:Edit function for current logged in user's profile picture
+                              },
+                            ),
+                          ],
+                        ),
+                        //Needs to link to a profile list
+                        Column(
+                          children: <Widget>[
+                            SizedBox(height: 10),
+                            Container(
+                                height: 50,
+                                width: 200,
+                                child: TextFormField(
+                                  minLines: 1,
+                                  decoration: textFormDec(label: 'Name'),
+                                  controller: nameController,
+                                ))
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
                 SliverToBoxAdapter(
                   child: Divider(
@@ -76,6 +119,8 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
                             "Done",
                           ),
                           onPressed: () {
+                            profileController.updateName(
+                                widget.user.uid, nameController.text);
                             profileController.updateBio(
                                 widget.user.uid, bioController.text);
                             widget.toggleView();

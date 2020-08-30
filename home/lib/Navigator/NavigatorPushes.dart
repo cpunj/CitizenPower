@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import '../AppHome.dart';
 import '../Views/MessageViews/home_screen.dart';
 import '../Views/ProfileViews/ProfilePage.dart';
-import '../Views/ProfileViews/MyProfilePage.dart';
 import '../Views/ElectorateViews/electorate.dart';
 import '../Views/ElectorateViews/electorateprofiledetails.dart';
 import '../Views/ProfileViews/profilelist.dart';

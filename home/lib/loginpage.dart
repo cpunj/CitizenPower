@@ -45,13 +45,11 @@ class LoginPageState extends State<LoginPage> {
                 data: new ThemeData(
                   brightness: Brightness.light,
                 ),
-
                 child: new Container(
                   padding: const EdgeInsets.only(top: 25),
                   height: 160,
                   width: 100,
                   child: new Column(
-
                     children: <Widget>[
                       new TextFormField(
                           decoration: new InputDecoration(

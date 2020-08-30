@@ -1,7 +1,6 @@
 import 'package:citizenpower/Models/profile.dart';
 import 'package:citizenpower/databaseServices/database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class ProfileController {
   //Holds FS Snapshot once it is downloaded
@@ -24,7 +23,13 @@ class ProfileController {
 
   updateBio(String uID, String bio) {
     if (bio != null) {
-      profileDatabaseMethods.updateUser(bio, uID);
+      profileDatabaseMethods.updateUserBio(bio, uID);
+    }
+  }
+
+  updateName(String uID, String name) {
+    if (name != null) {
+      profileDatabaseMethods.updateUserName(name, uID);
     }
   }
 
