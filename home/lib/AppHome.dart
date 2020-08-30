@@ -21,9 +21,13 @@ class _AppHomeState extends State<AppHome> {
   Widget build(BuildContext context) {
     //All views start with a scaffold
     return Scaffold(
+      //Drawer provides limited ElectNow information
+      //As well as access to AboutCitizen view and Settings view
       endDrawer: new Drawer(
+        //List view used to build navigation pushes most effectively
         child: new ListView(
           children: <Widget>[
+            //UserAccountsDrawerHeader() used to show limited Citizen Tasmania info
             new UserAccountsDrawerHeader(
               accountName: new Text("Citizen Tasmania"),
               accountEmail: new Text("email: citizentasmania@gmail.com"),
@@ -35,10 +39,12 @@ class _AppHomeState extends State<AppHome> {
                 ),
               ),
             ),
+            //1st ListTile() navigates to About Citizen view
             new ListTile(
               title: new Text("About Citzen "),
               onTap: () => Navigator.of(context).pushNamed("/e"),
             ),
+            //2nd ListTile() navigates to Settings view
             new ListTile(
               title: new Text("Settings"),
               onTap: () => Navigator.of(context).pushNamed("/d"),
@@ -47,10 +53,12 @@ class _AppHomeState extends State<AppHome> {
         ),
       ),
       appBar: new AppBar(
+        //TODO: Move to left side for consistency between all views?
         title: Text(
           "                    " 'Home',
           textAlign: TextAlign.center,
         ),
+        //TODO: Is this neccessary? Profile button in BottomNavBar leads to the same view.
         leading: Container(
           padding: EdgeInsets.all(12.0),
           child: CircleAvatar(
@@ -60,15 +68,18 @@ class _AppHomeState extends State<AppHome> {
           ),
         ),
       ),
+      //SingleChildScrollView() prevents yellow/black line errors occurring vertically and allows infinite scrolling
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            //Provides height and padding for the TextField()
             Container(
               height: 60,
               padding: EdgeInsets.only(top: 0, right: 10, left: 10, bottom: 10),
               child: Row(
                 children: <Widget>[
+                  //Expanded() needed when using TextField() in Row()
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
@@ -81,9 +92,12 @@ class _AppHomeState extends State<AppHome> {
                       ),
                     ),
                   ),
+                  //Provides padding
                   SizedBox(
                     width: 30,
                   ),
+                  //Will provide access to notifications views
+                  //TODO: Get working
                   IconButton(
                     icon: Icon(
                       Icons.notifications,
@@ -99,6 +113,7 @@ class _AppHomeState extends State<AppHome> {
                 ],
               ),
             ),
+            //Provides padding
             SizedBox(
               width: 10,
               height: 10,
@@ -107,6 +122,7 @@ class _AppHomeState extends State<AppHome> {
               child: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
                 child: Container(
+                  //TODO: Left margin padding needed as well
                   margin: EdgeInsets.only(right: 10),
                   child: SingleChildScrollView(
                     scrollDirection: Axis.vertical,
@@ -116,6 +132,7 @@ class _AppHomeState extends State<AppHome> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
+                            //Post widget
                             Row(
                               children: <Widget>[
                                 Container(
@@ -165,6 +182,7 @@ class _AppHomeState extends State<AppHome> {
                             ),
                           ],
                         ),
+                        //Padding
                         SizedBox(
                           height: 20,
                         ),
@@ -217,6 +235,7 @@ class _AppHomeState extends State<AppHome> {
                             )
                           ],
                         ),
+                        //Padding between buttons and actual post
                         SizedBox(
                           height: 20,
                         ),
@@ -234,6 +253,7 @@ class _AppHomeState extends State<AppHome> {
                 ),
               ),
             ),
+            //Padding between posts
             SizedBox(
               height: 50,
             ),
