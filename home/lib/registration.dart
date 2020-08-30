@@ -57,6 +57,7 @@ class _RegistrationState extends State<Registration> {
         child: new Stack(
           fit: StackFit.expand,
           children: <Widget>[
+            //Form for holding account
             new Form(
               key: _formKey,
               child: new Theme(

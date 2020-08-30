@@ -76,7 +76,6 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
                             "Done",
                           ),
                           onPressed: () {
-                            print(profileController.getBio());
                             profileController.updateBio(
                                 widget.user.uid, bioController.text);
                             widget.toggleView();
