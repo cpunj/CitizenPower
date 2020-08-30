@@ -19,20 +19,42 @@ class _RegistrationState extends State<Registration> {
   String phone;
   String name;
 
-  final emailcontroller = TextEditingController();
-  final namecontroller = TextEditingController();
-  final mobilecontroller = TextEditingController();
-  final passcontroller = TextEditingController();
+  //Does it matter that we're using variables not controllers? - Jack
+  final emailController = TextEditingController();
+  final nameController = TextEditingController();
+  final mobileController = TextEditingController();
+  final passController = TextEditingController();
+
+  Future<void> registerUser() async {
+    final formState = _formKey.currentState;
+    if (formState.validate()) {
+      Map<String, String> userInfoMap = {
+        "name": name,
+        "email": email,
+      };
+
+      formState.save();
+      try {
+        AuthResult result = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(email: email, password: password);
+        FirebaseUser user = result.user;
+        await DatabaseService(uid: user.uid)
+            .updateUserData(email, phone, name, password);
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => LoginPage()));
+      } catch (e) {
+        print(e.message);
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       backgroundColor: Colors.white,
-
       //Prevents pixels error
       resizeToAvoidBottomInset: false,
       appBar: topAppBarLayout('Registration Page'),
-      //Q: Any particular reason for using a stack rather than a column here? -Jack
       body: SafeArea(
         child: new Stack(
           fit: StackFit.expand,
@@ -65,7 +87,6 @@ class _RegistrationState extends State<Registration> {
                       SizedBox(
                         height: 20,
                       ),
-
                       new TextFormField(
                         decoration: textFormDec(
                             label: 'Email', hint: 'Enter your email address'),
@@ -88,7 +109,6 @@ class _RegistrationState extends State<Registration> {
                       SizedBox(
                         height: 30,
                       ),
-
                       Center(
                         child: Material(
                           elevation: 5.0,
@@ -109,8 +129,6 @@ class _RegistrationState extends State<Registration> {
                               }),
                         ),
                       ),
-
-                      //Contains Citizen logo in column
                     ],
                   ),
                 ),
@@ -120,23 +138,5 @@ class _RegistrationState extends State<Registration> {
         ),
       ),
     );
-  }
-
-  Future<void> registerUser() async {
-    final formState = _formKey.currentState;
-    if (formState.validate()) {
-      formState.save();
-      try {
-        AuthResult result = await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(email: email, password: password);
-        FirebaseUser user = result.user;
-        await DatabaseService(uid: user.uid)
-            .updateUserData(email, phone, name, password);
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => LoginPage()));
-      } catch (e) {
-        print(e.message);
-      }
-    }
   }
 }
