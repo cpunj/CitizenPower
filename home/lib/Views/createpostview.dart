@@ -1,13 +1,21 @@
+import 'package:citizenpower/Layouts/GenericLayouts.dart';
 import 'package:citizenpower/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class NewPost extends StatefulWidget {
+  final FirebaseUser user;
+
+  const NewPost({Key key, this.user}) : super(key: key);
+
   @override
   _NewPostState createState() => _NewPostState();
 }
 
 class _NewPostState extends State<NewPost> {
+  int currentIndex = 2;
+
   _openGallary() {}
 
   _openCamera() {}
@@ -124,6 +132,17 @@ class _NewPostState extends State<NewPost> {
         ),
         color: Colors.grey[100],
       ),
+      bottomNavigationBar: BottomNavigationBar(
+          currentIndex: currentIndex,
+          type: BottomNavigationBarType.fixed,
+          items: bottomNavBarItems(),
+          onTap: (index) {
+            setState(() {
+              onTap(index, context, widget.user, currentIndex);
+            });
+          }
+          //onTap: _onTap,
+          ),
     );
   }
 }

@@ -32,7 +32,7 @@ class _ElectorateState extends State<Electorate> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: topAppBarLayout('Leader'),
-      endDrawer: new Drawer(
+      drawer: new Drawer(
         child: new ListView(
           children: <Widget>[
             new UserAccountsDrawerHeader(

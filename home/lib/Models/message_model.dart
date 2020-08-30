@@ -3,7 +3,7 @@ class Message {
   final String
       time; // Would usually be type DateTime or Firebase Timestamp in production apps
   final String text;
-  final bool isLiked;
+
   final bool unread;
   final bool read;
 
@@ -11,7 +11,6 @@ class Message {
     this.sender,
     this.time,
     this.text,
-    this.isLiked,
     this.unread,
     this.read,
   });
@@ -82,49 +81,42 @@ List<Message> chats = [
     sender: ejaz,
     time: '5:30 PM',
     text: 'Hey, how are u , can u please give a miilon dollar lend ? :p',
-    isLiked: false,
     unread: false,
   ),
   Message(
     sender: jack,
     time: '4:30 PM',
     text: 'Hey, how\'s it going? What did you do today?',
-    isLiked: false,
     unread: true,
   ),
   Message(
     sender: harry,
     time: '3:30 PM',
     text: 'Hey, how\'s it going? What did you do today?',
-    isLiked: false,
     unread: false,
   ),
   Message(
     sender: salman,
     time: '2:30 PM',
     text: 'Hey, how\'s it going? What did you do today?',
-    isLiked: false,
     unread: true,
   ),
   Message(
     sender: chandan,
     time: '1:30 PM',
     text: 'Hey, how\'s it going? What did you do today?',
-    isLiked: false,
     unread: false,
   ),
   Message(
     sender: jenny,
     time: '12:30 PM',
     text: 'Hey, how\'s it going? What did you do today?',
-    isLiked: false,
     unread: false,
   ),
   Message(
     sender: khern,
     time: '11:30 AM',
     text: 'Hey, how\'s it going? What did you do today?',
-    isLiked: false,
     unread: false,
   ),
 ];
@@ -135,42 +127,36 @@ List<Message> messages = [
     sender: jack,
     time: '2:23 PM',
     text: 'Hey, Ejaz how\'s it going? What did you do today?',
-    isLiked: true,
     unread: true,
   ),
   Message(
     sender: currentUser,
     time: '7:20 PM',
     text: 'jackkkkkkkkkkkk ',
-    isLiked: true,
     unread: false,
   ),
   Message(
     sender: jack,
     time: '8:05 PM',
     text: 'yo?',
-    isLiked: false,
     unread: true,
   ),
   Message(
     sender: jack,
     time: '1:15 PM',
     text: 'EJAZ',
-    isLiked: true,
     unread: true,
   ),
   Message(
     sender: currentUser,
     time: '12:30 PM',
     text: 'good day mate?',
-    isLiked: false,
     unread: true,
   ),
   Message(
     sender: jack,
     time: '12:00 PM',
     text: 'good mrng',
-    isLiked: false,
     unread: true,
   ),
 ];

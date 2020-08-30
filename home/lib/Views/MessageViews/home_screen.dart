@@ -1,3 +1,4 @@
+import 'package:citizenpower/Navigator/NavigatorPushes.dart';
 import 'package:citizenpower/Views/MessageViews/recent_chat.dart';
 import 'package:citizenpower/Views/SocialMenu.dart';
 import 'package:citizenpower/constants.dart';
@@ -16,6 +17,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  FirebaseUser get user => goProfile(context, user);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,10 +76,15 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(
             width: 16,
           ),
-          CircleAvatar(
-            backgroundColor: Colors.transparent,
-            radius: 29,
-            backgroundImage: AssetImage("assets/Wilkie.jpeg"),
+          GestureDetector(
+            onTap: () {
+              goProfile(context, user);
+            },
+            child: CircleAvatar(
+              backgroundColor: Colors.transparent,
+              radius: 29,
+              backgroundImage: AssetImage("assets/Wilkie.jpeg"),
+            ),
           ),
         ],
       ),
@@ -116,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                    */
 
-                  RecentChats()
+                  RecentChats(),
 
                   //hey jack
                 ],
