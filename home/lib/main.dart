@@ -20,8 +20,10 @@ void main() => runApp(new MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //All Widgets are contained within a 'Material App'
     return new MaterialApp(
         home: new LoginPage(),
+        //Secondary method for pushing between State Widgets
         routes: <String, WidgetBuilder>{
           "/a": (BuildContext context) => new AboutMe(),
           "/b": (BuildContext context) => new ElectorateDetails(

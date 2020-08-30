@@ -16,7 +16,6 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
   bool isExpanded = true;
   //Used to prevent re-entering same view in bottom nav bar
   int currentIndex = 1;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

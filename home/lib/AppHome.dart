@@ -7,6 +7,7 @@ import 'constants.dart';
 
 class AppHome extends StatefulWidget {
   const AppHome({Key key, @required this.user}) : super(key: key);
+  //Stores the logged in user
   final FirebaseUser user;
 
   @override
@@ -14,9 +15,11 @@ class AppHome extends StatefulWidget {
 }
 
 class _AppHomeState extends State<AppHome> {
+  //Used to in BottomNavBar function, prevents pushing to the same view over and over again.
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
+    //All views start with a scaffold
     return Scaffold(
       endDrawer: new Drawer(
         child: new ListView(
