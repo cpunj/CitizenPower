@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+//Returns a container widget that displays 3 different data sets
+//Currently displays Name, Party and Population
+
+//No uses in project currently, code can be used for reference and foundation
 Widget electorateInfoLayout({String name, String party, String pop}) {
   return Container(
     margin: EdgeInsets.only(left: 30, right: 30, top: 20),

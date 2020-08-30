@@ -5,14 +5,19 @@ import '../TextStyles.dart';
 import '../constants.dart';
 import '../Views/ProfileViews/profilelist.dart';
 
-//Top app bar layout
+//Top app bar layout, returns an appbar to the Appbar: parameter of a scaffold
+
+//title parameter will be the text displayed within the app bar
 Widget topAppBarLayout(String title) {
   return AppBar(
+    //Text() displays the text given in the title parameter
     title: new Text(
       title,
+      //Text style given by appBarStyle() to maintain design consistency
       style: appBarStyle(),
     ),
     actions: <Widget>[
+      //TODO: Not every view is going to need 'More Options'. Need to remove.
       Container(
         margin: EdgeInsets.only(left: 10),
         child: Icon(Icons.more_vert),
@@ -22,25 +27,34 @@ Widget topAppBarLayout(String title) {
 }
 
 //Layout function for top of profile page
+//Parameters include the BuildContext to allow navigation pushes
+//And the logged in FirebaseUser to pass into any navigation pushes
 Widget topProfileLayout(BuildContext context, FirebaseUser user) {
+  //Container to hold all other widgets and providing padding between widgets and edge of screen
   return Container(
     margin: EdgeInsets.only(top: 20),
     height: 160,
+    //Presents all widgets horizontally across the view
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
+        //Column presents profile pic and Community button vertically
         Column(
           children: <Widget>[
+            //Padding() provides padding between left edge of screen
             Padding(
               padding: const EdgeInsets.only(left: 20),
+              //CircleAvatar() provides the selected profile's profile pic in a circle design
               child: CircleAvatar(
                 radius: 50.0,
                 backgroundImage: AssetImage('assets/grace.jpg'),
               ),
             ),
+            //Provides padding between the widgets within the column
             SizedBox(
               height: 10.0,
             ),
+            //Button to allow for navigation
             MaterialButton(
               child: Text(
                 "Grace's Community",
@@ -55,7 +69,6 @@ Widget topProfileLayout(BuildContext context, FirebaseUser user) {
             ),
           ],
         ),
-        //Needs to link to a profile list
         Column(
           children: <Widget>[
             SizedBox(
@@ -116,9 +129,7 @@ Widget topProfileLayoutEdit(BuildContext context) {
                   backgroundImage: AssetImage('assets/grace.jpg'),
                 ),
               ),
-              onPressed: () {
-                //TODO:Edit function for current logged in user's profile picture
-              },
+              onPressed: () {},
             ),
           ],
         ),

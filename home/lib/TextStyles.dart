@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 
 //App bar text styles
+
+//Returns a TextStyle() widget, change as desired to change AppBar text design
 TextStyle appBarStyle() {
   return TextStyle(fontWeight: FontWeight.bold, color: Colors.white);
 }
