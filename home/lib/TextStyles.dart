@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
 import 'constants.dart';
 
-//App bar text styles
+//Header Text Styles
+
+TextStyle headerStyle1() {
+  return TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 28,
+    color: darkGold,
+    letterSpacing: 0.5,
+    wordSpacing: 1,
+  );
+}
 
 //Returns a TextStyle() widget, change as desired to change AppBar text design
 TextStyle appBarStyle() {
@@ -39,6 +49,10 @@ TextStyle textStyleListGrey() {
     fontSize: 15.0,
     fontWeight: FontWeight.bold,
   );
+}
+
+TextStyle infoTextStyle1() {
+  return TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold);
 }
 
 //For profile name, change as needed
