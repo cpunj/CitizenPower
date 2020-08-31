@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../../Layouts/GenericLayouts.dart';
+import '../../Layouts/generic_layouts.dart';
 
 class ProfilePageEdit extends StatefulWidget {
   const ProfilePageEdit({Key key, @required this.user}) : super(key: key);

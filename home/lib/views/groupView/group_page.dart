@@ -2,8 +2,8 @@ import 'package:citizenpower/Views/groupview/picture.dart';
 import 'package:citizenpower/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import '../../AppHome.dart';
-import '../../commentspage.dart';
+import '../../app_home.dart';
+import '../../comments_page.dart';
 
 class GroupPage extends StatefulWidget {
   @override

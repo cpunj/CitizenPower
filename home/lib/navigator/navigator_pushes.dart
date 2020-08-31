@@ -1,16 +1,16 @@
-import 'package:citizenpower/Views/ElectorateViews/electorateview.dart';
-import 'package:citizenpower/Views/ElectorateViews/imageview.dart';
-import 'package:citizenpower/Views/ProfileViews/ProfilePageEdit.dart';
-import 'package:citizenpower/Views/SocialMenu.dart';
-import 'package:citizenpower/Views/createpostview.dart';
+import 'package:citizenpower/Views/ElectorateViews/electorate_view.dart';
+import 'package:citizenpower/Views/ElectorateViews/image_view.dart';
+import 'package:citizenpower/Views/ProfileViews/profile_page_edit.dart';
+import 'package:citizenpower/Views/social_menu.dart';
+import 'package:citizenpower/Views/create_post_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../AppHome.dart';
+import '../app_home.dart';
 import '../Views/MessageViews/home_screen.dart';
-import '../Views/ProfileViews/ProfilePage.dart';
+import '../Views/ProfileViews/profile_page.dart';
 import '../Views/ElectorateViews/electorate.dart';
-import '../Views/ElectorateViews/electorateprofiledetails.dart';
-import '../Views/ProfileViews/profilelist.dart';
+import '../Views/ElectorateViews/electorate_profile_details.dart';
+import '../Views/ProfileViews/profile_list.dart';
 import '../Views/settings.dart';
 
 //pushReplacement used for views accessed from bottom nav bar

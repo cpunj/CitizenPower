@@ -1,8 +1,8 @@
-import 'package:citizenpower/Navigator/NavigatorPushes.dart';
+import 'package:citizenpower/Navigator/navigator_pushes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import '../../Layouts/GenericLayouts.dart';
+import '../../Layouts/generic_layouts.dart';
 
 class ProfileList extends StatefulWidget {
   const ProfileList({Key key, @required this.user}) : super(key: key);

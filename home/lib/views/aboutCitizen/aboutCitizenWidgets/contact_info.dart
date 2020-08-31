@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../TextStyles.dart';
+import '../../../text_styles.dart';
 import '../../../constants.dart';
 
 class ContactInfo extends StatelessWidget {

@@ -1,17 +1,17 @@
-import 'package:citizenpower/Views/ProfileViews/ProfilePage.dart';
-import 'package:citizenpower/Views/aboutcitzen/aboutcitizen.dart';
-import 'Views/eventview/eventpage.dart';
-import 'package:citizenpower/Views/eventview/eventview.dart';
-import 'package:citizenpower/Views/groupview/GroupPage.dart';
-import 'package:citizenpower/Views/groupview/groupview.dart';
+import 'package:citizenpower/Views/ProfileViews/profile_page.dart';
+import 'package:citizenpower/views/aboutCitizen/about_citizen.dart';
+import 'Views/eventview/event_page.dart';
+import 'package:citizenpower/Views/eventview/event_view.dart';
+import 'package:citizenpower/Views/groupview/group_page.dart';
+import 'package:citizenpower/Views/groupview/group_view.dart';
 import 'package:citizenpower/Views/settings.dart';
 
-import 'package:citizenpower/loginpage.dart';
+import 'package:citizenpower/login_page.dart';
 
 import 'package:flutter/material.dart';
-import 'AppHome.dart';
-import 'Views/ElectorateViews/contactview.dart';
-import 'Views/ElectorateViews/electorateprofiledetails.dart';
+import 'app_home.dart';
+import 'Views/ElectorateViews/contact_view.dart';
+import 'Views/ElectorateViews/electorate_profile_details.dart';
 import 'constants.dart';
 //Testing Github: Hello I am changing this comment
 

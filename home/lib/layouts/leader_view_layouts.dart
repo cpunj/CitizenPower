@@ -1,8 +1,8 @@
-import 'package:citizenpower/Navigator/NavigatorPushes.dart';
+import 'package:citizenpower/Navigator/navigator_pushes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:citizenpower/constants.dart';
-import 'package:citizenpower/TextStyles.dart';
+import 'package:citizenpower/text_styles.dart';
 
 //Leader view header layout
 Widget leaderViewHeader(

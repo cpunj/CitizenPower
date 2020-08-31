@@ -1,11 +1,11 @@
-import 'package:citizenpower/Navigator/NavigatorPushes.dart';
-import 'package:citizenpower/Views/ProfileViews/profilelist.dart';
+import 'package:citizenpower/Navigator/navigator_pushes.dart';
+import 'package:citizenpower/Views/ProfileViews/profile_list.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import '../../Layouts/GenericLayouts.dart';
-import '../../TextStyles.dart';
+import '../../Layouts/generic_layouts.dart';
+import '../../text_styles.dart';
 import '../../constants.dart';
 
 /*TODO:

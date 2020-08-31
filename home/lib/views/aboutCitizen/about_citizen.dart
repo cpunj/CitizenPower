@@ -1,7 +1,8 @@
-import 'package:citizenpower/Views/aboutcitzen/about_citizen_widgets/citizen_info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:citizenpower/TextStyles.dart';
+import 'package:citizenpower/text_styles.dart';
+
+import 'aboutCitizenWidgets/citizen_info.dart';
 
 class AboutCitizenInfo extends StatefulWidget {
   @override

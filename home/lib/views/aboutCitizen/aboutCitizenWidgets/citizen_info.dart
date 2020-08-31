@@ -1,7 +1,7 @@
-import 'package:citizenpower/Views/aboutcitzen/about_citizen_widgets/contact_info.dart';
 import 'package:flutter/material.dart';
 
-import '../../../TextStyles.dart';
+import '../../../text_styles.dart';
+import 'contact_info.dart';
 
 class CitizenInfo extends StatelessWidget {
   @override

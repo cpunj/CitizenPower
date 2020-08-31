@@ -1,12 +1,11 @@
-import 'package:citizenpower/Navigator/NavigatorPushes.dart';
-import 'package:citizenpower/Views/MessageViews/recent_chat.dart';
-import 'package:citizenpower/Views/SocialMenu.dart';
+import 'package:citizenpower/Navigator/navigator_pushes.dart';
+import 'package:citizenpower/views/MessageViews/recent_chat.dart';
+import 'package:citizenpower/views/social_menu.dart';
 import 'package:citizenpower/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'catagory.dart';
-import 'recent_chat.dart';
+import 'category.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key, @required this.user}) : super(key: key);

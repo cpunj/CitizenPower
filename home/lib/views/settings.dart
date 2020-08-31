@@ -2,7 +2,7 @@ import 'package:citizenpower/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import '../Layouts/GenericLayouts.dart';
+import '../Layouts/generic_layouts.dart';
 import '../constants.dart';
 
 class Setting extends StatefulWidget {
@@ -16,8 +16,7 @@ class _SettingState extends State<Setting> {
   FirebaseAuth auth = FirebaseAuth.instance;
 
   Future<void> logOut() async {
-
-    FirebaseUser user= auth.signOut() as FirebaseUser;
+    FirebaseUser user = auth.signOut() as FirebaseUser;
   }
 
   int selectedIndex = 0;

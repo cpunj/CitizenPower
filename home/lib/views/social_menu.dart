@@ -1,9 +1,9 @@
-import 'package:citizenpower/Layouts/GenericLayouts.dart';
-import 'package:citizenpower/Navigator/NavigatorPushes.dart';
+import 'package:citizenpower/Layouts/generic_layouts.dart';
+import 'package:citizenpower/Navigator/navigator_pushes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../Navigator/NavigatorPushes.dart';
+import '../Navigator/navigator_pushes.dart';
 
 class SocialMenu extends StatefulWidget {
   const SocialMenu({Key key, @required this.user}) : super(key: key);

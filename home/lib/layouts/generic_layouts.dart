@@ -1,9 +1,9 @@
-import 'package:citizenpower/Navigator/NavigatorPushes.dart';
+import 'package:citizenpower/Navigator/navigator_pushes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../TextStyles.dart';
+import '../text_styles.dart';
 import '../constants.dart';
-import '../Views/ProfileViews/profilelist.dart';
+import '../Views/ProfileViews/profile_list.dart';
 
 //Top app bar layout, returns an appbar to the Appbar: parameter of a scaffold
 

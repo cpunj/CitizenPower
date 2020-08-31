@@ -1,8 +1,8 @@
-import 'package:citizenpower/TextStyles.dart';
+import 'package:citizenpower/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'registration.dart';
 import 'constants.dart';
-import 'AppHome.dart';
+import 'app_home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
