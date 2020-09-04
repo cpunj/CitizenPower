@@ -1,8 +1,8 @@
 import 'package:citizenpower/text_styles.dart';
 import 'package:flutter/material.dart';
+import 'app_home.dart';
 import 'registration.dart';
 import 'constants.dart';
-import 'app_home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
@@ -11,40 +11,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> {
-  //_formKey is used to check the submission of email and password by user and
-  //validate that the information is a valid input
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  //Stores the email inputted by the user
   String email;
-  //Stores the password inputted by the user
   String password;
-
-  //User in logged in and taken to dashboard
-  Future<void> signIn() async {
-    //Stores the state of the form for user login information
-    final formState = _formKey.currentState;
-    //Only saves if the input is valid
-    if (formState.validate()) {
-      formState.save();
-      try {
-        //Result is returned by signInWithEmailAndPassword() from Firebase
-        //Await marks the function as a returning a 'Future' class until the user data is downloaded
-        //After download 'AuthResult' is returned
-        AuthResult result = await FirebaseAuth.instance
-            .signInWithEmailAndPassword(email: email, password: password);
-        //'user' stores the downloaded user contained in result
-        FirebaseUser user = result.user;
-        //Navigator function pushes to the app home (Dashboard) once download is complete
-        //All navigator pushes take the user parameter to use as access to Firebase functions
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => AppHome(user: user)));
-        //Error is in Run if form is not valid
-      } catch (e) {
-        print(e.message);
-      }
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -199,5 +169,22 @@ class LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  Future<void> signIn() async {
+    final formState = _formKey.currentState;
+    if (formState.validate()) {
+      formState.save();
+      try {
+        AuthResult result = await FirebaseAuth.instance
+            .signInWithEmailAndPassword(email: email, password: password);
+        FirebaseUser user = result.user;
+
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => AppHome(user: user)));
+      } catch (e) {
+        print(e.message);
+      }
+    }
   }
 }

@@ -1,23 +1,28 @@
-import 'package:citizenpower/Navigator/navigator_pushes.dart';
+import 'package:citizenpower/Views/profileViews/profile_list.dart';
+import 'package:citizenpower/navigator/navigator_pushes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../text_styles.dart';
 import '../constants.dart';
-import '../Views/ProfileViews/profile_list.dart';
+import '../text_styles.dart';
 
-//Top app bar layout, returns an appbar to the Appbar: parameter of a scaffold
+String getFirstWord(String text) {
+  int index = text.indexOf(' ');
+  if (index > -1) {
+    // Check if there is more than one word.
+    return text.substring(0, index).trim(); // Extract first word.
+  } else {
+    return text; // Text is the first word itself.
+  }
+}
 
-//title parameter will be the text displayed within the app bar
+//Top app bar layout
 Widget topAppBarLayout(String title) {
   return AppBar(
-    //Text() displays the text given in the title parameter
     title: new Text(
       title,
-      //Text style given by appBarStyle() to maintain design consistency
       style: appBarStyle(),
     ),
     actions: <Widget>[
-      //TODO: Not every view is going to need 'More Options'. Need to remove.
       Container(
         margin: EdgeInsets.only(left: 10),
         child: Icon(Icons.more_vert),
@@ -27,56 +32,21 @@ Widget topAppBarLayout(String title) {
 }
 
 //Layout function for top of profile page
-//Parameters include the BuildContext to allow navigation pushes
-//And the logged in FirebaseUser to pass into any navigation pushes
 Widget topProfileLayout(BuildContext context, FirebaseUser user) {
-  //Container to hold all other widgets and providing padding between widgets and edge of screen
   return Container(
     margin: EdgeInsets.only(top: 20),
     height: 160,
-    //Presents all widgets horizontally across the view
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        //Column presents profile pic and Community button vertically
         Column(
           children: <Widget>[
-            //Padding() provides padding between left edge of screen
             Padding(
               padding: const EdgeInsets.only(left: 20),
-              //CircleAvatar() provides the selected profile's profile pic in a circle design
               child: CircleAvatar(
                 radius: 50.0,
                 backgroundImage: AssetImage('assets/grace.jpg'),
               ),
-            ),
-            //Provides padding between the widgets within the column
-            SizedBox(
-              height: 10.0,
-            ),
-            //Button to allow for navigation
-            MaterialButton(
-              child: Text(
-                "Grace's Community",
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-              color: darkGold,
-              onPressed: () {
-                goProfile(context, user);
-              },
-            ),
-          ],
-        ),
-        Column(
-          children: <Widget>[
-            SizedBox(
-              height: 10.0,
-            ),
-            Text(
-              "${user.email}",
-              style: profileNameStyle(),
             ),
             SizedBox(
               height: 10.0,
@@ -90,6 +60,33 @@ Widget topProfileLayout(BuildContext context, FirebaseUser user) {
               ),
               color: darkGold,
               onPressed: () {},
+            ),
+          ],
+        ),
+        //Needs to link to a profile list
+        Column(
+          children: <Widget>[
+            SizedBox(
+              height: 10.0,
+            ),
+            Text(
+              "Grace Williams",
+              style: profileNameStyle(),
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            MaterialButton(
+              child: Text(
+                "Grace's Community",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              color: darkGold,
+              onPressed: () {
+                goProfile(context, user);
+              },
             ),
             SizedBox(
               height: 18.0,
@@ -112,7 +109,7 @@ Widget topProfileLayout(BuildContext context, FirebaseUser user) {
 
 //Allows for profile picture editing
 
-Widget topProfileLayoutEdit(BuildContext context) {
+Widget topProfileLayoutEdit(BuildContext context, String name) {
   return Container(
     margin: EdgeInsets.only(top: 20),
     height: 110,
@@ -129,7 +126,9 @@ Widget topProfileLayoutEdit(BuildContext context) {
                   backgroundImage: AssetImage('assets/grace.jpg'),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                //TODO:Edit function for current logged in user's profile picture
+              },
             ),
           ],
         ),
@@ -140,7 +139,7 @@ Widget topProfileLayoutEdit(BuildContext context) {
               height: 10.0,
             ),
             Text(
-              "Grace Williams",
+              name,
               style: profileNameStyle(),
             ),
             SizedBox(
@@ -148,7 +147,7 @@ Widget topProfileLayoutEdit(BuildContext context) {
             ),
             MaterialButton(
               child: Text(
-                "Grace's Community",
+                getFirstWord(name) + "'s Community",
                 style: TextStyle(
                   color: Colors.white,
                 ),
@@ -231,7 +230,7 @@ void onTap(
   if (index == 0 && currentIndex != 0) {
     goHome(context, user);
   } else if (index == 1 && currentIndex != 1) {
-    goProfilePageEdit(context, user);
+    goProfilePage(context, user);
   } else if (index == 2) {
     goNewPost(context, user);
   } else if (index == 3 && currentIndex != 3) {

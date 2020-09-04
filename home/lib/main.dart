@@ -1,4 +1,3 @@
-import 'package:citizenpower/Views/ProfileViews/profile_page.dart';
 import 'package:citizenpower/views/aboutCitizen/about_citizen.dart';
 import 'Views/eventview/event_page.dart';
 import 'package:citizenpower/Views/eventview/event_view.dart';
@@ -38,7 +37,6 @@ class MyApp extends StatelessWidget {
           "/f": (BuildContext context) => new EventView(),
           "/i": (BuildContext context) => new GroupPage(),
           "/j": (BuildContext context) => new EventPage(),
-          "/p": (BuildContext context) => new ProfileScreen(user: null),
         },
         theme: new ThemeData(
             primaryColor: brightOrange, accentColor: Color(0xFFFEF9EB)));

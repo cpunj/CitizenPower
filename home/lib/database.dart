@@ -1,5 +1,3 @@
-
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +6,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-
 
   Stream<String> get onAuthStateChanged => _firebaseAuth.onAuthStateChanged.map(
         (FirebaseUser user) => user?.uid,
@@ -78,20 +75,18 @@ class AuthService {
     await updateUserName(name, currentUser);
   }
 
- 
-
   // GOOGLE
- 
 
   // APPLE
-  
 
   Future createUserWithPhone(String phone, BuildContext context) async {
     _firebaseAuth.verifyPhoneNumber(
         phoneNumber: phone,
         timeout: Duration(seconds: 0),
         verificationCompleted: (AuthCredential authCredential) {
-          _firebaseAuth.signInWithCredential(authCredential).then((AuthResult result){
+          _firebaseAuth
+              .signInWithCredential(authCredential)
+              .then((AuthResult result) {
             Navigator.of(context).pop(); // to pop the dialog box
             Navigator.of(context).pushReplacementNamed('/home');
           }).catchError((e) {
@@ -118,9 +113,12 @@ class AuthService {
                   textColor: Colors.white,
                   color: Colors.green,
                   onPressed: () {
-                    var _credential = PhoneAuthProvider.getCredential(verificationId: verificationId,
+                    var _credential = PhoneAuthProvider.getCredential(
+                        verificationId: verificationId,
                         smsCode: _codeController.text.trim());
-                    _firebaseAuth.signInWithCredential(_credential).then((AuthResult result){
+                    _firebaseAuth
+                        .signInWithCredential(_credential)
+                        .then((AuthResult result) {
                       Navigator.of(context).pop(); // to pop the dialog box
                       Navigator.of(context).pushReplacementNamed('/home');
                     }).catchError((e) {
@@ -170,17 +168,19 @@ class PasswordValidator {
     return null;
   }
 }
-class DatabaseService{
+
+class DatabaseService {
   final String uid;
   DatabaseService({this.uid});
-  final CollectionReference brewCollection= Firestore.instance.collection('user');
-  Future updateUserData(String name,String mobile, String email,String password) async {
+  final CollectionReference brewCollection =
+      Firestore.instance.collection('user');
+  Future updateUserData(
+      String name, String mobile, String email, String password) async {
     return await brewCollection.document(uid).setData({
-      'name':name,
-'mobile':mobile,
-'email':email,
-'password':password,
+      'name': name,
+      'mobile': mobile,
+      'email': email,
+      'password': password,
     });
   }
 }
-

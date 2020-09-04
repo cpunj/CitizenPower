@@ -1,17 +1,20 @@
+import 'package:citizenpower/Views/ElectorateViews/electorate.dart';
+import 'package:citizenpower/Views/ElectorateViews/electorate_profile_details.dart';
 import 'package:citizenpower/Views/ElectorateViews/electorate_view.dart';
 import 'package:citizenpower/Views/ElectorateViews/image_view.dart';
-import 'package:citizenpower/Views/ProfileViews/profile_page_edit.dart';
-import 'package:citizenpower/Views/social_menu.dart';
+import 'package:citizenpower/Views/MessageViews/home_screen.dart';
 import 'package:citizenpower/Views/create_post_view.dart';
+import 'package:citizenpower/Views/profileViews/my_profile.dart';
+import 'package:citizenpower/Views/profileViews/profile_list.dart';
+import 'package:citizenpower/Views/profileViews/profile_page.dart';
+import 'package:citizenpower/Views/profileViews/profile_page_edit.dart';
+import 'package:citizenpower/Views/social_menu.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../app_home.dart';
-import '../Views/MessageViews/home_screen.dart';
-import '../Views/ProfileViews/profile_page.dart';
-import '../Views/ElectorateViews/electorate.dart';
-import '../Views/ElectorateViews/electorate_profile_details.dart';
-import '../Views/ProfileViews/profile_list.dart';
+
 import '../Views/settings.dart';
+import '../app_home.dart';
 
 //pushReplacement used for views accessed from bottom nav bar
 
@@ -71,9 +74,9 @@ goProfileList(BuildContext context, FirebaseUser user) {
       MaterialPageRoute(builder: (context) => ProfileList(user: user)));
 }
 
-goProfilePageEdit(BuildContext context, FirebaseUser user) {
+goProfilePage(BuildContext context, FirebaseUser user) {
   Navigator.pushReplacement(context,
-      MaterialPageRoute(builder: (context) => ProfilePageEdit(user: user)));
+      MaterialPageRoute(builder: (context) => MyProfilePage(user: user)));
 }
 
 goSocialMenu(BuildContext context, FirebaseUser user) {
@@ -95,5 +98,12 @@ goImageView(BuildContext context, String image) {
   Navigator.push(
     context,
     MaterialPageRoute(builder: (context) => ImageView(image: image)),
+  );
+}
+
+goEditProfile(BuildContext context, FirebaseUser user) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => ProfilePageEdit(user: user)),
   );
 }

@@ -1,6 +1,6 @@
+import 'package:citizenpower/layouts/generic_layouts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../../Layouts/generic_layouts.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key key, @required this.user}) : super(key: key);
