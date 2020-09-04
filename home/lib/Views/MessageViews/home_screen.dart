@@ -3,7 +3,7 @@ import 'package:citizenpower/Views/SocialMenu.dart';
 import 'package:citizenpower/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:citizenpower/Views/MessageViews/search.dart';
 import 'catagory.dart';
 import 'recent_chat.dart';
 
@@ -80,6 +80,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(child: Icon(Icons.search),
+      onPressed:(){
+        Navigator.push(context,
+        MaterialPageRoute(
+          builder:(context) => SearchScreen()
+        ));
+      },),
       body: Column(
         children: <Widget>[
           CategorySelector(),
