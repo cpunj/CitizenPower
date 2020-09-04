@@ -40,7 +40,11 @@ class _AppHomeState extends State<AppHome> {
             new ListTile(
               title: new Text("Settings"),
               onTap: () => Navigator.of(context).pushNamed("/d"),
-            )
+            ),
+            new ListTile(
+              title: new Text("Help"),
+              onTap: () => Navigator.of(context).pushNamed("/c"),
+            ),
           ],
         ),
       );

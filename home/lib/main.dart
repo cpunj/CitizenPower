@@ -1,4 +1,5 @@
 import 'package:citizenpower/views/aboutCitizen/about_citizen.dart';
+import 'package:citizenpower/views/helpView/help_page.dart';
 import 'Views/eventview/event_page.dart';
 import 'package:citizenpower/Views/eventview/event_view.dart';
 import 'package:citizenpower/Views/groupview/group_page.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
                 user: null,
               ),
           "/e": (BuildContext context) => new AboutCitizenInfo(),
+          "/c": (BuildContext context) => new HelpView(),
           "/x": (BuildContext context) => new AppHome(user: null),
           "/d": (BuildContext context) => new Setting(user: null),
           "/g": (BuildContext context) => new GroupView(
