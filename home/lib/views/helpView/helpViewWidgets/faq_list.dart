@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import '../../../text_styles.dart';
+import '../../../layouts/generic_layouts.dart';
+import '../../../text_styles.dart';
 
 TextStyle questionStyle() {
   // Defines the FAQ Question Header style
@@ -24,6 +26,7 @@ TextStyle responseStyle() {
 
 Card faqListItem(String question, String response){
   // A function which adds an item to the FAQ list. It takes in 2 String values when called.
+
   return Card(
     elevation: 2,
     child: new Container(
@@ -31,7 +34,6 @@ Card faqListItem(String question, String response){
 
       child: Column(
         children: <Widget>[
-
           new Row(
             children: <Widget>[
               new Padding(padding: EdgeInsets.only(right: 1.0)),
@@ -71,29 +73,23 @@ class FAQList extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
 
+          // FAQ Header
           SizedBox(
             height: 10,
           ),
-
           Text(
             "FAQ",
             style: headerStyle1(),
           ),
-
           SizedBox(
             height: 10,
           ),
-
           Divider(
             height: 10,
             color: Colors.black,
           ),
 
-          SizedBox(
-            height: 10,
-          ),
-
-    // TODO Fix overflow and make this list scrollable
+          // FAQ Questions
           Expanded(child:
             SingleChildScrollView(
             scrollDirection: Axis.vertical,
@@ -143,10 +139,27 @@ class FAQList extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
+
+                  Text("If you still need help contact: ", style: infoTextStyle1(),),
+
+                  Text("info@citizen.com.au", style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: Colors.blue,
+                    letterSpacing: 0.5,
+                    wordSpacing: 1,
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: 20,
+                  ),
+
                 ],
               ),
             ),
           ),
+
         ],
       ),
     );
