@@ -1,3 +1,4 @@
+import 'package:citizenpower/Navigator/NavigatorPushes.dart';
 import 'package:citizenpower/controllers/profileController.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +71,7 @@ class _MyProfilePageState extends State<MyProfilePage> {
                             "Edit",
                           ),
                           onPressed: () {
-                            widget.toggleView();
+                            goEditProfile(context, widget.user);
                           }),
                     ),
                   ],

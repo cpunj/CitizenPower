@@ -53,15 +53,13 @@ Widget topProfileLayout(BuildContext context, FirebaseUser user) {
             ),
             MaterialButton(
               child: Text(
-                "s Community",
+                "Connect with Grace",
                 style: TextStyle(
                   color: Colors.white,
                 ),
               ),
               color: darkGold,
-              onPressed: () {
-                goProfile(context, user);
-              },
+              onPressed: () {},
             ),
           ],
         ),
@@ -72,7 +70,7 @@ Widget topProfileLayout(BuildContext context, FirebaseUser user) {
               height: 10.0,
             ),
             Text(
-              "${user.email}",
+              "Grace Williams",
               style: profileNameStyle(),
             ),
             SizedBox(
@@ -80,13 +78,15 @@ Widget topProfileLayout(BuildContext context, FirebaseUser user) {
             ),
             MaterialButton(
               child: Text(
-                "Connect with Grace",
+                "Grace's Community",
                 style: TextStyle(
                   color: Colors.white,
                 ),
               ),
               color: darkGold,
-              onPressed: () {},
+              onPressed: () {
+                goProfile(context, user);
+              },
             ),
             SizedBox(
               height: 18.0,

@@ -1,5 +1,7 @@
 import 'package:citizenpower/Views/ElectorateViews/electorateview.dart';
 import 'package:citizenpower/Views/ElectorateViews/imageview.dart';
+import 'package:citizenpower/Views/ProfileViews/EditProfilePage.dart';
+import 'package:citizenpower/Views/ProfileViews/MyProfilePage.dart';
 import 'package:citizenpower/Views/ProfileViews/switchedit.dart';
 import 'package:citizenpower/Views/SocialMenu.dart';
 import 'package:citizenpower/Views/createpostview.dart';
@@ -72,8 +74,8 @@ goProfileList(BuildContext context, FirebaseUser user) {
 }
 
 goProfilePage(BuildContext context, FirebaseUser user) {
-  Navigator.pushReplacement(
-      context, MaterialPageRoute(builder: (context) => EditSwitch(user: user)));
+  Navigator.pushReplacement(context,
+      MaterialPageRoute(builder: (context) => MyProfilePage(user: user)));
 }
 
 goSocialMenu(BuildContext context, FirebaseUser user) {
@@ -95,5 +97,12 @@ goImageView(BuildContext context, String image) {
   Navigator.push(
     context,
     MaterialPageRoute(builder: (context) => ImageView(image: image)),
+  );
+}
+
+goEditProfile(BuildContext context, FirebaseUser user) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => ProfilePageEdit(user: user)),
   );
 }

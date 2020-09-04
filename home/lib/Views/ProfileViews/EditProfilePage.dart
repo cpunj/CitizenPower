@@ -1,3 +1,4 @@
+import 'package:citizenpower/Navigator/NavigatorPushes.dart';
 import 'package:citizenpower/TextStyles.dart';
 import 'package:citizenpower/controllers/profileController.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -123,7 +124,7 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
                                 widget.user.uid, nameController.text);
                             profileController.updateBio(
                                 widget.user.uid, bioController.text);
-                            widget.toggleView();
+                            goProfilePage(context, widget.user);
                           }),
                     ),
                   ],
