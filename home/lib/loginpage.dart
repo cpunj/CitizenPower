@@ -1,4 +1,6 @@
 import 'package:citizenpower/TextStyles.dart';
+import 'package:citizenpower/databaseServices/database.dart';
+import 'package:citizenpower/databaseServices/helperfunctions.dart';
 import 'package:flutter/material.dart';
 import 'registration.dart';
 import 'constants.dart';
@@ -12,10 +14,9 @@ class LoginPage extends StatefulWidget {
 
 class LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  String email;
-  String password;
-
+  final emailController = TextEditingController();
+  final passController = TextEditingController();
+  ProfileDatabaseMethods databaseMethods = new ProfileDatabaseMethods();
   @override
   Widget build(BuildContext context) {
     //Start of widget tree
@@ -61,7 +62,7 @@ class LoginPageState extends State<LoginPage> {
                               errorStyle: errorTextStyle1(),
                               labelText: "Email",
                               hintText: "Enter Email address"),
-                          onSaved: (input) => email = input,
+                          onSaved: (input) => emailController.text = input,
                           keyboardType: TextInputType.emailAddress,
                           validator: (val) {
                             if (val.isEmpty ||
@@ -93,7 +94,7 @@ class LoginPageState extends State<LoginPage> {
                               hintText: "Insert password",
                             ),
                             keyboardType: TextInputType.text,
-                            onSaved: (input) => password = input,
+                            onSaved: (input) => passController.text = input,
                             validator: (val) =>
                                 val.length < 6 ? 'Invalid Password' : null,
                             obscureText: true,
@@ -174,10 +175,15 @@ class LoginPageState extends State<LoginPage> {
   Future<void> signIn() async {
     final formState = _formKey.currentState;
     if (formState.validate()) {
+      HelperFunctions.saveUserEmailSharedPreference(emailController.text);
+
       formState.save();
       try {
         AuthResult result = await FirebaseAuth.instance
-            .signInWithEmailAndPassword(email: email, password: password);
+            .signInWithEmailAndPassword(
+                email: emailController.text, password: passController.text);
+        HelperFunctions.saveUserLoggedInSharedPreference(true);
+
         FirebaseUser user = result.user;
 
         Navigator.pushReplacement(context,

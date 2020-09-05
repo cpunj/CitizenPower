@@ -1,4 +1,5 @@
 import 'package:citizenpower/databaseServices/database.dart';
+import 'package:citizenpower/databaseServices/helperfunctions.dart';
 import 'package:citizenpower/loginpage.dart';
 import 'package:flutter/material.dart';
 import 'Layouts/GenericLayouts.dart';
@@ -20,7 +21,7 @@ class _RegistrationState extends State<Registration> {
   final passController = TextEditingController();
   //Methods for uploading the registration info for profile
   ProfileDatabaseMethods profileDatabaseMethods = ProfileDatabaseMethods();
-
+  HelperFunctions helperFunctions = new HelperFunctions();
   Future<void> registerUser() async {
     final formState = _formKey.currentState;
     if (formState.validate()) {
@@ -29,6 +30,8 @@ class _RegistrationState extends State<Registration> {
         "name": nameController.text,
         "email": emailController.text,
       };
+      HelperFunctions.saveUserEmailSharedPreference(emailController.text);
+      HelperFunctions.saveUserEmailSharedPreference(nameController.text);
 
       formState.save();
       try {

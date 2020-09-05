@@ -1,6 +1,8 @@
 import 'package:citizenpower/Views/MessageViews/recent_chat.dart';
 import 'package:citizenpower/Views/SocialMenu.dart';
 import 'package:citizenpower/constants.dart';
+import 'package:citizenpower/databaseServices/constants.dart';
+import 'package:citizenpower/databaseServices/helperfunctions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:citizenpower/Views/MessageViews/search.dart';
@@ -17,6 +19,15 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
+  void initState() {
+    getUserInfo();
+    super.initState();
+  }
+
+  getUserInfo() async {
+    Constants.myName = HelperFunctions.getUserNameSharedPreference() as String;
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
@@ -80,13 +91,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(child: Icon(Icons.search),
-      onPressed:(){
-        Navigator.push(context,
-        MaterialPageRoute(
-          builder:(context) => SearchScreen()
-        ));
-      },),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.search),
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => SearchScreen()));
+        },
+      ),
       body: Column(
         children: <Widget>[
           CategorySelector(),
