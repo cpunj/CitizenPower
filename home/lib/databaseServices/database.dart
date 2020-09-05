@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+
 class ProfileDatabaseMethods {
   //Used for uploading user data to FS when an Auth account is made in registration
   //Uses map to upload registration data and user to keep consistent UID
@@ -11,6 +12,9 @@ class ProfileDatabaseMethods {
 //Used for downloading Snapshot for profile views
   getUserByUID(String uID) async {
     return await Firestore.instance.collection("users").document(uID).get();
+  }
+  getUserbyUsername(String username) async{
+   return await Firestore.instance.collection("users").where("name",isEqualTo: username).getDocuments();
   }
 
   updateUserBio(String bio, String uID) {
@@ -23,7 +27,7 @@ class ProfileDatabaseMethods {
 
   updateUserName(String name, String uID) {
     Firestore.instance
-        .collection("users")
+        .collection("users") 
         .document(uID)
         .updateData({"name": name});
     print('This just ran1');
