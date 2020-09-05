@@ -23,6 +23,11 @@ QuerySnapshot searchSnapshot;
       });
     });
   }
+  createChatroomAndStartConversation(String userName){
+    List<String> users=[userName,];
+    databaseMethods.createChatRoom(){
+  }
+  }
   Widget searchList(){
     return searchSnapshot != null ? ListView.builder(
       itemCount:searchSnapshot.documents.length,
@@ -122,7 +127,12 @@ Widget build(BuildContext context){
             Text(userEmail,style:TextStyle(color:Colors.black38),)
                         ],),
                         Spacer(),
-                        Container(
+                        GestureDetector(
+                          onTap:(){ 
+
+                        },
+                        
+                        child:Container(
                           decoration:BoxDecoration(
                             color:Colors.orange,
                             borderRadius:BorderRadius.circular(30)
@@ -131,7 +141,7 @@ Widget build(BuildContext context){
 
                           child:Text("Message",style:TextStyle(color:Colors.black38),),
                         )
-                  ],
+                        )],
                 ),
               );
             }

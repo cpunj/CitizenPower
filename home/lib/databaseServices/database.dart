@@ -16,6 +16,11 @@ class ProfileDatabaseMethods {
   getUserbyUsername(String username) async{
    return await Firestore.instance.collection("users").where("name",isEqualTo: username).getDocuments();
   }
+  createChatRoom(String chatRoomId, chatRoomMap){
+    Firestore.instance.collection("ChatRoom").document(chatRoomId).setData(chatRoomMap((e){
+      print(e.toString());
+    }));
+  }
 
   updateUserBio(String bio, String uID) {
     Firestore.instance
