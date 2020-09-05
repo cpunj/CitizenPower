@@ -43,7 +43,8 @@ QuerySnapshot searchSnapshot;
   Widget build(BuildContext context){
     return Scaffold(
       appBar:topAppBarLayout("Search"),
-      body:Container(
+      body:
+      Container(
         child: Column(children: 
         [
           Container(
@@ -54,7 +55,9 @@ QuerySnapshot searchSnapshot;
             child:
           Row(children: [
           Expanded(
+            
             child:TextField(
+              controller:searchTextEditingController,
               style:TextStyle(
                 color:Colors.black38
               ),
@@ -88,12 +91,16 @@ initiateSearch();
             ),
             padding:EdgeInsets.all(20),
             child:Image.asset("assets/download.png")),
-   )],
+   )
+   ],
           ),
+            
           ),
-          searchList(),
-        ],) ,
-      )
+          searchList()
+     
+        ],
+        ) ,
+      ),
       
     );
   }
@@ -111,8 +118,8 @@ Widget build(BuildContext context){
       children: [
         Column(
           children: [
-            Text(userName, style:simpleTextStyle(),),
-            Text(userEmail, style:simpleTextStyle(),)
+            Text(userName,style:TextStyle(color:Colors.black38),),
+            Text(userEmail,style:TextStyle(color:Colors.black38),)
                         ],),
                         Spacer(),
                         Container(
@@ -122,12 +129,12 @@ Widget build(BuildContext context){
                           ),
                           padding: EdgeInsets.symmetric(horizontal:20,vertical:18),
 
-                          child:Text("Message",style:simpleTextStyle()),
+                          child:Text("Message",style:TextStyle(color:Colors.black38),),
                         )
                   ],
                 ),
               );
             }
             
-              simpleTextStyle() {}
+          
 }
