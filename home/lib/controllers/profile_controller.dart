@@ -1,9 +1,7 @@
 import 'package:citizenpower/databaseServices/database.dart';
 import 'package:citizenpower/models/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:path/path.dart';
+import 'package:flutter/cupertino.dart';
 import 'dart:io';
 
 class ProfileController {
@@ -26,6 +24,11 @@ class ProfileController {
     return profile.bio;
   }
 
+  //get pic URL of downloaded profile
+  String getPic() {
+    return profile.picLink;
+  }
+
   //get full downloaded profile
   Profile getProfile() {
     return profile;
@@ -37,10 +40,17 @@ class ProfileController {
     }
   }
 
+  //uploads the given name to the document with the corresponding uID
   updateName(String uID, String name) {
     if (name != null) {
       profileDatabaseMethods.updateUserName(name, uID);
     }
+  }
+
+  uploadProfilePic(BuildContext context, String uID) {
+    profileDatabaseMethods.uploadPic(context, profileImage).then((val) {
+      profileDatabaseMethods.updatePicLink(val, uID);
+    });
   }
 
   //Used to get profile data, async to allow setState use in view
@@ -54,6 +64,7 @@ class ProfileController {
       profileSnapshot = val;
       profile.name = profileSnapshot.data["name"];
       profile.bio = profileSnapshot.data["bio"];
+      profile.picLink = profileSnapshot.data["picLink"];
     });
   }
 }
