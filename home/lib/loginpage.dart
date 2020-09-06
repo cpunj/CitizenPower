@@ -188,6 +188,7 @@ class LoginPageState extends State<LoginPage> {
 
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => AppHome(user: user)));
+        HelperFunctions.saveUserEmailSharedPreference(user.email);
       } catch (e) {
         print(e.message);
       }

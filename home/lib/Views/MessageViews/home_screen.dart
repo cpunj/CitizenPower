@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   getUserInfo() async {
-    Constants.myName = HelperFunctions.getUserNameSharedPreference() as String;
+    Constants.myName = HelperFunctions.getUserEmailSharedPreference() as String;
   }
 
   Widget build(BuildContext context) {

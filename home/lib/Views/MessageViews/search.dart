@@ -3,13 +3,19 @@ import 'package:citizenpower/databaseServices/constants.dart';
 import 'package:citizenpower/databaseServices/database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
 import 'conversation_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:citizenpower/databaseServices/helperfunctions.dart';
 
 class SearchScreen extends StatefulWidget {
+  const SearchScreen({Key key, @required this.user}) : super(key: key);
+  final FirebaseUser user;
+
   @override
   _SearchScreenState createState() => _SearchScreenState();
 }
+
+String _myName;
 
 class _SearchScreenState extends State<SearchScreen> {
   ProfileDatabaseMethods databaseMethods = new ProfileDatabaseMethods();
@@ -46,6 +52,12 @@ class _SearchScreenState extends State<SearchScreen> {
   void initState() {
     initiateSearch();
     super.initState();
+  }
+
+  getUserInfo() async {
+    _myName = await HelperFunctions.getUserNameSharedPreference() as String;
+    setState(() {});
+    print("${_myName}");
   }
 
   Widget build(BuildContext context) {
