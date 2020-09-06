@@ -1,6 +1,10 @@
 import 'package:citizenpower/databaseServices/database.dart';
 import 'package:citizenpower/models/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:path/path.dart';
+import 'dart:io';
 
 class ProfileController {
   //Holds FS Snapshot once it is downloaded
@@ -10,6 +14,7 @@ class ProfileController {
   Profile profile = Profile();
   //Class containing methods for downloading from FS
   ProfileDatabaseMethods profileDatabaseMethods = ProfileDatabaseMethods();
+  File profileImage;
 
   //get name of downloaded profile
   String getName() {
@@ -19,6 +24,11 @@ class ProfileController {
   //get bio of downloaded profile
   String getBio() {
     return profile.bio;
+  }
+
+  //get full downloaded profile
+  Profile getProfile() {
+    return profile;
   }
 
   updateBio(String uID, String bio) {
@@ -34,7 +44,7 @@ class ProfileController {
   }
 
   //Used to get profile data, async to allow setState use in view
-  getProfile(String uID) async {
+  loadProfile(String uID) async {
     profileDatabaseMethods
         //Downloads profile based on the UID stored in user from app login
         .getUserByUID(uID)

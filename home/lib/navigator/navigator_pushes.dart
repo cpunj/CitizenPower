@@ -9,6 +9,7 @@ import 'package:citizenpower/Views/profileViews/profile_list.dart';
 import 'package:citizenpower/Views/profileViews/profile_page.dart';
 import 'package:citizenpower/Views/profileViews/profile_page_edit.dart';
 import 'package:citizenpower/Views/social_menu.dart';
+import 'package:citizenpower/models/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -101,9 +102,13 @@ goImageView(BuildContext context, String image) {
   );
 }
 
-goEditProfile(BuildContext context, FirebaseUser user) {
+goEditProfile(BuildContext context, FirebaseUser user, Profile myProfile) {
   Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => ProfilePageEdit(user: user)),
+    MaterialPageRoute(
+        builder: (context) => ProfilePageEdit(
+              user: user,
+              profile: myProfile,
+            )),
   );
 }
