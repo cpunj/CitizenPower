@@ -147,7 +147,7 @@ Widget topProfileLayoutEdit(BuildContext context) {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ProfileList(user: null)));
+                        builder: (context) => ProfileList()));
               },
             ),
           ],

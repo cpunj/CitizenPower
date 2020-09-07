@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'Layouts/GenericLayouts.dart';
 import 'commentspage.dart';
 import 'constants.dart';
+import 'newcommentspage.dart';
 
 class AppHome extends StatefulWidget {
   const AppHome({Key key, @required this.user}) : super(key: key);
@@ -728,7 +729,7 @@ class _makeCommentButtonState extends State<makeCommentButton> {
   _commentButtonPressed() {
     setState(() {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => CommentsPage()));
+          context, MaterialPageRoute(builder: (context) => CommentScreen()));
     });
   }
 

@@ -109,7 +109,7 @@ class _ElectorateState extends State<Electorate> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => ProfileList(user: null)));
+                              builder: (context) => ProfileList()));
                     },
                   ),
                 ],
