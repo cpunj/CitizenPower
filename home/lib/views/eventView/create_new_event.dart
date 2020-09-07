@@ -61,6 +61,10 @@ class _CreateNewEventState extends State<CreateNewEvent> {
 
 
               ),
+              SizedBox(
+                height: 50,
+
+              ),
 
               Column(
                 children: [
@@ -70,7 +74,7 @@ class _CreateNewEventState extends State<CreateNewEvent> {
                           borderRadius: BorderRadius.circular(20)
                       ),
                       onPressed: () {},
-                      child: Text("Confirm"),
+                      child: Text("Create"),
 
 
                 ),
