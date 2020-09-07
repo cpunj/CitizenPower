@@ -1,4 +1,5 @@
 import 'package:citizenpower/controllers/profile_controller.dart';
+import 'package:citizenpower/databaseServices/database.dart';
 import 'package:citizenpower/layouts/generic_layouts.dart';
 import 'package:citizenpower/models/profile.dart';
 import 'package:citizenpower/navigator/navigator_pushes.dart';
@@ -6,11 +7,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart';
 
 import '../../text_styles.dart';
 
 FirebaseStorage storage = FirebaseStorage();
+ProfileDatabaseMethods profileDatabaseMethods = ProfileDatabaseMethods();
 
 //Handles profile downloading methods and storage
 ProfileController profileController = ProfileController();
@@ -41,26 +42,13 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
     //Used profile downloaded in my_profile.dart to fill text controllers with the users current information
     bioController.text = widget.profile.bio;
     nameController.text = widget.profile.name;
+    profileController.profile.picLink = widget.profile.picLink;
 
     Future getImage() async {
       var image = await ImagePicker.pickImage(source: ImageSource.gallery);
 
       setState(() {
         profileController.profileImage = image;
-      });
-    }
-
-    Future uploadPic(BuildContext context) async {
-      String fileName = basename(profileController.profileImage.path);
-      StorageReference firebaseStorageRef =
-          FirebaseStorage.instance.ref().child(fileName);
-      StorageUploadTask uploadTask =
-          firebaseStorageRef.putFile(profileController.profileImage);
-      StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
-      setState(() {
-        print("Profile Picture uploaded");
-        Scaffold.of(context)
-            .showSnackBar(SnackBar(content: Text('Profile Picture Uploaded')));
       });
     }
 
@@ -83,21 +71,12 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
                           padding: const EdgeInsets.only(left: 20),
                           child: CircleAvatar(
                             radius: 50.0,
-                            child: ClipOval(
-                              child: SizedBox(
-                                  width: 180.0,
-                                  height: 180.0,
-                                  child:
-                                      (profileController.profileImage != null)
-                                          ? Image.file(
-                                              profileController.profileImage,
-                                            )
-                                          : Expanded(
-                                              child: Icon(
-                                              Icons.person,
-                                              size: 80,
-                                            ))),
-                            ),
+                            backgroundImage: (profileController.profileImage !=
+                                    null)
+                                ? FileImage(profileController.profileImage)
+                                : (profileController.getPic() != null)
+                                    ? NetworkImage(profileController.getPic())
+                                    : Icon(Icons.person),
                           ),
                         ),
                         onPressed: () {
@@ -155,11 +134,12 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
                       "Done",
                     ),
                     onPressed: () {
+                      profileController.uploadProfilePic(
+                          context, widget.user.uid);
                       profileController.updateName(
                           widget.user.uid, nameController.text);
                       profileController.updateBio(
                           widget.user.uid, bioController.text);
-                      uploadPic(context);
                       goProfilePage(context, widget.user);
                     }),
               ),
@@ -184,13 +164,6 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
           }
           //onTap: _onTap,
           ),
-    )
-//        : Container(
-////            color: Colors.black,
-////            child: Center(
-////              child: CircularProgressIndicator(),
-////            ),
-////          )
-        ;
+    );
   }
 }

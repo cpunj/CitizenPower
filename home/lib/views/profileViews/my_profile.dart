@@ -49,18 +49,15 @@ class _MyProfilePageState extends State<MyProfilePage> {
                       children: <Widget>[
                         Column(
                           children: <Widget>[
-                            FlatButton(
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 20),
-                                child: CircleAvatar(
-                                  radius: 50.0,
-                                  backgroundImage:
-                                      AssetImage('assets/grace.jpg'),
-                                ),
-                              ),
-                              onPressed: () {
-                                //TODO:Edit function for current logged in user's profile picture
-                              },
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20),
+                              child: (profileController.getPic() != null)
+                                  ? CircleAvatar(
+                                      radius: 50.0,
+                                      backgroundImage: NetworkImage(
+                                          profileController.getPic()),
+                                    )
+                                  : CircularProgressIndicator(),
                             ),
                           ],
                         ),
