@@ -25,7 +25,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   getUserInfo() async {
-    Constants.myName = HelperFunctions.getUserEmailSharedPreference() as String;
+    Constants.myName = await HelperFunctions.getUserNameSharedPreference();
+    setState(() {});
   }
 
   Widget build(BuildContext context) {
@@ -95,7 +96,9 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Icon(Icons.search),
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => SearchScreen()));
+              context,
+              MaterialPageRoute(
+                  builder: (context) => SearchScreen(user: widget.user)));
         },
       ),
       body: Column(

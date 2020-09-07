@@ -1,6 +1,7 @@
 import 'package:citizenpower/TextStyles.dart';
 import 'package:citizenpower/databaseServices/database.dart';
 import 'package:citizenpower/databaseServices/helperfunctions.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'registration.dart';
 import 'constants.dart';
@@ -17,6 +18,7 @@ class LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final passController = TextEditingController();
   ProfileDatabaseMethods databaseMethods = new ProfileDatabaseMethods();
+  QuerySnapshot userSnapshot;
   @override
   Widget build(BuildContext context) {
     //Start of widget tree
@@ -179,12 +181,16 @@ class LoginPageState extends State<LoginPage> {
 
       formState.save();
       try {
+        databaseMethods.getUserbyUserEmail(emailController.text).then((val) {
+          userSnapshot = val;
+          HelperFunctions.saveUserNameSharedPreference(
+              userSnapshot.documents[0].data["name"]);
+        });
         AuthResult result = await FirebaseAuth.instance
             .signInWithEmailAndPassword(
                 email: emailController.text, password: passController.text);
-        HelperFunctions.saveUserLoggedInSharedPreference(true);
-
         FirebaseUser user = result.user;
+        HelperFunctions.saveUserLoggedInSharedPreference(true);
 
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => AppHome(user: user)));

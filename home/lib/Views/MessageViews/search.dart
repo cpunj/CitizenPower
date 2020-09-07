@@ -50,14 +50,15 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   void initState() {
+    getUserInfo();
     initiateSearch();
     super.initState();
   }
 
   getUserInfo() async {
-    _myName = await HelperFunctions.getUserNameSharedPreference() as String;
+    _myName = await HelperFunctions.getUserNameSharedPreference();
     setState(() {});
-    print("${_myName}");
+    print("$_myName");
   }
 
   Widget build(BuildContext context) {
@@ -114,9 +115,10 @@ class _SearchScreenState extends State<SearchScreen> {
 createChatroomAndStartConversation({BuildContext context, String userName}) {
   if (userName != Constants.myName) {
     String chatRoomId = getChatRoomId(userName, Constants.myName);
-    List<String> users = [userName, Constants.myName];
+    List<String> user = [userName, Constants.myName];
+
     Map<String, dynamic> chatRoomMap = {
-      "users": users,
+      "users": user,
       "chatroomId": chatRoomId
     };
     ProfileDatabaseMethods().createChatRoom(chatRoomId, chatRoomMap);
