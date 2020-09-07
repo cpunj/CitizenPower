@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'dart:io';
 
 class ProfileController {
-  //Holds FS Snapshot once it is downloaded
+  //Holds FS Snapshot once it is downloaded from FS
   DocumentSnapshot profileSnapshot;
   //Holds the current logged in user
   //The profile that will be loaded into profile View
@@ -58,8 +58,10 @@ class ProfileController {
     profileDatabaseMethods
         //Downloads profile based on the UID stored in user from app login
         .getUserByUID(uID)
-        //getUserByUID() returns a Future (main program thread continues), 'then()' only runs once Future is actually downloaded as a DocumentSnapshot
-        //Once DocumentSnapshot is downloaded snapshot is stored in profileSnapshot and widget is rebuilt in view using SetState
+        //getUserByUID() returns a Future (main program thread continues),
+        // 'then()' only runs once Future is actually downloaded and becomes a DocumentSnapshot
+        //Once DocumentSnapshot is downloaded snapshot is stored in profileSnapshot and
+        // widget is rebuilt in view using SetState()
         .then((val) {
       profileSnapshot = val;
       profile.name = profileSnapshot.data["name"];

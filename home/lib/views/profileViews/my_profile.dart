@@ -30,10 +30,11 @@ class _MyProfilePageState extends State<MyProfilePage> {
   Widget build(BuildContext context) {
     //Gets profile data to fill in ProfilePageEdit View
     profileController.loadProfile(widget.user.uid).then((val) {
-      //'then()' only runs once FS data has been downloaded
+      //'then()' only runs once FS data for view has been downloaded
       setState(() {});
     });
-    //While profileSnapshot is downloading loading indicator is shown
+    //While profileSnapshot is downloading loading indicator is shown instead, setState reruns to
+    //build actual view once data is downloaded
     return profileController.profileSnapshot != null
         ? Scaffold(
             appBar: topAppBarLayout('Profile'),
@@ -57,6 +58,7 @@ class _MyProfilePageState extends State<MyProfilePage> {
                                       backgroundImage: NetworkImage(
                                           profileController.getPic()),
                                     )
+                                  //TODO:Get this widget to actually show when loading the profile pic
                                   : CircularProgressIndicator(),
                             ),
                           ],
@@ -122,6 +124,8 @@ class _MyProfilePageState extends State<MyProfilePage> {
                           child: Text(
                             "Edit",
                           ),
+                          //Goes to edit view and passes in the currently logged in user, and
+                          //The currently downloaded profile
                           onPressed: () {
                             goEditProfile(context, widget.user,
                                 profileController.getProfile());
@@ -149,6 +153,8 @@ class _MyProfilePageState extends State<MyProfilePage> {
                 //onTap: _onTap,
                 ),
           )
+
+        //Build progress indicator if there's no data to build view with yet
         : Container(
             color: Colors.black,
             child: Center(

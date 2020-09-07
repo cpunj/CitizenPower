@@ -18,7 +18,11 @@ class _EventViewState extends State<EventView> {
             color: brightOrange,
             child: CircleAvatar(
               backgroundColor: brightOrange,
-              child: IconButton(icon: Icon(Icons.add), onPressed: () {}),
+              child: IconButton(icon: Icon(Icons.add), onPressed: () {
+                Navigator.pushNamed(context, "/k");
+
+
+              }),
             ),
           ),
         ],
