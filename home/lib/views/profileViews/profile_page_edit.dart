@@ -21,7 +21,9 @@ class ProfilePageEdit extends StatefulWidget {
       {Key key, @required this.user, this.toggleView, this.profile})
       : super(key: key);
   final FirebaseUser user;
+  //Needs removal
   final Function toggleView;
+  //Takes the profile downloaded in the previous view
   final Profile profile;
 
   @override
@@ -39,14 +41,19 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
 
   @override
   Widget build(BuildContext context) {
-    //Used profile downloaded in my_profile.dart to fill text controllers with the users current information
+    //Used profile downloaded in my_profile.dart to fill text
+    // controllers with the users current information as well as the current profile pic
     bioController.text = widget.profile.bio;
     nameController.text = widget.profile.name;
     profileController.profile.picLink = widget.profile.picLink;
 
+    //Should probably be in database methods but it's here for now
+    //Takes data external to the app (device gallery)so returns a Future through the use of 'async' function marker
+    //This allows the main program thread to continue running and stops breaking from null errors and such
     Future getImage() async {
       var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-
+      //Stores the file in the profile controller
+      //And reruns state build to show the selected picture
       setState(() {
         profileController.profileImage = image;
       });
@@ -71,11 +78,17 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
                           padding: const EdgeInsets.only(left: 20),
                           child: CircleAvatar(
                             radius: 50.0,
+                            //Has the user selected a profile pic from gallery since entering the edit view?
+                            // Then show that.
                             backgroundImage: (profileController.profileImage !=
                                     null)
                                 ? FileImage(profileController.profileImage)
+                                //User has not selected a pic, do the already have a profile pic uploaded?
+                                //Then show that.
                                 : (profileController.getPic() != null)
                                     ? NetworkImage(profileController.getPic())
+                                    //User does not currently have any pic selected OR downloaded?
+                                    //Show placeholder
                                     : Icon(Icons.person),
                           ),
                         ),
@@ -133,6 +146,8 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
                     child: Text(
                       "Done",
                     ),
+                    //Upload all the data the is currently present in the edit view
+                    //Add more functions if profile view fields are expanded
                     onPressed: () {
                       profileController.uploadProfilePic(
                           context, widget.user.uid);
@@ -140,6 +155,7 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
                           widget.user.uid, nameController.text);
                       profileController.updateBio(
                           widget.user.uid, bioController.text);
+                      //Goes to back to my profile to show the newly uploaded data
                       goProfilePage(context, widget.user);
                     }),
               ),
