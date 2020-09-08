@@ -111,7 +111,8 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 }
 
-createChatroomAndStartConversation({BuildContext context, String userName}) {
+createChatroomAndStartConversation(BuildContext context,
+    {BuildContext text, String userName}) {
   //if username isn't equal to an empty string
 
   if (userName != Constants.myName) {
@@ -124,7 +125,9 @@ createChatroomAndStartConversation({BuildContext context, String userName}) {
     };
     ProfileDatabaseMethods().createChatRoom(chatRoomId, chatRoomMap);
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => ConversationScreen()));
+        context,
+        MaterialPageRoute(
+            builder: (context) => ConversationScreen(chatRoomId)));
   } else {
     print("You cannot send message to yourself");
   }
@@ -155,7 +158,7 @@ class SearchTile extends StatelessWidget {
           Spacer(),
           GestureDetector(
               onTap: () {
-                createChatroomAndStartConversation(userName: userName);
+                createChatroomAndStartConversation(context, userName: userName);
               },
               child: Container(
                 decoration: BoxDecoration(
