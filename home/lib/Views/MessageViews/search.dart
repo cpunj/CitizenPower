@@ -112,12 +112,12 @@ class _SearchScreenState extends State<SearchScreen> {
 }
 
 createChatroomAndStartConversation(BuildContext context,
-    {BuildContext text, String userName}) {
+    {BuildContext text, String userEmail}) {
   //if username isn't equal to an empty string
 
-  if (userName != Constants.myName) {
-    String chatRoomId = getChatRoomId(userName, Constants.myName);
-    List<String> user = [userName, Constants.myName];
+  if (userEmail != Constants.myName) {
+    String chatRoomId = getChatRoomId(userEmail, Constants.myName);
+    List<String> user = [userEmail, Constants.myName];
 
     Map<String, dynamic> chatRoomMap = {
       "users": user,
@@ -158,7 +158,8 @@ class SearchTile extends StatelessWidget {
           Spacer(),
           GestureDetector(
               onTap: () {
-                createChatroomAndStartConversation(context, userName: userName);
+                createChatroomAndStartConversation(context,
+                    userEmail: userEmail);
               },
               child: Container(
                 decoration: BoxDecoration(

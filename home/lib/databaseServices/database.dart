@@ -37,23 +37,20 @@ class ProfileDatabaseMethods {
     });
   }
 
-  addConversationMessages(String chatRoomId, messageMap) {
+  addConversationMessages(String chatroomId, messageMap) {
     Firestore.instance
         .collection("ChatRoom")
-        .document(chatRoomId)
+        .document(chatroomId)
         .collection("chats")
-        .add(messageMap)
-        .catchError((e) {
-      print(e.toString());
-    });
+        .add(messageMap);
   }
 
-  getConversationMessages(String chatRoomId) async {
+  getConversationMessages(String chatroomId) async {
     return await Firestore.instance
         .collection("ChatRoom")
-        .document(chatRoomId)
+        .document(chatroomId)
         .collection("chats")
-        .orderBy("time")
+        .orderBy("time", descending: false)
         .snapshots();
   }
 

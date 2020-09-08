@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   getUserInfo() async {
-    Constants.myName = await HelperFunctions.getUserEmailSharedPreference();
+    Constants.myName = await HelperFunctions.getUserNameSharedPreference();
     setState(() {});
   }
 

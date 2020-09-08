@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class ConversationScreen extends StatefulWidget {
-  final String chatRoomId;
+  final String chatroomId;
 
-  ConversationScreen(this.chatRoomId);
+  ConversationScreen(this.chatroomId);
   @override
   _ConversationScreenState createState() => _ConversationScreenState();
 }
@@ -16,16 +16,20 @@ class _ConversationScreenState extends State<ConversationScreen> {
   ProfileDatabaseMethods databaseMethods = new ProfileDatabaseMethods();
   TextEditingController messageController = new TextEditingController();
   Stream chatMessagesStream;
-  Widget ChatMessageList() {
+  Widget chatMessageList() {
     return StreamBuilder(
       stream: chatMessagesStream,
       builder: (context, snapshot) {
-        return ListView.builder(
-            itemCount: snapshot.data.documents.length,
-            itemBuilder: (context, index) {
-              return MessageTile(
-                  snapshot.data.documents[index].data["message"]);
-            });
+        return snapshot.hasData
+            ? ListView.builder(
+                itemCount: snapshot.data.documents.length,
+                itemBuilder: (context, index) {
+                  return MessageTile(
+                      snapshot.data.documents[index].data["message"],
+                      snapshot.data.documents[index].data["sendBy"] ==
+                          Constants.myName);
+                })
+            : Container();
       },
     );
   }
@@ -37,13 +41,13 @@ class _ConversationScreenState extends State<ConversationScreen> {
         "sendBy": Constants.myName,
         "time": DateTime.now().millisecondsSinceEpoch
       };
-      databaseMethods.addConversationMessages(widget.chatRoomId, messageMap);
+      databaseMethods.addConversationMessages(widget.chatroomId, messageMap);
       messageController.text = "";
     }
   }
 
   void initState() {
-    databaseMethods.getConversationMessages(widget.chatRoomId).then((value) {
+    databaseMethods.getConversationMessages(widget.chatroomId).then((value) {
       setState(() {
         chatMessagesStream = value;
       });
@@ -58,7 +62,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
       body: Container(
         child: Stack(
           children: [
-            ChatMessageList(),
+            chatMessageList(),
             Container(
               alignment: Alignment.bottomCenter,
               color: Color(0x54FFFFFFF),
@@ -67,7 +71,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
                 children: [
                   Expanded(
                     child: TextField(
-                        // controller: searchTextEditingController,
+                        controller: messageController,
                         style: TextStyle(color: Colors.black38),
                         decoration: new InputDecoration(
                           hintText: "Message...",
@@ -107,13 +111,38 @@ class _ConversationScreenState extends State<ConversationScreen> {
 
 class MessageTile extends StatelessWidget {
   final String message;
-  MessageTile(this.message);
+  final bool isSendByMe;
+  MessageTile(this.message, this.isSendByMe);
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text(
-        message,
-        style: TextStyle(color: Colors.black38),
+      margin: EdgeInsets.symmetric(vertical: 10),
+      width: MediaQuery.of(context).size.width,
+      alignment: isSendByMe ? Alignment.centerRight : Alignment.centerLeft,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: isSendByMe
+                  ? [
+                      const Color(0xFFFBE9E7),
+                      const Color(0xFFFBE9E7),
+                    ]
+                  : [const Color(0xFFE0F2F1), const Color(0xFFE0F2F1)],
+            ),
+            borderRadius: isSendByMe
+                ? BorderRadius.only(
+                    topLeft: Radius.circular(23),
+                    topRight: Radius.circular(23),
+                    bottomLeft: Radius.circular(23))
+                : BorderRadius.only(
+                    topLeft: Radius.circular(23),
+                    topRight: Radius.circular(23),
+                    bottomRight: Radius.circular(23))),
+        child: Text(
+          message,
+          style: TextStyle(color: Colors.black87, fontSize: 17),
+        ),
       ),
     );
   }
