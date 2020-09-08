@@ -1,6 +1,6 @@
-import 'package:citizenpower/Layouts/generic_layouts.dart';
-import 'package:citizenpower/Navigator/navigator_pushes.dart';
-import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/models/electorateModels/leaderItem.dart';
+import 'package:citizenpower/layouts/generic_layouts.dart';
+import 'package:citizenpower/navigator/navigator_pushes.dart';
+import 'package:citizenpower/models/electorateModels/leaderItem.dart';
 import 'package:citizenpower/views/create_post_view.dart';
 import 'package:citizenpower/views/electorateViews/leader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -203,6 +203,32 @@ SingleChildScrollView createElectorateView(
             SizedBox(
               height: 10,
             ),
+            Text(
+              "Clark",
+              style: TextStyle(fontSize: 25.0),
+            ),
+          Row(
+              children: <Widget>[Expanded(child: Card(
+                child:Container(
+                  padding: EdgeInsets.symmetric(vertical: 6, horizontal: 16),
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.dstATop),
+                          image: AssetImage('assets/mtwellington.jpg')
+                      ),
+                    ),
+                    child:Text(
+                    "Population: 70k\n"
+                        "Area: 292.26 sq km\n"
+                        "Consists of: City of Hobart, City of Glenorchy, northen parts of Kingborough Council including Taroona\n"
+                        "Unemployment rate: ?%\n"
+                        "Gender ratio (M:F): ?:?\n"
+                        "Cultural diversity(?): ",
+                    style: TextStyle(fontSize: 16.0),
+                      textAlign: TextAlign.center
+              ))))]
+          ),
+
             Text(
               "House of Representatives",
               style: TextStyle(fontSize: 25.0),

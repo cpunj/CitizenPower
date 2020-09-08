@@ -1,5 +1,5 @@
-import 'package:citizenpower/Navigator/navigator_pushes.dart';
-import 'package:citizenpower/views/MessageViews/recent_chat.dart';
+import 'package:citizenpower/navigator/navigator_pushes.dart';
+import 'package:citizenpower/views/messageViews/recent_chat.dart';
 import 'package:citizenpower/views/social_menu.dart';
 import 'package:citizenpower/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';

@@ -4,18 +4,18 @@ import 'package:citizenpower/views/electorateViews/electorate_view.dart';
 import 'package:citizenpower/views/eventView/create_new_event.dart';
 import 'package:citizenpower/views/eventView/create_new_event.dart';
 import 'package:citizenpower/views/helpView/help_page.dart';
-import 'Views/eventview/event_page.dart';
-import 'package:citizenpower/Views/eventview/event_view.dart';
-import 'package:citizenpower/Views/groupview/group_page.dart';
-import 'package:citizenpower/Views/groupview/group_view.dart';
-import 'package:citizenpower/Views/settings.dart';
+import 'views/eventView/event_page.dart';
+import 'package:citizenpower/views/eventView/event_view.dart';
+import 'package:citizenpower/views/groupView/group_page.dart';
+import 'package:citizenpower/views/groupView/group_view.dart';
+import 'package:citizenpower/views/settings.dart';
 
 import 'package:citizenpower/login_page.dart';
 
 import 'package:flutter/material.dart';
 import 'app_home.dart';
-import 'Views/ElectorateViews/contact_view.dart';
-import 'Views/ElectorateViews/electorate_profile_details.dart';
+import 'views/electorateViews/contact_view.dart';
+import 'views/electorateViews/electorate_profile_details.dart';
 import 'constants.dart';
 //Testing Github: Hello I am changing this comment again
 
