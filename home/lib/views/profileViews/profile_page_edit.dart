@@ -89,7 +89,7 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
                                     ? NetworkImage(profileController.getPic())
                                     //User does not currently have any pic selected OR downloaded?
                                     //Show placeholder
-                                    : Icon(Icons.person),
+                                    : AssetImage('pentagramBW.png'),
                           ),
                         ),
                         onPressed: () {

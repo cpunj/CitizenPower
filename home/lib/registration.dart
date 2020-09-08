@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'Layouts/generic_layouts.dart';
 import 'constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'databaseServices/database.dart';
 import 'text_styles.dart';
 import 'database.dart';
+
+ProfileDatabaseMethods profileDatabaseMethods = ProfileDatabaseMethods();
 
 class Registration extends StatefulWidget {
   @override
@@ -13,11 +16,6 @@ class Registration extends StatefulWidget {
 
 class _RegistrationState extends State<Registration> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  String email;
-  String password;
-  String phone;
-  String name;
 
   //Does it matter that we're using variables not controllers? - Jack
   final emailController = TextEditingController();
@@ -29,17 +27,17 @@ class _RegistrationState extends State<Registration> {
     final formState = _formKey.currentState;
     if (formState.validate()) {
       Map<String, String> userInfoMap = {
-        "name": name,
-        "email": email,
+        "name": nameController.text,
+        "email": emailController.text,
       };
 
       formState.save();
       try {
         AuthResult result = await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(email: email, password: password);
+            .createUserWithEmailAndPassword(
+                email: emailController.text, password: passController.text);
         FirebaseUser user = result.user;
-        await DatabaseService(uid: user.uid)
-            .updateUserData(email, phone, name, password);
+        profileDatabaseMethods.uploadRegistrationInfo(userInfoMap, user);
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => LoginPage()));
       } catch (e) {
@@ -74,7 +72,7 @@ class _RegistrationState extends State<Registration> {
                       new TextFormField(
                         decoration:
                             textFormDec(label: 'Name', hint: 'Enter your name'),
-                        onSaved: (input) => name = input,
+                        controller: nameController,
                       ),
                       SizedBox(
                         height: 20,
@@ -82,7 +80,7 @@ class _RegistrationState extends State<Registration> {
                       new TextFormField(
                         decoration: textFormDec(
                             label: 'Phone', hint: 'Enter your phone number'),
-                        onSaved: (input) => phone = input,
+                        controller: mobileController,
                       ),
                       SizedBox(
                         height: 20,
@@ -91,7 +89,7 @@ class _RegistrationState extends State<Registration> {
                         decoration: textFormDec(
                             label: 'Email', hint: 'Enter your email address'),
                         keyboardType: TextInputType.emailAddress,
-                        onSaved: (input) => email = input,
+                        controller: emailController,
                       ),
                       SizedBox(
                         height: 20,
@@ -100,7 +98,7 @@ class _RegistrationState extends State<Registration> {
                         decoration: textFormDec(
                             label: 'Password', hint: 'Enter password'),
                         keyboardType: TextInputType.text,
-                        onSaved: (input) => password = input,
+                        controller: passController,
                         validator: (val) => val.length < 6
                             ? 'Password should be longer than 6 characters'
                             : null,
