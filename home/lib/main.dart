@@ -1,7 +1,5 @@
 import 'package:citizenpower/views/aboutCitizen/about_citizen.dart';
 import 'package:citizenpower/views/electorateViews/electorate.dart';
-import 'package:citizenpower/views/electorateViews/electorate_view.dart';
-import 'package:citizenpower/views/eventView/create_new_event.dart';
 import 'package:citizenpower/views/eventView/create_new_event.dart';
 import 'package:citizenpower/views/helpView/help_page.dart';
 import 'Views/eventview/event_page.dart';
