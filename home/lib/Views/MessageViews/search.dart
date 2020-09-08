@@ -56,9 +56,8 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   getUserInfo() async {
-    _myName = await HelperFunctions.getUserNameSharedPreference();
+    Constants.myName = await HelperFunctions.getUserNameSharedPreference();
     setState(() {});
-    print("$_myName");
   }
 
   Widget build(BuildContext context) {
@@ -113,6 +112,8 @@ class _SearchScreenState extends State<SearchScreen> {
 }
 
 createChatroomAndStartConversation({BuildContext context, String userName}) {
+  //if username isn't equal to an empty string
+
   if (userName != Constants.myName) {
     String chatRoomId = getChatRoomId(userName, Constants.myName);
     List<String> user = [userName, Constants.myName];

@@ -31,9 +31,10 @@ class ProfileDatabaseMethods {
     Firestore.instance
         .collection("ChatRoom")
         .document(chatRoomId)
-        .setData(chatRoomMap((e) {
+        .setData(chatRoomMap)
+        .catchError((e) {
       print(e.toString());
-    }));
+    });
   }
 
   updateUserBio(String bio, String uID) {
