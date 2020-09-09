@@ -54,6 +54,13 @@ class ProfileDatabaseMethods {
         .snapshots();
   }
 
+  getChatRooms(String userEmail) async {
+    return await Firestore.instance
+        .collection("ChatRoom")
+        .where("users", arrayContains: userEmail)
+        .snapshots();
+  }
+
   updateUserBio(String bio, String uID) {
     Firestore.instance
         .collection("users")
