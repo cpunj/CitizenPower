@@ -1,7 +1,7 @@
 //Used to store data to fill leader's profile when selected from electorate view
 
-class LeaderItem {
-  LeaderItem(
+class LeaderModel {
+  LeaderModel(
       {this.picLink,
       this.name,
       this.house,

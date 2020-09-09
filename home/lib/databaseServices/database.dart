@@ -19,7 +19,7 @@ class ProfileDatabaseMethods {
 
   //Used for downloading a lead profile for the leader profile view
   getLeaderByUID(String electorateUID, String leaderUID) async {
-    Firestore.instance
+    return await Firestore.instance
         .collection("electorates")
         .document(electorateUID)
         .collection("leaders")
