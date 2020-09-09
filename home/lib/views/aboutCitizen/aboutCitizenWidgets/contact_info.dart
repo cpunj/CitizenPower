@@ -21,11 +21,11 @@ class ContactInfo extends StatelessWidget {
           ),
           Text(
             " 4 Battery Square, Battery Point, Tasmania 7004"
-                "                                                   "
-                "0450546136"
-                "                        "
-                "                                                    "
-                "contact@citizentas.org",
+            "                                                   "
+            "0450546136"
+            "                        "
+            "                                                    "
+            "contact@citizentas.org",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20,
@@ -38,10 +38,10 @@ class ContactInfo extends StatelessWidget {
           MaterialButton(
             color: darkGold,
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Donate()),
-              );
+//              Navigator.push(
+//                context,
+//                MaterialPageRoute(builder: (context) => Donate()),
+//              );
             }, //to donate page
             child: Text(
               "Donate",
