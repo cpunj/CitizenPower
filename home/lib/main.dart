@@ -1,7 +1,5 @@
 import 'package:citizenpower/views/aboutCitizen/about_citizen.dart';
 import 'package:citizenpower/views/electorateViews/electorate.dart';
-import 'package:citizenpower/views/electorateViews/electorate_view.dart';
-import 'package:citizenpower/views/eventView/create_new_event.dart';
 import 'package:citizenpower/views/eventView/create_new_event.dart';
 import 'package:citizenpower/views/helpView/help_page.dart';
 import 'views/eventView/event_page.dart';
@@ -26,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     //All Widgets are contained within a 'Material App'P
     return new MaterialApp(
-        home: new ElectorateView(user: null),
+        home: new LoginPage(),
         //Secondary method for pushing between State Widgets
         routes: <String, WidgetBuilder>{
           "/a": (BuildContext context) => new AboutMe(),
@@ -43,7 +41,9 @@ class MyApp extends StatelessWidget {
           "/f": (BuildContext context) => new EventView(),
           "/i": (BuildContext context) => new GroupPage(),
           "/j": (BuildContext context) => new EventPage(),
-          "/z": (BuildContext context) => new Electorate(user: null),
+          "/z": (BuildContext context) => new Electorate(
+                user: null,
+              ),
           "/k": (BuildContext context) => new CreateNewEvent(),
         },
         theme: new ThemeData(

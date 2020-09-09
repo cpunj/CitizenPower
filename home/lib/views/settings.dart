@@ -1,8 +1,7 @@
+import 'package:citizenpower/layouts/generic_layouts.dart';
 import 'package:citizenpower/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import '../layouts/generic_layouts.dart';
 import '../constants.dart';
 
 class Setting extends StatefulWidget {

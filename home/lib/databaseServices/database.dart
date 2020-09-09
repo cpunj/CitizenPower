@@ -51,6 +51,54 @@ class ProfileDatabaseMethods {
         .updateData({"picLink": picLink});
   }
 
+  createChatRoom(String chatRoomId, chatRoomMap) {
+    Firestore.instance
+        .collection("ChatRoom")
+        .document(chatRoomId)
+        .setData(chatRoomMap)
+        .catchError((e) {
+      print(e.toString());
+    });
+  }
+
+  getUserbyUsername(String username) async {
+    return await Firestore.instance
+        .collection("users")
+        .where("name", isEqualTo: username)
+        .getDocuments();
+  }
+
+  getUserbyUserEmail(String userEmail) async {
+    return await Firestore.instance
+        .collection("users")
+        .where("name", isEqualTo: userEmail)
+        .getDocuments();
+  }
+
+  addConversationMessages(String chatroomId, messageMap) {
+    Firestore.instance
+        .collection("ChatRoom")
+        .document(chatroomId)
+        .collection("chats")
+        .add(messageMap);
+  }
+
+  getConversationMessages(String chatroomId) async {
+    return await Firestore.instance
+        .collection("ChatRoom")
+        .document(chatroomId)
+        .collection("chats")
+        .orderBy("time", descending: false)
+        .snapshots();
+  }
+
+  getChatRooms(String userEmail) async {
+    return await Firestore.instance
+        .collection("ChatRoom")
+        .where("users", arrayContains: userEmail)
+        .snapshots();
+  }
+
   //Takes a file and uploads it to Firebase Storage (Same function could be used for more than just profile pic!)
   //Returns a Future class as the DownloadURL string make be loaded first
   Future uploadPic(BuildContext context, File image) async {
