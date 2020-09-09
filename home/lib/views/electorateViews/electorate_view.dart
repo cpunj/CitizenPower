@@ -1,4 +1,3 @@
-import 'package:citizenpower/Navigator/navigator_pushes.dart';
 import 'package:citizenpower/layouts/generic_layouts.dart';
 import 'package:citizenpower/layouts/generic_layouts.dart';
 import 'package:citizenpower/navigator/navigator_pushes.dart';
@@ -211,60 +210,58 @@ SingleChildScrollView createElectorateView(
               "Clark",
               style: TextStyle(fontSize: 25.0),
             ),
-          Row(
-              children: <Widget>[Expanded(child: Card(
-                child:Container(
-                  padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-                    /*decoration: BoxDecoration(
+            Row(children: <Widget>[
+              Expanded(
+                  child: Card(
+                      child: Container(
+                          padding:
+                              EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                          /*decoration: BoxDecoration(
                       image: DecorationImage(
                           colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.dstATop),
                           image: AssetImage('assets/mtwellington.jpg')
                       ),
                     ),*/
-                    child:Column(
-                      children: <Widget>[
-                        Text(
-                            "Population: 70k\n"
+                          child: Column(children: <Widget>[
+                            Text(
+                                "Population: 70k\n"
                                 "Area: 292.26 sq km\n"
                                 "Consists of: City of Hobart, City of Glenorchy, northen parts of "
-                    "Kingborough Council including Taroona\n",
-                            style: TextStyle(fontSize: 16.0),
-                            textAlign: TextAlign.center
-                        ),
-                        ExpansionTile(
-                          title: Text('Details',
-                              style: TextStyle(fontSize: 29.0, color: Colors.black),
-                              textAlign: TextAlign.center
-                          ),
-                            trailing: Icon(
-                                Icons.keyboard_arrow_down,
-                                color: Colors.black
-                            ),
-                          children: <Widget>[
-                            Container(
-                                padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-                                child:Text('Description of graph',
-                                  style: TextStyle(fontSize: 20.0),)
-                            ),
-                            Image(
-                              image: AssetImage('assets/mtwellington.jpg')
-                            ),
-                            Container(
-                                padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-                                child:Text('Graph source or more description')
-                            ),
-                          ]
-                        )
-                      ]
-                    ))))]
-          ),
-            Row(
-              children: <Widget>[
-                Text(
-                  "House of Representatives",
-                  style: TextStyle(fontSize: 25.0),
-                ),
-                IconButton(
+                                "Kingborough Council including Taroona\n",
+                                style: TextStyle(fontSize: 16.0),
+                                textAlign: TextAlign.center),
+                            ExpansionTile(
+                                title: Text('Details',
+                                    style: TextStyle(
+                                        fontSize: 29.0, color: Colors.black),
+                                    textAlign: TextAlign.center),
+                                trailing: Icon(Icons.keyboard_arrow_down,
+                                    color: Colors.black),
+                                children: <Widget>[
+                                  Container(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 6, horizontal: 12),
+                                      child: Text(
+                                        'Description of graph',
+                                        style: TextStyle(fontSize: 20.0),
+                                      )),
+                                  Image(
+                                      image: AssetImage(
+                                          'assets/mtwellington.jpg')),
+                                  Container(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 6, horizontal: 12),
+                                      child: Text(
+                                          'Graph source or more description')),
+                                ])
+                          ]))))
+            ]),
+            Row(children: <Widget>[
+              Text(
+                "House of Representatives",
+                style: TextStyle(fontSize: 25.0),
+              ),
+              IconButton(
                   icon: Icon(Icons.info_outline),
                   color: Colors.black,
                   onPressed: () {
@@ -273,40 +270,31 @@ SingleChildScrollView createElectorateView(
                       isSelected = !isSelected;
                       icon = isSelected ? Icons.favorite : Icons.favorite_border;*/
                     showDialog(
-                      context:context,
-                      builder: (context){
-                        return Dialog(
-                          child:Container(
-                            alignment: Alignment.center,
-                              padding:EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-                              height:200,
-                              child:Column(
-                                children:<Widget>[
-                                  Text(
-                                      "Parliment House Info",
-                                      style: TextStyle(fontSize: 25.0),
-                                      textAlign: TextAlign.center
-                                  ),
-                                  GestureDetector(
-                                    onTap: (){
-                                      if (canLaunch("https://peo.gov.au/") != null) {
-                                        launch("https://peo.gov.au/");
-                                      }
-                                    },
-                                    child:Text(
-                                      "Click here to learn more"
-                                    ),
-                                  )
-                                ]
-                              )
-                          )
-                        );
-                      }
-                    );
-                    })
-              ]
-            ),
-
+                        context: context,
+                        builder: (context) {
+                          return Dialog(
+                              child: Container(
+                                  alignment: Alignment.center,
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 16, horizontal: 16),
+                                  height: 200,
+                                  child: Column(children: <Widget>[
+                                    Text("Parliment House Info",
+                                        style: TextStyle(fontSize: 25.0),
+                                        textAlign: TextAlign.center),
+                                    GestureDetector(
+                                      onTap: () {
+                                        if (canLaunch("https://peo.gov.au/") !=
+                                            null) {
+                                          launch("https://peo.gov.au/");
+                                        }
+                                      },
+                                      child: Text("Click here to learn more"),
+                                    )
+                                  ])));
+                        });
+                  })
+            ]),
             GestureDetector(
               onTap: () {
                 // goElectorate(context, widget.user);

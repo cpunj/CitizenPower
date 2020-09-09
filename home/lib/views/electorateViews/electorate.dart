@@ -1,5 +1,6 @@
 import 'package:citizenpower/Navigator/navigator_pushes.dart';
 import 'package:citizenpower/Views/ProfileViews/profile_list.dart';
+import 'package:citizenpower/controllers/electorateControllers/leader_profile_controller.dart';
 import 'package:citizenpower/layouts/generic_layouts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
