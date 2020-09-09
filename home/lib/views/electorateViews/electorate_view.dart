@@ -1,13 +1,9 @@
 import 'package:citizenpower/layouts/generic_layouts.dart';
-import 'package:citizenpower/layouts/generic_layouts.dart';
 import 'package:citizenpower/navigator/navigator_pushes.dart';
 import 'package:citizenpower/models/electorateModels/leaderItem.dart';
-import 'package:citizenpower/views/create_post_view.dart';
-import 'package:citizenpower/views/electorateViews/leader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:citizenpower/constants.dart';
 
 import '../../text_styles.dart';
 
@@ -109,7 +105,7 @@ class _ElectorateViewState extends State<ElectorateView> {
           ),
         ],
       ),
-      body: createElectorateView(context, "Clark"),
+      body: createElectorateView(context, "Clark", widget.user),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,
           type: BottomNavigationBarType.fixed,
@@ -141,7 +137,7 @@ class _BuildElectorateViewState extends State<BuildElectorateView> {
 }
 
 SingleChildScrollView createElectorateView(
-    BuildContext context, String electorateName) {
+    BuildContext context, String electorateName, FirebaseUser user) {
   // Need to put the whole creation of leader lists inside this function call
   // Also had issues with the createleaderlist function (but it's made in this file??)
   // problem with widget.user
@@ -297,8 +293,8 @@ SingleChildScrollView createElectorateView(
             ]),
             GestureDetector(
               onTap: () {
-                // goElectorate(context, widget.user);
-                Navigator.pushNamed(context, "/z");
+                goElectorate(context, user, "Z0K6QiyRFEKRvRYjyNp5",
+                    "CbabG1p2ZDg47qhe4RSn");
               },
               child: Row(
                 children: <Widget>[Expanded(child: leaderListItem(andrew))],
@@ -310,8 +306,12 @@ SingleChildScrollView createElectorateView(
             ),
             GestureDetector(
               onTap: () {
-                // goElectorate(context, widget.user);
-                Navigator.pushNamed(context, "/z");
+                goElectorate(
+                  context,
+                  user,
+                  "Z0K6QiyRFEKRvRYjyNp5",
+                  "CbabG1p2ZDg47qhe4RSn",
+                );
               },
               child: Row(
                 children: <Widget>[Expanded(child: leaderListItem(nick))],

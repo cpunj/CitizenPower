@@ -18,8 +18,12 @@ import '../../constants.dart';
 LeaderController leaderController = LeaderController();
 
 class Electorate extends StatefulWidget {
-  const Electorate({Key key, @required this.user}) : super(key: key);
+  const Electorate(
+      {Key key, @required this.user, this.electorateUID, this.leaderUID})
+      : super(key: key);
   final FirebaseUser user;
+  final String electorateUID;
+  final String leaderUID;
 
   @override
   _ElectorateState createState() => _ElectorateState();
@@ -33,7 +37,9 @@ class _ElectorateState extends State<Electorate> {
   int currentIndex = 4;
   @override
   Widget build(BuildContext context) {
-    leaderController.loadLeader('uID').then((val) {
+    leaderController
+        .loadLeader(widget.electorateUID, widget.leaderUID)
+        .then((val) {
       setState(() {});
     });
 
