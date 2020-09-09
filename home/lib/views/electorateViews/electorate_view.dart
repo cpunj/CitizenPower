@@ -5,6 +5,8 @@ import 'package:citizenpower/views/create_post_view.dart';
 import 'package:citizenpower/views/electorateViews/leader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:citizenpower/constants.dart';
 
 import '../../text_styles.dart';
 
@@ -210,29 +212,71 @@ SingleChildScrollView createElectorateView(
           Row(
               children: <Widget>[Expanded(child: Card(
                 child:Container(
-                  padding: EdgeInsets.symmetric(vertical: 6, horizontal: 16),
-                    decoration: BoxDecoration(
+                  padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                    /*decoration: BoxDecoration(
                       image: DecorationImage(
-                          colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.dstATop),
+                          colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.dstATop),
                           image: AssetImage('assets/mtwellington.jpg')
                       ),
-                    ),
+                    ),*/
                     child:Text(
                     "Population: 70k\n"
                         "Area: 292.26 sq km\n"
                         "Consists of: City of Hobart, City of Glenorchy, northen parts of Kingborough Council including Taroona\n"
-                        "Unemployment rate: ?%\n"
-                        "Gender ratio (M:F): ?:?\n"
-                        "Cultural diversity(?): ",
+                        "Unemployment rate: 30%",
                     style: TextStyle(fontSize: 16.0),
                       textAlign: TextAlign.center
               ))))]
           ),
-
-            Text(
-              "House of Representatives",
-              style: TextStyle(fontSize: 25.0),
+            Row(
+              children: <Widget>[
+                Text(
+                  "House of Representatives",
+                  style: TextStyle(fontSize: 25.0),
+                ),
+                IconButton(
+                  icon: Icon(Icons.info_outline),
+                  color: Colors.black,
+                  onPressed: () {
+                    // Respond to icon toggle
+                    /*setState(() {
+                      isSelected = !isSelected;
+                      icon = isSelected ? Icons.favorite : Icons.favorite_border;*/
+                    showDialog(
+                      context:context,
+                      builder: (context){
+                        return Dialog(
+                          child:Container(
+                            alignment: Alignment.center,
+                              padding:EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                              height:200,
+                              child:Column(
+                                children:<Widget>[
+                                  Text(
+                                      "Parliment House Info",
+                                      style: TextStyle(fontSize: 25.0),
+                                      textAlign: TextAlign.center
+                                  ),
+                                  GestureDetector(
+                                    onTap: (){
+                                      if (canLaunch("https://peo.gov.au/") != null) {
+                                        launch("https://peo.gov.au/");
+                                      }
+                                    },
+                                    child:Text(
+                                      "Click here to learn more"
+                                    ),
+                                  )
+                                ]
+                              )
+                          )
+                        );
+                      }
+                    );
+                    })
+              ]
             ),
+
             GestureDetector(
               onTap: () {
                 // goElectorate(context, widget.user);
