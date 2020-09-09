@@ -71,16 +71,25 @@ class _ChatScreenState extends State<ChatScreen> {
     return Row(
       children: <Widget>[
         msg,
+        IconButton(
+          icon: message.isLiked
+              ? Icon(Icons.favorite)
+              : Icon(Icons.favorite_border),
+          iconSize: 30.0,
+          color: message.isLiked
+              ? Theme.of(context).primaryColor
+              : Colors.blueGrey,
+          onPressed: () {},
+        )
       ],
     );
   }
 
   _buildMessageComposer() {
-    sendsms() {
-      String sms1 = "sms:9292";
-      launch(sms1);
-    }
-
+      sendsms(){
+            String sms1="sms:9292";
+            launch(sms1);
+          }
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 8.0),
       height: 70.0,
@@ -109,7 +118,10 @@ class _ChatScreenState extends State<ChatScreen> {
             onPressed: () {
               sendsms();
             },
+
+            
           ),
+        
         ],
       ),
     );
