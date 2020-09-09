@@ -1,7 +1,7 @@
+import 'package:citizenpower/layouts/generic_layouts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'Layouts/generic_layouts.dart';
 import 'comments_page.dart';
 import 'constants.dart';
 
