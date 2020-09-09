@@ -219,14 +219,42 @@ SingleChildScrollView createElectorateView(
                           image: AssetImage('assets/mtwellington.jpg')
                       ),
                     ),*/
-                    child:Text(
-                    "Population: 70k\n"
-                        "Area: 292.26 sq km\n"
-                        "Consists of: City of Hobart, City of Glenorchy, northen parts of Kingborough Council including Taroona\n"
-                        "Unemployment rate: 30%",
-                    style: TextStyle(fontSize: 16.0),
-                      textAlign: TextAlign.center
-              ))))]
+                    child:Column(
+                      children: <Widget>[
+                        Text(
+                            "Population: 70k\n"
+                                "Area: 292.26 sq km\n"
+                                "Consists of: City of Hobart, City of Glenorchy, northen parts of "
+                    "Kingborough Council including Taroona\n",
+                            style: TextStyle(fontSize: 16.0),
+                            textAlign: TextAlign.center
+                        ),
+                        ExpansionTile(
+                          title: Text('Details',
+                              style: TextStyle(fontSize: 29.0, color: Colors.black),
+                              textAlign: TextAlign.center
+                          ),
+                            trailing: Icon(
+                                Icons.keyboard_arrow_down,
+                                color: Colors.black
+                            ),
+                          children: <Widget>[
+                            Container(
+                                padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                                child:Text('Description of graph',
+                                  style: TextStyle(fontSize: 20.0),)
+                            ),
+                            Image(
+                              image: AssetImage('assets/mtwellington.jpg')
+                            ),
+                            Container(
+                                padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                                child:Text('Graph source or more description')
+                            ),
+                          ]
+                        )
+                      ]
+                    ))))]
           ),
             Row(
               children: <Widget>[
