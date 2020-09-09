@@ -41,7 +41,8 @@ class ProfileDatabaseMethods {
         .document(uID)
         .updateData({"picLink": picLink});
   }
-    createChatRoom(String chatRoomId, chatRoomMap) {
+
+  createChatRoom(String chatRoomId, chatRoomMap) {
     Firestore.instance
         .collection("ChatRoom")
         .document(chatRoomId)
@@ -49,9 +50,6 @@ class ProfileDatabaseMethods {
         .catchError((e) {
       print(e.toString());
     });
-  }
-   getUserByUID(String uID) async {
-    return await Firestore.instance.collection("users").document(uID).get();
   }
 
   getUserbyUsername(String username) async {

@@ -1,9 +1,9 @@
 import 'package:citizenpower/login_page.dart';
 import 'package:flutter/material.dart';
-import 'Layouts/generic_layouts.dart';
 import 'constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'databaseServices/database.dart';
+import 'layouts/generic_layouts.dart';
 import 'text_styles.dart';
 import 'database.dart';
 
