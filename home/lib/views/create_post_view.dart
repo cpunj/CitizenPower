@@ -1,5 +1,5 @@
-import 'package:citizenpower/Layouts/generic_layouts.dart';
 import 'package:citizenpower/constants.dart';
+import 'package:citizenpower/layouts/generic_layouts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
