@@ -9,8 +9,11 @@ import '../../text_styles.dart';
 
 class ElectorateView extends StatefulWidget {
   //Transferring user between widgets
-  const ElectorateView({Key key, @required this.user}) : super(key: key);
+  const ElectorateView({Key key, @required this.user, this.stateSelected, this.electorateSelected}) : super(key: key);
+
   final FirebaseUser user;
+  final String stateSelected;
+  final String electorateSelected;
 
   @override
   _ElectorateViewState createState() => _ElectorateViewState();
@@ -83,6 +86,7 @@ class _ElectorateViewState extends State<ElectorateView> {
                   BuildElectorateView();
                 });
               },
+
               items: _electorates.map((location) {
                 return _stateSelected != null
                     ? DropdownMenuItem(
@@ -95,6 +99,7 @@ class _ElectorateViewState extends State<ElectorateView> {
                       )
                     : DropdownMenuItem(child: Container());
               }).toList(),
+
             ),
           ],
         ),
@@ -203,7 +208,7 @@ SingleChildScrollView createElectorateView(
               height: 10,
             ),
             Text(
-              "Clark",
+              electorateName,
               style: TextStyle(fontSize: 25.0),
             ),
             Row(children: <Widget>[
