@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../../constants.dart';
 import '../../text_styles.dart';
+import '../create_post_view.dart';
 
 //Handles profile downloading methods and storage
 ProfileController profileController = ProfileController();
@@ -138,7 +139,17 @@ class _MyProfilePageState extends State<MyProfilePage> {
                     height: 10,
                     color: Colors.black,
                   ),
-                )
+                ),
+
+                //Need to figure out how to use ListView in SliveredScrollWidget
+//                ListView.builder(
+//                    shrinkWrap: true,
+//                    itemCount:
+//                        profileController.postListSnapshot.documents.length,
+//                    itemBuilder: (context, index) {
+//                      return Image.network(profileController
+//                          .postListSnapshot.documents[index].data["picLink"]);
+//                    })
               ]),
             ),
             bottomNavigationBar: BottomNavigationBar(

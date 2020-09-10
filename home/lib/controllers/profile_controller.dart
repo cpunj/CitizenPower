@@ -7,6 +7,7 @@ import 'dart:io';
 class ProfileController {
   //Holds FS Snapshot once it is downloaded from FS
   DocumentSnapshot profileSnapshot;
+  QuerySnapshot postListSnapshot;
   //Holds the current logged in user
   //The profile that will be loaded into profile View
   Profile profile = Profile();
@@ -67,6 +68,10 @@ class ProfileController {
       profile.name = profileSnapshot.data["name"];
       profile.bio = profileSnapshot.data["bio"];
       profile.picLink = profileSnapshot.data["picLink"];
+    });
+    profileDatabaseMethods.getUserPostsByUID(uID).then((val) {
+      postListSnapshot = val;
+      print(postListSnapshot);
     });
   }
 }
