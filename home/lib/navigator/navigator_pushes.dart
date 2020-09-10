@@ -38,7 +38,7 @@ goNewPost(BuildContext context, FirebaseUser user) {
   Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => NewPost(),
+        builder: (context) => NewPost(user: user),
       ));
 }
 
