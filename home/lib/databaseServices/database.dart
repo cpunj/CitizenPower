@@ -26,7 +26,9 @@ class ProfileDatabaseMethods {
         .getDocuments();
   }
 
-  //Used for downloading a lead profile for the leader profile view
+  //Used for querying FS for a leader profile
+  //Download function so marked as async
+  //return await needed for all queries to allow main thread to continue
   getLeaderByUID({String electorateUID, String leaderUID}) async {
     return await Firestore.instance
         .collection("electorates")

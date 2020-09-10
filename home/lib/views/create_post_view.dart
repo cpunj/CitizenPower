@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+//Stores the data the user is uploading in their post
 PostController postController = PostController();
 
 class NewPost extends StatefulWidget {
@@ -18,10 +19,13 @@ class NewPost extends StatefulWidget {
 }
 
 class _NewPostState extends State<NewPost> {
+  //GIve the postController the text the user has entered
   final postTextController = TextEditingController();
 
   int currentIndex = 2;
 
+  //runs pickImage function for user to select the image they want in their post
+  //External data so marked as async
   Future getImage() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
     //Stores the file in the profile controller
@@ -31,35 +35,40 @@ class _NewPostState extends State<NewPost> {
     });
   }
 
+  //Can be made if deemed neccessary
   //_openCamera() {}
 
+  //Dialog displayed when user selects the option to add a picture to their post
   _showChoiceDialog(BuildContext context) {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(title: Text("Please select one"), actions: [
-            Container(
-              padding: EdgeInsets.only(right: 20),
-              child: FlatButton(
-                child: Text(
-                  "Camera",
-                  style: TextStyle(fontSize: 30.0),
+          return AlertDialog(title: Text("Please select one"),
+              //Contained the buttons that run the gallery option
+              //Gesture detector does not seem to work in AlertDialog
+              actions: [
+                Container(
+                  padding: EdgeInsets.only(right: 20),
+                  child: FlatButton(
+                    child: Text(
+                      "Camera",
+                      style: TextStyle(fontSize: 30.0),
+                    ),
+                    onPressed: () {
+                      getImage();
+                    },
+                  ),
                 ),
-                onPressed: () {
-                  getImage();
-                },
-              ),
-            ),
-            FlatButton(
-              child: Text(
-                "Gallery",
-                style: TextStyle(fontSize: 30.0),
-              ),
-              onPressed: () {
-                getImage();
-              },
-            )
-          ]);
+                FlatButton(
+                  child: Text(
+                    "Gallery",
+                    style: TextStyle(fontSize: 30.0),
+                  ),
+                  onPressed: () {
+                    getImage();
+                  },
+                )
+              ]);
         });
   }
 
@@ -74,6 +83,8 @@ class _NewPostState extends State<NewPost> {
           CircleAvatar(
               backgroundColor: Colors.white30,
               child: IconButton(
+                //When user has finished post, pressing this uploads the post to their profile
+                //in Firebase
                 onPressed: () {
                   postController.uploadPost(
                       context, postTextController.text, widget.user.uid);
@@ -108,9 +119,11 @@ class _NewPostState extends State<NewPost> {
                     InputDecoration(hintText: "whats on your mind today?"),
                 controller: postTextController,
               ),
+              //Has the user given an image? Show it in the new post view
               postController.postImage != null
                   ? Container(
                       padding: EdgeInsets.only(top: 5.0),
+                      //Limits the size of the given image
                       height: 200,
                       child: Image.file(postController.postImage))
                   //Simplest way to do if statements apparently
