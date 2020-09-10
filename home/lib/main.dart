@@ -1,20 +1,21 @@
-import 'package:citizenpower/Views/ProfileViews/ProfilePage.dart';
-import 'package:citizenpower/Views/aboutcitzen/aboutcitizen.dart';
-import 'package:citizenpower/user.dart';
+import 'package:citizenpower/views/aboutCitizen/about_citizen.dart';
+import 'package:citizenpower/views/electorateViews/electorate.dart';
+import 'package:citizenpower/views/eventView/create_new_event.dart';
+import 'package:citizenpower/views/helpView/help_page.dart';
+import 'views/eventView/event_page.dart';
+import 'package:citizenpower/views/eventView/event_view.dart';
+import 'package:citizenpower/views/groupView/group_page.dart';
+import 'package:citizenpower/views/groupView/group_view.dart';
+import 'package:citizenpower/views/settings.dart';
 
-import 'Views/eventview/eventpage.dart';
-import 'package:citizenpower/Views/eventview/eventview.dart';
-import 'package:citizenpower/Views/groupview/GroupPage.dart';
-import 'package:citizenpower/Views/groupview/groupview.dart';
-import 'package:citizenpower/Views/settings.dart';
-
-import 'package:citizenpower/loginpage.dart';
+import 'package:citizenpower/login_page.dart';
 
 import 'package:flutter/material.dart';
-import 'AppHome.dart';
-import 'Views/ElectorateViews/contactview.dart';
-import 'Views/ElectorateViews/electorateprofiledetails.dart';
+import 'app_home.dart';
+import 'views/electorateViews/contact_view.dart';
+import 'views/electorateViews/electorate_profile_details.dart';
 import 'constants.dart';
+//Testing Github: Hello I am changing this comment again
 import 'user.dart';
 //Testing Github: Hello I am changing this comment
 
@@ -24,14 +25,17 @@ User currentUserModel;
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //All Widgets are contained within a 'Material App'P
     return new MaterialApp(
         home: new LoginPage(),
+        //Secondary method for pushing between State Widgets
         routes: <String, WidgetBuilder>{
           "/a": (BuildContext context) => new AboutMe(),
           "/b": (BuildContext context) => new ElectorateDetails(
                 user: null,
               ),
           "/e": (BuildContext context) => new AboutCitizenInfo(),
+          "/c": (BuildContext context) => new HelpView(),
           "/x": (BuildContext context) => new AppHome(user: null),
           "/d": (BuildContext context) => new Setting(user: null),
           "/g": (BuildContext context) => new GroupView(
@@ -40,7 +44,10 @@ class MyApp extends StatelessWidget {
           "/f": (BuildContext context) => new EventView(),
           "/i": (BuildContext context) => new GroupPage(),
           "/j": (BuildContext context) => new EventPage(),
-          "/p": (BuildContext context) => new ProfileScreen(user: null),
+          "/z": (BuildContext context) => new Electorate(
+                user: null,
+              ),
+          "/k": (BuildContext context) => new CreateNewEvent(),
         },
         theme: new ThemeData(
             primaryColor: brightOrange, accentColor: Color(0xFFFEF9EB)));
