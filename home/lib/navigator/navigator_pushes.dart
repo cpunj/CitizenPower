@@ -73,7 +73,7 @@ goContactDetails(BuildContext context, FirebaseUser user) {
 
 goProfileList(BuildContext context, FirebaseUser user) {
   Navigator.push(context,
-      MaterialPageRoute(builder: (context) => ProfileList(user: user)));
+      MaterialPageRoute(builder: (context) => ProfileList()));
 }
 
 goProfilePage(BuildContext context, FirebaseUser user) {

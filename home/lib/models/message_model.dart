@@ -17,7 +17,7 @@ class Message {
 }
 
 class User {
-  final int id;
+  final String id;
   final String name;
   final String imageUrl;
 
@@ -30,44 +30,44 @@ class User {
 
 // YOU - current user
 final User currentUser = User(
-  id: 0,
+  id: "",
   name: 'Current User',
   imageUrl: 'assets/Wilkie.jpeg',
 );
 
 // USERS
 final User ejaz = User(
-  id: 1,
+  id: "",
   name: 'Ejaz Ahmed',
   imageUrl: "assets/grace.jpg",
 );
 final User jack = User(
-  id: 2,
+  id: "",
   name: 'Jack ',
   imageUrl: 'assets/Wilkie.jpeg',
 );
 final User harry = User(
-  id: 3,
+  id: "",
   name: 'Harrison',
   imageUrl: 'assets/Wilkie.jpeg',
 );
 final User salman = User(
-  id: 4,
+  id: "",
   name: 'Salman',
   imageUrl: 'assets/Wilkie.jpeg',
 );
 final User chandan = User(
-  id: 5,
+  id: "",
   name: 'Chandan',
   imageUrl: 'assets/Wilkie.jpeg',
 );
 final User khern = User(
-  id: 6,
+  id: "",
   name: 'Khern',
   imageUrl: 'assets/Wilkie.jpeg',
 );
 final User jenny = User(
-  id: 7,
+  id: "",
   name: 'Jenny',
   imageUrl: 'assets/Wilkie.jpeg',
 );
