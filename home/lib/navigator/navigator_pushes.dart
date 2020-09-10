@@ -10,6 +10,7 @@ import 'package:citizenpower/Views/profileViews/profile_page_edit.dart';
 import 'package:citizenpower/Views/social_menu.dart';
 import 'package:citizenpower/models/profile.dart';
 import 'package:citizenpower/views/profileViews/profile_list.dart';
+import 'package:citizenpower/views/profileViews/searchProfile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -93,6 +94,11 @@ goMessage(BuildContext context, FirebaseUser user) {
 goElectorateView(BuildContext context, FirebaseUser user) {
   Navigator.push(context,
       MaterialPageRoute(builder: (context) => ElectorateView(user: user)));
+}
+
+goSearch(BuildContext context, FirebaseUser user) {
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => SearchView(user: user)));
 }
 
 goImageView(BuildContext context, String image) {
