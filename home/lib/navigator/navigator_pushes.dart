@@ -1,4 +1,3 @@
-import 'package:citizenpower/Views/ElectorateViews/electorate.dart';
 import 'package:citizenpower/Views/ElectorateViews/electorate_profile_details.dart';
 import 'package:citizenpower/Views/ElectorateViews/electorate_view.dart';
 import 'package:citizenpower/Views/ElectorateViews/image_view.dart';
@@ -9,6 +8,7 @@ import 'package:citizenpower/Views/profileViews/profile_page.dart';
 import 'package:citizenpower/Views/profileViews/profile_page_edit.dart';
 import 'package:citizenpower/Views/social_menu.dart';
 import 'package:citizenpower/models/profile.dart';
+import 'package:citizenpower/views/electorateViews/electorate.dart';
 import 'package:citizenpower/views/profileViews/profile_list.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -73,7 +73,7 @@ goContactDetails(BuildContext context, FirebaseUser user) {
 
 goProfileList(BuildContext context, FirebaseUser user) {
   Navigator.push(context,
-      MaterialPageRoute(builder: (context) => ProfileList()));
+      MaterialPageRoute(builder: (context) => ProfileList(user: null)));
 }
 
 goProfilePage(BuildContext context, FirebaseUser user) {

@@ -1,6 +1,7 @@
 import 'package:citizenpower/Views/settings.dart';
 
 import 'package:citizenpower/login_page.dart';
+import 'package:citizenpower/views/electorateViews/electorate.dart';
 
 import 'package:flutter/material.dart';
 import 'Views/aboutCitizen/about_citizen.dart';

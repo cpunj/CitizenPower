@@ -15,8 +15,6 @@ class SearchScreen extends StatefulWidget {
   _SearchScreenState createState() => _SearchScreenState();
 }
 
-String _myName;
-
 class _SearchScreenState extends State<SearchScreen> {
   ProfileDatabaseMethods databaseMethods = new ProfileDatabaseMethods();
   TextEditingController searchTextEditingController =
