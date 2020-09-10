@@ -140,17 +140,16 @@ class _MyProfilePageState extends State<MyProfilePage> {
                     color: Colors.black,
                   ),
                 ),
-                SliverToBoxAdapter(
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount:
-                            profileController.postListSnapshot.documents.length,
-                        itemBuilder: (context, index) {
-                          return Image.network(profileController
-                              .postListSnapshot
-                              .documents[index]
-                              .data["picLink"]);
-                        }))
+
+                //Need to figure out how to use ListView in SliveredScrollWidget
+//                ListView.builder(
+//                    shrinkWrap: true,
+//                    itemCount:
+//                        profileController.postListSnapshot.documents.length,
+//                    itemBuilder: (context, index) {
+//                      return Image.network(profileController
+//                          .postListSnapshot.documents[index].data["picLink"]);
+//                    })
               ]),
             ),
             bottomNavigationBar: BottomNavigationBar(

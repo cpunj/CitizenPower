@@ -71,6 +71,7 @@ class ProfileController {
     });
     profileDatabaseMethods.getUserPostsByUID(uID).then((val) {
       postListSnapshot = val;
+      print(postListSnapshot);
     });
   }
 }
