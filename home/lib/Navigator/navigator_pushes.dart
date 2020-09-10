@@ -1,3 +1,4 @@
+import 'package:citizenpower/Views/ElectorateViews/electorate.dart';
 import 'package:citizenpower/Views/ElectorateViews/electorate_profile_details.dart';
 import 'package:citizenpower/Views/ElectorateViews/electorate_view.dart';
 import 'package:citizenpower/Views/ElectorateViews/image_view.dart';

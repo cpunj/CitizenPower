@@ -1,13 +1,9 @@
 import 'package:citizenpower/layouts/generic_layouts.dart';
-import 'package:citizenpower/layouts/generic_layouts.dart';
 import 'package:citizenpower/navigator/navigator_pushes.dart';
 import 'package:citizenpower/models/electorateModels/leaderItem.dart';
-import 'package:citizenpower/views/create_post_view.dart';
-import 'package:citizenpower/views/electorateViews/leader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:citizenpower/constants.dart';
 
 import '../../text_styles.dart';
 

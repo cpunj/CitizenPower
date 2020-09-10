@@ -1,7 +1,6 @@
 import 'package:citizenpower/models/electorateModels/leader.dart';
 import 'package:citizenpower/views/profileViews/profile_page_edit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 
 //Controls the downloading of the leader profile when a
 // leader is selected from the electorate view
