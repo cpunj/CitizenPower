@@ -6,7 +6,6 @@ import 'package:citizenpower/databaseServices/helperfunctions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:citizenpower/Views/MessageViews/search.dart';
-import 'catagory.dart';
 import 'conversation_screen.dart';
 
 class HomeScreen extends StatefulWidget {

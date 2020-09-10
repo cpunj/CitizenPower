@@ -1,10 +1,10 @@
 import 'package:citizenpower/Navigator/navigator_pushes.dart';
 import 'package:citizenpower/Views/ProfileViews/profile_list.dart';
-import 'package:citizenpower/controllers/electorateControllers/leader_profile_controller.dart';
 import 'package:citizenpower/layouts/generic_layouts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../../controllers/electorateControllers/leader_profile_controller.dart';
 import '../../text_styles.dart';
 import '../../constants.dart';
 
@@ -18,8 +18,12 @@ import '../../constants.dart';
 LeaderController leaderController = LeaderController();
 
 class Electorate extends StatefulWidget {
-  const Electorate({Key key, @required this.user}) : super(key: key);
+  const Electorate(
+      {Key key, @required this.user, this.leaderUID, this.electorateUID})
+      : super(key: key);
   final FirebaseUser user;
+  final String electorateUID;
+  final String leaderUID;
 
   @override
   _ElectorateState createState() => _ElectorateState();
@@ -33,7 +37,9 @@ class _ElectorateState extends State<Electorate> {
   int currentIndex = 4;
   @override
   Widget build(BuildContext context) {
-    leaderController.loadLeader('uID').then((val) {
+    leaderController
+        .loadLeader(widget.electorateUID, widget.leaderUID)
+        .then((val) {
       setState(() {});
     });
 

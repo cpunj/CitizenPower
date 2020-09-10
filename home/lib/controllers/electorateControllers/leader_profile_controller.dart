@@ -1,7 +1,6 @@
 import 'package:citizenpower/models/electorateModels/leader.dart';
 import 'package:citizenpower/views/profileViews/profile_page_edit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 
 //Controls the downloading of the leader profile when a
 // leader is selected from the electorate view
@@ -30,9 +29,9 @@ class LeaderController {
     return leader.power;
   }
 
-  loadLeader(String uID) async {
+  loadLeader(String electorateUID, String leaderUID) async {
     profileDatabaseMethods
-        .getLeaderByUID("Z0K6QiyRFEKRvRYjyNp5", "CbabG1p2ZDg47qhe4RSn")
+        .getLeaderByUID(electorateUID: electorateUID, leaderUID: leaderUID)
         .then((val) {
       leaderSnapshot = val;
       leader.name = leaderSnapshot.data["name"];

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../text_styles.dart';
 import '../../../constants.dart';
-import 'donate_page.dart';
 
 class ContactInfo extends StatelessWidget {
   @override
