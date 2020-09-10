@@ -46,7 +46,12 @@ goElectorate(BuildContext context, FirebaseUser user, String electorateUID,
     String leaderUID) {
   Navigator.pushReplacement(
     context,
-    MaterialPageRoute(builder: (context) => Electorate(user: user)),
+    MaterialPageRoute(
+        builder: (context) => Electorate(
+              user: user,
+              electorateUID: electorateUID,
+              leaderUID: leaderUID,
+            )),
   );
 }
 
