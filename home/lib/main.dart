@@ -16,8 +16,8 @@ import 'views/electorateViews/contact_view.dart';
 import 'views/electorateViews/electorate_profile_details.dart';
 import 'constants.dart';
 import 'user.dart';
-
 //Testing Github: Hello I am changing this comment
+//This is a change I made in the branch
 //This is a change I made in the master
 
 void main() => runApp(new MyApp());
