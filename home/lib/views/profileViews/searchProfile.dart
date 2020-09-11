@@ -24,13 +24,15 @@ class _SearchScreenState extends State<SearchView> {
   QuerySnapshot searchSnapshot;
 
   initiateSearch() {
-    databaseMethods
-        .getProfilebyUsername(searchTextEditingController.text)
-        .then((val) {
-      setState(() {
-        searchSnapshot = val as QuerySnapshot;
+    if (searchTextEditingController != null) {
+      databaseMethods
+          .getProfilebyUsername(searchTextEditingController.text)
+          .then((val) {
+        setState(() {
+          searchSnapshot = val;
+        });
       });
-    });
+    }
   }
 
   Widget searchList() {

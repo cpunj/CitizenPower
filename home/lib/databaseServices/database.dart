@@ -92,16 +92,14 @@ class ProfileDatabaseMethods {
         .snapshots();
   }
 
-  Future<List<DocumentSnapshot>> getProfilebyUsername(String suggestion) =>
-      Firestore.instance
-          .collection('users')
-          .orderBy('name', descending: false)
-          .startAt([0])
-          .endAt([1])
-          .getDocuments()
-          .then((snapshot) {
-            return snapshot.documents;
-          });
+  getProfilebyUsername(String username) async {
+    return await Firestore.instance
+        .collection('users')
+        .orderBy('name')
+        .where('name',
+            isGreaterThanOrEqualTo: username, isLessThan: username + 'z')
+        .getDocuments();
+  }
 
   getChatRooms(String userEmail) async {
     return await Firestore.instance
