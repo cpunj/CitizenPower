@@ -8,6 +8,8 @@ import 'registration.dart';
 import 'constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+//Adding this to master branch #1
+
 class LoginPage extends StatefulWidget {
   @override
   State createState() => new LoginPageState();

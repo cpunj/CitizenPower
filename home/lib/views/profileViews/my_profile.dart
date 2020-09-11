@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../../constants.dart';
 import '../../text_styles.dart';
+import '../create_post_view.dart';
 
 //Handles profile downloading methods and storage
 ProfileController profileController = ProfileController();
@@ -29,20 +30,24 @@ class _MyProfilePageState extends State<MyProfilePage> {
   @override
   Widget build(BuildContext context) {
     //Gets profile data to fill in ProfilePageEdit View
-    profileController.loadProfile(widget.user.uid).then((val) {
-      //'then()' only runs once FS data for view has been downloaded
-      setState(() {});
-    });
+    //only if snapshot has not already been downloaded
+    if (profileController.profileSnapshot == null) {
+      profileController.loadProfile(widget.user.uid).then((val) {
+        //'then()' only runs once FS data for view has been downloaded
+        setState(() {});
+      });
+    }
     //While profileSnapshot is downloading loading indicator is shown instead, setState reruns to
     //build actual view once data is downloaded
-    return profileController.profileSnapshot != null
+    return profileController.postListSnapshot != null
         ? Scaffold(
             appBar: topAppBarLayout('Profile'),
             drawer: new Drawer(),
-            body: Container(
-              child: CustomScrollView(slivers: <Widget>[
-                SliverToBoxAdapter(
-                  child: Container(
+            body: SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
+                child: Column(children: <Widget>[
+                  Container(
                     margin: EdgeInsets.only(top: 20),
                     height: 110,
                     child: Row(
@@ -94,15 +99,11 @@ class _MyProfilePageState extends State<MyProfilePage> {
                       ],
                     ),
                   ),
-                ),
-                SliverToBoxAdapter(
-                  child: Divider(
+                  Divider(
                     height: 10,
                     color: Colors.black,
                   ),
-                ),
-                SliverToBoxAdapter(
-                  child: GestureDetector(
+                  GestureDetector(
                       onTap: () {
                         setState(() {
                           isExpanded = !isExpanded;
@@ -110,36 +111,41 @@ class _MyProfilePageState extends State<MyProfilePage> {
                       },
                       child:
                           bioLayout2(profileController.getBio(), isExpanded)),
-                ),
-                SliverToBoxAdapter(
-                  child: SizedBox(height: 9),
-                ),
-                SliverToBoxAdapter(
-                    child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: RaisedButton(
-                          child: Text(
-                            "Edit",
-                          ),
-                          //Goes to edit view and passes in the currently logged in user, and
-                          //The currently downloaded profile
-                          onPressed: () {
-                            goEditProfile(context, widget.user,
-                                profileController.getProfile());
-                          }),
-                    ),
-                  ],
-                )),
-                SliverToBoxAdapter(
-                  child: Divider(
+                  SizedBox(height: 9),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: RaisedButton(
+                            child: Text(
+                              "Edit",
+                            ),
+                            //Goes to edit view and passes in the currently logged in user, and
+                            //The currently downloaded profile
+                            onPressed: () {
+                              goEditProfile(context, widget.user,
+                                  profileController.getProfile());
+                            }),
+                      ),
+                    ],
+                  ),
+                  Divider(
                     height: 10,
                     color: Colors.black,
                   ),
-                )
-              ]),
+//Need to use a stream builder it would seem
+//                  ListView.builder(
+//                      shrinkWrap: true,
+//                      itemCount:
+//                          profileController.postListSnapshot.documents.length,
+//                      itemBuilder: (context, index) {
+//                        print(profileController.postListSnapshot);
+//                        return Image.network(profileController
+//                            .postListSnapshot.documents[index].data["picLink"]);
+//                      })
+                ]),
+              ),
             ),
             bottomNavigationBar: BottomNavigationBar(
                 currentIndex: 1,

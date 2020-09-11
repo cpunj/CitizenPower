@@ -2,7 +2,7 @@ import 'package:citizenpower/Views/settings.dart';
 
 import 'package:citizenpower/login_page.dart';
 import 'package:citizenpower/views/electorateViews/electorate.dart';
-
+import 'Views/groupView/create_new_group.dart';
 import 'package:flutter/material.dart';
 import 'Views/aboutCitizen/about_citizen.dart';
 import 'Views/eventView/create_new_event.dart';
@@ -53,6 +53,7 @@ class MyApp extends StatelessWidget {
                 user: null,
               ),
           "/k": (BuildContext context) => new CreateNewEvent(),
+          "/l": (BuildContext context) => new CreateNewGroup(),
         },
         theme: new ThemeData(
             primaryColor: brightOrange, accentColor: Color(0xFFFEF9EB)));

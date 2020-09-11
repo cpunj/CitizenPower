@@ -18,7 +18,17 @@ class ProfileDatabaseMethods {
     return await Firestore.instance.collection("users").document(uID).get();
   }
 
-  //Used for downloading a lead profile for the leader profile view
+  getUserPostsByUID(String uID) async {
+    return await Firestore.instance
+        .collection("users")
+        .document(uID)
+        .collection("posts")
+        .getDocuments();
+  }
+
+  //Used for querying FS for a leader profile
+  //Download function so marked as async
+  //return await needed for all queries to allow main thread to continue
   getLeaderByUID({String electorateUID, String leaderUID}) async {
     return await Firestore.instance
         .collection("electorates")
@@ -119,9 +129,10 @@ class ProfileDatabaseMethods {
 
   uploadPost(Post newPost, String uID) {
     //Converts the post's data to a Map for Firebase upload.
-    Map<String, String> postMap = {
+    Map<String, dynamic> postMap = {
       "text": newPost.postText,
       "picLink": newPost.imageLink,
+      "time": DateTime.now().millisecondsSinceEpoch
     };
 
     print(uID);

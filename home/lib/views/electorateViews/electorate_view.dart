@@ -20,7 +20,7 @@ class ElectorateView extends StatefulWidget {
 }
 
 class _ElectorateViewState extends State<ElectorateView> {
-  //Sets bottom nav bar to correct highlight
+  //Sets bottom nav bar to correct highlight and block unneccessary navigation
   int currentIndex = 4;
   String _selectedElectorate;
 
