@@ -14,6 +14,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:citizenpower/views/electorateViews/electorate_selector_view.dart';
+import '../views/electorateViews/electorate_view.dart';
 
 import '../views/settings.dart';
 import '../app_home.dart';
@@ -55,6 +56,18 @@ goElectorate(BuildContext context, FirebaseUser user, String electorateUID,
             )),
   );
 }
+
+goSelectedElectorate(BuildContext context, FirebaseUser user, String userElectorate) {
+  Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(
+        builder: (context) => ElectorateView(
+          user: user,
+          electorateSelected: userElectorate,
+        )),
+  );
+}
+
 
 goSettings(BuildContext context, FirebaseUser user) {
   Navigator.push(

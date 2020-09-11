@@ -1,12 +1,15 @@
 
 import 'package:citizenpower/layouts/generic_layouts.dart';
+import 'package:citizenpower/navigator/navigator_pushes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../electorateViews/electorate_view.dart';
 import '../../text_styles.dart';
 
 class ElectorateSelectorView extends StatefulWidget {
+
   const ElectorateSelectorView({Key key, @required this.user})
       : super(key: key);
   final FirebaseUser user;
@@ -27,7 +30,7 @@ class _ElectorateSelectorViewState extends State<ElectorateSelectorView> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Select Electorate",
+          "Find Electorate",
           style: appBarStyle(),
         ),
       ),
@@ -104,7 +107,6 @@ class _ElectorateSelectorViewState extends State<ElectorateSelectorView> {
 Widget electorateListItem(String stateSelected) {
   List<String> electorateList = electorateListPopulate(stateSelected);
 
-  print(electorateList);
 
   return Container(
     //physics: ScrollPhysics(),
@@ -130,8 +132,12 @@ Widget electorateListItem(String stateSelected) {
 
                         onTap: () {
                           print(electorateList[index]);
-                          Navigator.of(context).pushNamed("/l");
 
+                          //Navigator.of(context).pushNamed("/l"); this is the old way of navigating I think (which kinda works)? Trying new way below.
+
+
+                          FirebaseUser user; //THIS IS ARBITRARY BUT IDK HOW TO USE THESE VARIABLES CORRECTLY
+                          goSelectedElectorate(context, user, electorateList[index]);
                         },
 
                         child: Card(

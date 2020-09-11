@@ -9,7 +9,7 @@ import '../../text_styles.dart';
 
 class ElectorateView extends StatefulWidget {
   //Transferring user between widgets
-  const ElectorateView({Key key, @required this.user, this.electorateSelected}) : super(key: key);
+  const ElectorateView({Key key, this.user, this.electorateSelected}) : super(key: key);
 
   final FirebaseUser user;
   final String electorateSelected;
