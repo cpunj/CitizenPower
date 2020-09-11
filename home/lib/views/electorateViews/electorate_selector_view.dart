@@ -125,7 +125,6 @@ Widget electorateListItem(String stateSelected) {
                   itemCount: electorateList.length,
                   itemBuilder: (context, index) {
 
-                    // TO DO: MAKE IT SO ON CLICK, NAVIGATES TO NEXT PAGE
                     return Container(
                       height: 60,
                       child: GestureDetector(
@@ -134,7 +133,6 @@ Widget electorateListItem(String stateSelected) {
                           print(electorateList[index]);
 
                           //Navigator.of(context).pushNamed("/l"); this is the old way of navigating I think (which kinda works)? Trying new way below.
-
 
                           FirebaseUser user; //THIS IS ARBITRARY BUT IDK HOW TO USE THESE VARIABLES CORRECTLY
                           goSelectedElectorate(context, user, electorateList[index]);
