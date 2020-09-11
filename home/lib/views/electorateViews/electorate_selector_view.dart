@@ -115,7 +115,7 @@ Widget electorateListItem(String stateSelected, FirebaseUser user) {
               physics: NeverScrollableScrollPhysics(),
               itemCount: electorateList.length,
               itemBuilder: (context, index) {
-                // TO DO: MAKE IT SO ON CLICK, NAVIGATES TO NEXT PAGE
+
                 return Container(
                   height: 60,
                   child: GestureDetector(
@@ -124,6 +124,7 @@ Widget electorateListItem(String stateSelected, FirebaseUser user) {
                       goSelectedElectorate(
                           context, user, electorateList[index]);
                     },
+
                     child: Card(
                         child: new Column(
                       mainAxisSize: MainAxisSize.min,
@@ -189,5 +190,3 @@ List<String> electorateListPopulate(String state) {
 
   return stateElectorateList;
 }
-
-//BELOW: Destination following the new two strings for state/electorate
