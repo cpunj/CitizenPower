@@ -34,7 +34,8 @@ class _ElectorateViewState extends State<ElectorateView> {
           style: appBarStyle(),
         ),
       ),
-      body: createElectorateView(context, widget.electorateSelected.toString(), widget.user),
+      body: createElectorateView(
+          context, widget.electorateSelected.toString(), widget.user),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,
           type: BottomNavigationBarType.fixed,
