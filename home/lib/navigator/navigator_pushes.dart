@@ -57,17 +57,17 @@ goElectorate(BuildContext context, FirebaseUser user, String electorateUID,
   );
 }
 
-goSelectedElectorate(BuildContext context, FirebaseUser user, String userElectorate) {
-  Navigator.pushReplacement(
+goSelectedElectorate(
+    BuildContext context, FirebaseUser user, String userElectorate) {
+  Navigator.push(
     context,
     MaterialPageRoute(
         builder: (context) => ElectorateView(
-          user: user,
-          electorateSelected: userElectorate,
-        )),
+              user: user,
+              electorateSelected: userElectorate,
+            )),
   );
 }
-
 
 goSettings(BuildContext context, FirebaseUser user) {
   Navigator.push(
@@ -111,12 +111,14 @@ goMessage(BuildContext context, FirebaseUser user) {
 }
 
 goElectorateView(BuildContext context, FirebaseUser user) {
-  Navigator.push(context,
+  Navigator.push(
+      context,
 
       //** CHANGED FOR NEW ELECTORATE SELECTOR PAGE - OLD CODE COMMENTED OUT BELOW **
 
-      MaterialPageRoute(builder: (context) => ElectorateSelectorView(user: user)));
-      //MaterialPageRoute(builder: (context) => ElectorateView(user: user)));
+      MaterialPageRoute(
+          builder: (context) => ElectorateSelectorView(user: user)));
+  //MaterialPageRoute(builder: (context) => ElectorateView(user: user)));
 }
 
 goImageView(BuildContext context, String image) {

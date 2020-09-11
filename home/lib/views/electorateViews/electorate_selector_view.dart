@@ -3,8 +3,6 @@ import 'package:citizenpower/navigator/navigator_pushes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import '../electorateViews/electorate_view.dart';
 import '../../text_styles.dart';
 
 class ElectorateSelectorView extends StatefulWidget {
@@ -81,7 +79,7 @@ class _ElectorateSelectorViewState extends State<ElectorateSelectorView> {
               color: Colors.black,
             ),
             (_selectedState != null)
-                ? electorateListItem(_selectedState)
+                ? electorateListItem(_selectedState, widget.user)
                 : Container()
           ],
         ),
@@ -101,7 +99,7 @@ class _ElectorateSelectorViewState extends State<ElectorateSelectorView> {
   }
 }
 
-Widget electorateListItem(String stateSelected) {
+Widget electorateListItem(String stateSelected, FirebaseUser user) {
   List<String> electorateList = electorateListPopulate(stateSelected);
 
   return Container(
@@ -123,10 +121,6 @@ Widget electorateListItem(String stateSelected) {
                   child: GestureDetector(
                     onTap: () {
                       print(electorateList[index]);
-
-                      //Navigator.of(context).pushNamed("/l"); this is the old way of navigating I think (which kinda works)? Trying new way below.
-
-                      //FirebaseUser user; //THIS IS ARBITRARY BUT IDK HOW TO USE THESE VARIABLES CORRECTLY
                       goSelectedElectorate(
                           context, user, electorateList[index]);
                     },

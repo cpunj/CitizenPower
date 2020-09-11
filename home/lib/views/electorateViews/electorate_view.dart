@@ -9,7 +9,8 @@ import '../../text_styles.dart';
 
 class ElectorateView extends StatefulWidget {
   //Transferring user between widgets
-  const ElectorateView({Key key, this.user, this.electorateSelected}) : super(key: key);
+  const ElectorateView({Key key, this.user, this.electorateSelected})
+      : super(key: key);
 
   final FirebaseUser user;
   final String electorateSelected;
@@ -24,21 +25,19 @@ class _ElectorateViewState extends State<ElectorateView> {
 
   String _selectedState;
 
-
   List<String> _electorates = ['Bass', 'Braddon', 'Clark', 'Franklin', 'Lyons'];
   String _selectedElectorate;
 
   @override
   Widget build(BuildContext context) {
+    print(widget.electorateSelected.toString());
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "Clark",
-            style: appBarStyle(),
-          ),
+      appBar: AppBar(
+        title: Text(
+          "Clark",
+          style: appBarStyle(),
         ),
-
-
+      ),
       body: createElectorateView(context, "Clark", widget.user),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,
