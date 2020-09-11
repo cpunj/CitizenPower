@@ -9,10 +9,9 @@ import '../../text_styles.dart';
 
 class ElectorateView extends StatefulWidget {
   //Transferring user between widgets
-  const ElectorateView({Key key, @required this.user, this.stateSelected, this.electorateSelected}) : super(key: key);
+  const ElectorateView({Key key, @required this.user, this.electorateSelected}) : super(key: key);
 
   final FirebaseUser user;
-  final String stateSelected;
   final String electorateSelected;
 
   @override
@@ -23,17 +22,8 @@ class _ElectorateViewState extends State<ElectorateView> {
   //Sets bottom nav bar to correct highlight
   int currentIndex = 4;
 
-  List<String> _states = [
-    'ACT',
-    'NSW',
-    'NT',
-    'QLD',
-    'TAS',
-    'VIC',
-    'WA'
-  ]; // Option 2
   String _selectedState;
-  bool _stateSelected;
+
 
   List<String> _electorates = ['Bass', 'Braddon', 'Clark', 'Franklin', 'Lyons'];
   String _selectedElectorate;
@@ -41,75 +31,14 @@ class _ElectorateViewState extends State<ElectorateView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            DropdownButton(
-              hint: Text(
-                'Select State',
-                style:
-                    TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-              ),
-              value: _selectedState,
-              onChanged: (newValue) {
-                setState(() {
-                  _selectedState = newValue;
-                  _stateSelected = true;
-                });
-              },
-              items: _states.map((location) {
-                return DropdownMenuItem(
-                  child: new Text(
-                    location,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.black),
-                  ),
-                  value: location,
-                );
-              }).toList(),
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            DropdownButton(
-              hint: Text(
-                'Electorate',
-                style:
-                    TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-              ),
-              value: _selectedElectorate,
-              onChanged: (newValue) {
-                setState(() {
-                  _selectedElectorate = newValue;
-                  BuildElectorateView();
-                });
-              },
-
-              items: _electorates.map((location) {
-                return _stateSelected != null
-                    ? DropdownMenuItem(
-                        child: new Text(
-                          location,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, color: Colors.black),
-                        ),
-                        value: location,
-                      )
-                    : DropdownMenuItem(child: Container());
-              }).toList(),
-
-            ),
-          ],
-        ),
-        actions: <Widget>[
-          Container(
-            margin: EdgeInsets.only(left: 10),
-            child: Icon(Icons.more_vert),
+        appBar: AppBar(
+          title: Text(
+            "Clark",
+            style: appBarStyle(),
           ),
-        ],
-      ),
+        ),
+
+
       body: createElectorateView(context, "Clark", widget.user),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,
@@ -280,7 +209,7 @@ SingleChildScrollView createElectorateView(
                                       vertical: 16, horizontal: 16),
                                   height: 200,
                                   child: Column(children: <Widget>[
-                                    Text("Parliment House Info",
+                                    Text("Parliament House Info",
                                         style: TextStyle(fontSize: 25.0),
                                         textAlign: TextAlign.center),
                                     GestureDetector(
