@@ -1,4 +1,3 @@
-
 import 'package:citizenpower/layouts/generic_layouts.dart';
 import 'package:citizenpower/navigator/navigator_pushes.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +8,6 @@ import '../electorateViews/electorate_view.dart';
 import '../../text_styles.dart';
 
 class ElectorateSelectorView extends StatefulWidget {
-
   const ElectorateSelectorView({Key key, @required this.user})
       : super(key: key);
   final FirebaseUser user;
@@ -88,7 +86,6 @@ class _ElectorateSelectorViewState extends State<ElectorateSelectorView> {
           ],
         ),
       ),
-
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,
           type: BottomNavigationBarType.fixed,
@@ -98,8 +95,8 @@ class _ElectorateSelectorViewState extends State<ElectorateSelectorView> {
               onTap(index, context, widget.user, currentIndex);
             });
           }
-        //onTap: _onTap,
-      ),
+          //onTap: _onTap,
+          ),
     );
   }
 }
@@ -107,56 +104,48 @@ class _ElectorateSelectorViewState extends State<ElectorateSelectorView> {
 Widget electorateListItem(String stateSelected) {
   List<String> electorateList = electorateListPopulate(stateSelected);
 
-
   return Container(
     //physics: ScrollPhysics(),
 
     child: Expanded(
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
-        child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Text("Select Electorate", style: headerStyle1()),
+        child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+          Text("Select Electorate", style: headerStyle1()),
+          ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: electorateList.length,
+              itemBuilder: (context, index) {
+                // TO DO: MAKE IT SO ON CLICK, NAVIGATES TO NEXT PAGE
+                return Container(
+                  height: 60,
+                  child: GestureDetector(
+                    onTap: () {
+                      print(electorateList[index]);
 
-              ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: electorateList.length,
-                  itemBuilder: (context, index) {
+                      //Navigator.of(context).pushNamed("/l"); this is the old way of navigating I think (which kinda works)? Trying new way below.
 
-                    return Container(
-                      height: 60,
-                      child: GestureDetector(
-
-                        onTap: () {
-                          print(electorateList[index]);
-
-                          //Navigator.of(context).pushNamed("/l"); this is the old way of navigating I think (which kinda works)? Trying new way below.
-
-                          FirebaseUser user; //THIS IS ARBITRARY BUT IDK HOW TO USE THESE VARIABLES CORRECTLY
-                          goSelectedElectorate(context, user, electorateList[index]);
-                        },
-
-                        child: Card(
-                            child: new Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-
-                              children: <Widget>[
-                                new Text(
-                                  electorateList[index],
-                                  style: profileNameStyle(),
-                                ),
-                              ],
-
-                        )),
-                      ),
-                    );
-                  })
-            ]
-        ),
+                      //FirebaseUser user; //THIS IS ARBITRARY BUT IDK HOW TO USE THESE VARIABLES CORRECTLY
+                      goSelectedElectorate(
+                          context, user, electorateList[index]);
+                    },
+                    child: Card(
+                        child: new Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        new Text(
+                          electorateList[index],
+                          style: profileNameStyle(),
+                        ),
+                      ],
+                    )),
+                  ),
+                );
+              })
+        ]),
       ),
     ),
   );
@@ -168,11 +157,31 @@ List<String> electorateListPopulate(String state) {
 
   if (state == "TAS") {
     stateElectorateList = [
-      'Bass', 'Braddon', 'Clark', 'Franklin', 'Lyons',
-      'Bass', 'Braddon', 'Clark', 'Franklin', 'Lyons',
-      'Bass', 'Braddon', 'Clark', 'Franklin', 'Lyons',
-      'Bass', 'Braddon', 'Clark', 'Franklin', 'Lyons',
-      'Bass', 'Braddon', 'Clark', 'Franklin', 'Lyons',
+      'Bass',
+      'Braddon',
+      'Clark',
+      'Franklin',
+      'Lyons',
+      'Bass',
+      'Braddon',
+      'Clark',
+      'Franklin',
+      'Lyons',
+      'Bass',
+      'Braddon',
+      'Clark',
+      'Franklin',
+      'Lyons',
+      'Bass',
+      'Braddon',
+      'Clark',
+      'Franklin',
+      'Lyons',
+      'Bass',
+      'Braddon',
+      'Clark',
+      'Franklin',
+      'Lyons',
     ];
   } else if (state == "ACT") {
     stateElectorateList = [
@@ -188,4 +197,3 @@ List<String> electorateListPopulate(String state) {
 }
 
 //BELOW: Destination following the new two strings for state/electorate
-
