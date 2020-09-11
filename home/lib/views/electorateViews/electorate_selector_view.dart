@@ -1,3 +1,5 @@
+
+import 'package:citizenpower/layouts/generic_layouts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,6 +20,7 @@ class _ElectorateSelectorViewState extends State<ElectorateSelectorView> {
 
   String _selectedState;
   bool _stateSelected;
+  int currentIndex = 4;
 
   @override
   Widget build(BuildContext context) {
@@ -81,6 +84,18 @@ class _ElectorateSelectorViewState extends State<ElectorateSelectorView> {
                 : Container()
           ],
         ),
+      ),
+
+      bottomNavigationBar: BottomNavigationBar(
+          currentIndex: currentIndex,
+          type: BottomNavigationBarType.fixed,
+          items: bottomNavBarItems(),
+          onTap: (index) {
+            setState(() {
+              onTap(index, context, widget.user, currentIndex);
+            });
+          }
+        //onTap: _onTap,
       ),
     );
   }
@@ -149,6 +164,10 @@ List<String> electorateListPopulate(String state) {
 
   if (state == "TAS") {
     stateElectorateList = [
+      'Bass', 'Braddon', 'Clark', 'Franklin', 'Lyons',
+      'Bass', 'Braddon', 'Clark', 'Franklin', 'Lyons',
+      'Bass', 'Braddon', 'Clark', 'Franklin', 'Lyons',
+      'Bass', 'Braddon', 'Clark', 'Franklin', 'Lyons',
       'Bass', 'Braddon', 'Clark', 'Franklin', 'Lyons',
     ];
   } else if (state == "ACT") {
