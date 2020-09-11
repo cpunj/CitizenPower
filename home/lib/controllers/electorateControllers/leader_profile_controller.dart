@@ -29,10 +29,16 @@ class LeaderController {
     return leader.power;
   }
 
+  //Takes the electorate ID and leader ID for the leader that is intended to be loaded
+  //marked as async because set state() needs to be run after function is complete
   loadLeader(String electorateUID, String leaderUID) async {
     profileDatabaseMethods
+        //Give database query function the ID's to download
         .getLeaderByUID(electorateUID: electorateUID, leaderUID: leaderUID)
+        //Run once query is complete
         .then((val) {
+      //Store the snapshot returned by the query
+      //then store the snapshots data in the leader class within the controller
       leaderSnapshot = val;
       leader.name = leaderSnapshot.data["name"];
       leader.electorate = leaderSnapshot.data["electorate"];

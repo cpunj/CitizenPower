@@ -1,5 +1,5 @@
 import 'package:citizenpower/Views/ElectorateViews/electorate_profile_details.dart';
-import 'package:citizenpower/Views/ElectorateViews/electorate_view.dart';
+//import 'package:citizenpower/Views/ElectorateViews/electorate_view.dart';
 import 'package:citizenpower/Views/ElectorateViews/image_view.dart';
 import 'package:citizenpower/Views/MessageViews/home_screen.dart';
 import 'package:citizenpower/Views/create_post_view.dart';
@@ -14,6 +14,8 @@ import 'package:citizenpower/views/profileViews/searchProfile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:citizenpower/views/electorateViews/electorate_selector_view.dart';
+import '../views/electorateViews/electorate_view.dart';
 
 import '../views/settings.dart';
 import '../app_home.dart';
@@ -39,7 +41,7 @@ goNewPost(BuildContext context, FirebaseUser user) {
   Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => NewPost(),
+        builder: (context) => NewPost(user: user),
       ));
 }
 
@@ -47,7 +49,24 @@ goElectorate(BuildContext context, FirebaseUser user, String electorateUID,
     String leaderUID) {
   Navigator.pushReplacement(
     context,
-    MaterialPageRoute(builder: (context) => Electorate(user: user)),
+    MaterialPageRoute(
+        builder: (context) => Electorate(
+              user: user,
+              electorateUID: electorateUID,
+              leaderUID: leaderUID,
+            )),
+  );
+}
+
+goSelectedElectorate(
+    BuildContext context, FirebaseUser user, String userElectorate) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+        builder: (context) => ElectorateView(
+              user: user,
+              electorateSelected: userElectorate,
+            )),
   );
 }
 
@@ -93,8 +112,14 @@ goMessage(BuildContext context, FirebaseUser user) {
 }
 
 goElectorateView(BuildContext context, FirebaseUser user) {
-  Navigator.push(context,
-      MaterialPageRoute(builder: (context) => ElectorateView(user: user)));
+  Navigator.push(
+      context,
+
+      //** CHANGED FOR NEW ELECTORATE SELECTOR PAGE - OLD CODE COMMENTED OUT BELOW **
+
+      MaterialPageRoute(
+          builder: (context) => ElectorateSelectorView(user: user)));
+  //MaterialPageRoute(builder: (context) => ElectorateView(user: user)));
 }
 
 goSearch(BuildContext context, FirebaseUser user) {

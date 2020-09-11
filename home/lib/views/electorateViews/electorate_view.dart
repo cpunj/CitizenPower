@@ -9,103 +9,33 @@ import '../../text_styles.dart';
 
 class ElectorateView extends StatefulWidget {
   //Transferring user between widgets
-  const ElectorateView({Key key, @required this.user}) : super(key: key);
+  const ElectorateView({Key key, @required this.user, this.electorateSelected})
+      : super(key: key);
+
   final FirebaseUser user;
+  final String electorateSelected;
 
   @override
   _ElectorateViewState createState() => _ElectorateViewState();
 }
 
 class _ElectorateViewState extends State<ElectorateView> {
-  //Sets bottom nav bar to correct highlight
+  //Sets bottom nav bar to correct highlight and block unneccessary navigation
   int currentIndex = 4;
-
-  List<String> _states = [
-    'ACT',
-    'NSW',
-    'NT',
-    'QLD',
-    'TAS',
-    'VIC',
-    'WA'
-  ]; // Option 2
-  String _selectedState;
-  bool _stateSelected;
-
-  List<String> _electorates = ['Bass', 'Braddon', 'Clark', 'Franklin', 'Lyons'];
   String _selectedElectorate;
 
   @override
   Widget build(BuildContext context) {
+    print(widget.electorateSelected.toString());
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            DropdownButton(
-              hint: Text(
-                'Select State',
-                style:
-                    TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-              ),
-              value: _selectedState,
-              onChanged: (newValue) {
-                setState(() {
-                  _selectedState = newValue;
-                  _stateSelected = true;
-                });
-              },
-              items: _states.map((location) {
-                return DropdownMenuItem(
-                  child: new Text(
-                    location,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.black),
-                  ),
-                  value: location,
-                );
-              }).toList(),
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            DropdownButton(
-              hint: Text(
-                'Electorate',
-                style:
-                    TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-              ),
-              value: _selectedElectorate,
-              onChanged: (newValue) {
-                setState(() {
-                  _selectedElectorate = newValue;
-                  BuildElectorateView();
-                });
-              },
-              items: _electorates.map((location) {
-                return _stateSelected != null
-                    ? DropdownMenuItem(
-                        child: new Text(
-                          location,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, color: Colors.black),
-                        ),
-                        value: location,
-                      )
-                    : DropdownMenuItem(child: Container());
-              }).toList(),
-            ),
-          ],
+        title: Text(
+          widget.electorateSelected.toString(),
+          style: appBarStyle(),
         ),
-        actions: <Widget>[
-          Container(
-            margin: EdgeInsets.only(left: 10),
-            child: Icon(Icons.more_vert),
-          ),
-        ],
       ),
-      body: createElectorateView(context, "Clark", widget.user),
+      body: createElectorateView(
+          context, widget.electorateSelected.toString(), widget.user),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,
           type: BottomNavigationBarType.fixed,
@@ -203,7 +133,7 @@ SingleChildScrollView createElectorateView(
               height: 10,
             ),
             Text(
-              "Clark",
+              electorateName,
               style: TextStyle(fontSize: 25.0),
             ),
             Row(children: <Widget>[
@@ -275,7 +205,7 @@ SingleChildScrollView createElectorateView(
                                       vertical: 16, horizontal: 16),
                                   height: 200,
                                   child: Column(children: <Widget>[
-                                    Text("Parliment House Info",
+                                    Text("Parliament House Info",
                                         style: TextStyle(fontSize: 25.0),
                                         textAlign: TextAlign.center),
                                     GestureDetector(

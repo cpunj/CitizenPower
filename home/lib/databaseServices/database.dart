@@ -1,3 +1,4 @@
+import 'package:citizenpower/models/post.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -17,7 +18,17 @@ class ProfileDatabaseMethods {
     return await Firestore.instance.collection("users").document(uID).get();
   }
 
-  //Used for downloading a lead profile for the leader profile view
+  getUserPostsByUID(String uID) async {
+    return await Firestore.instance
+        .collection("users")
+        .document(uID)
+        .collection("posts")
+        .getDocuments();
+  }
+
+  //Used for querying FS for a leader profile
+  //Download function so marked as async
+  //return await needed for all queries to allow main thread to continue
   getLeaderByUID({String electorateUID, String leaderUID}) async {
     return await Firestore.instance
         .collection("electorates")
@@ -123,5 +134,22 @@ class ProfileDatabaseMethods {
     //once uploadTask.onComplete is complete return the string downloadURL for upload to profile's
     //picLink field
     return taskSnapshot.ref.getDownloadURL();
+  }
+
+  uploadPost(Post newPost, String uID) {
+    //Converts the post's data to a Map for Firebase upload.
+    Map<String, dynamic> postMap = {
+      "text": newPost.postText,
+      "picLink": newPost.imageLink,
+      "time": DateTime.now().millisecondsSinceEpoch
+    };
+
+    print(uID);
+    //Uploads the post data as a map within the current user's list of posts in their profile
+    Firestore.instance
+        .collection("users")
+        .document(uID)
+        .collection("posts")
+        .add(postMap);
   }
 }

@@ -1,12 +1,17 @@
 import 'package:citizenpower/constants.dart';
+import 'package:citizenpower/controllers/post_controller.dart';
 import 'package:citizenpower/layouts/generic_layouts.dart';
+import 'package:citizenpower/models/post.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+
+//Stores the data the user is uploading in their post
+PostController postController = PostController();
 
 class NewPost extends StatefulWidget {
   final FirebaseUser user;
-
   const NewPost({Key key, this.user}) : super(key: key);
 
   @override
@@ -14,38 +19,56 @@ class NewPost extends StatefulWidget {
 }
 
 class _NewPostState extends State<NewPost> {
+  //GIve the postController the text the user has entered
+  final postTextController = TextEditingController();
+
   int currentIndex = 2;
 
-  _openGallary() {}
+  //runs pickImage function for user to select the image they want in their post
+  //External data so marked as async
+  Future getImage() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    //Stores the file in the profile controller
+    //And reruns state build to show the selected picture
+    setState(() {
+      postController.postImage = image;
+    });
+  }
 
-  _openCamera() {}
+  //Can be made if deemed neccessary
+  //_openCamera() {}
 
-  Future<void> _showChoiceDialog(BuildContext context) {
+  //Dialog displayed when user selects the option to add a picture to their post
+  _showChoiceDialog(BuildContext context) {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text("please Select one "),
-            content: SingleChildScrollView(
-              child: ListBody(
-                children: <Widget>[
-                  GestureDetector(
-                    child: Text("Gallary"),
-                    onTap: () {
-                      _openGallary();
+          return AlertDialog(title: Text("Please select one"),
+              //Contained the buttons that run the gallery option
+              //Gesture detector does not seem to work in AlertDialog
+              actions: [
+                Container(
+                  padding: EdgeInsets.only(right: 20),
+                  child: FlatButton(
+                    child: Text(
+                      "Camera",
+                      style: TextStyle(fontSize: 30.0),
+                    ),
+                    onPressed: () {
+                      getImage();
                     },
                   ),
-                  Padding(padding: EdgeInsets.all(8.0)),
-                  GestureDetector(
-                    child: Text("Camera"),
-                    onTap: () {
-                      _openCamera();
-                    },
+                ),
+                FlatButton(
+                  child: Text(
+                    "Gallery",
+                    style: TextStyle(fontSize: 30.0),
                   ),
-                ],
-              ),
-            ),
-          );
+                  onPressed: () {
+                    getImage();
+                  },
+                )
+              ]);
         });
   }
 
@@ -60,7 +83,12 @@ class _NewPostState extends State<NewPost> {
           CircleAvatar(
               backgroundColor: Colors.white30,
               child: IconButton(
-                onPressed: () {},
+                //When user has finished post, pressing this uploads the post to their profile
+                //in Firebase
+                onPressed: () {
+                  postController.uploadPost(
+                      context, postTextController.text, widget.user.uid);
+                },
                 icon: Icon(
                   Icons.send,
                   size: 22,
@@ -70,65 +98,79 @@ class _NewPostState extends State<NewPost> {
         ],
       ),
       body: Container(
-        margin: EdgeInsets.all(12),
-        height: maxLines * 20.0,
-        child: Column(
-          children: [
-            Row(
-              children: [
-                CircleAvatar(
-                  radius: 25,
-                  backgroundImage: AssetImage("assets/Wilkie.jpeg"),
-                ),
-              ],
-            ),
-            Expanded(
-              child: TextField(
+        padding: EdgeInsets.only(top: 8),
+        margin: EdgeInsets.symmetric(horizontal: 12),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  CircleAvatar(
+                    radius: 25,
+                    backgroundImage: AssetImage("assets/Wilkie.jpeg"),
+                  ),
+                ],
+              ),
+              TextField(
                 maxLines: maxLines,
+                minLines: 5,
                 decoration:
                     InputDecoration(hintText: "whats on your mind today?"),
+                controller: postTextController,
               ),
-            ),
-            const Divider(
-              height: 10.0,
-              thickness: 0.5,
-            ),
-            Row(
-              children: <Widget>[
-                FlatButton.icon(
-                    onPressed: () {
-                      _showChoiceDialog(context);
-                    },
-                    icon: const Icon(
-                      Icons.photo,
-                      color: Colors.orangeAccent,
+              //Has the user given an image? Show it in the new post view
+              postController.postImage != null
+                  ? Container(
+                      padding: EdgeInsets.only(top: 5.0),
+                      //Limits the size of the given image
+                      height: 200,
+                      child: Image.file(postController.postImage))
+                  //Simplest way to do if statements apparently
+                  : Container(
+                      height: 0,
                     ),
-                    label: Text("Photo")),
-                const VerticalDivider(
-                  width: 7,
-                ),
-                FlatButton.icon(
-                    onPressed: () {
-                      _showChoiceDialog(context);
-                    },
-                    icon: const Icon(
-                      Icons.videocam,
-                      color: Colors.redAccent,
-                    ),
-                    label: Text("Videos")),
-                const VerticalDivider(
-                  width: 7,
-                ),
-                FlatButton.icon(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.location_on,
-                      color: darkGold,
-                    ),
-                    label: Text("Location")),
-              ],
-            ),
-          ],
+              const Divider(
+                height: 10.0,
+                thickness: 0.5,
+              ),
+              Row(
+                children: <Widget>[
+                  FlatButton.icon(
+                      onPressed: () {
+                        _showChoiceDialog(context);
+                      },
+                      icon: const Icon(
+                        Icons.photo,
+                        color: Colors.orangeAccent,
+                      ),
+                      label: Text("Photo")),
+                  const VerticalDivider(
+                    width: 7,
+                  ),
+                  FlatButton.icon(
+                      onPressed: () {
+                        _showChoiceDialog(context);
+                      },
+                      icon: const Icon(
+                        Icons.videocam,
+                        color: Colors.redAccent,
+                      ),
+                      label: Text("Videos")),
+                  const VerticalDivider(
+                    width: 7,
+                  ),
+                  FlatButton.icon(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.location_on,
+                        color: darkGold,
+                      ),
+                      label: Text("Location")),
+                ],
+              ),
+            ],
+          ),
         ),
         color: Colors.grey[100],
       ),

@@ -15,28 +15,42 @@ import '../../constants.dart';
 - Put in button to email/get in touch
  */
 
+//Leader controller manages the downloading of leader data based on the selected
+//electorate from previous view
 LeaderController leaderController = LeaderController();
 
 class Electorate extends StatefulWidget {
-  const Electorate({Key key, @required this.user}) : super(key: key);
+  const Electorate(
+      {Key key, @required this.user, this.leaderUID, this.electorateUID})
+      : super(key: key);
+  //Stores the currently logged in user, passed in from the previous state
   final FirebaseUser user;
+  //ID used to query FB for the electorate that the user has chosen
+  final String electorateUID;
+  //ID passed in from previous view based on which leader the user selected
+  //and used in FB download queries
+  final String leaderUID;
 
   @override
   _ElectorateState createState() => _ElectorateState();
 }
 
 class _ElectorateState extends State<Electorate> {
+  //Used to keep track of whether the leader's bio is expanded
   bool isExpanded = true;
   String issues;
   List<String> _locations = ['Poverty', 'Pollution', 'Homeless'];
-  //Used for bottom nav bar functions
+  //Used to block bottom nav bar functions
   int currentIndex = 4;
   @override
   Widget build(BuildContext context) {
-    leaderController.loadLeader('uID', 'uID').then((val) {
+    //Load the profile based on the selected electorate and leader from previous views.
+    leaderController.loadLeader(widget.electorateUID, widget.leaderUID)
+        //Once leader profile has been loaded, rebuild widget
+        .then((val) {
       setState(() {});
     });
-
+    //Has leaderSnapshot been downloaded? Run primary leader profile view
     return leaderController.leaderSnapshot != null
         ? Scaffold(
             appBar: topAppBarLayout('Leader'),
@@ -287,6 +301,7 @@ class _ElectorateState extends State<Electorate> {
                 //onTap: _onTap,
                 ),
           )
+        //leaderSnapshot not downloaded? Show loading indicator
         : Container(
             color: Colors.black,
             child: Center(
