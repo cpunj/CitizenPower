@@ -12,6 +12,7 @@ import 'Views/groupview/group_page.dart';
 import 'Views/groupview/group_view.dart';
 import 'Views/helpView/help_page.dart';
 import 'app_home.dart';
+import 'detail.dart';
 import 'views/electorateViews/contact_view.dart';
 import 'views/electorateViews/electorate_profile_details.dart';
 import 'views/electorateViews/electorate_selector_view.dart';
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
               ),
           "/k": (BuildContext context) => new CreateNewEvent(),
           "/l": (BuildContext context) => new CreateNewGroup(),
+          "detail": (BuildContext context) => new DettailWidget(),
         },
         theme: new ThemeData(
             primaryColor: brightOrange, accentColor: Color(0xFFFEF9EB)));
