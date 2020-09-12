@@ -40,7 +40,7 @@ class ContactInfo extends StatelessWidget {
             onPressed: () {
              Navigator.push(
                context,
-               MaterialPageRoute(builder: (context) => Donate()),
+               MaterialPageRoute(builder: (context) => new Donate()),
              );
             }, //to donate page
             child: Text(
