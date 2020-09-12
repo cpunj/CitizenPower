@@ -1,25 +1,31 @@
-import 'package:citizenpower/views/aboutCitizen/about_citizen.dart';
-import 'package:citizenpower/views/electorateViews/electorate.dart';
-import 'package:citizenpower/views/electorateViews/electorate_view.dart';
-import 'package:citizenpower/views/eventView/create_new_event.dart';
-import 'package:citizenpower/views/eventView/create_new_event.dart';
-import 'package:citizenpower/views/helpView/help_page.dart';
-import 'Views/eventview/event_page.dart';
-import 'package:citizenpower/Views/eventview/event_view.dart';
-import 'package:citizenpower/Views/groupview/group_page.dart';
-import 'package:citizenpower/Views/groupview/group_view.dart';
 import 'package:citizenpower/Views/settings.dart';
 
 import 'package:citizenpower/login_page.dart';
-
+import 'package:citizenpower/views/electorateViews/electorate.dart';
+import 'Views/groupView/create_new_group.dart';
 import 'package:flutter/material.dart';
+import 'Views/aboutCitizen/about_citizen.dart';
+import 'Views/eventView/create_new_event.dart';
+import 'Views/eventView/event_page.dart';
+import 'Views/eventView/event_view.dart';
+import 'Views/groupview/group_page.dart';
+import 'Views/groupview/group_view.dart';
+import 'Views/helpView/help_page.dart';
 import 'app_home.dart';
-import 'Views/ElectorateViews/contact_view.dart';
-import 'Views/ElectorateViews/electorate_profile_details.dart';
+import 'detail.dart';
+import 'views/aboutCitizen/aboutCitizenWidgets/donate_page.dart';
+import 'views/electorateViews/contact_view.dart';
+import 'views/electorateViews/electorate_profile_details.dart';
+import 'views/electorateViews/electorate_selector_view.dart';
+import 'views/electorateViews/electorate_view.dart';
 import 'constants.dart';
-//Testing Github: Hello I am changing this comment again
+import 'user.dart';
+//Testing Github: Hello I am changing this comment
+//This is a change I made in the branch
+//This is a change I made in the master
 
 void main() => runApp(new MyApp());
+User currentUserModel;
 
 class MyApp extends StatelessWidget {
   @override
@@ -41,10 +47,17 @@ class MyApp extends StatelessWidget {
                 user: null,
               ),
           "/f": (BuildContext context) => new EventView(),
+          "/h": (BuildContext context) => new ElectorateSelectorView(),
+          "/l": (BuildContext context) => new ElectorateView(user: null),
           "/i": (BuildContext context) => new GroupPage(),
           "/j": (BuildContext context) => new EventPage(),
-          "/z": (BuildContext context) => new Electorate(user: null,),
+          "/z": (BuildContext context) => new Electorate(
+                user: null,
+              ),
           "/k": (BuildContext context) => new CreateNewEvent(),
+          "/l": (BuildContext context) => new CreateNewGroup(),
+          "donate_page":(BuildContext context) => new Donate(),
+          "detail": (BuildContext context) => new DettailWidget(),
         },
         theme: new ThemeData(
             primaryColor: brightOrange, accentColor: Color(0xFFFEF9EB)));

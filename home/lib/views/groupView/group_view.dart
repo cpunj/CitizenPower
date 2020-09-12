@@ -1,5 +1,5 @@
-import 'package:citizenpower/Layouts/generic_layouts.dart';
 import 'package:citizenpower/constants.dart';
+import 'package:citizenpower/layouts/generic_layouts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -42,7 +42,11 @@ class _GroupViewState extends State<GroupView> {
                 Icons.add,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context,"/l");
+              },
+
+
             ),
           ),
         ],

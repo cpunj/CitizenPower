@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../text_styles.dart';
 import '../../../constants.dart';
+import 'donate_page.dart';
 
 class ContactInfo extends StatelessWidget {
   @override
@@ -36,7 +37,12 @@ class ContactInfo extends StatelessWidget {
           ),
           MaterialButton(
             color: darkGold,
-            onPressed: () {},
+            onPressed: () {
+             Navigator.push(
+               context,
+               MaterialPageRoute(builder: (context) => new Donate()),
+             );
+            }, //to donate page
             child: Text(
               "Donate",
               style: TextStyle(
@@ -45,7 +51,7 @@ class ContactInfo extends StatelessWidget {
                 fontSize: 18,
               ),
             ),
-          )
+          ),
         ],
       ),
     );

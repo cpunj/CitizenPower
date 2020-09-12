@@ -1,3 +1,4 @@
+import 'package:citizenpower/models/post.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -17,13 +18,32 @@ class ProfileDatabaseMethods {
     return await Firestore.instance.collection("users").document(uID).get();
   }
 
+  getUserPostsByUID(String uID) async {
+    return await Firestore.instance
+        .collection("users")
+        .document(uID)
+        .collection("posts")
+        .getDocuments();
+  }
+
+  //Used for querying FS for a leader profile
+  //Download function so marked as async
+  //return await needed for all queries to allow main thread to continue
+  getLeaderByUID({String electorateUID, String leaderUID}) async {
+    return await Firestore.instance
+        .collection("electorates")
+        .document(electorateUID)
+        .collection("leaders")
+        .document(leaderUID)
+        .get();
+  }
+
   //Updates the user doc bio field of the given UID with the given bio
   updateUserBio(String bio, String uID) {
     Firestore.instance
         .collection("users")
         .document(uID)
         .updateData({"bio": bio});
-    print('This just ran`');
   }
 
   //Updates the user doc name field of the given UID with the given name
@@ -42,6 +62,54 @@ class ProfileDatabaseMethods {
         .updateData({"picLink": picLink});
   }
 
+  createChatRoom(String chatRoomId, chatRoomMap) {
+    Firestore.instance
+        .collection("ChatRoom")
+        .document(chatRoomId)
+        .setData(chatRoomMap)
+        .catchError((e) {
+      print(e.toString());
+    });
+  }
+
+  getUserbyUsername(String username) async {
+    return await Firestore.instance
+        .collection("users")
+        .where("name", isEqualTo: username)
+        .getDocuments();
+  }
+
+  getUserbyUserEmail(String userEmail) async {
+    return await Firestore.instance
+        .collection("users")
+        .where("name", isEqualTo: userEmail)
+        .getDocuments();
+  }
+
+  addConversationMessages(String chatroomId, messageMap) {
+    Firestore.instance
+        .collection("ChatRoom")
+        .document(chatroomId)
+        .collection("chats")
+        .add(messageMap);
+  }
+
+  getConversationMessages(String chatroomId) async {
+    return await Firestore.instance
+        .collection("ChatRoom")
+        .document(chatroomId)
+        .collection("chats")
+        .orderBy("time", descending: false)
+        .snapshots();
+  }
+
+  getChatRooms(String userEmail) async {
+    return await Firestore.instance
+        .collection("ChatRoom")
+        .where("users", arrayContains: userEmail)
+        .snapshots();
+  }
+
   //Takes a file and uploads it to Firebase Storage (Same function could be used for more than just profile pic!)
   //Returns a Future class as the DownloadURL string make be loaded first
   Future uploadPic(BuildContext context, File image) async {
@@ -57,5 +125,22 @@ class ProfileDatabaseMethods {
     //once uploadTask.onComplete is complete return the string downloadURL for upload to profile's
     //picLink field
     return taskSnapshot.ref.getDownloadURL();
+  }
+
+  uploadPost(Post newPost, String uID) {
+    //Converts the post's data to a Map for Firebase upload.
+    Map<String, dynamic> postMap = {
+      "text": newPost.postText,
+      "picLink": newPost.imageLink,
+      "time": DateTime.now().millisecondsSinceEpoch
+    };
+
+    print(uID);
+    //Uploads the post data as a map within the current user's list of posts in their profile
+    Firestore.instance
+        .collection("users")
+        .document(uID)
+        .collection("posts")
+        .add(postMap);
   }
 }
