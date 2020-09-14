@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:citizenpower/databaseServices/helperfunctions.dart';
+import 'package:citizenpower/navigator/navigator_pushes.dart';
 
 class SearchView extends StatefulWidget {
   const SearchView({Key key, @required this.user}) : super(key: key);
@@ -113,9 +114,10 @@ class _SearchScreenState extends State<SearchView> {
 }
 
 class SearchTile extends StatelessWidget {
+  final FirebaseUser user;
   final String userName;
   final String userEmail;
-  SearchTile({this.userName, this.userEmail});
+  SearchTile({this.userName, this.userEmail, this.user});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -136,7 +138,9 @@ class SearchTile extends StatelessWidget {
           ),
           Spacer(),
           GestureDetector(
-              onTap: () {},
+              onTap: () {
+                goProfileView(context, user, userName);
+              },
               child: Container(
                 decoration: BoxDecoration(
                     color: Colors.orange,
