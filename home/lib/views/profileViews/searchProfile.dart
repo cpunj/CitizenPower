@@ -117,7 +117,10 @@ class SearchTile extends StatelessWidget {
   final FirebaseUser user;
   final String userName;
   final String userEmail;
-  SearchTile({this.userName, this.userEmail, this.user});
+  SearchTile({this.userName, this.userEmail, this.user, this.profileSelected});
+
+  final FirebaseUser profileSelected;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -139,7 +142,7 @@ class SearchTile extends StatelessWidget {
           Spacer(),
           GestureDetector(
               onTap: () {
-                goProfileView(context, user, userName);
+                goProfileView(context, user, profileSelected);
               },
               child: Container(
                 decoration: BoxDecoration(

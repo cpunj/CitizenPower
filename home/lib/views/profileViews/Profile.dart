@@ -12,11 +12,13 @@ import '../create_post_view.dart';
 ProfileController profileController = ProfileController();
 
 class ProfileView extends StatefulWidget {
-  const ProfileView({Key key, @required this.user, this.profileSelected})
+  const ProfileView(
+      {Key key, @required this.user, this.toggleView, this.profileSelected})
       : super(key: key);
   final FirebaseUser user;
-  final String profileSelected;
+  final FirebaseUser profileSelected;
 
+  final Function toggleView;
   @override
   _MyProfilePageState createState() => _MyProfilePageState();
 }
@@ -30,7 +32,7 @@ class _MyProfilePageState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     //Gets profile data to fill in ProfilePageEdit View
-    profileController.loadProfile(widget.user.uid).then((val) {
+    profileController.loadProfile(widget.profileSelected.uid).then((val) {
       //'then()' only runs once FS data for view has been downloaded
       setState(() {});
     });
@@ -87,7 +89,7 @@ class _MyProfilePageState extends State<ProfileView> {
                               ),
                               color: darkGold,
                               onPressed: () {
-                                goProfileList(context, widget.user);
+                                goProfileList(context, widget.profileSelected);
                               },
                             ),
                           ],
@@ -158,7 +160,7 @@ class _MyProfilePageState extends State<ProfileView> {
                 items: bottomNavBarItems(),
                 onTap: (index) {
                   setState(() {
-                    onTap(index, context, widget.user, currentIndex);
+                    onTap(index, context, widget.profileSelected, currentIndex);
                   });
                 }
                 //onTap: _onTap,

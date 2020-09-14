@@ -46,7 +46,7 @@ goNewPost(BuildContext context, FirebaseUser user) {
       ));
 }
 
-goProfileView(BuildContext context, FirebaseUser user, String userName) {
+goProfileView(BuildContext context, FirebaseUser user, FirebaseUser userName) {
   Navigator.push(
     context,
     MaterialPageRoute(
