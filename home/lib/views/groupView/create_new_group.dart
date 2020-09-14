@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ui';
 import 'package:citizenpower/models/group.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,15 @@ class CreateNewGroup extends StatefulWidget {
 
 class _CreateNewGroupEState extends State<CreateNewGroup> {
   File eventImage;
+  List<bool> isSelected;
+
+  @override
+  void initState(){
+    isSelected = [false, true];
+    super.initState();
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +40,7 @@ class _CreateNewGroupEState extends State<CreateNewGroup> {
     }
     return Scaffold(
       appBar: new AppBar(
-        title: Text("Create new Group"),
+        title: Text("Create Group"),
         elevation: 1.0,
       ),
 
@@ -58,7 +68,7 @@ class _CreateNewGroupEState extends State<CreateNewGroup> {
               TextField(
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.only(bottom: 5),
-                    labelText: "Group Desctiption",
+                    labelText: "Group Description",
                     hintStyle: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -79,7 +89,7 @@ class _CreateNewGroupEState extends State<CreateNewGroup> {
                           getImage();
                         }):
               OutlineButton(
-              padding: EdgeInsets.symmetric(horizontal: 150,vertical:30),
+              padding: EdgeInsets.symmetric(horizontal: 80,vertical:30),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20)
 
@@ -103,27 +113,49 @@ class _CreateNewGroupEState extends State<CreateNewGroup> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  OutlineButton(
-                  padding: EdgeInsets.symmetric(horizontal: 40,vertical:20),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)
-                  ),
-                  onPressed: () {},
-                  child: Text("Public"),
+
+                  ToggleButtons(
+                    selectedBorderColor: darkGold,
+                    fillColor: darkGold,
+
+                    selectedColor: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
 
 
+                      children: <Widget>[
+                        Padding (
+                          padding: const EdgeInsets.symmetric(horizontal: 40,vertical:20),
+                          child: Text('Public',
+                          style: TextStyle(fontSize: 16),
+                          ),
+                        ),
 
-    ),
-                  OutlineButton(
-                    padding: EdgeInsets.symmetric(horizontal: 40,vertical:20),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)
-                    ),
-                    onPressed: () {},
-                    child: Text("Private"),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 40,vertical:20),
+                          child: Text('Private',
+                          style: TextStyle(fontSize: 16),
+                          ),
+                        ),
+                      ],
 
+                      onPressed: (int index) {
+                        setState(() {
+                          for (int i = 0; i < isSelected.length; i++){
+                            isSelected[i] = i == index;
+                          }
+                          // Here, if the index == 0 then group preference is Public; or if index == 1 it's Private
 
+                          if (index == 0){
+                            // This needs to be integrated into database accessing (somehow)
+                            print('Public');
+                          } else {
+                            print('Private');
+                          }
 
+                        });
+                      },
+
+                      isSelected: isSelected,
                   ),
                 ],
               ),
@@ -131,7 +163,7 @@ class _CreateNewGroupEState extends State<CreateNewGroup> {
 
         ),
         SizedBox(
-          height: 20,
+          height: 90,
 
         ),
               Center(
@@ -140,8 +172,9 @@ class _CreateNewGroupEState extends State<CreateNewGroup> {
                     borderRadius: BorderRadius.circular(20.0),
                     color: darkGold,
                     child: new MaterialButton(
+                      padding: EdgeInsets.symmetric(horizontal: 40,vertical:20),
                       textColor: Colors.white,
-                      child: new Text("Create"),
+                      child: new Text("Create", style: TextStyle(fontWeight: FontWeight.bold),),
          onPressed: () {
 
          }
