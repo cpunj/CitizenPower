@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:ui';
+import '../../models/group.dart';
 import 'package:citizenpower/models/group.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -163,7 +164,7 @@ class _CreateNewGroupEState extends State<CreateNewGroup> {
 
         ),
         SizedBox(
-          height: 90,
+          height: 20,
 
         ),
               Center(
@@ -175,9 +176,11 @@ class _CreateNewGroupEState extends State<CreateNewGroup> {
                       padding: EdgeInsets.symmetric(horizontal: 40,vertical:20),
                       textColor: Colors.white,
                       child: new Text("Create", style: TextStyle(fontWeight: FontWeight.bold),),
-         onPressed: () {
 
-         }
+                        onPressed: () {
+
+
+                      }
 
       ),
                   ),
