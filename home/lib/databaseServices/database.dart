@@ -23,7 +23,7 @@ class ProfileDatabaseMethods {
         .collection("users")
         .document(uID)
         .collection("posts")
-        .getDocuments();
+        .snapshots();
   }
 
   //Used for querying FS for a leader profile
@@ -132,7 +132,9 @@ class ProfileDatabaseMethods {
     Map<String, dynamic> postMap = {
       "text": newPost.postText,
       "picLink": newPost.imageLink,
-      "time": DateTime.now().millisecondsSinceEpoch
+      "time": DateTime.now().millisecondsSinceEpoch,
+      "name": newPost.name,
+      "profilePicLink": newPost.profilePicLink,
     };
 
     print(uID);

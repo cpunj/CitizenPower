@@ -1,5 +1,6 @@
 import 'package:citizenpower/constants.dart';
 import 'package:citizenpower/controllers/post_controller.dart';
+import 'package:citizenpower/controllers/profile_controller.dart';
 import 'package:citizenpower/layouts/generic_layouts.dart';
 import 'package:citizenpower/models/post.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,6 +10,7 @@ import 'package:image_picker/image_picker.dart';
 
 //Stores the data the user is uploading in their post
 PostController postController = PostController();
+ProfileController profileController = ProfileController();
 
 class NewPost extends StatefulWidget {
   final FirebaseUser user;
@@ -74,6 +76,8 @@ class _NewPostState extends State<NewPost> {
 
   @override
   Widget build(BuildContext context) {
+    profileController.loadProfile(widget.user.uid);
+
     final maxLines = 12;
     return Scaffold(
       appBar: new AppBar(
@@ -87,7 +91,11 @@ class _NewPostState extends State<NewPost> {
                 //in Firebase
                 onPressed: () {
                   postController.uploadPost(
-                      context, postTextController.text, widget.user.uid);
+                      context,
+                      postTextController.text,
+                      widget.user.uid,
+                      profileController.getName(),
+                      profileController.getPic());
                 },
                 icon: Icon(
                   Icons.send,

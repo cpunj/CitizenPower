@@ -1,6 +1,7 @@
 import 'package:citizenpower/controllers/profile_controller.dart';
 import 'package:citizenpower/layouts/generic_layouts.dart';
 import 'package:citizenpower/navigator/navigator_pushes.dart';
+import 'package:citizenpower/views/post_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -26,6 +27,36 @@ class _MyProfilePageState extends State<MyProfilePage> {
   bool isExpanded = true;
   //Used to prevent re-entering same view in bottom nav bar
   int currentIndex = 1;
+  Stream postsStream;
+  Widget postList() {
+    return StreamBuilder(
+      stream: postsStream,
+      builder: (context, snapshot) {
+        return snapshot.hasData
+            ? ListView.builder(
+                shrinkWrap: true,
+                itemCount: snapshot.data.documents.length,
+                itemBuilder: (context, index) {
+                  return postWidget(
+                      context,
+                      snapshot.data.documents[index].data["text"],
+                      snapshot.data.documents[index].data["picLink"],
+                      snapshot.data.documents[index].data["name"],
+                      snapshot.data.documents[index].data["profilePicLink"]);
+                })
+            : Container();
+      },
+    );
+  }
+
+  void initState() {
+    profileController.getUserPosts(widget.user.uid).then((value) {
+      setState(() {
+        postsStream = value;
+      });
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +64,14 @@ class _MyProfilePageState extends State<MyProfilePage> {
     //only if snapshot has not already been downloaded
     if (profileController.profileSnapshot == null) {
       profileController.loadProfile(widget.user.uid).then((val) {
+        print(val);
         //'then()' only runs once FS data for view has been downloaded
         setState(() {});
       });
     }
     //While profileSnapshot is downloading loading indicator is shown instead, setState reruns to
     //build actual view once data is downloaded
-    return profileController.postListSnapshot != null
+    return profileController.profileSnapshot != null
         ? Scaffold(
             appBar: topAppBarLayout('Profile'),
             drawer: new Drawer(),
@@ -137,16 +169,7 @@ class _MyProfilePageState extends State<MyProfilePage> {
                     height: 10,
                     color: Colors.black,
                   ),
-//Need to use a stream builder it would seem
-//                  ListView.builder(
-//                      shrinkWrap: true,
-//                      itemCount:
-//                          profileController.postListSnapshot.documents.length,
-//                      itemBuilder: (context, index) {
-//                        print(profileController.postListSnapshot);
-//                        return Image.network(profileController
-//                            .postListSnapshot.documents[index].data["picLink"]);
-//                      })
+                  postList(),
                 ]),
               ),
             ),
