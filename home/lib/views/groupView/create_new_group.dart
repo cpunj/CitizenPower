@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
 import 'package:citizenpower/controllers/groupController.dart';
+import 'package:citizenpower/navigator/navigator_pushes.dart';
 
 import '../../models/group.dart';
 import 'package:citizenpower/models/group.dart';
@@ -14,6 +15,8 @@ import '../profileViews/profile_page_edit.dart';
 GroupController groupController = new GroupController();
 
 class CreateNewGroup extends StatefulWidget {
+  final FirebaseUser user;
+  const CreateNewGroup({Key key, this.user}) : super(key: key);
 
   @override
   _CreateNewGroupEState createState() => _CreateNewGroupEState();
@@ -27,20 +30,14 @@ class _CreateNewGroupEState extends State<CreateNewGroup> {
   final nameController = TextEditingController();
   final descriptionController = TextEditingController();
 
-
-
   @override
   void initState(){
     isSelected = [false, true];
     super.initState();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-
-
 
     Future getImage() async {
       var image = await ImagePicker.pickImage(source: ImageSource.gallery);
@@ -97,27 +94,39 @@ class _CreateNewGroupEState extends State<CreateNewGroup> {
                 height: 60,
 
               ),
-              Column(
-                  children: [
-                    (eventImage != null)?
-                        GestureDetector(child: Image.file(eventImage), onTap:() {
-                          getImage();
-                        }):
-              OutlineButton(
-              padding: EdgeInsets.symmetric(horizontal: 80,vertical:30),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)
 
-              ),
-              onPressed: () {
-                getImage();
-              },
-              child: Text("Add group photo"),
 
-         
-    ),
-    ],
+              groupController.groupImage != null
+                  ? GestureDetector(
+                onTap: () {
+                  print('new group image');
+                  getImage();
+
+                },
+
+                    child: Container(
+                // Stores the image a user has selected
+                    padding: EdgeInsets.only(top: 5.0),
+                    //Limits the size of the given image
+                    height: 200,
+                    child: Image.file(groupController.groupImage)
+
+                    ),
+                  )
+
+              //Simplest way to do if statements apparently
+                  : OutlineButton(
+                padding: EdgeInsets.symmetric(horizontal: 80,vertical:30),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)
+                ),
+                onPressed: () {
+                  getImage();
+                },
+                child: Text("Add group photo"),
               ),
+
+
               SizedBox(
                 height: 20,
 
@@ -195,10 +204,8 @@ class _CreateNewGroupEState extends State<CreateNewGroup> {
                       child: new Text("Create", style: TextStyle(fontWeight: FontWeight.bold),),
 
                         onPressed: () {
-                        print('calling create function');
                         groupController.uploadGroup(context, nameController.text, descriptionController.text, privacyController);
-
-
+                        goGroupList(context, widget.user);
 //
                       }
 

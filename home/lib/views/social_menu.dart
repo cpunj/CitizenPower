@@ -1,13 +1,13 @@
-import 'package:citizenpower/Navigator/navigator_pushes.dart';
+
 import 'package:citizenpower/layouts/generic_layouts.dart';
+import 'package:citizenpower/navigator/navigator_pushes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../Navigator/navigator_pushes.dart';
-
 class SocialMenu extends StatefulWidget {
-  const SocialMenu({Key key, @required this.user}) : super(key: key);
+
   final FirebaseUser user;
+  const SocialMenu({Key key, @required this.user}) : super(key: key);
 
   @override
   _SocialMenuState createState() => _SocialMenuState();
@@ -68,7 +68,7 @@ class _SocialMenuState extends State<SocialMenu> {
                   child: MaterialButton(
                     elevation: 8.0,
                     onPressed: () {
-                      Navigator.pushNamed(context, "/g");
+                      goGroupList(context, widget.user);
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),

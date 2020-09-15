@@ -1,3 +1,4 @@
+import 'package:citizenpower/models/group.dart';
 import 'package:citizenpower/models/post.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -143,4 +144,31 @@ class ProfileDatabaseMethods {
         .collection("posts")
         .add(postMap);
   }
+
+  uploadGroup(Group newGroup) {
+    //Converts the post's data to a Map for Firebase upload.
+    Map<String, dynamic> groupMap = {
+      "name": newGroup.groupname,
+      "description": newGroup.groupdescription,
+      "imageLink": newGroup.imagelink,
+      "privacy": newGroup.privacylevel,
+
+    };
+
+    print('uploading GroupMap');
+    //Uploads the post data as a map within the current user's list of posts in their profile
+
+
+    Firestore.instance
+        .collection("groups")
+        .document(newGroup.groupname) // need to change to suit database layout
+        .setData(groupMap)
+        .catchError((e) {
+      print(e.toString());
+    });
+
+  }
+
+
+
 }

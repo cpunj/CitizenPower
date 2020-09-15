@@ -1,5 +1,6 @@
 import 'package:citizenpower/constants.dart';
 import 'package:citizenpower/layouts/generic_layouts.dart';
+import 'package:citizenpower/navigator/navigator_pushes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -43,7 +44,7 @@ class _GroupViewState extends State<GroupView> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.pushNamed(context,"/l");
+                goCreateGroup(context, widget.user);
               },
 
 

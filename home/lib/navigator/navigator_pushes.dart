@@ -9,6 +9,8 @@ import 'package:citizenpower/Views/profileViews/profile_page_edit.dart';
 import 'package:citizenpower/Views/social_menu.dart';
 import 'package:citizenpower/models/profile.dart';
 import 'package:citizenpower/views/electorateViews/electorate.dart';
+import 'package:citizenpower/views/groupView/create_new_group.dart';
+import 'package:citizenpower/views/groupView/group_view.dart';
 import 'package:citizenpower/views/profileViews/profile_list.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -137,4 +139,14 @@ goEditProfile(BuildContext context, FirebaseUser user, Profile myProfile) {
               profile: myProfile,
             )),
   );
+}
+
+goCreateGroup (BuildContext context, FirebaseUser user) {
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => CreateNewGroup(user: user)));
+}
+
+goGroupList (BuildContext context, FirebaseUser user) {
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => GroupView(user: user)));
 }
