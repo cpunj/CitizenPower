@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../text_styles.dart';
-
-
 
 class Donate extends StatefulWidget {
   @override
@@ -20,7 +19,7 @@ class _DonateState extends State<Donate> {
         ),
         body: Container(
           alignment: Alignment.topCenter,
-          child:Column(
+          child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Container(
@@ -33,61 +32,49 @@ class _DonateState extends State<Donate> {
                   ),
                 ),
                 SizedBox(
-                height: 20,
-              ),
-            Column(
+                  height: 20,
+                ),
+                Column(children: <Widget>[
+                  ToggleButtons(
+                    selectedColor: Colors.deepOrange,
                     children: <Widget>[
-                      ToggleButtons(
-                          selectedColor: Colors.deepOrange,
-
-                             children: <Widget>[
-                               Row(
-                                   children: <Widget>[
-                                  Icon(Icons.attach_money),
-                                  Text("   5     "),]
-                         ),
-                               Row(
-
-                                children: <Widget>[
-                                  Icon(Icons.attach_money),
-                                  Text("   10     "),]
-                            ),
-                                Row(
-                                    children: <Widget>[
-                                      Icon(Icons.attach_money),
-                                      Text("   20     "),]
-                                ),
-
-
-                             ],
-                        onPressed: (int index) {
-                          setState(() {
-                            for (int buttonIndex = 0; buttonIndex < isSelected.length; buttonIndex++) {
-                              if (buttonIndex == index) {
-                                isSelected[buttonIndex] = !isSelected[buttonIndex];
-                              } else {
-                                isSelected[buttonIndex] = false;
-                              }
-                            }
-                          });
-
-                        },
-
-                            isSelected: isSelected,
-
-                      ),
-
-
+                      Row(children: <Widget>[
+                        Icon(Icons.attach_money),
+                        Text("   5     "),
+                      ]),
+                      Row(children: <Widget>[
+                        Icon(Icons.attach_money),
+                        Text("   10     "),
+                      ]),
+                      Row(children: <Widget>[
+                        Icon(Icons.attach_money),
+                        Text("   20     "),
+                      ]),
+                    ],
+                    onPressed: (int index) {
+                      setState(() {
+                        for (int buttonIndex = 0;
+                            buttonIndex < isSelected.length;
+                            buttonIndex++) {
+                          if (buttonIndex == index) {
+                            isSelected[buttonIndex] = !isSelected[buttonIndex];
+                          } else {
+                            isSelected[buttonIndex] = false;
+                          }
+                        }
+                      });
+                    },
+                    isSelected: isSelected,
+                  ),
                 ]),
-                  Column(
-                    children: <Widget>[
+                Column(children: <Widget>[
                   Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text("Single"),
                       Radio(
                         value: 1,
-                        activeColor:Colors.deepOrange,
+                        activeColor: Colors.deepOrange,
                         groupValue: this.sex,
                         onChanged: (value) {
                           setState(() {
@@ -99,7 +86,7 @@ class _DonateState extends State<Donate> {
                       Text("Monthly"),
                       Radio(
                         value: 2,
-                        activeColor:Colors.deepOrange,
+                        activeColor: Colors.deepOrange,
                         groupValue: this.sex,
                         onChanged: (value) {
                           setState(() {
@@ -108,17 +95,18 @@ class _DonateState extends State<Donate> {
                         },
                       )
                     ],
-                  ),]
                   ),
-                  SizedBox(
+                ]),
+                SizedBox(
                   height: 10,
                 ),
                 RaisedButton.icon(
-                  icon:Icon(Icons.payment),
-                  label: Text('Paypal'),
-                  onPressed: () {},
+                  icon: Icon(Icons.payment),
+                  label: Text('Donate'),
+                  onPressed: () {
+                    launch('https://paypal.me/pools/c/8szEPKLNHp');
+                  },
                   splashColor: Colors.deepOrange,
-
                 ),
                 SizedBox(
                   height: 20,
@@ -135,11 +123,7 @@ class _DonateState extends State<Donate> {
                   "Thank you",
                   style: headerStyle1(),
                 ),
-              ]
-
-          ),
-
-        )
-    );
+              ]),
+        ));
   }
 }

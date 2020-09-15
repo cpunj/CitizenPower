@@ -124,6 +124,9 @@ class _MyProfilePageState extends State<MyProfilePage> {
                             //Goes to edit view and passes in the currently logged in user, and
                             //The currently downloaded profile
                             onPressed: () {
+                              //Sets snapshot to null so my profile re downloads the profile data after editing is complete
+                              //in profile_page_edit
+                              profileController.profileSnapshot = null;
                               goEditProfile(context, widget.user,
                                   profileController.getProfile());
                             }),
@@ -135,15 +138,17 @@ class _MyProfilePageState extends State<MyProfilePage> {
                     color: Colors.black,
                   ),
 //Need to use a stream builder it would seem
-//                  ListView.builder(
-//                      shrinkWrap: true,
-//                      itemCount:
-//                          profileController.postListSnapshot.documents.length,
-//                      itemBuilder: (context, index) {
-//                        print(profileController.postListSnapshot);
-//                        return Image.network(profileController
-//                            .postListSnapshot.documents[index].data["picLink"]);
-//                      })
+                  ListView.builder(
+                      shrinkWrap: true,
+                      itemCount:
+                          profileController.postListSnapshot.documents.length,
+                      itemBuilder: (context, index) {
+                        print(profileController.postListSnapshot);
+                        return Image.network(
+                          profileController.postListSnapshot.documents[index]
+                              .data["picLink"],
+                        );
+                      })
                 ]),
               ),
             ),

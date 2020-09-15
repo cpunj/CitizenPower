@@ -48,10 +48,16 @@ class ProfileController {
     }
   }
 
-  uploadProfilePic(BuildContext context, String uID) {
-    profileDatabaseMethods.uploadPic(context, profileImage).then((val) {
-      profileDatabaseMethods.updatePicLink(val, uID);
-    });
+  uploadProfilePic(BuildContext context, String uID, bool changedPic) async {
+    //Only runs the the function if the the user has actually updated their profile picture to prevent storage waste
+    if (changedPic == true) {
+      profileDatabaseMethods.uploadPic(context, profileImage).then((val) {
+        profileDatabaseMethods.updatePicLink(val, uID);
+      });
+      //Arbitairily wait so that updatePicLink can be completed so the new data is loaded in my_profile
+      await Future.delayed(Duration(seconds: 3));
+    }
+    //Used to ensure that all profile data has been uploaded before moving back to my profile for download
   }
 
   //Used to get profile data, async to allow setState use in view
