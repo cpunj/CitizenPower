@@ -31,6 +31,7 @@ class PostController {
     newPost.name = name;
     newPost.profilePicLink = profilePicLink;
     //Uploads post with text and file download url
+    //TODO: uploadPost needs to wait for uploadPostPic to complete, currently a null picLink is uploaded at 1st attempt
     profileDatabaseMethods.uploadPost(newPost, uID);
   }
 }

@@ -33,12 +33,11 @@ class _NewPostState extends State<NewPost> {
     //Stores the file in the profile controller
     //And reruns state build to show the selected picture
     setState(() {
-
       postController.postImage = image;
     });
   }
 
-  //Can be made if deemed neccessary
+  //Can be made if deemed necessary
   //_openCamera() {}
 
   //Dialog displayed when user selects the option to add a picture to their post
@@ -77,6 +76,9 @@ class _NewPostState extends State<NewPost> {
 
   @override
   Widget build(BuildContext context) {
+    //Load the profile of the current user to stores in within a profile
+    //This data is used to give posts the information about the user who posted it
+    ///Might need to change this implementation to the my_profile.dart style to prevent errors
     profileController.loadProfile(widget.user.uid);
 
     final maxLines = 12;
@@ -88,7 +90,7 @@ class _NewPostState extends State<NewPost> {
           CircleAvatar(
               backgroundColor: Colors.white30,
               child: IconButton(
-                //When user has finished post, pressing this uploads the post to their profile
+                //When user has finished post creating, pressing this uploads the post to their profile
                 //in Firebase
                 onPressed: () {
                   postController.uploadPost(
@@ -117,6 +119,7 @@ class _NewPostState extends State<NewPost> {
                 children: [
                   CircleAvatar(
                     radius: 25,
+                    //TODO: Should show the currently logged in user's profile picture
                     backgroundImage: AssetImage("assets/Wilkie.jpeg"),
                   ),
                 ],
@@ -135,7 +138,7 @@ class _NewPostState extends State<NewPost> {
                       //Limits the size of the given image
                       height: 200,
                       child: Image.file(postController.postImage))
-                  //Simplest way to do if statements apparently
+                  //Simplest way to do if statements in Dart
                   : Container(
                       height: 0,
                     ),
@@ -146,6 +149,7 @@ class _NewPostState extends State<NewPost> {
               Row(
                 children: <Widget>[
                   FlatButton.icon(
+                      //Shows the dialog box for a user to select a picture from their files
                       onPressed: () {
                         _showChoiceDialog(context);
                       },

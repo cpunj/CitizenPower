@@ -18,6 +18,7 @@ class ProfileDatabaseMethods {
     return await Firestore.instance.collection("users").document(uID).get();
   }
 
+  //Get a Stream<QuerySnapshot> for building post lists
   getUserPostsByUID(String uID) async {
     return await Firestore.instance
         .collection("users")
@@ -119,6 +120,7 @@ class ProfileDatabaseMethods {
         .snapshots();
   }
 
+  ///GENERIC, can be used for any functionality that needs to upload an image to Firebase Storage
   //Takes a file and uploads it to Firebase Storage (Same function could be used for more than just profile pic!)
   //Returns a Future class as the DownloadURL string make be loaded first
   Future uploadPic(BuildContext context, File image) async {
@@ -137,7 +139,7 @@ class ProfileDatabaseMethods {
   }
 
   uploadPost(Post newPost, String uID) {
-    //Converts the post's data to a Map for Firebase upload.
+    //Converts the post's data to a Map for Firebase document upload.
     Map<String, dynamic> postMap = {
       "text": newPost.postText,
       "picLink": newPost.imageLink,

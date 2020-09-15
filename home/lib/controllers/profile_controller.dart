@@ -7,7 +7,6 @@ import 'dart:io';
 class ProfileController {
   //Holds FS Snapshot once it is downloaded from FS
   DocumentSnapshot profileSnapshot;
-  QuerySnapshot postListSnapshot;
   //Holds the current logged in user
   //The profile that will be loaded into profile View
   Profile profile = Profile();
@@ -54,12 +53,14 @@ class ProfileController {
       profileDatabaseMethods.uploadPic(context, profileImage).then((val) {
         profileDatabaseMethods.updatePicLink(val, uID);
       });
-      //Arbitairily wait so that updatePicLink can be completed so the new data is loaded in my_profile
+      //Arbitrarily wait so that updatePicLink can be completed so the new data is loaded in my_profile
       await Future.delayed(Duration(seconds: 3));
     }
     //Used to ensure that all profile data has been uploaded before moving back to my profile for download
   }
 
+  //Takes the UID of a user and returns a Stream<QuerySnapshot> to build a list of post widgets
+  //based on how many posts are present in the users post collection
   getUserPosts(String uID) async {
     return profileDatabaseMethods.getUserPostsByUID(uID);
   }

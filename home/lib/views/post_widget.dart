@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../app_home.dart';
 
+//Generic Post widget to be used in all dashboard list building
+
 Widget postWidget(BuildContext context, String text, String picLink,
     String name, String profilePicLink) {
   return Container(
