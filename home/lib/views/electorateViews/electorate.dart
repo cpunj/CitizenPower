@@ -264,9 +264,9 @@ class _ElectorateState extends State<Electorate> {
                     // ignore: missing_return
                     setState(() {
                       issues = newValue;
-                      if (issues == "Issue 1") {
-                        print(Text(
-                            "This has been a major issue for this company"));
+                      if (issues == "Poverty") {
+                        Text(
+                            "This has been a major issue for this company");
                         return Column(children: <Widget>[
                           Text(" This has been a major issue for this company")
                         ]);

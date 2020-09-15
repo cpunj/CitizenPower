@@ -12,6 +12,15 @@ class CreateNewEvent extends StatefulWidget {
 }
 
 class _CreateNewEventState extends State<CreateNewEvent> {
+  List<bool> isSelected;
+
+  @override
+  void initState(){
+    isSelected = [false, true];
+    super.initState();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,24 +96,52 @@ class _CreateNewEventState extends State<CreateNewEvent> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
-                        OutlineButton(
-                          padding: EdgeInsets.symmetric(horizontal: 40,vertical:20),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)
-                          ),
-                          onPressed: () {},
-                          child: Text("Public"),
+
+                        ToggleButtons(
+                          selectedBorderColor: darkGold,
+                          fillColor: darkGold,
+
+                          selectedColor: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
 
 
+                          children: <Widget>[
+                            Padding (
+                              padding: const EdgeInsets.symmetric(horizontal: 40,vertical:20),
+                              child: Text('Public',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            ),
 
-                        ),
-                        OutlineButton(
-                          padding: EdgeInsets.symmetric(horizontal: 40,vertical:20),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)
-                          ),
-                          onPressed: () {},
-                          child: Text("Private"),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 40,vertical:20),
+                              child: Text('Private',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            ),
+                          ],
+
+                          onPressed: (int index) {
+                            setState(() {
+                              for (int i = 0; i < isSelected.length; i++){
+                                isSelected[i] = i == index;
+                              }
+                              // Here, if the index == 0 then group preference is Public; or if index == 1 it's Private
+
+                              if (index == 0){
+                                // This needs to be integrated into database accessing (somehow)
+                                //privacyController = true;
+                                print('Public');
+
+                              } else {
+                                //privacyController = false;
+                                print('Private');
+                              }
+
+                            });
+                          },
+
+                          isSelected: isSelected,
 
 
 

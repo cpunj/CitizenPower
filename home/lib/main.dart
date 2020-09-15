@@ -2,6 +2,7 @@ import 'package:citizenpower/Views/settings.dart';
 
 import 'package:citizenpower/login_page.dart';
 import 'package:citizenpower/views/electorateViews/electorate.dart';
+import 'package:citizenpower/views/eventView/finding_events.dart';
 import 'Views/groupView/create_new_group.dart';
 import 'package:flutter/material.dart';
 import 'Views/aboutCitizen/about_citizen.dart';
@@ -56,6 +57,7 @@ class MyApp extends StatelessWidget {
               ),
           "/k": (BuildContext context) => new CreateNewEvent(),
           "/l": (BuildContext context) => new CreateNewGroup(),
+          "/m": (BuildContext context) => new FindingEvents(),
           "donate_page":(BuildContext context) => new Donate(),
           "detail": (BuildContext context) => new DettailWidget(),
         },
