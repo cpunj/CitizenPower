@@ -46,13 +46,10 @@ class _SearchScreenState extends State<SearchView> {
             itemCount: searchSnapshot.documents.length,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: goProfileView(
-                    context, user, searchSnapshot.documents[index].documentID),
-                child: SearchTile(
-                  userName: searchSnapshot.documents[index].data["name"],
-                  userEmail: searchSnapshot.documents[index].data["email"],
-                ),
+              return SearchTile(
+                userName: searchSnapshot.documents[index].data["name"],
+                userEmail: searchSnapshot.documents[index].data["email"],
+                uID: searchSnapshot.documents[index].documentID,
               );
             })
         : Container();
@@ -61,7 +58,7 @@ class _SearchScreenState extends State<SearchView> {
   @override
   void initState() {
     getUserInfo();
-    initiateSearch();
+
     super.initState();
   }
 
@@ -122,12 +119,11 @@ class _SearchScreenState extends State<SearchView> {
 }
 
 class SearchTile extends StatelessWidget {
+  final String uID;
   final FirebaseUser user;
   final String userName;
   final String userEmail;
-  SearchTile({this.userName, this.userEmail, this.user, this.profileSelected});
-
-  final FirebaseUser profileSelected;
+  SearchTile({this.userName, this.userEmail, this.uID, this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -135,28 +131,35 @@ class SearchTile extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       child: Row(
         children: [
-          Column(
-            children: [
-              Text(
-                userName,
-                style: TextStyle(color: Colors.black38),
-              ),
-              Text(
-                userEmail,
-                style: TextStyle(color: Colors.black38),
-              )
-            ],
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                Text(
+                  userName,
+                  style: TextStyle(color: Colors.black38),
+                ),
+                Text(
+                  userEmail,
+                  style: TextStyle(color: Colors.black38),
+                )
+              ],
+            ),
           ),
           Spacer(),
-          Container(
-            decoration: BoxDecoration(
-                color: Colors.orange, borderRadius: BorderRadius.circular(30)),
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 18),
-            child: Text(
-              "View Profile",
-              style: TextStyle(color: Colors.black38),
-            ),
-          )
+          GestureDetector(
+              onTap: () {
+                goProfileView(context, user, uID);
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.orange,
+                    borderRadius: BorderRadius.circular(30)),
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+                child: Text(
+                  "View Profile",
+                  style: TextStyle(color: Colors.black38),
+                ),
+              ))
         ],
       ),
     );

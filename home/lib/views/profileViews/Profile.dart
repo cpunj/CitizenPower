@@ -1,6 +1,7 @@
 import 'package:citizenpower/controllers/profile_controller.dart';
 import 'package:citizenpower/layouts/generic_layouts.dart';
 import 'package:citizenpower/navigator/navigator_pushes.dart';
+import 'package:citizenpower/views/messageViews/search.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -41,7 +42,6 @@ class _MyProfilePageState extends State<ProfileView> {
     return profileController.profileSnapshot != null
         ? Scaffold(
             appBar: topAppBarLayout('Profile'),
-            drawer: new Drawer(),
             body: Container(
               child: CustomScrollView(slivers: <Widget>[
                 SliverToBoxAdapter(
@@ -125,13 +125,13 @@ class _MyProfilePageState extends State<ProfileView> {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: RaisedButton(
                           child: Text(
-                            "Edit",
+                            "Message",
                           ),
                           //Goes to edit view and passes in the currently logged in user, and
                           //The currently downloaded profile
                           onPressed: () {
-                            goEditProfile(context, widget.user,
-                                profileController.getProfile());
+                            createChatroomAndStartConversation(context,
+                                userEmail: profileController.getName());
                           }),
                     ),
                   ],
