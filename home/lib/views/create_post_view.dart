@@ -31,6 +31,7 @@ class _NewPostState extends State<NewPost> {
     //Stores the file in the profile controller
     //And reruns state build to show the selected picture
     setState(() {
+
       postController.postImage = image;
     });
   }

@@ -1,17 +1,20 @@
 import 'dart:io';
 import 'dart:ui';
+import 'package:citizenpower/controllers/groupController.dart';
+
 import '../../models/group.dart';
 import 'package:citizenpower/models/group.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import '../../constants.dart';
 import '../profileViews/profile_page_edit.dart';
 
-Group group = new Group();
+GroupController groupController = new GroupController();
 
 class CreateNewGroup extends StatefulWidget {
+
   @override
   _CreateNewGroupEState createState() => _CreateNewGroupEState();
 }
@@ -19,6 +22,12 @@ class CreateNewGroup extends StatefulWidget {
 class _CreateNewGroupEState extends State<CreateNewGroup> {
   File eventImage;
   List<bool> isSelected;
+  bool privacyController;
+
+  final nameController = TextEditingController();
+  final descriptionController = TextEditingController();
+
+
 
   @override
   void initState(){
@@ -31,12 +40,15 @@ class _CreateNewGroupEState extends State<CreateNewGroup> {
   @override
   Widget build(BuildContext context) {
 
+
+
     Future getImage() async {
       var image = await ImagePicker.pickImage(source: ImageSource.gallery);
       //Stores the file in the profile controller
       //And returns state build to show the selected picture
       setState(() {
-        eventImage = image;
+        groupController.groupImage = image;
+
       });
     }
     return Scaffold(
@@ -52,6 +64,7 @@ class _CreateNewGroupEState extends State<CreateNewGroup> {
             children: [
 
             TextField(
+              controller: nameController,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.only(bottom: 3),
                   labelText: "Group Name",
@@ -67,6 +80,7 @@ class _CreateNewGroupEState extends State<CreateNewGroup> {
             height: 60,
           ),
               TextField(
+                controller: descriptionController,
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.only(bottom: 5),
                     labelText: "Group Description",
@@ -148,8 +162,11 @@ class _CreateNewGroupEState extends State<CreateNewGroup> {
 
                           if (index == 0){
                             // This needs to be integrated into database accessing (somehow)
+                            privacyController = true;
                             print('Public');
+
                           } else {
+                            privacyController = false;
                             print('Private');
                           }
 
@@ -178,8 +195,11 @@ class _CreateNewGroupEState extends State<CreateNewGroup> {
                       child: new Text("Create", style: TextStyle(fontWeight: FontWeight.bold),),
 
                         onPressed: () {
+                        print('calling create function');
+                        groupController.uploadGroup(context, nameController.text, descriptionController.text, privacyController);
 
 
+//
                       }
 
       ),
