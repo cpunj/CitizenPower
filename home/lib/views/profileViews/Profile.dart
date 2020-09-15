@@ -94,6 +94,17 @@ class _MyProfilePageState extends State<ProfileView> {
                             ),
                           ],
                         ),
+                        MaterialButton(
+                          child: Text(
+                            getFirstWord(
+                                "Follow" + profileController.getName()),
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                          color: darkGold,
+                          onPressed: () {},
+                        ),
                       ],
                     ),
                   ),
@@ -127,6 +138,7 @@ class _MyProfilePageState extends State<ProfileView> {
                           child: Text(
                             "Message",
                           ),
+
                           //Goes to edit view and passes in the currently logged in user, and
                           //The currently downloaded profile
                           onPressed: () {
