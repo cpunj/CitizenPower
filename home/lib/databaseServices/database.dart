@@ -103,6 +103,15 @@ class ProfileDatabaseMethods {
         .snapshots();
   }
 
+  getProfilebyUsername(String username) async {
+    return await Firestore.instance
+        .collection('users')
+        .orderBy('name')
+        .where('name',
+            isGreaterThanOrEqualTo: username, isLessThan: username + 'z')
+        .getDocuments();
+  }
+
   getChatRooms(String userEmail) async {
     return await Firestore.instance
         .collection("ChatRoom")
