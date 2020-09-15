@@ -60,6 +60,10 @@ class ProfileController {
     //Used to ensure that all profile data has been uploaded before moving back to my profile for download
   }
 
+  getUserPosts(String uID) async {
+    return profileDatabaseMethods.getUserPostsByUID(uID);
+  }
+
   //Used to get profile data, async to allow setState use in view
   loadProfile(String uID) async {
     profileDatabaseMethods
@@ -74,9 +78,6 @@ class ProfileController {
       profile.name = profileSnapshot.data["name"];
       profile.bio = profileSnapshot.data["bio"];
       profile.picLink = profileSnapshot.data["picLink"];
-    });
-    profileDatabaseMethods.getUserPostsByUID(uID).then((val) {
-      postListSnapshot = val;
     });
   }
 }

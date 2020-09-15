@@ -23,7 +23,7 @@ class ProfileDatabaseMethods {
         .collection("users")
         .document(uID)
         .collection("posts")
-        .getDocuments();
+        .snapshots();
   }
 
   //Used for querying FS for a leader profile
@@ -103,6 +103,15 @@ class ProfileDatabaseMethods {
         .snapshots();
   }
 
+  getProfilebyUsername(String username) async {
+    return await Firestore.instance
+        .collection('users')
+        .orderBy('name')
+        .where('name',
+            isGreaterThanOrEqualTo: username, isLessThan: username + 'z')
+        .getDocuments();
+  }
+
   getChatRooms(String userEmail) async {
     return await Firestore.instance
         .collection("ChatRoom")
@@ -132,7 +141,9 @@ class ProfileDatabaseMethods {
     Map<String, dynamic> postMap = {
       "text": newPost.postText,
       "picLink": newPost.imageLink,
-      "time": DateTime.now().millisecondsSinceEpoch
+      "time": DateTime.now().millisecondsSinceEpoch,
+      "name": newPost.name,
+      "profilePicLink": newPost.profilePicLink,
     };
 
     print(uID);
