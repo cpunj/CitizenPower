@@ -135,15 +135,17 @@ class _MyProfilePageState extends State<MyProfilePage> {
                     color: Colors.black,
                   ),
 //Need to use a stream builder it would seem
-//                  ListView.builder(
-//                      shrinkWrap: true,
-//                      itemCount:
-//                          profileController.postListSnapshot.documents.length,
-//                      itemBuilder: (context, index) {
-//                        print(profileController.postListSnapshot);
-//                        return Image.network(profileController
-//                            .postListSnapshot.documents[index].data["picLink"]);
-//                      })
+                  ListView.builder(
+                      shrinkWrap: true,
+                      itemCount:
+                          profileController.postListSnapshot.documents.length,
+                      itemBuilder: (context, index) {
+                        print(profileController.postListSnapshot);
+                        return Image.network(
+                          profileController.postListSnapshot.documents[index]
+                              .data["picLink"],
+                        );
+                      })
                 ]),
               ),
             ),
