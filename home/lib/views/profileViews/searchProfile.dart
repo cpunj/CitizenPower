@@ -22,8 +22,10 @@ class _SearchScreenState extends State<SearchView> {
   TextEditingController searchTextEditingController =
       new TextEditingController();
 
+  //Stores all for profiles from FB
   QuerySnapshot searchSnapshot;
 
+  //Runs once user has entered a name to search the users list
   initiateSearch() {
     if (searchTextEditingController != null) {
       databaseMethods
@@ -36,15 +38,21 @@ class _SearchScreenState extends State<SearchView> {
     }
   }
 
-  Widget searchList() {
+  Widget searchList(
+    FirebaseUser user,
+  ) {
     return searchSnapshot != null
         ? ListView.builder(
             itemCount: searchSnapshot.documents.length,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              return SearchTile(
-                userName: searchSnapshot.documents[index].data["name"],
-                userEmail: searchSnapshot.documents[index].data["email"],
+              return GestureDetector(
+                onTap: goProfileView(
+                    context, user, searchSnapshot.documents[index].documentID),
+                child: SearchTile(
+                  userName: searchSnapshot.documents[index].data["name"],
+                  userEmail: searchSnapshot.documents[index].data["email"],
+                ),
               );
             })
         : Container();
@@ -105,7 +113,7 @@ class _SearchScreenState extends State<SearchView> {
                 ],
               ),
             ),
-            searchList()
+            searchList(widget.user)
           ],
         ),
       ),
@@ -140,20 +148,15 @@ class SearchTile extends StatelessWidget {
             ],
           ),
           Spacer(),
-          GestureDetector(
-              onTap: () {
-                goProfileView(context, user, profileSelected);
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.orange,
-                    borderRadius: BorderRadius.circular(30)),
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 18),
-                child: Text(
-                  "View Profile",
-                  style: TextStyle(color: Colors.black38),
-                ),
-              ))
+          Container(
+            decoration: BoxDecoration(
+                color: Colors.orange, borderRadius: BorderRadius.circular(30)),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+            child: Text(
+              "View Profile",
+              style: TextStyle(color: Colors.black38),
+            ),
+          )
         ],
       ),
     );

@@ -13,10 +13,10 @@ ProfileController profileController = ProfileController();
 
 class ProfileView extends StatefulWidget {
   const ProfileView(
-      {Key key, @required this.user, this.toggleView, this.profileSelected})
+      {Key key, @required this.user, this.toggleView, this.selectedProfileUID})
       : super(key: key);
   final FirebaseUser user;
-  final FirebaseUser profileSelected;
+  final String selectedProfileUID;
 
   final Function toggleView;
   @override
@@ -32,7 +32,7 @@ class _MyProfilePageState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     //Gets profile data to fill in ProfilePageEdit View
-    profileController.loadProfile(widget.profileSelected.uid).then((val) {
+    profileController.loadProfile(widget.selectedProfileUID).then((val) {
       //'then()' only runs once FS data for view has been downloaded
       setState(() {});
     });
@@ -89,7 +89,7 @@ class _MyProfilePageState extends State<ProfileView> {
                               ),
                               color: darkGold,
                               onPressed: () {
-                                goProfileList(context, widget.profileSelected);
+                                goProfileList(context, widget.user);
                               },
                             ),
                           ],
@@ -160,13 +160,12 @@ class _MyProfilePageState extends State<ProfileView> {
                 items: bottomNavBarItems(),
                 onTap: (index) {
                   setState(() {
-                    onTap(index, context, widget.profileSelected, currentIndex);
+                    onTap(index, context, widget.user, currentIndex);
                   });
                 }
                 //onTap: _onTap,
                 ),
           )
-
         //Build progress indicator if there's no data to build view with yet
         : Container(
             color: Colors.black,

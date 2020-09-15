@@ -46,13 +46,13 @@ goNewPost(BuildContext context, FirebaseUser user) {
       ));
 }
 
-goProfileView(BuildContext context, FirebaseUser user, FirebaseUser userName) {
+goProfileView(BuildContext context, FirebaseUser user, String uID) {
   Navigator.push(
     context,
     MaterialPageRoute(
         builder: (context) => ProfileView(
               user: user,
-              profileSelected: userName,
+              selectedProfileUID: uID,
             )),
   );
 }
