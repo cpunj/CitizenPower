@@ -1,3 +1,4 @@
+import 'package:citizenpower/controllers/electorateControllers/electorate_controller.dart';
 import 'package:citizenpower/layouts/generic_layouts.dart';
 import 'package:citizenpower/navigator/navigator_pushes.dart';
 import 'package:citizenpower/models/electorateModels/leaderItem.dart';
@@ -6,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../text_styles.dart';
+
+ElectorateController electorateController = ElectorateController();
 
 class ElectorateView extends StatefulWidget {
   //Transferring user between widgets
@@ -22,239 +25,260 @@ class ElectorateView extends StatefulWidget {
 class _ElectorateViewState extends State<ElectorateView> {
   //Sets bottom nav bar to correct highlight and block unneccessary navigation
   int currentIndex = 4;
-  String _selectedElectorate;
+  Stream lowerStream;
 
-  @override
-  Widget build(BuildContext context) {
-    print(widget.electorateSelected.toString());
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          widget.electorateSelected.toString(),
-          style: appBarStyle(),
-        ),
-      ),
-      body: createElectorateView(
-          context, widget.electorateSelected.toString(), widget.user),
-      bottomNavigationBar: BottomNavigationBar(
-          currentIndex: currentIndex,
-          type: BottomNavigationBarType.fixed,
-          items: bottomNavBarItems(),
-          onTap: (index) {
-            setState(() {
-              onTap(index, context, widget.user, currentIndex);
-            });
-          }
-          //onTap: _onTap,
-          ),
+  Widget lowerLeaderList(String electorateSelected) {
+    //StreamBuilder takes a Stream<QuerySnapshot> from a Firebase query to build the widgets as the data is downloaded
+    return StreamBuilder(
+      stream: lowerStream,
+      builder: (context, snapshot) {
+        //Only build the widget if the data has been downloaded, otherwise return an empty container
+        return snapshot.hasData
+            ? ListView.builder(
+                //Prevents the view breaking
+                shrinkWrap: true,
+                itemCount: snapshot.data.documents.length,
+                itemBuilder: (context, index) {
+                  //TODO: Allow for picLink (and any other parameters) to be null without widget breaking
+                  return GestureDetector(
+                    onTap: () {
+                      goElectorate(
+                          context,
+                          widget.user,
+                          electorateController.electorateSnapshot.documentID,
+                          snapshot.data.documents[index].documentID);
+                    },
+                    child: leaderListItem(
+                      isElected:
+                          snapshot.data.documents[index].data["isElected"],
+                      party: snapshot.data.documents[index].data["party"],
+                      house: snapshot.data.documents[index].data["house"],
+                      profilePic: snapshot.data.documents[index].data["pic"],
+                      name: snapshot.data.documents[index].data["name"],
+                    ),
+                  );
+                })
+            : Container();
+      },
     );
   }
-}
 
-class BuildElectorateView extends StatefulWidget {
-  @override
-  _BuildElectorateViewState createState() => _BuildElectorateViewState();
-}
+  void initState() {
+    electorateController.getLowerLeaders("Z0K6QiyRFEKRvRYjyNp5").then((value) {
+      setState(() {
+        lowerStream = value;
+      });
+    });
+    super.initState();
+  }
 
-class _BuildElectorateViewState extends State<BuildElectorateView> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-        // Create new class here which updates the view to the current _selectedElectorate
-        // This will be passed in as a String value (but really, will access the database)
-        );
-  }
-}
+    if (electorateController.electorateSnapshot == null ||
+        widget.electorateSelected != electorateController.getName()) {
+      electorateController.getElectorate(widget.electorateSelected).then((val) {
+        //'then()' only runs once FS data for view has been downloaded
+        setState(() {});
+      });
+    }
 
-SingleChildScrollView createElectorateView(
-    BuildContext context, String electorateName, FirebaseUser user) {
-  // Need to put the whole creation of leader lists inside this function call
-  // Also had issues with the createleaderlist function (but it's made in this file??)
-  // problem with widget.user
-
-  //Hard coded data for now, when profile is downloaded from Firebase these fields will
-  //be filled with the relevant data from the leader profiles present in the currently selected electorate
-  LeaderItem andrew = LeaderItem(
-      picLink: "assets/Wilkie.jpeg",
-      name: "Andrew Wilkie",
-      house: "Lower House",
-      party: "Independent",
-      elected: true);
-
-  LeaderItem nick = LeaderItem(
-      picLink: "assets/Mckim.png",
-      name: "Nick McKim",
-      house: "Upper House",
-      party: "Greens",
-      elected: true);
-
-  return SingleChildScrollView(
-    child: Container(
-      padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
-      //Electorate Image Row
-      child: Container(
-        child: Column(
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                GestureDetector(
-                  //Pushes to ImageView() for user to inspect electorate map
-                  //ImageView requires image reference
-                  onTap: () {
-                    goImageView(context, 'assets/TasFinalImage.png');
-                  },
-                  child: Card(
-                    elevation: 3,
-                    child: Image.asset(
-                      'assets/TasFinalImage.png',
-                      height: 200,
-                    ),
-                  ),
-                ),
-                Icon(Icons.arrow_forward),
-                GestureDetector(
-                  //Pushes to ImageView() for user to inspect electorate map
-                  //ImageView requires image reference
-                  onTap: () {
-                    goImageView(context, 'assets/ClarkFinal.png');
-                  },
-                  child: Card(
-                    elevation: 3,
-                    child: Image.asset(
-                      'assets/ClarkFinal.png',
-                      height: 200,
-                    ),
-                  ),
-                ),
-              ],
+    return (electorateController.electorateSnapshot != null)
+        ? Scaffold(
+            appBar: AppBar(
+              title: Text(
+                electorateController.getName(),
+                style: appBarStyle(),
+              ),
             ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              electorateName,
-              style: TextStyle(fontSize: 25.0),
-            ),
-            Row(children: <Widget>[
-              Expanded(
-                  child: Card(
-                      child: Container(
-                          padding:
-                              EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-                          /*decoration: BoxDecoration(
+            body: SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+                //Electorate Image Row
+                child: Container(
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          GestureDetector(
+                            //Pushes to ImageView() for user to inspect electorate map
+                            //ImageView requires image reference
+                            onTap: () {
+                              goImageView(context, 'assets/TasFinalImage.png');
+                            },
+                            child: Card(
+                              elevation: 3,
+                              child: Image.asset(
+                                'assets/TasFinalImage.png',
+                                height: 200,
+                              ),
+                            ),
+                          ),
+                          Icon(Icons.arrow_forward),
+                          GestureDetector(
+                            //Pushes to ImageView() for user to inspect electorate map
+                            //ImageView requires image reference
+                            onTap: () {
+                              goImageView(context, 'assets/ClarkFinal.png');
+                            },
+                            child: Card(
+                              elevation: 3,
+                              child: Image.asset(
+                                'assets/ClarkFinal.png',
+                                height: 200,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        electorateController.getName(),
+                        style: TextStyle(fontSize: 25.0),
+                      ),
+                      Row(children: <Widget>[
+                        Expanded(
+                            child: Card(
+                                child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 6, horizontal: 12),
+                                    /*decoration: BoxDecoration(
                       image: DecorationImage(
                           colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.dstATop),
                           image: AssetImage('assets/mtwellington.jpg')
                       ),
                     ),*/
-                          child: Column(children: <Widget>[
+                                    child: Column(children: <Widget>[
+                                      Text(
+                                          "Population: " +
+                                              electorateController.getPop() +
+                                              "\n"
+                                                  "Area: " +
+                                              electorateController.getArea() +
+                                              "\n"
+                                                  "Consists of: " +
+                                              electorateController
+                                                  .getConsistsOf(),
+                                          style: TextStyle(fontSize: 16.0),
+                                          textAlign: TextAlign.center),
+                                      ExpansionTile(
+                                          title: Text('Details',
+                                              style: TextStyle(
+                                                  fontSize: 29.0,
+                                                  color: Colors.black),
+                                              textAlign: TextAlign.center),
+                                          trailing: Icon(
+                                              Icons.keyboard_arrow_down,
+                                              color: Colors.black),
+                                          children: <Widget>[
+                                            Container(
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: 6,
+                                                    horizontal: 12),
+                                                child: Text(
+                                                  'Description of graph',
+                                                  style:
+                                                      TextStyle(fontSize: 20.0),
+                                                )),
+                                            Image(
+                                                image: AssetImage(
+                                                    'assets/mtwellington.jpg')),
+                                            Container(
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: 6,
+                                                    horizontal: 12),
+                                                child: Text(
+                                                    'Graph source or more description')),
+                                          ])
+                                    ]))))
+                      ]),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
                             Text(
-                                "Population: 70k\n"
-                                "Area: 292.26 sq km\n"
-                                "Consists of: City of Hobart, City of Glenorchy, northen parts of "
-                                "Kingborough Council including Taroona\n",
-                                style: TextStyle(fontSize: 16.0),
-                                textAlign: TextAlign.center),
-                            ExpansionTile(
-                                title: Text('Details',
-                                    style: TextStyle(
-                                        fontSize: 29.0, color: Colors.black),
-                                    textAlign: TextAlign.center),
-                                trailing: Icon(Icons.keyboard_arrow_down,
-                                    color: Colors.black),
-                                children: <Widget>[
-                                  Container(
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: 6, horizontal: 12),
-                                      child: Text(
-                                        'Description of graph',
-                                        style: TextStyle(fontSize: 20.0),
-                                      )),
-                                  Image(
-                                      image: AssetImage(
-                                          'assets/mtwellington.jpg')),
-                                  Container(
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: 6, horizontal: 12),
-                                      child: Text(
-                                          'Graph source or more description')),
-                                ])
-                          ]))))
-            ]),
-            Row(children: <Widget>[
-              Text(
-                "House of Representatives",
-                style: TextStyle(fontSize: 25.0),
-              ),
-              IconButton(
-                  icon: Icon(Icons.info_outline),
-                  color: Colors.black,
-                  onPressed: () {
-                    // Respond to icon toggle
-                    /*setState(() {
+                              "House of Representatives",
+                              style: TextStyle(fontSize: 25.0),
+                            ),
+                            IconButton(
+                                icon: Icon(Icons.info_outline),
+                                color: Colors.black,
+                                onPressed: () {
+                                  // Respond to icon toggle
+                                  /*setState(() {
                       isSelected = !isSelected;
                       icon = isSelected ? Icons.favorite : Icons.favorite_border;*/
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return Dialog(
-                              child: Container(
-                                  alignment: Alignment.center,
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 16, horizontal: 16),
-                                  height: 200,
-                                  child: Column(children: <Widget>[
-                                    Text("Parliament House Info",
-                                        style: TextStyle(fontSize: 25.0),
-                                        textAlign: TextAlign.center),
-                                    GestureDetector(
-                                      onTap: () {
-                                        if (canLaunch("https://peo.gov.au/") !=
-                                            null) {
-                                          launch("https://peo.gov.au/");
-                                        }
-                                      },
-                                      child: Text("Click here to learn more"),
-                                    )
-                                  ])));
-                        });
-                  })
-            ]),
-            GestureDetector(
-              onTap: () {
-                goElectorate(context, user, "Z0K6QiyRFEKRvRYjyNp5",
-                    "CbabG1p2ZDg47qhe4RSn");
-              },
-              child: Row(
-                children: <Widget>[Expanded(child: leaderListItem(andrew))],
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return Dialog(
+                                            child: Container(
+                                                alignment: Alignment.center,
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: 16,
+                                                    horizontal: 16),
+                                                height: 200,
+                                                child:
+                                                    Column(children: <Widget>[
+                                                  Text("Parliament House Info",
+                                                      style: TextStyle(
+                                                          fontSize: 25.0),
+                                                      textAlign:
+                                                          TextAlign.center),
+                                                  GestureDetector(
+                                                    onTap: () {
+                                                      if (canLaunch(
+                                                              "https://peo.gov.au/") !=
+                                                          null) {
+                                                        launch(
+                                                            "https://peo.gov.au/");
+                                                      }
+                                                    },
+                                                    child: Text(
+                                                        "Click here to learn more"),
+                                                  )
+                                                ])));
+                                      });
+                                })
+                          ]),
+                      lowerLeaderList(widget.electorateSelected),
+                      Text(
+                        "Senate",
+                        style: TextStyle(fontSize: 25.0),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
-            Text(
-              "Senate",
-              style: TextStyle(fontSize: 25.0),
+            bottomNavigationBar: BottomNavigationBar(
+                currentIndex: currentIndex,
+                type: BottomNavigationBarType.fixed,
+                items: bottomNavBarItems(),
+                onTap: (index) {
+                  setState(() {
+                    onTap(index, context, widget.user, currentIndex);
+                  });
+                }
+                //onTap: _onTap,
+                ),
+          )
+        : Container(
+            color: Colors.black,
+            child: Center(
+              child: CircularProgressIndicator(),
             ),
-            GestureDetector(
-              onTap: () {
-                goElectorate(
-                  context,
-                  user,
-                  "Z0K6QiyRFEKRvRYjyNp5",
-                  "CbabG1p2ZDg47qhe4RSn",
-                );
-              },
-              child: Row(
-                children: <Widget>[Expanded(child: leaderListItem(nick))],
-              ),
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
+          );
+  }
 }
 
-Widget leaderListItem(LeaderItem leaderData) {
+Widget leaderListItem(
+    {String profilePic,
+    String name,
+    String house,
+    String party,
+    bool isElected}) {
   //Using container padding instead of sized boxes to make building and abstracting widgets easier
   return Container(
     padding: EdgeInsets.symmetric(vertical: 8.0),
@@ -267,11 +291,11 @@ Widget leaderListItem(LeaderItem leaderData) {
             new Row(
               children: <Widget>[
                 new CircleAvatar(
-                  backgroundImage: AssetImage(leaderData.picLink),
+                  backgroundImage: NetworkImage(profilePic),
                 ),
                 new Padding(padding: EdgeInsets.only(right: 10.0)),
                 new Text(
-                  leaderData.name,
+                  name,
                   style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                 )
               ],
@@ -280,14 +304,14 @@ Widget leaderListItem(LeaderItem leaderData) {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                  leaderData.house,
+                  "Lower House",
                   style: textStyleListGrey(),
                 ),
                 Text(
-                  leaderData.party,
+                  party,
                   style: textStyleListGrey(),
                 ),
-                leaderData.elected == true
+                isElected == true
                     ? Text(
                         "Current MP",
                         style: textStyleListGrey(),

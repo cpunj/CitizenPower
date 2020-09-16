@@ -96,7 +96,8 @@ class _ElectorateState extends State<Electorate> {
                             padding: const EdgeInsets.only(left: 20),
                             child: CircleAvatar(
                               radius: 50.0,
-                              backgroundImage: AssetImage('assets/Wilkie.jpeg'),
+                              backgroundImage:
+                                  NetworkImage(leaderController.getPicLink()),
                             ),
                           ),
                           onPressed: () {
@@ -265,8 +266,7 @@ class _ElectorateState extends State<Electorate> {
                     setState(() {
                       issues = newValue;
                       if (issues == "Poverty") {
-                        Text(
-                            "This has been a major issue for this company");
+                        Text("This has been a major issue for this company");
                         return Column(children: <Widget>[
                           Text(" This has been a major issue for this company")
                         ]);

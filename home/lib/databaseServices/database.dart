@@ -6,6 +6,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:path/path.dart';
 import 'dart:io';
 
+class ElectorateDatabaseMethods {
+  getElectorateByName(String name) async {
+    return await Firestore.instance
+        .collection("electorates")
+        .where("name", isEqualTo: name)
+        .getDocuments();
+  }
+
+  //Returns a stream to build the lower house leader list
+  downloadLowerLeaders(String uID) async {
+    return await Firestore.instance
+        .collection("electorates")
+        .document(uID)
+        .collection("leaders")
+        .snapshots();
+  }
+}
+
 class ProfileDatabaseMethods {
   //Used for uploading user data to FS when an Auth account is made in registration
   //Uses map to upload registration data and user to keep consistent UID

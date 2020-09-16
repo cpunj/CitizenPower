@@ -29,6 +29,10 @@ class LeaderController {
     return leader.power;
   }
 
+  String getPicLink() {
+    return leader.picLink;
+  }
+
   //Takes the electorate ID and leader ID for the leader that is intended to be loaded
   //marked as async because set state() needs to be run after function is complete
   loadLeader(String electorateUID, String leaderUID) async {
@@ -45,6 +49,7 @@ class LeaderController {
       leader.bio = leaderSnapshot.data["bio"];
       leader.party = leaderSnapshot.data["party"];
       leader.power = leaderSnapshot.data["power"];
+      leader.picLink = leaderSnapshot.data["pic"];
     });
   }
 }

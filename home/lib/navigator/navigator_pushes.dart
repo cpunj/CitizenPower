@@ -59,7 +59,7 @@ goProfileView(BuildContext context, FirebaseUser user, String uID) {
 
 goElectorate(BuildContext context, FirebaseUser user, String electorateUID,
     String leaderUID) {
-  Navigator.pushReplacement(
+  Navigator.push(
     context,
     MaterialPageRoute(
         builder: (context) => Electorate(
