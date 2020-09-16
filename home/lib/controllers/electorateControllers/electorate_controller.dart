@@ -13,7 +13,9 @@ class ElectorateController {
   DocumentSnapshot electorateSnapshot;
   //Takes the selected electorate string and calls a database function query to download
   getElectorate(String name) async {
-    electorateDatabaseMethods.getElectorateByName(name).then((val) {
+    electorateDatabaseMethods
+        .getElectorateByName("2flOi9mBsPWgJXR8db5Z", name)
+        .then((val) {
       electorateSnapshot = val.documents[0];
       electorateModel.name = electorateSnapshot.data["name"];
       electorateModel.area = electorateSnapshot.data["area"];
@@ -39,7 +41,13 @@ class ElectorateController {
   }
 
   //Returns a stream used to build a list of lower house leaders
-  getLowerLeaders(String uid) async {
-    return await electorateDatabaseMethods.downloadLowerLeaders(uid);
+  getLowerLeaders(String stateUID, String electorateUID) async {
+    return await electorateDatabaseMethods.downloadLowerLeaders(
+        stateUID, electorateUID);
+  }
+
+  //Returns a stream used to build a list of upper house leaders
+  getUpperLeaders(String stateUID) async {
+    return await electorateDatabaseMethods.downloadUpperLeaders(stateUID);
   }
 }

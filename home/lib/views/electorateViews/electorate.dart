@@ -45,11 +45,16 @@ class _ElectorateState extends State<Electorate> {
   @override
   Widget build(BuildContext context) {
     //Load the profile based on the selected electorate and leader from previous views.
-    leaderController.loadLeader(widget.electorateUID, widget.leaderUID)
-        //Once leader profile has been loaded, rebuild widget
-        .then((val) {
-      setState(() {});
-    });
+    if (leaderController.leaderSnapshot == null) {
+      leaderController
+          .loadLeader(
+              "2flOi9mBsPWgJXR8db5Z", widget.electorateUID, widget.leaderUID)
+          //Once leader profile has been loaded, rebuild widget
+          .then((val) async {
+        await Future.delayed(Duration(seconds: 3));
+        setState(() {});
+      });
+    }
     //Has leaderSnapshot been downloaded? Run primary leader profile view
     return leaderController.leaderSnapshot != null
         ? Scaffold(

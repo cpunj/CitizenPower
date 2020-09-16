@@ -74,7 +74,6 @@ class _MyProfilePageState extends State<MyProfilePage> {
     //only if snapshot has not already been downloaded
     if (profileController.profileSnapshot == null) {
       profileController.loadProfile(widget.user.uid).then((val) {
-        print(val);
         //'then()' only runs once FS data for view has been downloaded
         setState(() {});
       });

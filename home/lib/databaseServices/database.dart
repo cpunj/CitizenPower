@@ -7,20 +7,48 @@ import 'package:path/path.dart';
 import 'dart:io';
 
 class ElectorateDatabaseMethods {
-  getElectorateByName(String name) async {
+  getElectorateByName(String stateUID, String name) async {
     return await Firestore.instance
+        .collection("states")
+        .document(stateUID)
         .collection("electorates")
         .where("name", isEqualTo: name)
         .getDocuments();
   }
 
   //Returns a stream to build the lower house leader list
-  downloadLowerLeaders(String uID) async {
+  downloadLowerLeaders(String stateUID, String electorateUID) async {
     return await Firestore.instance
+        .collection("states")
+        .document(stateUID)
         .collection("electorates")
-        .document(uID)
-        .collection("leaders")
+        .document(electorateUID)
+        .collection("lowerHouse")
         .snapshots();
+  }
+
+  //Returns a stream to build the upper house leader list
+  downloadUpperLeaders(String stateUID) async {
+    return await Firestore.instance
+        .collection("states")
+        .document(stateUID)
+        .collection("upperHouse")
+        .snapshots();
+  }
+
+  //Used for querying FS for a leader profile
+  //Download function so marked as async
+  //return await needed for all queries to allow main thread to continue
+  getLeaderByUID(
+      {String stateUID, String electorateUID, String leaderUID}) async {
+    return await Firestore.instance
+        .collection("states")
+        .document(stateUID)
+        .collection("electorates")
+        .document(electorateUID)
+        .collection("lowerHouse")
+        .document(leaderUID)
+        .get();
   }
 }
 
@@ -43,18 +71,6 @@ class ProfileDatabaseMethods {
         .document(uID)
         .collection("posts")
         .snapshots();
-  }
-
-  //Used for querying FS for a leader profile
-  //Download function so marked as async
-  //return await needed for all queries to allow main thread to continue
-  getLeaderByUID({String electorateUID, String leaderUID}) async {
-    return await Firestore.instance
-        .collection("electorates")
-        .document(electorateUID)
-        .collection("leaders")
-        .document(leaderUID)
-        .get();
   }
 
   //Updates the user doc bio field of the given UID with the given bio

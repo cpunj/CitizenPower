@@ -26,8 +26,17 @@ class _ElectorateViewState extends State<ElectorateView> {
   //Sets bottom nav bar to correct highlight and block unneccessary navigation
   int currentIndex = 4;
   Stream lowerStream;
+  Stream upperStream;
 
   Widget lowerLeaderList(String electorateSelected) {
+    electorateController
+        .getLowerLeaders("2flOi9mBsPWgJXR8db5Z",
+            electorateController.electorateSnapshot.documentID)
+        .then((value) {
+      setState(() {
+        lowerStream = value;
+      });
+    });
     //StreamBuilder takes a Stream<QuerySnapshot> from a Firebase query to build the widgets as the data is downloaded
     return StreamBuilder(
       stream: lowerStream,
@@ -63,13 +72,44 @@ class _ElectorateViewState extends State<ElectorateView> {
     );
   }
 
-  void initState() {
-    electorateController.getLowerLeaders("Z0K6QiyRFEKRvRYjyNp5").then((value) {
+  Widget upperLeaderList() {
+    electorateController.getUpperLeaders("2flOi9mBsPWgJXR8db5Z").then((value) {
       setState(() {
-        lowerStream = value;
+        upperStream = value;
       });
     });
-    super.initState();
+    //StreamBuilder takes a Stream<QuerySnapshot> from a Firebase query to build the widgets as the data is downloaded
+    return StreamBuilder(
+      stream: upperStream,
+      builder: (context, snapshot) {
+        //Only build the widget if the data has been downloaded, otherwise return an empty container
+        return snapshot.hasData
+            ? ListView.builder(
+                //Prevents the view breaking
+                shrinkWrap: true,
+                itemCount: snapshot.data.documents.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      goElectorate(
+                          context,
+                          widget.user,
+                          electorateController.electorateSnapshot.documentID,
+                          snapshot.data.documents[index].documentID);
+                    },
+                    child: leaderListItem(
+                      isElected:
+                          snapshot.data.documents[index].data["isElected"],
+                      party: snapshot.data.documents[index].data["party"],
+                      house: snapshot.data.documents[index].data["house"],
+                      profilePic: snapshot.data.documents[index].data["pic"],
+                      name: snapshot.data.documents[index].data["name"],
+                    ),
+                  );
+                })
+            : Container();
+      },
+    );
   }
 
   @override
@@ -247,6 +287,7 @@ class _ElectorateViewState extends State<ElectorateView> {
                         "Senate",
                         style: TextStyle(fontSize: 25.0),
                       ),
+                      upperLeaderList(),
                     ],
                   ),
                 ),

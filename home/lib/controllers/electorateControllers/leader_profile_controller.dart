@@ -1,3 +1,4 @@
+import 'package:citizenpower/databaseServices/database.dart';
 import 'package:citizenpower/models/electorateModels/leader.dart';
 import 'package:citizenpower/views/profileViews/profile_page_edit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -5,6 +6,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 //Controls the downloading of the leader profile when a
 // leader is selected from the electorate view
 class LeaderController {
+  ElectorateDatabaseMethods electorateDatabaseMethods =
+      ElectorateDatabaseMethods();
   DocumentSnapshot leaderSnapshot;
 
   LeaderModel leader = LeaderModel();
@@ -35,10 +38,13 @@ class LeaderController {
 
   //Takes the electorate ID and leader ID for the leader that is intended to be loaded
   //marked as async because set state() needs to be run after function is complete
-  loadLeader(String electorateUID, String leaderUID) async {
-    profileDatabaseMethods
+  loadLeader(String stateUID, String electorateUID, String leaderUID) async {
+    electorateDatabaseMethods
         //Give database query function the ID's to download
-        .getLeaderByUID(electorateUID: electorateUID, leaderUID: leaderUID)
+        .getLeaderByUID(
+            stateUID: stateUID,
+            electorateUID: electorateUID,
+            leaderUID: leaderUID)
         //Run once query is complete
         .then((val) {
       //Store the snapshot returned by the query
