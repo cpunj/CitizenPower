@@ -56,7 +56,6 @@ class _ElectorateState extends State<Electorate> {
 
     if (leaderController.leaderSnapshot == null ||
         widget.leaderUID != leaderController.leaderSnapshot.documentID) {
-      print(widget.upper);
       if (widget.upper == false) {
         leaderController
             .loadLowerLeader(
@@ -66,7 +65,6 @@ class _ElectorateState extends State<Electorate> {
           setState(() {});
         });
       } else {
-        print("I ran here");
         leaderController.loadUpperLeader(widget.stateID, widget.leaderUID)
             //Once leader profile has been loaded, rebuild widget
             .then((val) async {

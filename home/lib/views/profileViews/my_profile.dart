@@ -4,7 +4,7 @@ import 'package:citizenpower/navigator/navigator_pushes.dart';
 import 'package:citizenpower/views/post_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:time_formatter/time_formatter.dart';
 import '../../constants.dart';
 import '../../text_styles.dart';
 import '../create_post_view.dart';
@@ -39,17 +39,20 @@ class _MyProfilePageState extends State<MyProfilePage> {
         //Only build the widget if the data has been downloaded, otherwise return an empty container
         return snapshot.hasData
             ? ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
                 //Prevents the view breaking
                 shrinkWrap: true,
                 itemCount: snapshot.data.documents.length,
                 itemBuilder: (context, index) {
                   //TODO: Allow for picLink (and any other parameters) to be null without widget breaking
                   return postWidget(
-                      context,
-                      snapshot.data.documents[index].data["text"],
-                      snapshot.data.documents[index].data["picLink"],
-                      snapshot.data.documents[index].data["name"],
-                      snapshot.data.documents[index].data["profilePicLink"]);
+                    context,
+                    snapshot.data.documents[index].data["text"],
+                    snapshot.data.documents[index].data["picLink"],
+                    snapshot.data.documents[index].data["name"],
+                    snapshot.data.documents[index].data["profilePicLink"],
+                    formatTime(snapshot.data.documents[index].data["time"]),
+                  );
                 })
             : Container();
       },

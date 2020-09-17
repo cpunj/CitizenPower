@@ -46,6 +46,7 @@ class _ElectorateViewState extends State<ElectorateView> {
         //Only build the widget if the data has been downloaded, otherwise return an empty container
         return snapshot.hasData
             ? ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
                 //Prevents the view breaking
                 shrinkWrap: true,
                 itemCount: snapshot.data.documents.length,
@@ -90,6 +91,7 @@ class _ElectorateViewState extends State<ElectorateView> {
         //Only build the widget if the data has been downloaded, otherwise return an empty container
         return snapshot.hasData
             ? ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
                 //Prevents the view breaking
                 shrinkWrap: true,
                 itemCount: snapshot.data.documents.length,
@@ -129,7 +131,7 @@ class _ElectorateViewState extends State<ElectorateView> {
       bool upper}) {
     //Using container padding instead of sized boxes to make building and abstracting widgets easier
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 8.0),
+      padding: EdgeInsets.only(bottom: 8.0),
       child: Card(
         elevation: 2,
         child: new Container(
@@ -204,7 +206,6 @@ class _ElectorateViewState extends State<ElectorateView> {
         setState(() {});
       });
     }
-
     return (electorateController.electorateSnapshot != null)
         ? Scaffold(
             appBar: AppBar(
@@ -267,12 +268,6 @@ class _ElectorateViewState extends State<ElectorateView> {
                                 child: Container(
                                     padding: EdgeInsets.symmetric(
                                         vertical: 6, horizontal: 12),
-                                    /*decoration: BoxDecoration(
-                      image: DecorationImage(
-                          colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.dstATop),
-                          image: AssetImage('assets/mtwellington.jpg')
-                      ),
-                    ),*/
                                     child: Column(children: <Widget>[
                                       Text(
                                           "Population: " +
@@ -328,10 +323,6 @@ class _ElectorateViewState extends State<ElectorateView> {
                                 icon: Icon(Icons.info_outline),
                                 color: Colors.black,
                                 onPressed: () {
-                                  // Respond to icon toggle
-                                  /*setState(() {
-                      isSelected = !isSelected;
-                      icon = isSelected ? Icons.favorite : Icons.favorite_border;*/
                                   showDialog(
                                       context: context,
                                       builder: (context) {
@@ -367,9 +358,12 @@ class _ElectorateViewState extends State<ElectorateView> {
                           ]),
                       lowerLeaderList(
                           widget.stateSelected, widget.electorateSelected),
-                      Text(
-                        "Senate",
-                        style: TextStyle(fontSize: 25.0),
+                      Container(
+                        padding: EdgeInsets.only(bottom: 5),
+                        child: Text(
+                          "Senate",
+                          style: TextStyle(fontSize: 25.0),
+                        ),
                       ),
                       upperLeaderList(widget.stateSelected),
                     ],

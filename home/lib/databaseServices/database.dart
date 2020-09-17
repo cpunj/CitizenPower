@@ -76,10 +76,11 @@ class ElectorateDatabaseMethods {
 
   uploadElectorate() {
     String stateID = "TAS";
-    String electorateID = "Franklin";
+    //NO SPACES
+    String electorateID = "Lyons";
     String consistsOf =
-        "The Division of Franklin consists of the Huon Valley, part of Clarence, and part of Kingborough.";
-    String area = "10,009 sq km";
+        "Break O’Day, Brighton, Central Highlands, Derwent Valley, Glamorgan-Spring Bay, Kentish, Meander Valley, Northern Midlands, Sorell, Southern Midlands, Tasman and part of Clarence";
+    String area = "35,721 sq km";
     String pop = "70k";
 
     Map<String, dynamic> electorateMap = {
@@ -98,22 +99,21 @@ class ElectorateDatabaseMethods {
   }
 
   uploadLowerLeader() {
+    const bool upper = false;
     String stateID = "TAS";
-    String electorateID = "Franklin";
+    String electorateID = "Braddon";
 
     Map<String, dynamic> leaderMap = {
-      "name": electorateID,
-      "bio": "Andrew was re-elected with an increased margin in 2013, and then again in 2016, "
-          "and continues to be active across a range of issues including health, education and science,"
-          " and jobs, as well as the issues that the major parties ignore including "
-          "animal welfare, gambling reform, asylum seekers, foreign and security policy and climate change.",
-      "electorate": "Franklin - Tasmania",
-      "party": "Labour",
-      "power": "Since 2007",
-      "pic": "https://scontent.fcbr1-1.fna.fbcdn.net/v/t1.0-9/118770623_1778820882281313_5144872235898905306"
-          "_n.jpg?_nc_cat=105&_nc_sid=09cbfe&_nc_ohc=-1T268QwYKUAX9h1oMe&_nc_ht=scontent.fcbr1-1.fna&oh=c7222fe5bbe8df3dd75864096356ab80&oe=5F891DAB",
+      "name": "Gavin Pearce",
+      "bio": "Gavin Pearce is a family man born and raise"
+          "d on the North West Coast, whose family has lived and farmed in t"
+          "he Sisters Creek region since the 1850s. Gavin is a beef farmer and small businessman "
+          "who lives at Lapoinya and is the Vice-Chair of the Yolla Coop, which represents the interests of 800 local farmers.",
+      "party": "Liberal",
+      "power": "Since 2019",
+      "pic": "https://www.aph.gov.au/api/parliamentarian/282306/image",
       "isElected": true,
-      "upper": false
+      "upper": upper,
     };
 
     Firestore.instance
@@ -130,16 +130,12 @@ class ElectorateDatabaseMethods {
     String stateID = "TAS";
 
     Map<String, dynamic> leaderMap = {
-      "name": "Eric Abetz",
-      "bio": "Eric was born on 25 January 1958 in Stuttgart, Germany. Coming to Tasmania with his parents and five siblings in 1961 on an assi"
-          "sted passage, his father worked alongside many other immigrant Tasmanians on the Hydro Schemes. Eric attended Moonah and"
-          " Blackmans Bay Primary Schools, Taroona High School and Hobart Matricu"
-          "lation College. He then went on to study Arts and Law at the University of Tasmania.",
+      "name": "Carol Brown",
+      "bio": "Carol Brown is a Senator.",
       "electorate": "Tasmania",
-      "party": "Liberal",
-      "power": "Since 1994",
-      "pic": "https://scontent.fcbr1-1.fna.fbcdn.net/v/t1.0-9/28684942_2031949983487577_6533127896075448486_n.jpg?_nc"
-          "_cat=101&_nc_sid=09cbfe&_nc_ohc=8Sy8t5-xqrYAX_KD8ge&_nc_ht=scontent.fcbr1-1.fna&oh=83fe1206c6e33bc2b561a8935c817a79&oe=5F89695E",
+      "party": "Labour",
+      "power": "Since 2005",
+      "pic": "https://www.aph.gov.au/api/parliamentarian/F49/image",
       "isElected": true,
       "upper": true,
     };
@@ -171,6 +167,7 @@ class ProfileDatabaseMethods {
         .collection("users")
         .document(uID)
         .collection("posts")
+        .orderBy("time", descending: true)
         .snapshots();
   }
 
