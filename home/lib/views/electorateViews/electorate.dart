@@ -146,7 +146,8 @@ class _ElectorateState extends State<Electorate> {
                         ),
                         MaterialButton(
                           child: Text(
-                            "Follow Andrew",
+                            "Follow " +
+                                getFirstWord(leaderController.getName()),
                             style: TextStyle(
                               color: Colors.white,
                             ),

@@ -94,7 +94,7 @@ class _SettingState extends State<Setting> {
                         ),
                         onTap: () {
                           //change password
-                          electorateDatabaseMethods.uploadUpperLeader();
+                          electorateDatabaseMethods.uploadLowerLeader();
                         },
                       ),
                       Container(

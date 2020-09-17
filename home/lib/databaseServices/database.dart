@@ -24,6 +24,7 @@ class ElectorateDatabaseMethods {
         .collection("electorates")
         .document(electorateUID)
         .collection("lowerLeaders")
+        .orderBy("name")
         .snapshots();
   }
 
@@ -33,6 +34,7 @@ class ElectorateDatabaseMethods {
         .collection("states")
         .document(stateUID)
         .collection("upperLeaders")
+        .orderBy("name")
         .snapshots();
   }
 
@@ -61,6 +63,7 @@ class ElectorateDatabaseMethods {
   }
 
   uploadState() {
+    ///ALL STATES HAVE BEEN UPLOADED
     String stateID = "QLD";
 
     //Converts the post's data to a Map for Firebase document upload.
@@ -73,9 +76,10 @@ class ElectorateDatabaseMethods {
 
   uploadElectorate() {
     String stateID = "TAS";
-    String electorateID = "Clark";
-    String consistsOf = "Greater Hobart, Kingborough, Moonah and Glenorchy";
-    String area = "300sqkm";
+    String electorateID = "Franklin";
+    String consistsOf =
+        "The Division of Franklin consists of the Huon Valley, part of Clarence, and part of Kingborough.";
+    String area = "10,009 sq km";
     String pop = "70k";
 
     Map<String, dynamic> electorateMap = {
@@ -95,7 +99,7 @@ class ElectorateDatabaseMethods {
 
   uploadLowerLeader() {
     String stateID = "TAS";
-    String electorateID = "Clark";
+    String electorateID = "Franklin";
 
     Map<String, dynamic> leaderMap = {
       "name": electorateID,
@@ -103,11 +107,13 @@ class ElectorateDatabaseMethods {
           "and continues to be active across a range of issues including health, education and science,"
           " and jobs, as well as the issues that the major parties ignore including "
           "animal welfare, gambling reform, asylum seekers, foreign and security policy and climate change.",
-      "electorate": "Clark - Tasmania",
-      "party": "Independent",
-      "power": "Since 2010",
-      "pic": "https://scontent.fcbr1-1.fna.fbcdn.net/v/t1.0-9/12347869_1316569355023609_31285353"
-          "6532998424_n.png?_nc_cat=105&_nc_sid=09cbfe&_nc_ohc=MKsLsQmJ4C0AX-npKvR&_nc_ht=scontent.fcbr1-1.fna&oh=6ec238d092d68534addaf3e038a42a97&oe=5F88E7EB",
+      "electorate": "Franklin - Tasmania",
+      "party": "Labour",
+      "power": "Since 2007",
+      "pic": "https://scontent.fcbr1-1.fna.fbcdn.net/v/t1.0-9/118770623_1778820882281313_5144872235898905306"
+          "_n.jpg?_nc_cat=105&_nc_sid=09cbfe&_nc_ohc=-1T268QwYKUAX9h1oMe&_nc_ht=scontent.fcbr1-1.fna&oh=c7222fe5bbe8df3dd75864096356ab80&oe=5F891DAB",
+      "isElected": true,
+      "upper": false
     };
 
     Firestore.instance
@@ -124,14 +130,18 @@ class ElectorateDatabaseMethods {
     String stateID = "TAS";
 
     Map<String, dynamic> leaderMap = {
-      "name": "Nick McKim",
-      "bio":
-          "Nick is a staunch and proud Tasmanian, and an unapologetic defender of the things that make his home state different from the rest of the world.",
+      "name": "Eric Abetz",
+      "bio": "Eric was born on 25 January 1958 in Stuttgart, Germany. Coming to Tasmania with his parents and five siblings in 1961 on an assi"
+          "sted passage, his father worked alongside many other immigrant Tasmanians on the Hydro Schemes. Eric attended Moonah and"
+          " Blackmans Bay Primary Schools, Taroona High School and Hobart Matricu"
+          "lation College. He then went on to study Arts and Law at the University of Tasmania.",
       "electorate": "Tasmania",
-      "party": "Greens",
-      "power": "Since 2015",
-      "pic": "https://scontent.fcbr1-1.fna.fbcdn.net/v/t1.0-9/53803656_10155893611627056_2225838651936342016_o.jpg?_nc_cat=111&_nc_sid=09cbfe&_"
-          "nc_ohc=GvqBxEaqOQEAX98xZCp&_nc_ht=scontent.fcbr1-1.fna&oh=b375c2d2bbcb4edb57b93a06cc02067c&oe=5F875FEC",
+      "party": "Liberal",
+      "power": "Since 1994",
+      "pic": "https://scontent.fcbr1-1.fna.fbcdn.net/v/t1.0-9/28684942_2031949983487577_6533127896075448486_n.jpg?_nc"
+          "_cat=101&_nc_sid=09cbfe&_nc_ohc=8Sy8t5-xqrYAX_KD8ge&_nc_ht=scontent.fcbr1-1.fna&oh=83fe1206c6e33bc2b561a8935c817a79&oe=5F89695E",
+      "isElected": true,
+      "upper": true,
     };
 
     Firestore.instance
