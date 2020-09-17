@@ -38,10 +38,11 @@ class LeaderController {
 
   //Takes the electorate ID and leader ID for the leader that is intended to be loaded
   //marked as async because set state() needs to be run after function is complete
-  loadLeader(String stateUID, String electorateUID, String leaderUID) async {
+  loadLowerLeader(
+      String stateUID, String electorateUID, String leaderUID) async {
     electorateDatabaseMethods
         //Give database query function the ID's to download
-        .getLeaderByUID(
+        .getLowerLeaderByUID(
             stateUID: stateUID,
             electorateUID: electorateUID,
             leaderUID: leaderUID)
@@ -49,6 +50,26 @@ class LeaderController {
         .then((val) {
       //Store the snapshot returned by the query
       //then store the snapshots data in the leader class within the controller
+      print(val);
+      leaderSnapshot = val;
+      leader.name = leaderSnapshot.data["name"];
+      leader.electorate = leaderSnapshot.data["electorate"];
+      leader.bio = leaderSnapshot.data["bio"];
+      leader.party = leaderSnapshot.data["party"];
+      leader.power = leaderSnapshot.data["power"];
+      leader.picLink = leaderSnapshot.data["pic"];
+    });
+  }
+
+  loadUpperLeader(String stateUID, String leaderUID) async {
+    electorateDatabaseMethods
+        //Give database query function the ID's to download
+        .getUpperLeaderByUID(stateUID: stateUID, leaderUID: leaderUID)
+        //Run once query is complete
+        .then((val) {
+      //Store the snapshot returned by the query
+      //then store the snapshots data in the leader class within the controller
+      print(val);
       leaderSnapshot = val;
       leader.name = leaderSnapshot.data["name"];
       leader.electorate = leaderSnapshot.data["electorate"];

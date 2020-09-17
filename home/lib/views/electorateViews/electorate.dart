@@ -21,16 +21,24 @@ LeaderController leaderController = LeaderController();
 
 class Electorate extends StatefulWidget {
   const Electorate(
-      {Key key, @required this.user, this.leaderUID, this.electorateUID})
+      {Key key,
+      @required this.user,
+      this.stateID,
+      this.leaderUID,
+      this.electorateID,
+      this.upper})
       : super(key: key);
   //Stores the currently logged in user, passed in from the previous state
   final FirebaseUser user;
+  //ID used to query Cloud Firestore
+  final String stateID;
   //ID used to query FB for the electorate that the user has chosen
-  final String electorateUID;
+  final String electorateID;
   //ID passed in from previous view based on which leader the user selected
   //and used in FB download queries
   final String leaderUID;
-
+  //Upper is used to know to query from state collection or electorate collection
+  final bool upper;
   @override
   _ElectorateState createState() => _ElectorateState();
 }
@@ -45,16 +53,28 @@ class _ElectorateState extends State<Electorate> {
   @override
   Widget build(BuildContext context) {
     //Load the profile based on the selected electorate and leader from previous views.
-    if (leaderController.leaderSnapshot == null) {
-      leaderController
-          .loadLeader(
-              "2flOi9mBsPWgJXR8db5Z", widget.electorateUID, widget.leaderUID)
-          //Once leader profile has been loaded, rebuild widget
-          .then((val) async {
-        await Future.delayed(Duration(seconds: 3));
-        setState(() {});
-      });
+
+    if (leaderController.leaderSnapshot == null ||
+        widget.leaderUID != leaderController.leaderSnapshot.documentID) {
+      print(widget.upper);
+      if (widget.upper == false) {
+        leaderController
+            .loadLowerLeader(
+                widget.stateID, widget.electorateID, widget.leaderUID)
+            //Once leader profile has been loaded, rebuild widget
+            .then((val) async {
+          setState(() {});
+        });
+      } else {
+        print("I ran here");
+        leaderController.loadUpperLeader(widget.stateID, widget.leaderUID)
+            //Once leader profile has been loaded, rebuild widget
+            .then((val) async {
+          setState(() {});
+        });
+      }
     }
+
     //Has leaderSnapshot been downloaded? Run primary leader profile view
     return leaderController.leaderSnapshot != null
         ? Scaffold(

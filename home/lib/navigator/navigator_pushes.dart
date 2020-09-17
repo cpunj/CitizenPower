@@ -57,26 +57,29 @@ goProfileView(BuildContext context, FirebaseUser user, String uID) {
   );
 }
 
-goElectorate(BuildContext context, FirebaseUser user, String electorateUID,
-    String leaderUID) {
+goElectorate(BuildContext context, FirebaseUser user, String stateID,
+    String electorateUID, String leaderUID, bool upper) {
   Navigator.push(
     context,
     MaterialPageRoute(
         builder: (context) => Electorate(
-              user: user,
-              electorateUID: electorateUID,
-              leaderUID: leaderUID,
-            )),
+            user: user,
+            stateID: stateID,
+            electorateID: electorateUID,
+            leaderUID: leaderUID,
+            upper: upper)),
   );
 }
 
-goSelectedElectorate(
-    BuildContext context, FirebaseUser user, String userElectorate) {
+goSelectedElectorate(BuildContext context, FirebaseUser user, String userState,
+    String userElectorate) {
+  print(userState + userElectorate);
   Navigator.push(
     context,
     MaterialPageRoute(
         builder: (context) => ElectorateView(
               user: user,
+              stateSelected: userState,
               electorateSelected: userElectorate,
             )),
   );

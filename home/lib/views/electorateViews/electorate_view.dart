@@ -12,10 +12,15 @@ ElectorateController electorateController = ElectorateController();
 
 class ElectorateView extends StatefulWidget {
   //Transferring user between widgets
-  const ElectorateView({Key key, @required this.user, this.electorateSelected})
+  const ElectorateView(
+      {Key key,
+      @required this.user,
+      this.stateSelected,
+      this.electorateSelected})
       : super(key: key);
 
   final FirebaseUser user;
+  final String stateSelected;
   final String electorateSelected;
 
   @override
@@ -28,14 +33,11 @@ class _ElectorateViewState extends State<ElectorateView> {
   Stream lowerStream;
   Stream upperStream;
 
-  Widget lowerLeaderList(String electorateSelected) {
+  Widget lowerLeaderList(String stateSelected, String electorateSelected) {
     electorateController
-        .getLowerLeaders("2flOi9mBsPWgJXR8db5Z",
-            electorateController.electorateSnapshot.documentID)
+        .getLowerLeaders(stateSelected, electorateSelected)
         .then((value) {
-      setState(() {
-        lowerStream = value;
-      });
+      lowerStream = value;
     });
     //StreamBuilder takes a Stream<QuerySnapshot> from a Firebase query to build the widgets as the data is downloaded
     return StreamBuilder(
@@ -54,8 +56,10 @@ class _ElectorateViewState extends State<ElectorateView> {
                       goElectorate(
                           context,
                           widget.user,
+                          widget.stateSelected,
                           electorateController.electorateSnapshot.documentID,
-                          snapshot.data.documents[index].documentID);
+                          snapshot.data.documents[index].documentID,
+                          snapshot.data.documents[index].data["upper"]);
                     },
                     child: leaderListItem(
                       isElected:
@@ -64,6 +68,7 @@ class _ElectorateViewState extends State<ElectorateView> {
                       house: snapshot.data.documents[index].data["house"],
                       profilePic: snapshot.data.documents[index].data["pic"],
                       name: snapshot.data.documents[index].data["name"],
+                      upper: snapshot.data.documents[index].data["upper"],
                     ),
                   );
                 })
@@ -72,8 +77,8 @@ class _ElectorateViewState extends State<ElectorateView> {
     );
   }
 
-  Widget upperLeaderList() {
-    electorateController.getUpperLeaders("2flOi9mBsPWgJXR8db5Z").then((value) {
+  Widget upperLeaderList(String stateSelected) {
+    electorateController.getUpperLeaders(stateSelected).then((value) {
       setState(() {
         upperStream = value;
       });
@@ -94,8 +99,10 @@ class _ElectorateViewState extends State<ElectorateView> {
                       goElectorate(
                           context,
                           widget.user,
-                          electorateController.electorateSnapshot.documentID,
-                          snapshot.data.documents[index].documentID);
+                          stateSelected,
+                          null,
+                          snapshot.data.documents[index].documentID,
+                          snapshot.data.documents[index].data["upper"]);
                     },
                     child: leaderListItem(
                       isElected:
@@ -104,6 +111,7 @@ class _ElectorateViewState extends State<ElectorateView> {
                       house: snapshot.data.documents[index].data["house"],
                       profilePic: snapshot.data.documents[index].data["pic"],
                       name: snapshot.data.documents[index].data["name"],
+                      upper: snapshot.data.documents[index].data["upper"],
                     ),
                   );
                 })
@@ -112,11 +120,86 @@ class _ElectorateViewState extends State<ElectorateView> {
     );
   }
 
+  Widget leaderListItem(
+      {String profilePic,
+      String name,
+      String house,
+      String party,
+      bool isElected,
+      bool upper}) {
+    //Using container padding instead of sized boxes to make building and abstracting widgets easier
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 8.0),
+      child: Card(
+        elevation: 2,
+        child: new Container(
+          padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+          child: Column(
+            children: <Widget>[
+              new Row(
+                children: <Widget>[
+                  new CircleAvatar(
+                    backgroundImage: NetworkImage(profilePic),
+                  ),
+                  new Padding(padding: EdgeInsets.only(right: 10.0)),
+                  new Text(
+                    name,
+                    style:
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                  )
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  upper == false
+                      ? Text(
+                          "Lower House",
+                          style: textStyleListGrey(),
+                        )
+                      : Text(
+                          "Upper House",
+                          style: textStyleListGrey(),
+                        ),
+                  Text(
+                    party,
+                    style: textStyleListGrey(),
+                  ),
+                  isElected == true
+                      ? upper == false
+                          ? Text(
+                              "Current MP",
+                              style: textStyleListGrey(),
+                            )
+                          : Text(
+                              "Current Senator",
+                              style: textStyleListGrey(),
+                            )
+                      : upper == false
+                          ? Text(
+                              "Aspiring MP",
+                              style: textStyleListGrey(),
+                            )
+                          : Text(
+                              "Aspiring Senator",
+                              style: textStyleListGrey(),
+                            ),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     if (electorateController.electorateSnapshot == null ||
         widget.electorateSelected != electorateController.getName()) {
-      electorateController.getElectorate(widget.electorateSelected).then((val) {
+      electorateController
+          .downloadElectorate(widget.stateSelected, widget.electorateSelected)
+          .then((val) {
         //'then()' only runs once FS data for view has been downloaded
         setState(() {});
       });
@@ -282,12 +365,13 @@ class _ElectorateViewState extends State<ElectorateView> {
                                       });
                                 })
                           ]),
-                      lowerLeaderList(widget.electorateSelected),
+                      lowerLeaderList(
+                          widget.stateSelected, widget.electorateSelected),
                       Text(
                         "Senate",
                         style: TextStyle(fontSize: 25.0),
                       ),
-                      upperLeaderList(),
+                      upperLeaderList(widget.stateSelected),
                     ],
                   ),
                 ),
@@ -312,60 +396,4 @@ class _ElectorateViewState extends State<ElectorateView> {
             ),
           );
   }
-}
-
-Widget leaderListItem(
-    {String profilePic,
-    String name,
-    String house,
-    String party,
-    bool isElected}) {
-  //Using container padding instead of sized boxes to make building and abstracting widgets easier
-  return Container(
-    padding: EdgeInsets.symmetric(vertical: 8.0),
-    child: Card(
-      elevation: 2,
-      child: new Container(
-        padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-        child: Column(
-          children: <Widget>[
-            new Row(
-              children: <Widget>[
-                new CircleAvatar(
-                  backgroundImage: NetworkImage(profilePic),
-                ),
-                new Padding(padding: EdgeInsets.only(right: 10.0)),
-                new Text(
-                  name,
-                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-                )
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  "Lower House",
-                  style: textStyleListGrey(),
-                ),
-                Text(
-                  party,
-                  style: textStyleListGrey(),
-                ),
-                isElected == true
-                    ? Text(
-                        "Current MP",
-                        style: textStyleListGrey(),
-                      )
-                    : Text(
-                        "Aspiring MP",
-                        style: textStyleListGrey(),
-                      ),
-              ],
-            )
-          ],
-        ),
-      ),
-    ),
-  );
 }

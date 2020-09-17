@@ -119,9 +119,8 @@ Widget electorateListItem(String stateSelected, FirebaseUser user) {
                   height: 60,
                   child: GestureDetector(
                     onTap: () {
-                      print(electorateList[index]);
                       goSelectedElectorate(
-                          context, user, electorateList[index]);
+                          context, user, stateSelected, electorateList[index]);
                     },
                     child: Card(
                         child: new Column(
@@ -150,26 +149,6 @@ List<String> electorateListPopulate(String state) {
 
   if (state == "TAS") {
     stateElectorateList = [
-      'Bass',
-      'Braddon',
-      'Clark',
-      'Franklin',
-      'Lyons',
-      'Bass',
-      'Braddon',
-      'Clark',
-      'Franklin',
-      'Lyons',
-      'Bass',
-      'Braddon',
-      'Clark',
-      'Franklin',
-      'Lyons',
-      'Bass',
-      'Braddon',
-      'Clark',
-      'Franklin',
-      'Lyons',
       'Bass',
       'Braddon',
       'Clark',

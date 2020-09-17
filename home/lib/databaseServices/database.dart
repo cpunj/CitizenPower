@@ -7,10 +7,10 @@ import 'package:path/path.dart';
 import 'dart:io';
 
 class ElectorateDatabaseMethods {
-  getElectorateByName(String stateUID, String name) async {
+  queryElectorateByName(String stateID, String name) async {
     return await Firestore.instance
         .collection("states")
-        .document(stateUID)
+        .document(stateID)
         .collection("electorates")
         .where("name", isEqualTo: name)
         .getDocuments();
@@ -23,7 +23,7 @@ class ElectorateDatabaseMethods {
         .document(stateUID)
         .collection("electorates")
         .document(electorateUID)
-        .collection("lowerHouse")
+        .collection("lowerLeaders")
         .snapshots();
   }
 
@@ -32,23 +32,114 @@ class ElectorateDatabaseMethods {
     return await Firestore.instance
         .collection("states")
         .document(stateUID)
-        .collection("upperHouse")
+        .collection("upperLeaders")
         .snapshots();
   }
 
   //Used for querying FS for a leader profile
   //Download function so marked as async
   //return await needed for all queries to allow main thread to continue
-  getLeaderByUID(
+  getLowerLeaderByUID(
       {String stateUID, String electorateUID, String leaderUID}) async {
     return await Firestore.instance
         .collection("states")
         .document(stateUID)
         .collection("electorates")
         .document(electorateUID)
-        .collection("lowerHouse")
+        .collection("lowerLeaders")
         .document(leaderUID)
         .get();
+  }
+
+  getUpperLeaderByUID({String stateUID, String leaderUID}) async {
+    return await Firestore.instance
+        .collection("states")
+        .document(stateUID)
+        .collection("upperLeaders")
+        .document(leaderUID)
+        .get();
+  }
+
+  uploadState() {
+    String stateID = "QLD";
+
+    //Converts the post's data to a Map for Firebase document upload.
+    Map<String, dynamic> stateMap = {
+      "name": "Queensland",
+    };
+
+    Firestore.instance.collection("states").document(stateID).setData(stateMap);
+  }
+
+  uploadElectorate() {
+    String stateID = "TAS";
+    String electorateID = "Clark";
+    String consistsOf = "Greater Hobart, Kingborough, Moonah and Glenorchy";
+    String area = "300sqkm";
+    String pop = "70k";
+
+    Map<String, dynamic> electorateMap = {
+      "name": electorateID,
+      "consistsOf": consistsOf,
+      "area": area,
+      "pop": pop,
+    };
+
+    Firestore.instance
+        .collection("states")
+        .document(stateID)
+        .collection("electorates")
+        .document(electorateID)
+        .setData(electorateMap);
+  }
+
+  uploadLowerLeader() {
+    String stateID = "TAS";
+    String electorateID = "Clark";
+
+    Map<String, dynamic> leaderMap = {
+      "name": electorateID,
+      "bio": "Andrew was re-elected with an increased margin in 2013, and then again in 2016, "
+          "and continues to be active across a range of issues including health, education and science,"
+          " and jobs, as well as the issues that the major parties ignore including "
+          "animal welfare, gambling reform, asylum seekers, foreign and security policy and climate change.",
+      "electorate": "Clark - Tasmania",
+      "party": "Independent",
+      "power": "Since 2010",
+      "pic": "https://scontent.fcbr1-1.fna.fbcdn.net/v/t1.0-9/12347869_1316569355023609_31285353"
+          "6532998424_n.png?_nc_cat=105&_nc_sid=09cbfe&_nc_ohc=MKsLsQmJ4C0AX-npKvR&_nc_ht=scontent.fcbr1-1.fna&oh=6ec238d092d68534addaf3e038a42a97&oe=5F88E7EB",
+    };
+
+    Firestore.instance
+        .collection("states")
+        .document(stateID)
+        .collection("electorates")
+        .document(electorateID)
+        .collection("lowerLeaders")
+        .document()
+        .setData(leaderMap);
+  }
+
+  uploadUpperLeader() {
+    String stateID = "TAS";
+
+    Map<String, dynamic> leaderMap = {
+      "name": "Nick McKim",
+      "bio":
+          "Nick is a staunch and proud Tasmanian, and an unapologetic defender of the things that make his home state different from the rest of the world.",
+      "electorate": "Tasmania",
+      "party": "Greens",
+      "power": "Since 2015",
+      "pic": "https://scontent.fcbr1-1.fna.fbcdn.net/v/t1.0-9/53803656_10155893611627056_2225838651936342016_o.jpg?_nc_cat=111&_nc_sid=09cbfe&_"
+          "nc_ohc=GvqBxEaqOQEAX98xZCp&_nc_ht=scontent.fcbr1-1.fna&oh=b375c2d2bbcb4edb57b93a06cc02067c&oe=5F875FEC",
+    };
+
+    Firestore.instance
+        .collection("states")
+        .document(stateID)
+        .collection("upperLeaders")
+        .document()
+        .setData(leaderMap);
   }
 }
 

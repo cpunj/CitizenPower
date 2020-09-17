@@ -12,9 +12,9 @@ ElectorateModel electorateModel = ElectorateModel();
 class ElectorateController {
   DocumentSnapshot electorateSnapshot;
   //Takes the selected electorate string and calls a database function query to download
-  getElectorate(String name) async {
+  downloadElectorate(String stateID, String electorateName) async {
     electorateDatabaseMethods
-        .getElectorateByName("2flOi9mBsPWgJXR8db5Z", name)
+        .queryElectorateByName(stateID, electorateName)
         .then((val) {
       electorateSnapshot = val.documents[0];
       electorateModel.name = electorateSnapshot.data["name"];
