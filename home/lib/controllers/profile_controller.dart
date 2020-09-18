@@ -67,6 +67,7 @@ class ProfileController {
 
   //Used to get profile data, async to allow setState use in view
   loadProfile(String uID) async {
+    print("hey IMlonsing");
     profileDatabaseMethods
         //Downloads profile based on the UID stored in user from app login
         .getUserByUID(uID)

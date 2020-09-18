@@ -1,5 +1,9 @@
+import 'package:citizenpower/controllers/electorateControllers/electorate_controller.dart';
+import 'package:citizenpower/databaseServices/database.dart';
 import 'package:citizenpower/layouts/generic_layouts.dart';
 import 'package:citizenpower/navigator/navigator_pushes.dart';
+import 'package:citizenpower/views/electorateViews/electorate_view.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -20,11 +24,87 @@ class _ElectorateSelectorViewState extends State<ElectorateSelectorView> {
   String _selectedState;
   bool _stateSelected;
   int currentIndex = 4;
+  String stateID;
+
+  _showChoiceDialog(BuildContext context, FirebaseUser user,
+      String _stateSelected, QuerySnapshot electoratesSnapshot) {
+    if (electoratesSnapshot != null &&
+        electoratesSnapshot.documents.length > 0) {
+      print(electoratesSnapshot.documents.length);
+      return showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+                title: Text(
+                    "Your postcode contains multiple electorates, please select one."),
+                actions: [
+                  Container(
+                    padding: EdgeInsets.only(right: 36),
+                    child: FlatButton(
+                      child: Text(
+                        electoratesSnapshot.documents[0].data["name"],
+                        style: TextStyle(fontSize: 30.0),
+                      ),
+                      onPressed: () {
+                        print("This ran");
+                        goSelectedElectorate(context, user, _stateSelected,
+                            electoratesSnapshot.documents[0].data["name"]);
+                      },
+                    ),
+                  ),
+                  FlatButton(
+                    child: Text(
+                      electoratesSnapshot.documents[1].data["name"],
+                      style: TextStyle(fontSize: 30.0),
+                    ),
+                    onPressed: () {
+                      print("This ran");
+                      goSelectedElectorate(context, user, _stateSelected,
+                          electoratesSnapshot.documents[1].data["name"]);
+                    },
+                  ),
+                  electoratesSnapshot.documents.length > 2
+                      ? FlatButton(
+                          child: Text(
+                            electoratesSnapshot.documents[2].data["name"],
+                            style: TextStyle(fontSize: 30.0),
+                          ),
+                          onPressed: () {
+                            print("This ran");
+                            goSelectedElectorate(context, user, _stateSelected,
+                                electoratesSnapshot.documents[2].data["name"]);
+                          },
+                        )
+                      : Container(),
+                ]);
+          });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: <Widget>[
+          Container(
+            padding: EdgeInsets.only(right: 10),
+            child: GestureDetector(
+              onTap: () {
+                electorateController.loadElectorateFromLocation(
+                    context, widget.user);
+                _showChoiceDialog(
+                    context,
+                    widget.user,
+                    electorateController.selectedState,
+                    electorateController.electoratesSnapshot);
+              },
+              child: Icon(
+                Icons.location_on,
+                size: 35,
+              ),
+            ),
+          )
+        ],
         title: Text(
           "Find Electorate",
           style: appBarStyle(),

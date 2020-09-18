@@ -7,6 +7,15 @@ import 'package:path/path.dart';
 import 'dart:io';
 
 class ElectorateDatabaseMethods {
+  queryElectorateByPostcode(String stateID, String postCode) async {
+    return await Firestore.instance
+        .collection("states")
+        .document(stateID)
+        .collection("electorates")
+        .where("postcodes", arrayContains: postCode)
+        .getDocuments();
+  }
+
   queryElectorateByName(String stateID, String name) async {
     return await Firestore.instance
         .collection("states")
