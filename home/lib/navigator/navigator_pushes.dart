@@ -73,7 +73,6 @@ goElectorate(BuildContext context, FirebaseUser user, String stateID,
 
 goSelectedElectorate(BuildContext context, FirebaseUser user, String userState,
     String userElectorate) {
-  print(userState + userElectorate);
   Navigator.push(
     context,
     MaterialPageRoute(
