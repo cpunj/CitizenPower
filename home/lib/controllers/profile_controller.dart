@@ -82,4 +82,8 @@ class ProfileController {
       profile.picLink = profileSnapshot.data["picLink"];
     });
   }
+
+  String getEmail() {
+    return profile.email;
+  }
 }

@@ -143,7 +143,7 @@ class _MyProfilePageState extends State<ProfileView> {
                           //The currently downloaded profile
                           onPressed: () {
                             createChatroomAndStartConversation(context,
-                                userEmail: profileController.getName());
+                                userEmail: profileController.getEmail());
                           }),
                     ),
                   ],

@@ -1,3 +1,4 @@
+import 'package:citizenpower/models/event.dart';
 import 'package:citizenpower/models/post.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -296,5 +297,24 @@ class ProfileDatabaseMethods {
         .document(uID)
         .collection("posts")
         .add(postMap);
+  }
+
+  uploadEvent(Event newEvent, String uID) {
+    //Converts the post's data to a Map for Firebase document upload.
+    Map<String, dynamic> eventMap = {
+      "event": newEvent.eventname,
+      "description": newEvent.description,
+      "location": newEvent.location,
+      "time": DateTime.now().millisecondsSinceEpoch,
+      "privacylevel": newEvent.privacylevel,
+    };
+
+    print(uID);
+    //Uploads the post data as a map within the current user's list of posts in their profile
+    Firestore.instance
+        .collection("users")
+        .document(uID)
+        .collection("events")
+        .add(eventMap);
   }
 }
