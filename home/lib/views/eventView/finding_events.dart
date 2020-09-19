@@ -1,14 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
 class FindingEvents extends StatefulWidget {
+  final FirebaseUser user;
+  const FindingEvents({Key key, this.user}) : super(key: key);
   @override
   _FindingEventsState createState() => _FindingEventsState();
 }
+
 class _FindingEventsState extends State<FindingEvents> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +25,6 @@ class _FindingEventsState extends State<FindingEvents> {
               onTap: () {
                 Navigator.of(context).pushNamed("/j");
               },
-
               trailing: IconButton(
                 icon: Icon(Icons.keyboard_arrow_down),
                 onPressed: () {},
@@ -41,7 +41,6 @@ class _FindingEventsState extends State<FindingEvents> {
               onTap: () {
                 Navigator.of(context).pushNamed("/j");
               },
-
               trailing: IconButton(
                 icon: Icon(Icons.keyboard_arrow_down),
                 onPressed: () {},
@@ -58,7 +57,6 @@ class _FindingEventsState extends State<FindingEvents> {
               onTap: () {
                 Navigator.of(context).pushNamed("/j");
               },
-
               trailing: IconButton(
                 icon: Icon(Icons.keyboard_arrow_down),
                 onPressed: () {},

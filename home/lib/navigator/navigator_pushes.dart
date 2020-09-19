@@ -9,7 +9,9 @@ import 'package:citizenpower/Views/profileViews/profile_page_edit.dart';
 import 'package:citizenpower/Views/social_menu.dart';
 import 'package:citizenpower/models/profile.dart';
 import 'package:citizenpower/views/electorateViews/electorate.dart';
+import 'package:citizenpower/views/eventView/create_new_event.dart';
 import 'package:citizenpower/views/eventView/event_page.dart';
+import 'package:citizenpower/views/eventView/event_view.dart';
 import 'package:citizenpower/views/profileViews/Profile.dart';
 import 'package:citizenpower/views/profileViews/profile_list.dart';
 import 'package:citizenpower/views/profileViews/searchProfile.dart';
@@ -128,7 +130,12 @@ goMessage(BuildContext context, FirebaseUser user) {
 
 goEvent(BuildContext context, FirebaseUser user) {
   Navigator.push(
-      context, MaterialPageRoute(builder: (context) => EventPage(user: user)));
+      context, MaterialPageRoute(builder: (context) => EventView(user: user)));
+}
+
+createEvent(BuildContext context, FirebaseUser user) {
+  Navigator.push(context,
+      MaterialPageRoute(builder: (context) => CreateNewEvent(user: user)));
 }
 
 goElectorateView(BuildContext context, FirebaseUser user) {

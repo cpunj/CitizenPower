@@ -1,8 +1,12 @@
 import 'package:citizenpower/constants.dart';
+import 'package:citizenpower/navigator/navigator_pushes.dart';
 import 'package:citizenpower/views/eventView/finding_events.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class EventView extends StatefulWidget {
+  final FirebaseUser user;
+  const EventView({Key key, this.user}) : super(key: key);
   @override
   _EventViewState createState() => _EventViewState();
 }
@@ -19,11 +23,11 @@ class _EventViewState extends State<EventView> {
             color: brightOrange,
             child: CircleAvatar(
               backgroundColor: brightOrange,
-              child: IconButton(icon: Icon(Icons.add), onPressed: () {
-                Navigator.pushNamed(context, "/k");
-
-
-              }),
+              child: IconButton(
+                  icon: Icon(Icons.add),
+                  onPressed: () {
+                    createEvent(context, widget.user);
+                  }),
             ),
           ),
         ],
@@ -89,15 +93,10 @@ class _EventViewState extends State<EventView> {
           ),
         ],
       ),
-
       floatingActionButton: FloatingActionButton(
-
-        child:
-
-        Icon(Icons.location_searching),
+        child: Icon(Icons.location_searching),
         onPressed: () {
-           Navigator.pushNamed(context, "/m");
-
+          Navigator.pushNamed(context, "/m");
         },
       ),
     );
