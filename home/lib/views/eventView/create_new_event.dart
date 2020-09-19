@@ -23,6 +23,8 @@ class _CreateNewEventState extends State<CreateNewEvent> {
   final descriptionController = TextEditingController();
   final locationController = TextEditingController();
 
+  bool privacyController;
+
   List<bool> isSelected;
 
   @override
@@ -33,6 +35,7 @@ class _CreateNewEventState extends State<CreateNewEvent> {
 
   @override
   Widget build(BuildContext context) {
+    profileController.loadProfile(widget.user.uid);
     return Scaffold(
       appBar: new AppBar(
         title: Text("Create new Event"),
@@ -146,11 +149,19 @@ class _CreateNewEventState extends State<CreateNewEvent> {
               borderRadius: BorderRadius.circular(20.0),
               color: darkGold,
               child: new MaterialButton(
-                  textColor: Colors.white,
-                  child: new Text("Create"),
-                  onPressed: () {
+                textColor: Colors.white,
+                child: new Text("Create"),
+                onPressed: () {
 //                      Navigator.pushNamed(context, event);
-                  }),
+                  eventController.uploadEvent(
+                      context,
+                      eventnameController.text,
+                      descriptionController.text,
+                      widget.user.uid,
+                      locationController.text,
+                      isSelected);
+                },
+              ),
             ),
           ),
         ]),

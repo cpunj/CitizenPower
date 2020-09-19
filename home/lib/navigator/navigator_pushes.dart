@@ -9,6 +9,7 @@ import 'package:citizenpower/Views/profileViews/profile_page_edit.dart';
 import 'package:citizenpower/Views/social_menu.dart';
 import 'package:citizenpower/models/profile.dart';
 import 'package:citizenpower/views/electorateViews/electorate.dart';
+import 'package:citizenpower/views/eventView/event_page.dart';
 import 'package:citizenpower/views/profileViews/Profile.dart';
 import 'package:citizenpower/views/profileViews/profile_list.dart';
 import 'package:citizenpower/views/profileViews/searchProfile.dart';
@@ -123,6 +124,11 @@ goSocialMenu(BuildContext context, FirebaseUser user) {
 goMessage(BuildContext context, FirebaseUser user) {
   Navigator.push(
       context, MaterialPageRoute(builder: (context) => HomeScreen(user: user)));
+}
+
+goEvent(BuildContext context, FirebaseUser user) {
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => EventPage(user: user)));
 }
 
 goElectorateView(BuildContext context, FirebaseUser user) {

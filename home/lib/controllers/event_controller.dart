@@ -16,7 +16,7 @@ class EventController {
 
   //Uploads to post to the users profile
   uploadEvent(BuildContext context, String eventname, String description,
-      String uID, String location, bool privacylevel) {
+      String uID, String location, List<bool> privacylevel) {
     //Uploads pic to storage
     //Sets post text from view
     newEvent.eventname = eventname;

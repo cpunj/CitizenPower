@@ -1,7 +1,6 @@
-class Event{
+class Event {
   String eventname;
   String description;
   String location;
-  bool privacylevel;
-
+  List<bool> privacylevel;
 }
