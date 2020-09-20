@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     //All Widgets are contained within a 'Material App'P
     return new MaterialApp(
-        home: new ElectorateView(user: null),
+        home: new LoginPage(),
         //Secondary method for pushing between State Widgets
         routes: <String, WidgetBuilder>{
           "/a": (BuildContext context) => new AboutMe(),
