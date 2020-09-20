@@ -81,21 +81,17 @@ class _GroupViewState extends State<GroupView> {
       ),
       
       body: SingleChildScrollView(
+        physics: PageScrollPhysics(),
         scrollDirection: Axis.vertical,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-
-
-            Container(
-            child: groupListItem(context, widget.user, groupListSnapshot, "Bill of Rights", "We want a bill of rights in Tas."),
-            ),
-
-
-
+            groupListItem(context, widget.user, groupListSnapshot),
 
           ],
         ),
       ),
+
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,
           type: BottomNavigationBarType.fixed,
@@ -111,10 +107,10 @@ class _GroupViewState extends State<GroupView> {
   }
 }
 
-Widget groupListItem(BuildContext context, FirebaseUser user, QuerySnapshot groupListSnapshot, String groupName, String groupDescription) {
-
+Widget groupListItem(BuildContext context, FirebaseUser user, QuerySnapshot groupListSnapshot) {
   return groupListSnapshot != null
         ? ListView.builder(
+        physics: NeverScrollableScrollPhysics(),
         itemCount: groupListSnapshot.documents.length,
         shrinkWrap: true,
         itemBuilder: (context, index) {
