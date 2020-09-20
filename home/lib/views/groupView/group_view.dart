@@ -1,5 +1,6 @@
 import 'package:citizenpower/constants.dart';
 import 'package:citizenpower/layouts/generic_layouts.dart';
+import 'package:citizenpower/navigator/navigator_pushes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,7 @@ class _GroupViewState extends State<GroupView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("                " "Groups"),
+        title: Text("Groups"),
         elevation: 1.0,
         actions: <Widget>[
           CircleAvatar(
@@ -43,7 +44,7 @@ class _GroupViewState extends State<GroupView> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.pushNamed(context,"/l");
+                goCreateGroup(context, widget.user);
               },
 
 
@@ -55,6 +56,9 @@ class _GroupViewState extends State<GroupView> {
         scrollDirection: Axis.vertical,
         child: Column(
           children: <Widget>[
+
+            //groupListItem(context, "Bill of Rights", "We want a bill of rights in Tas."),
+
             Container(
               child: ListTile(
                 leading: CircleAvatar(
@@ -71,10 +75,12 @@ class _GroupViewState extends State<GroupView> {
               ),
               decoration: BoxDecoration(),
             ),
+
             Divider(
               height: 5,
               thickness: 0.5,
             ),
+
             Container(
               child: ListTile(
                 leading: CircleAvatar(
@@ -92,69 +98,8 @@ class _GroupViewState extends State<GroupView> {
                 ),
               ),
             ),
-            Divider(
-              height: 5,
-              thickness: 0.5,
-            ),
-            Container(
-              child: ListTile(
-                leading: CircleAvatar(
-                  backgroundImage: AssetImage("assets/CitizenLogo.png"),
-                  radius: 25,
-                ),
-                title: Text("Group 3"),
-                subtitle: Text("Group description: "),
-                onTap: () {
-                  Navigator.of(context).pushNamed("/i");
-                },
-                trailing: IconButton(
-                  icon: Icon(Icons.menu),
-                  onPressed: () {},
-                ),
-              ),
-            ),
-            Divider(
-              height: 5,
-              thickness: 0.5,
-            ),
-            Container(
-              child: ListTile(
-                leading: CircleAvatar(
-                  backgroundImage: AssetImage("assets/CitizenLogo.png"),
-                  radius: 25,
-                ),
-                title: Text("Group 4"),
-                subtitle: Text("Group description: "),
-                onTap: () {
-                  Navigator.of(context).pushNamed("/i");
-                },
-                trailing: IconButton(
-                  icon: Icon(Icons.menu),
-                  onPressed: () {},
-                ),
-              ),
-            ),
-            Divider(
-              height: 5,
-              thickness: 0.5,
-            ),
-            Container(
-              child: ListTile(
-                leading: CircleAvatar(
-                  backgroundImage: AssetImage("assets/CitizenLogo.png"),
-                  radius: 25,
-                ),
-                title: Text("Group 5"),
-                subtitle: Text("Group description: "),
-                onTap: () {
-                  Navigator.of(context).pushNamed("/i");
-                },
-                trailing: IconButton(
-                  icon: Icon(Icons.menu),
-                  onPressed: () {},
-                ),
-              ),
-            ),
+
+
           ],
         ),
       ),
@@ -171,4 +116,29 @@ class _GroupViewState extends State<GroupView> {
           ),
     );
   }
+}
+
+Container groupListItem(BuildContext context, String groupName, String groupDescription) {
+  Container listedGroup;
+
+  Container(
+    child: ListTile(
+
+      leading: CircleAvatar(
+        backgroundImage: AssetImage("assets/CitizenLogo.png"),
+        radius: 25,
+      ),
+
+      title: Text(groupName),
+      subtitle: Text(groupDescription),
+      onTap: () => Navigator.of(context).pushNamed("/i"),
+      trailing: IconButton(
+        icon: Icon(Icons.menu),
+        onPressed: () {},
+      ),
+    ),
+    decoration: BoxDecoration(),
+  );
+
+  return listedGroup;
 }

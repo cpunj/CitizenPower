@@ -220,6 +220,8 @@ Widget electorateListItem(String stateSelected, FirebaseUser user) {
         ]),
       ),
     ),
+
+
   );
 }
 
