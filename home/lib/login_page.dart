@@ -118,10 +118,11 @@ class LoginPageState extends State<LoginPage> {
                       Center(
                         child: Material(
                           elevation: 5.0,
-                          borderRadius: BorderRadius.circular(20.0),
+                          borderRadius: BorderRadius.circular(40.0),
                           color: darkGold,
                           child: new MaterialButton(
                               textColor: Colors.white,
+                              minWidth: 150,
                               child: new Text("LOGIN"),
                               onPressed: () {
                                 signIn();
@@ -129,12 +130,12 @@ class LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       new Padding(
-                        padding: const EdgeInsets.only(top: 20.0),
+                        padding: const EdgeInsets.only(top: 30.0),
                       ),
                       Center(
                         child: Material(
                           elevation: 5.0,
-                          borderRadius: BorderRadius.circular(20.0),
+                          borderRadius: BorderRadius.circular(40.0),
                           color: darkGold,
                           child: new MaterialButton(
                               textColor: Colors.white,
