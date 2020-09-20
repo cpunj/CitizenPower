@@ -7,6 +7,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:citizenpower/constants.dart';
+import 'package:photo_view/photo_view.dart';
+
 
 import '../../text_styles.dart';
 
@@ -240,16 +242,32 @@ SingleChildScrollView createElectorateView(
                             ),
                           children: <Widget>[
                             Container(
-                                padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-                                child:Text('Description of graph',
-                                  style: TextStyle(fontSize: 20.0),)
-                            ),
-                            Image(
-                              image: AssetImage('assets/mtwellington.jpg')
+                              child: Image(
+                                image: AssetImage("assets/age.png")
+                              ),
                             ),
                             Container(
-                                padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-                                child:Text('Graph source or more description')
+                                padding: EdgeInsets.fromLTRB(12.0, 1.0, 12.0, 40.0),
+                                child:Text("Tasmania's gender ratio is almost even, with 49.5% male and 50.5% female.\n"
+                                    "There are significantly less people in the 80+ age group, compare to other age groups.")
+                            ),
+                            Container(
+                              child: Image(
+                                  image: AssetImage("assets/employment.png")
+                              ),
+                            ),
+                            Container(
+                                padding: EdgeInsets.fromLTRB(12.0, 1.0, 12.0, 40.0),
+                                child:Text("An example of a chart to show the employment rate. Image found on Google.")
+                            ),
+                            Container(
+                              child: Image(
+                                  image: AssetImage("assets/income.png")
+                              ),
+                            ),
+                            Container(
+                                padding: EdgeInsets.fromLTRB(12.0, 1.0, 12.0, 20.0),
+                                child:Text("An example of a chart to show the income of people. This is only a made up data.")
                             ),
                           ]
                         )
