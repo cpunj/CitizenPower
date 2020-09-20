@@ -255,6 +255,13 @@ class ProfileDatabaseMethods {
         .getDocuments();
   }
 
+  getGroupList() async {
+    return await Firestore.instance
+        .collection('groups')
+        .getDocuments();
+  }
+
+
   getChatRooms(String userEmail) async {
     return await Firestore.instance
         .collection("ChatRoom")
@@ -301,6 +308,12 @@ class ProfileDatabaseMethods {
 
   uploadGroup(Group newGroup) {
     //Converts the post's data to a Map for Firebase upload.
+
+    if (newGroup.imagelink == null){
+      print("Group image upload failed, assigning default image");
+      newGroup.imagelink = "https://firebasestorage.googleapis.com/v0/b/citizen-f9cda.appspot.com/o/IMG_20200914_174646.jpg?alt=media&token=9e29f755-3e64-4c23-8468-de58078b7332";
+    }
+
     Map<String, dynamic> groupMap = {
       "name": newGroup.groupname,
       "description": newGroup.groupdescription,
@@ -315,7 +328,7 @@ class ProfileDatabaseMethods {
 
     Firestore.instance
         .collection("groups")
-        .document(newGroup.groupname) // need to change to suit database layout
+        .document() // need to change to suit database layout
         .setData(groupMap)
         .catchError((e) {
       print(e.toString());
