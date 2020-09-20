@@ -53,7 +53,7 @@ class EventController {
 
   //Uploads to post to the users profile
   uploadEvent(BuildContext context, String eventname, String description,
-      String uID, String location, List<bool> privacylevel) {
+      String location, List<bool> privacylevel) {
     //Uploads pic to storage
     //Sets post text from view
     newEvent.eventname = eventname;
@@ -62,6 +62,6 @@ class EventController {
     newEvent.privacylevel = privacylevel;
     //Uploads post with text and file download url
     //TODO: uploadPost needs to wait for uploadPostPic to complete, currently a null picLink is uploaded at 1st attempt
-    profileDatabaseMethods.uploadEvent(newEvent, uID);
+    profileDatabaseMethods.uploadEvent(newEvent);
   }
 }

@@ -157,7 +157,6 @@ class _CreateNewEventState extends State<CreateNewEvent> {
                       context,
                       eventnameController.text,
                       descriptionController.text,
-                      widget.user.uid,
                       locationController.text,
                       isSelected);
                 },

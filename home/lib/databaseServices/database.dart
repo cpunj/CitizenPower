@@ -299,7 +299,7 @@ class ProfileDatabaseMethods {
         .add(postMap);
   }
 
-  uploadEvent(Event newEvent, String uID) {
+  uploadEvent(Event newEvent) {
     //Converts the post's data to a Map for Firebase document upload.
     Map<String, dynamic> eventMap = {
       "event": newEvent.eventname,
@@ -309,12 +309,7 @@ class ProfileDatabaseMethods {
       "privacylevel": newEvent.privacylevel,
     };
 
-    print(uID);
     //Uploads the post data as a map within the current user's list of posts in their profile
-    Firestore.instance
-        .collection("users")
-        .document(uID)
-        .collection("events")
-        .add(eventMap);
+    Firestore.instance.collection("events").add(eventMap);
   }
 }
