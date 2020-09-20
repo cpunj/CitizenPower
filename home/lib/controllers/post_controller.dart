@@ -22,12 +22,16 @@ class PostController {
   }
 
   //Uploads to post to the users profile
-  uploadPost(BuildContext context, String postText, String uID) {
+  uploadPost(BuildContext context, String postText, String uID, String name,
+      String profilePicLink) {
     //Uploads pic to storage
     uploadPostPic(context);
     //Sets post text from view
     newPost.postText = postText;
+    newPost.name = name;
+    newPost.profilePicLink = profilePicLink;
     //Uploads post with text and file download url
+    //TODO: uploadPost needs to wait for uploadPostPic to complete, currently a null picLink is uploaded at 1st attempt
     profileDatabaseMethods.uploadPost(newPost, uID);
   }
 }

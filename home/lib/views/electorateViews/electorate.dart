@@ -21,16 +21,24 @@ LeaderController leaderController = LeaderController();
 
 class Electorate extends StatefulWidget {
   const Electorate(
-      {Key key, @required this.user, this.leaderUID, this.electorateUID})
+      {Key key,
+      @required this.user,
+      this.stateID,
+      this.leaderUID,
+      this.electorateID,
+      this.upper})
       : super(key: key);
   //Stores the currently logged in user, passed in from the previous state
   final FirebaseUser user;
+  //ID used to query Cloud Firestore
+  final String stateID;
   //ID used to query FB for the electorate that the user has chosen
-  final String electorateUID;
+  final String electorateID;
   //ID passed in from previous view based on which leader the user selected
   //and used in FB download queries
   final String leaderUID;
-
+  //Upper is used to know to query from state collection or electorate collection
+  final bool upper;
   @override
   _ElectorateState createState() => _ElectorateState();
 }
@@ -45,11 +53,26 @@ class _ElectorateState extends State<Electorate> {
   @override
   Widget build(BuildContext context) {
     //Load the profile based on the selected electorate and leader from previous views.
-    leaderController.loadLeader(widget.electorateUID, widget.leaderUID)
-        //Once leader profile has been loaded, rebuild widget
-        .then((val) {
-      setState(() {});
-    });
+
+    if (leaderController.leaderSnapshot == null ||
+        widget.leaderUID != leaderController.leaderSnapshot.documentID) {
+      if (widget.upper == false) {
+        leaderController
+            .loadLowerLeader(
+                widget.stateID, widget.electorateID, widget.leaderUID)
+            //Once leader profile has been loaded, rebuild widget
+            .then((val) async {
+          setState(() {});
+        });
+      } else {
+        leaderController.loadUpperLeader(widget.stateID, widget.leaderUID)
+            //Once leader profile has been loaded, rebuild widget
+            .then((val) async {
+          setState(() {});
+        });
+      }
+    }
+
     //Has leaderSnapshot been downloaded? Run primary leader profile view
     return leaderController.leaderSnapshot != null
         ? Scaffold(
@@ -96,7 +119,8 @@ class _ElectorateState extends State<Electorate> {
                             padding: const EdgeInsets.only(left: 20),
                             child: CircleAvatar(
                               radius: 50.0,
-                              backgroundImage: AssetImage('assets/Wilkie.jpeg'),
+                              backgroundImage:
+                                  NetworkImage(leaderController.getPicLink()),
                             ),
                           ),
                           onPressed: () {
@@ -120,7 +144,8 @@ class _ElectorateState extends State<Electorate> {
                         ),
                         MaterialButton(
                           child: Text(
-                            "Follow Andrew",
+                            "Follow " +
+                                getFirstWord(leaderController.getName()),
                             style: TextStyle(
                               color: Colors.white,
                             ),
@@ -264,9 +289,8 @@ class _ElectorateState extends State<Electorate> {
                     // ignore: missing_return
                     setState(() {
                       issues = newValue;
-                      if (issues == "Issue 1") {
-                        print(Text(
-                            "This has been a major issue for this company"));
+                      if (issues == "Poverty") {
+                        Text("This has been a major issue for this company");
                         return Column(children: <Widget>[
                           Text(" This has been a major issue for this company")
                         ]);

@@ -1,8 +1,12 @@
+import 'package:citizenpower/databaseServices/database.dart';
 import 'package:citizenpower/layouts/generic_layouts.dart';
 import 'package:citizenpower/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart';
+
+ElectorateDatabaseMethods electorateDatabaseMethods =
+    ElectorateDatabaseMethods();
 
 class Setting extends StatefulWidget {
   const Setting({Key key, @required this.user}) : super(key: key);
@@ -90,6 +94,7 @@ class _SettingState extends State<Setting> {
                         ),
                         onTap: () {
                           //change password
+                          electorateDatabaseMethods.uploadUpperLeader();
                         },
                       ),
                       Container(

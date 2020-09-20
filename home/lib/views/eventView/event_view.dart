@@ -1,4 +1,5 @@
 import 'package:citizenpower/constants.dart';
+import 'package:citizenpower/views/eventView/finding_events.dart';
 import 'package:flutter/material.dart';
 
 class EventView extends StatefulWidget {
@@ -87,6 +88,17 @@ class _EventViewState extends State<EventView> {
             thickness: 1,
           ),
         ],
+      ),
+
+      floatingActionButton: FloatingActionButton(
+
+        child:
+
+        Icon(Icons.location_searching),
+        onPressed: () {
+           Navigator.pushNamed(context, "/m");
+
+        },
       ),
     );
   }

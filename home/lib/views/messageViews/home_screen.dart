@@ -128,6 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   builder: (context) => SearchScreen(user: widget.user)));
         },
       ),
+
       body: chatRoomList(),
       /*
                   Padding(
