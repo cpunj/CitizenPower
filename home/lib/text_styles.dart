@@ -6,7 +6,7 @@ import 'constants.dart';
 TextStyle headerStyle1() {
   return TextStyle(
     fontWeight: FontWeight.bold,
-    fontSize: 28,
+    fontSize: 24,
     color: darkGold,
     letterSpacing: 0.5,
     wordSpacing: 1,
