@@ -26,6 +26,10 @@ class EventController {
     return newEvent.privacylevel;
   }
 
+  getEventByUID(String eID) async {
+    return await Firestore.instance.collection("events").document(eID).get();
+  }
+
   loadEvent(String uID) async {
     print("It is working");
     profileDatabaseMethods
@@ -48,6 +52,7 @@ class EventController {
   Event newEvent = Event();
   //Contains query/add methods
   ProfileDatabaseMethods profileDatabaseMethods = ProfileDatabaseMethods();
+
   //Stores the file that will be uploaded to FS Storage
   //Uploads the post picture to Firebase Storage and returns the download link
 

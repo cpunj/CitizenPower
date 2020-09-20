@@ -5,6 +5,7 @@ import 'package:citizenpower/models/event.dart';
 import 'package:citizenpower/navigator/navigator_pushes.dart';
 import 'package:citizenpower/views/eventView/create_new_event.dart';
 import 'package:citizenpower/views/eventView/finding_events.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +18,14 @@ class EventView extends StatefulWidget {
   const EventView({Key key, this.user}) : super(key: key);
   @override
   _EventViewState createState() => _EventViewState();
+}
+
+getEvents() {
+  Firestore.instance.collection("events").getDocuments().then((querySnapshot) {
+    querySnapshot.documents.forEach((result) {
+      print(result.data);
+    });
+  });
 }
 
 class _EventViewState extends State<EventView> {
@@ -51,8 +60,8 @@ class _EventViewState extends State<EventView> {
               children: <Widget>[
                 Container(
                   child: ListTile(
-                    title: Text(eventController.getEventName()),
-                    subtitle: Text(eventController.getlocation()),
+                    title: getEvents(),
+                    subtitle: Text(""),
                     onTap: () {
                       Navigator.of(context).pushNamed("/j");
                     },
