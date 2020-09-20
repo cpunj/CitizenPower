@@ -34,6 +34,7 @@ class GroupController {
     print(groupImage);
 
 
+
     // Below statements take the text input from the create group view
     // NB: privacy is a bool value
     newGroup.groupname = groupName;
