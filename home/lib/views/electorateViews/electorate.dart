@@ -325,8 +325,10 @@ class _ElectorateState extends State<Electorate> {
                 //onTap: _onTap,
                 ),
           )
+    
         //leaderSnapshot not downloaded? Show loading indicator
         : Container(
+
             color: Colors.black,
             child: Center(
               child: CircularProgressIndicator(),

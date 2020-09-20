@@ -18,59 +18,95 @@ class _FindingEventsState extends State<FindingEvents> {
       ),
       body: Column(
         children: <Widget>[
-          Container(
-            child: ListTile(
-              title: Text("Events You May Like"),
-              onTap: () {
-                Navigator.of(context).pushNamed("/j");
-              },
+          ExpansionTile(
+            title: Text('Events You May Like',
+                style: TextStyle(
+                    fontSize: 29.0,
+                    color: Colors.black),
+                textAlign: TextAlign.center),
+            trailing: Icon(
+                Icons.keyboard_arrow_down,
+                color: Colors.black),
+            children: <Widget>[
+              Container(
+                  padding: EdgeInsets.symmetric(
+                      vertical: 6,
+                      horizontal: 12),
+                  child: Text(
+                    'Art Night',
+                    style:
+                    TextStyle(fontSize: 20.0),
+                  )),
 
-              trailing: IconButton(
-                icon: Icon(Icons.keyboard_arrow_down),
-                onPressed: () {},
-              ),
-            ),
-          ),
-          Divider(
-            height: 15,
-            thickness: 1,
-          ),
-          Container(
-            child: ListTile(
-              title: Text("Happenning Online Now"),
-              onTap: () {
-                Navigator.of(context).pushNamed("/j");
-              },
+              Container(
+                  padding: EdgeInsets.symmetric(
+                      vertical: 6,
+                      horizontal: 12),
+                  child: Text(
+                      'Location: 410 Sandy bay Road,'
+                          '10 min left')),
+             ExpansionTile(
 
-              trailing: IconButton(
-                icon: Icon(Icons.keyboard_arrow_down),
-                onPressed: () {},
-              ),
-            ),
-          ),
-          Divider(
-            height: 15,
-            thickness: 1,
-          ),
-          Container(
-            child: ListTile(
-              title: Text("Discover Online Events"),
-              onTap: () {
-                Navigator.of(context).pushNamed("/j");
-              },
+                title: Text('Events Happening right now',
+                    style: TextStyle(
+                        fontSize: 29.0,
+                        color: Colors.black),
+                    textAlign: TextAlign.center),
+                trailing: Icon(
+                    Icons.keyboard_arrow_down,
+                    color: Colors.black),
+                children: <Widget>[
+                  Container(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 6,
+                          horizontal: 12),
+                      child: Text(
+                        'Dark Mofo',
+                        style:
+                        TextStyle(fontSize: 20.0),
+                      )),
 
-              trailing: IconButton(
-                icon: Icon(Icons.keyboard_arrow_down),
-                onPressed: () {},
-              ),
-            ),
-          ),
-          Divider(
-            height: 15,
-            thickness: 1,
-          ),
+                  Container(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 6,
+                          horizontal: 12),
+                      child: Text(
+                          'Salamanca 8pm-12am')),
+    ],),
+              ExpansionTile(
+                title: Text('Disover Online Events',
+                    style: TextStyle(
+                        fontSize: 29.0,
+                        color: Colors.black),
+                    textAlign: TextAlign.center),
+                trailing: Icon(
+                    Icons.keyboard_arrow_down,
+                    color: Colors.black),
+                children: <Widget>[
+                  Container(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 6,
+                          horizontal: 12),
+                      child: Text(
+                        'Dark Mofo',
+                        style:
+                        TextStyle(fontSize: 20.0),
+                      )),
+
+                  Container(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 6,
+                          horizontal: 12),
+                      child: Text(
+                          'Salamanca 8pm-12am')),
         ],
       ),
+    ],
+
+    )
+    ]
+    ),
+
     );
   }
 }
