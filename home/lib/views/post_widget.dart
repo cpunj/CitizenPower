@@ -106,14 +106,17 @@ Widget postWidget(BuildContext context, String text, String picLink,
                       SizedBox(
                         height: 30,
                       ),
-                      Container(
-                        height: 210,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          image: DecorationImage(
-                              image: NetworkImage(picLink), fit: BoxFit.cover),
-                        ),
-                      ),
+                      picLink != null
+                          ? Container(
+                              height: 210,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                image: DecorationImage(
+                                    image: NetworkImage(picLink),
+                                    fit: BoxFit.cover),
+                              ),
+                            )
+                          : Container(),
                       SizedBox(
                         height: 20,
                       ),

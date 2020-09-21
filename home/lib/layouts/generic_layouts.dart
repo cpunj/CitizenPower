@@ -214,11 +214,13 @@ Widget bioLayout2(String info, bool expanded) {
           'Bio:',
         ),
         Padding(padding: EdgeInsets.only(top: 0)),
-        Text(
-          '$info',
-          overflow: TextOverflow.ellipsis,
-          maxLines: expanded ? null : 100,
-        ),
+        info != null
+            ? Text(
+                '$info',
+                overflow: TextOverflow.ellipsis,
+                maxLines: expanded ? null : 100,
+              )
+            : Container(),
       ],
     ),
   );
@@ -252,7 +254,11 @@ List<BottomNavigationBarItem> bottomNavBarItems() {
       title: Text('Profile'),
     ),
     BottomNavigationBarItem(
-      icon: Image.asset('assets/add.png',width: 30,height: 30,),
+      icon: Image.asset(
+        'assets/add.png',
+        width: 30,
+        height: 30,
+      ),
       title: Text('New Post'),
     ),
     BottomNavigationBarItem(

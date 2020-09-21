@@ -122,21 +122,26 @@ class _MyProfilePageState extends State<MyProfilePage> {
                             SizedBox(
                               height: 10.0,
                             ),
-                            Text(
-                              profileController.getName(),
-                              style: profileNameStyle(),
-                            ),
+                            profileController.getName() != null
+                                ? Text(
+                                    profileController.getName(),
+                                    style: profileNameStyle(),
+                                  )
+                                : Container(),
                             SizedBox(
                               height: 10.0,
                             ),
                             MaterialButton(
-                              child: Text(
-                                getFirstWord(profileController.getName()) +
-                                    "'s Community",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
+                              child: profileController.getName() != null
+                                  ? Text(
+                                      getFirstWord(
+                                              profileController.getName()) +
+                                          "'s Community",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    )
+                                  : Container(),
                               color: darkGold,
                               onPressed: () {
                                 goProfileList(context, widget.user);
@@ -166,9 +171,13 @@ class _MyProfilePageState extends State<MyProfilePage> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: RaisedButton(
-                            child: Text(
-                              "Edit",
-                            ),
+                            child: profileController.getName() != null
+                                ? Text(
+                                    "Edit",
+                                  )
+                                : Text(
+                                    "Create",
+                                  ),
                             //Goes to edit view and passes in the currently logged in user, and
                             //The currently downloaded profile
                             onPressed: () {

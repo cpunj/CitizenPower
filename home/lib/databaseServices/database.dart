@@ -189,7 +189,7 @@ class ProfileDatabaseMethods {
     Firestore.instance
         .collection("users")
         .document(uID)
-        .updateData({"bio": bio});
+        .setData({"bio": bio}, merge: true);
   }
 
   //Updates the user doc name field of the given UID with the given name
@@ -197,7 +197,7 @@ class ProfileDatabaseMethods {
     Firestore.instance
         .collection("users")
         .document(uID)
-        .updateData({"name": name});
+        .setData({"name": name}, merge: true);
   }
 
   //Updates the picLink doc bio field of the given UID with the given picLink
@@ -205,7 +205,7 @@ class ProfileDatabaseMethods {
     Firestore.instance
         .collection("users")
         .document(uID)
-        .updateData({"picLink": picLink});
+        .setData({"picLink": picLink}, merge: true);
   }
 
   createChatRoom(String chatRoomId, chatRoomMap) {
