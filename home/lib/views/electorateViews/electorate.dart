@@ -1,14 +1,10 @@
-import 'package:citizenpower/controllers/electorateControllers/leader_profile_controller.dart';
-import 'package:citizenpower/controllers/profile_controller.dart';
-import 'package:citizenpower/navigator/navigator_pushes.dart';
-import 'package:citizenpower/views/electorateViews/leader.dart';
-import 'package:citizenpower/views/profileViews/my_profile.dart';
-import 'package:citizenpower/views/profileViews/profile_list.dart';
+import 'package:citizenpower/Navigator/navigator_pushes.dart';
+import 'package:citizenpower/Views/ProfileViews/profile_list.dart';
+import 'package:citizenpower/layouts/generic_layouts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import '../../layouts/generic_layouts.dart';
+import '../../controllers/electorateControllers/leader_profile_controller.dart';
 import '../../text_styles.dart';
 import '../../constants.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -20,21 +16,40 @@ import 'package:url_launcher/url_launcher.dart';
 - Put in button to email/get in touch
  */
 
+//Leader controller manages the downloading of leader data based on the selected
+//electorate from previous view
 LeaderController leaderController = LeaderController();
 
 class Electorate extends StatefulWidget {
-  const Electorate({Key key, @required this.user}) : super(key: key);
+  const Electorate(
+      {Key key,
+      @required this.user,
+      this.stateID,
+      this.leaderUID,
+      this.electorateID,
+      this.upper})
+      : super(key: key);
+  //Stores the currently logged in user, passed in from the previous state
   final FirebaseUser user;
-
+  //ID used to query Cloud Firestore
+  final String stateID;
+  //ID used to query FB for the electorate that the user has chosen
+  final String electorateID;
+  //ID passed in from previous view based on which leader the user selected
+  //and used in FB download queries
+  final String leaderUID;
+  //Upper is used to know to query from state collection or electorate collection
+  final bool upper;
   @override
   _ElectorateState createState() => _ElectorateState();
 }
 
 class _ElectorateState extends State<Electorate> {
+  //Used to keep track of whether the leader's bio is expanded
   bool isExpanded = true;
   String issues;
   List<String> _locations = ['Poverty', 'Pollution', 'Homeless'];
-  //Used for bottom nav bar functions
+  //Used to block bottom nav bar functions
   int currentIndex = 4;
   final Uri _emailLaunchUri = Uri(
       scheme: 'mailto',
@@ -43,10 +58,28 @@ class _ElectorateState extends State<Electorate> {
   );
   @override
   Widget build(BuildContext context) {
-    leaderController.loadLeader('uID').then((val) {
-      setState(() {});
-    });
+    //Load the profile based on the selected electorate and leader from previous views.
 
+    if (leaderController.leaderSnapshot == null ||
+        widget.leaderUID != leaderController.leaderSnapshot.documentID) {
+      if (widget.upper == false) {
+        leaderController
+            .loadLowerLeader(
+                widget.stateID, widget.electorateID, widget.leaderUID)
+            //Once leader profile has been loaded, rebuild widget
+            .then((val) async {
+          setState(() {});
+        });
+      } else {
+        leaderController.loadUpperLeader(widget.stateID, widget.leaderUID)
+            //Once leader profile has been loaded, rebuild widget
+            .then((val) async {
+          setState(() {});
+        });
+      }
+    }
+
+    //Has leaderSnapshot been downloaded? Run primary leader profile view
     return leaderController.leaderSnapshot != null
         ? Scaffold(
             appBar: topAppBarLayout('Leader'),
@@ -92,7 +125,8 @@ class _ElectorateState extends State<Electorate> {
                             padding: const EdgeInsets.only(left: 20),
                             child: CircleAvatar(
                               radius: 50.0,
-                              backgroundImage: AssetImage('assets/Wilkie.jpeg'),
+                              backgroundImage:
+                                  NetworkImage(leaderController.getPicLink()),
                             ),
                           ),
                           onPressed: () {
@@ -116,7 +150,8 @@ class _ElectorateState extends State<Electorate> {
                         ),
                         MaterialButton(
                           child: Text(
-                            "Follow Andrew",
+                            "Follow " +
+                                getFirstWord(leaderController.getName()),
                             style: TextStyle(
                               color: Colors.white,
                             ),
@@ -322,9 +357,8 @@ class _ElectorateState extends State<Electorate> {
                     // ignore: missing_return
                     setState(() {
                       issues = newValue;
-                      if (issues == "Issue 1") {
-                        print(Text(
-                            "This has been a major issue for this company"));
+                      if (issues == "Poverty") {
+                        Text("This has been a major issue for this company");
                         return Column(children: <Widget>[
                           Text(" This has been a major issue for this company")
                         ]);
@@ -359,7 +393,10 @@ class _ElectorateState extends State<Electorate> {
                 //onTap: _onTap,
                 ),
           )
+    
+        //leaderSnapshot not downloaded? Show loading indicator
         : Container(
+
             color: Colors.black,
             child: Center(
               child: CircularProgressIndicator(),

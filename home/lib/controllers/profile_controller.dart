@@ -47,14 +47,27 @@ class ProfileController {
     }
   }
 
-  uploadProfilePic(BuildContext context, String uID) {
-    profileDatabaseMethods.uploadPic(context, profileImage).then((val) {
-      profileDatabaseMethods.updatePicLink(val, uID);
-    });
+  uploadProfilePic(BuildContext context, String uID, bool changedPic) async {
+    //Only runs the the function if the the user has actually updated their profile picture to prevent storage waste
+    if (changedPic == true) {
+      profileDatabaseMethods.uploadPic(context, profileImage).then((val) {
+        profileDatabaseMethods.updatePicLink(val, uID);
+      });
+      //Arbitrarily wait so that updatePicLink can be completed so the new data is loaded in my_profile
+      await Future.delayed(Duration(seconds: 3));
+    }
+    //Used to ensure that all profile data has been uploaded before moving back to my profile for download
+  }
+
+  //Takes the UID of a user and returns a Stream<QuerySnapshot> to build a list of post widgets
+  //based on how many posts are present in the users post collection
+  getUserPosts(String uID) async {
+    return profileDatabaseMethods.getUserPostsByUID(uID);
   }
 
   //Used to get profile data, async to allow setState use in view
   loadProfile(String uID) async {
+    print("hey IMlonsing");
     profileDatabaseMethods
         //Downloads profile based on the UID stored in user from app login
         .getUserByUID(uID)

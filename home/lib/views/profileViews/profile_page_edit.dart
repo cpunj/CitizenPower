@@ -35,6 +35,11 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
   bool isExpanded = true;
   //Used to prevent re-entering same view in bottom nav bar
   int currentIndex = 1;
+  //Keeps track of whether the user has updated their picture
+  bool changedPic = false;
+  //Determines when to rebuild the edit screen with a loading indicator rather than
+  //the normal button, only really relevant for profile pic upload
+  bool uploadingChanges = false;
 
   final bioController = TextEditingController();
   final nameController = TextEditingController();
@@ -56,6 +61,7 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
       //And reruns state build to show the selected picture
       setState(() {
         profileController.profileImage = image;
+        changedPic = true;
       });
     }
 
@@ -143,20 +149,43 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: RaisedButton(
-                    child: Text(
-                      "Done",
-                    ),
+                    child: uploadingChanges == false
+                        ? Text(
+                            "Done",
+                          )
+                        : Container(
+                            height: 25,
+                            width: 25,
+                            child: CircularProgressIndicator(
+                              backgroundColor: Colors.black,
+                            ),
+                          ),
                     //Upload all the data the is currently present in the edit view
                     //Add more functions if profile view fields are expanded
                     onPressed: () {
-                      profileController.uploadProfilePic(
-                          context, widget.user.uid);
                       profileController.updateName(
                           widget.user.uid, nameController.text);
+                      //Keeps Form Field looking the same during loading
+                      widget.profile.name = nameController.text;
                       profileController.updateBio(
                           widget.user.uid, bioController.text);
+                      //Keeps Form Field looking the same during loading
+                      widget.profile.bio = bioController.text;
+                      setState(() {
+                        //Shows loading icon while profile data is uploaded
+                        uploadingChanges = true;
+                      });
+                      profileController
+                          .uploadProfilePic(
+                              context, widget.user.uid, changedPic)
+                          .then((val) {
+                        //Only go to my profile once data has been uploaded completely
+                        //Currently arbitairy time is used to decide this, not the firebase function itself
+                        goProfilePage(context, widget.user);
+                      });
+                      //'then()' only runs once FS data for view has been downloaded
+
                       //Goes to back to my profile to show the newly uploaded data
-                      goProfilePage(context, widget.user);
                     }),
               ),
             ],

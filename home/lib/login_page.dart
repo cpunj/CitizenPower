@@ -1,9 +1,14 @@
+import 'package:citizenpower/app_home.dart';
+import 'package:citizenpower/databaseServices/database.dart';
+import 'package:citizenpower/databaseServices/helperfunctions.dart';
 import 'package:citizenpower/text_styles.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'app_home.dart';
 import 'registration.dart';
 import 'constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+//Adding this to master branch #1
 
 class LoginPage extends StatefulWidget {
   @override
@@ -12,10 +17,10 @@ class LoginPage extends StatefulWidget {
 
 class LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  String email;
-  String password;
-
+  final emailController = TextEditingController();
+  final passController = TextEditingController();
+  ProfileDatabaseMethods databaseMethods = new ProfileDatabaseMethods();
+  QuerySnapshot userSnapshot;
   @override
   Widget build(BuildContext context) {
     //Start of widget tree
@@ -61,7 +66,7 @@ class LoginPageState extends State<LoginPage> {
                               errorStyle: errorTextStyle1(),
                               labelText: "Email",
                               hintText: "Enter Email address"),
-                          onSaved: (input) => email = input,
+                          onSaved: (input) => emailController.text = input,
                           keyboardType: TextInputType.emailAddress,
                           validator: (val) {
                             if (val.isEmpty ||
@@ -93,7 +98,7 @@ class LoginPageState extends State<LoginPage> {
                               hintText: "Insert password",
                             ),
                             keyboardType: TextInputType.text,
-                            onSaved: (input) => password = input,
+                            onSaved: (input) => passController.text = input,
                             validator: (val) =>
                                 val.length < 6 ? 'Invalid Password' : null,
                             obscureText: true,
@@ -170,10 +175,11 @@ class LoginPageState extends State<LoginPage> {
                       Center(
                         child: Material(
                           elevation: 5.0,
-                          borderRadius: BorderRadius.circular(20.0),
+                          borderRadius: BorderRadius.circular(40.0),
                           color: darkGold,
                           child: new MaterialButton(
                               textColor: Colors.white,
+                              minWidth: 150,
                               child: new Text("LOGIN"),
                               onPressed: () {
                                 signIn();
@@ -181,12 +187,12 @@ class LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       new Padding(
-                        padding: const EdgeInsets.only(top: 20.0),
+                        padding: const EdgeInsets.only(top: 30.0),
                       ),
                       Center(
                         child: Material(
                           elevation: 5.0,
-                          borderRadius: BorderRadius.circular(20.0),
+                          borderRadius: BorderRadius.circular(40.0),
                           color: darkGold,
                           child: new MaterialButton(
                               textColor: Colors.white,
@@ -231,14 +237,24 @@ class LoginPageState extends State<LoginPage> {
   Future<void> signIn() async {
     final formState = _formKey.currentState;
     if (formState.validate()) {
+      HelperFunctions.saveUserEmailSharedPreference(emailController.text);
+
       formState.save();
       try {
+        databaseMethods.getUserbyUserEmail(emailController.text).then((val) {
+          userSnapshot = val;
+          HelperFunctions.saveUserNameSharedPreference(
+              userSnapshot.documents[0].data["name"]);
+        });
         AuthResult result = await FirebaseAuth.instance
-            .signInWithEmailAndPassword(email: email, password: password);
+            .signInWithEmailAndPassword(
+                email: emailController.text, password: passController.text);
         FirebaseUser user = result.user;
+        HelperFunctions.saveUserLoggedInSharedPreference(true);
 
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => AppHome(user: user)));
+        HelperFunctions.saveUserEmailSharedPreference(user.email);
       } catch (e) {
         print(e.message);
       }

@@ -1,13 +1,13 @@
+
 import 'package:citizenpower/layouts/generic_layouts.dart';
 import 'package:citizenpower/navigator/navigator_pushes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../navigator/navigator_pushes.dart';
-
 class SocialMenu extends StatefulWidget {
-  const SocialMenu({Key key, @required this.user}) : super(key: key);
+
   final FirebaseUser user;
+  const SocialMenu({Key key, @required this.user}) : super(key: key);
 
   @override
   _SocialMenuState createState() => _SocialMenuState();
@@ -25,7 +25,7 @@ class _SocialMenuState extends State<SocialMenu> {
       appBar: topAppBarLayout("Social"),
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.all(10),
+          padding: EdgeInsets.all(10.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
@@ -68,7 +68,7 @@ class _SocialMenuState extends State<SocialMenu> {
                   child: MaterialButton(
                     elevation: 8.0,
                     onPressed: () {
-                      Navigator.pushNamed(context, "/g");
+                      goGroupList(context, widget.user);
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
@@ -102,6 +102,33 @@ class _SocialMenuState extends State<SocialMenu> {
                       padding: const EdgeInsets.all(10.0),
                       child: Text(
                         "Messages",
+                        style: TextStyle(
+                          fontSize: 50,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/search.png'),
+                        fit: BoxFit.cover),
+                  ),
+                  child: MaterialButton(
+                    elevation: 8.0,
+                    onPressed: () {
+                      goSearch(context, widget.user);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        "Search people",
                         style: TextStyle(
                           fontSize: 50,
                         ),

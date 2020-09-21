@@ -1,11 +1,12 @@
-import 'package:citizenpower/navigator/navigator_pushes.dart';
-import 'package:citizenpower/views/messageViews/recent_chat.dart';
-import 'package:citizenpower/views/social_menu.dart';
+import 'package:citizenpower/Views/social_menu.dart';
 import 'package:citizenpower/constants.dart';
+import 'package:citizenpower/databaseServices/constants.dart';
+import 'package:citizenpower/databaseServices/database.dart';
+import 'package:citizenpower/databaseServices/helperfunctions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import 'category.dart';
+import 'package:citizenpower/Views/MessageViews/search.dart';
+import 'conversation_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key, @required this.user}) : super(key: key);
@@ -16,12 +17,48 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  FirebaseUser get user => goProfile(context, user);
+  ProfileDatabaseMethods databaseMethods = new ProfileDatabaseMethods();
+  Stream chatRoomsStream;
+  Widget chatRoomList() {
+    return StreamBuilder(
+      stream: chatRoomsStream,
+      builder: (context, snapshot) {
+        return snapshot.hasData
+            ? ListView.builder(
+                itemCount: snapshot.data.documents.length,
+                itemBuilder: (context, index) {
+                  return ChatRoomTile(
+                      snapshot.data.documents[index].data["chatroomId"]
+                          .toString()
+                          .replaceAll("...", "")
+                          .replaceAll(Constants.myName, ""),
+                      snapshot.data.documents[index].data["chatRoomId"]);
+                })
+            : Container();
+      },
+    );
+  }
 
   @override
+  void initState() {
+    getUserInfo();
+
+    super.initState();
+  }
+
+  getUserInfo() async {
+    Constants.myName = await HelperFunctions.getUserNameSharedPreference();
+    databaseMethods.getChatRooms(Constants.myName).then((value) {
+      setState(() {
+        chatRoomsStream = value;
+      });
+    });
+    setState(() {});
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         leading: Container(
           padding: EdgeInsets.only(left: 5, top: 4, bottom: 4),
@@ -75,33 +112,25 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(
             width: 16,
           ),
-          GestureDetector(
-            onTap: () {
-              goProfile(context, user);
-            },
-            child: CircleAvatar(
-              backgroundColor: Colors.transparent,
-              radius: 29,
-              backgroundImage: AssetImage("assets/Wilkie.jpeg"),
-            ),
+          CircleAvatar(
+            backgroundColor: Colors.transparent,
+            radius: 29,
+            backgroundImage: AssetImage("assets/Wilkie.jpeg"),
           ),
         ],
       ),
-      body: Column(
-        children: <Widget>[
-          CategorySelector(),
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                color: Theme.of(context).accentColor,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30.0),
-                  topRight: Radius.circular(30.0),
-                ),
-              ),
-              child: Column(
-                children: <Widget>[
-                  /*
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.search),
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => SearchScreen(user: widget.user)));
+        },
+      ),
+
+      body: chatRoomList(),
+      /*
                   Padding(
                     padding: EdgeInsets.all(16),
                     child: Container(
@@ -123,15 +152,47 @@ class _HomeScreenState extends State<HomeScreen> {
 
                    */
 
-                  RecentChats(),
-
-                  //hey jack
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
+      //hey jack
     );
+  }
+}
+
+class ChatRoomTile extends StatelessWidget {
+  final String userEmail;
+  final String chatRoomId;
+  ChatRoomTile(this.userEmail, this.chatRoomId);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ConversationScreen(chatRoomId),
+              ));
+        },
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+          child: Row(
+            children: [
+              Container(
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(40)),
+                child: Text(
+                  "${userEmail.substring(0, 1).toUpperCase()}",
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                ),
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text(userEmail),
+            ],
+          ),
+        ));
   }
 }

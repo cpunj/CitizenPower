@@ -252,7 +252,7 @@ List<BottomNavigationBarItem> bottomNavBarItems() {
       title: Text('Profile'),
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.plus_one),
+      icon: Image.asset('assets/add.png',width: 30,height: 30,),
       title: Text('New Post'),
     ),
     BottomNavigationBarItem(

@@ -1,6 +1,5 @@
-import 'package:citizenpower/Views/ElectorateViews/electorate.dart';
 import 'package:citizenpower/Views/ElectorateViews/electorate_profile_details.dart';
-import 'package:citizenpower/Views/ElectorateViews/electorate_view.dart';
+//import 'package:citizenpower/Views/ElectorateViews/electorate_view.dart';
 import 'package:citizenpower/Views/ElectorateViews/image_view.dart';
 import 'package:citizenpower/Views/MessageViews/home_screen.dart';
 import 'package:citizenpower/Views/create_post_view.dart';
@@ -9,12 +8,21 @@ import 'package:citizenpower/Views/profileViews/profile_page.dart';
 import 'package:citizenpower/Views/profileViews/profile_page_edit.dart';
 import 'package:citizenpower/Views/social_menu.dart';
 import 'package:citizenpower/models/profile.dart';
+import 'package:citizenpower/views/electorateViews/electorate.dart';
+import 'package:citizenpower/views/groupView/group_page.dart';
+import 'package:citizenpower/views/profileViews/Profile.dart';
+import 'package:citizenpower/views/groupView/create_new_group.dart';
+import 'package:citizenpower/views/groupView/group_view.dart';
 import 'package:citizenpower/views/profileViews/profile_list.dart';
+import 'package:citizenpower/views/profileViews/searchProfile.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:citizenpower/views/electorateViews/electorate_selector_view.dart';
+import '../views/electorateViews/electorate_view.dart';
 
-import '../Views/settings.dart';
+import '../views/settings.dart';
 import '../app_home.dart';
 
 //pushReplacement used for views accessed from bottom nav bar
@@ -38,14 +46,45 @@ goNewPost(BuildContext context, FirebaseUser user) {
   Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => NewPost(),
+        builder: (context) => NewPost(user: user),
       ));
 }
 
-goElectorate(BuildContext context, FirebaseUser user) {
-  Navigator.pushReplacement(
+goProfileView(BuildContext context, FirebaseUser user, String uID) {
+  Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => Electorate(user: user)),
+    MaterialPageRoute(
+        builder: (context) => ProfileView(
+              user: user,
+              selectedProfileUID: uID,
+            )),
+  );
+}
+
+goElectorate(BuildContext context, FirebaseUser user, String stateID,
+    String electorateUID, String leaderUID, bool upper) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+        builder: (context) => Electorate(
+            user: user,
+            stateID: stateID,
+            electorateID: electorateUID,
+            leaderUID: leaderUID,
+            upper: upper)),
+  );
+}
+
+goSelectedElectorate(BuildContext context, FirebaseUser user, String userState,
+    String userElectorate) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+        builder: (context) => ElectorateView(
+              user: user,
+              stateSelected: userState,
+              electorateSelected: userElectorate,
+            )),
   );
 }
 
@@ -72,7 +111,7 @@ goContactDetails(BuildContext context, FirebaseUser user) {
 
 goProfileList(BuildContext context, FirebaseUser user) {
   Navigator.push(context,
-      MaterialPageRoute(builder: (context) => ProfileList(user: user)));
+      MaterialPageRoute(builder: (context) => ProfileList(user: null)));
 }
 
 goProfilePage(BuildContext context, FirebaseUser user) {
@@ -91,8 +130,19 @@ goMessage(BuildContext context, FirebaseUser user) {
 }
 
 goElectorateView(BuildContext context, FirebaseUser user) {
-  Navigator.push(context,
-      MaterialPageRoute(builder: (context) => ElectorateView(user: user)));
+  Navigator.push(
+      context,
+
+      //** CHANGED FOR NEW ELECTORATE SELECTOR PAGE - OLD CODE COMMENTED OUT BELOW **
+
+      MaterialPageRoute(
+          builder: (context) => ElectorateSelectorView(user: user)));
+  //MaterialPageRoute(builder: (context) => ElectorateView(user: user)));
+}
+
+goSearch(BuildContext context, FirebaseUser user) {
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => SearchView(user: user)));
 }
 
 goImageView(BuildContext context, String image) {
@@ -111,4 +161,22 @@ goEditProfile(BuildContext context, FirebaseUser user, Profile myProfile) {
               profile: myProfile,
             )),
   );
+}
+
+goCreateGroup (BuildContext context, FirebaseUser user) {
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => CreateNewGroup(user: user)));
+}
+
+goGroupList (BuildContext context, FirebaseUser user) {
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => GroupView(user: user)));
+}
+
+goGroupView(BuildContext context, FirebaseUser user, String groupID, QuerySnapshot groupSnapshot, int index) {
+  Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => GroupPage(user: user, groupID: groupID, groupSnapshot: groupSnapshot, index: index)));
+
 }
