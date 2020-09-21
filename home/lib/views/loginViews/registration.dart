@@ -1,6 +1,6 @@
 import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/loginViews/login_page.dart';
 import 'package:flutter/material.dart';
-import '../../layouts/generic_layouts.dart';
+import '../genericWidgets/generic_layouts.dart';
 import '../../constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../databaseServices/database.dart';
