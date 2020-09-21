@@ -79,23 +79,19 @@ class _GroupViewState extends State<GroupView> {
           ),
         ],
       ),
-      
+
       body: SingleChildScrollView(
+        physics: PageScrollPhysics(),
         scrollDirection: Axis.vertical,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-
-
-            Container(
-            child: groupListItem(context, widget.user, groupListSnapshot, "Bill of Rights", "We want a bill of rights in Tas."),
-            ),
-
-
-
+            groupListItem(context, widget.user, groupListSnapshot),
 
           ],
         ),
       ),
+
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,
           type: BottomNavigationBarType.fixed,
@@ -105,61 +101,61 @@ class _GroupViewState extends State<GroupView> {
               onTap(index, context, widget.user, currentIndex);
             });
           }
-          //onTap: _onTap,
-          ),
+        //onTap: _onTap,
+      ),
     );
   }
 }
 
-Widget groupListItem(BuildContext context, FirebaseUser user, QuerySnapshot groupListSnapshot, String groupName, String groupDescription) {
-
+Widget groupListItem(BuildContext context, FirebaseUser user, QuerySnapshot groupListSnapshot) {
   return groupListSnapshot != null
-        ? ListView.builder(
-        itemCount: groupListSnapshot.documents.length,
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
+      ? ListView.builder(
+      physics: NeverScrollableScrollPhysics(),
+      itemCount: groupListSnapshot.documents.length,
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
 
-          return Container(
-            child: Column(
-              children: <Widget>[
-                GestureDetector(
-                  onTap: (){
-                    print(groupListSnapshot.documents[index].data["name"]);
-                    goGroupView(context, user, groupListSnapshot.documents[index].documentID, groupListSnapshot, index);
-                  },
-                  child: ListTile(
+        return Container(
+          child: Column(
+            children: <Widget>[
+              GestureDetector(
+                onTap: (){
+                  print(groupListSnapshot.documents[index].data["name"]);
+                  goGroupView(context, user, groupListSnapshot.documents[index].documentID, groupListSnapshot, index);
+                },
+                child: ListTile(
 
-                    leading: CircleAvatar(
-                      backgroundImage: NetworkImage(groupListSnapshot.documents[index].data["imageLink"]),
-                      radius: 25,
-                    ),
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(groupListSnapshot.documents[index].data["imageLink"]),
+                    radius: 25,
+                  ),
 
-                    title: Text(groupListSnapshot.documents[index].data["name"],),
-                    subtitle: Text(groupListSnapshot.documents[index].data["description"]),
+                  title: Text(groupListSnapshot.documents[index].data["name"],),
+                  subtitle: Text(groupListSnapshot.documents[index].data["description"]),
 
 
-                    trailing: IconButton(
-                      icon: Icon(Icons.menu),
-                      onPressed: () {
-                        print(groupListSnapshot.documents[index].data["name"]+ " settings clicked");
+                  trailing: IconButton(
+                    icon: Icon(Icons.menu),
+                    onPressed: () {
+                      print(groupListSnapshot.documents[index].data["name"]+ " settings clicked");
 
-                      },
-                    ),
+                    },
                   ),
                 ),
-                Divider(
-                  height: 5,
-                  thickness: 0.5,
-                ),
-              ],
-            ),
+              ),
+              Divider(
+                height: 5,
+                thickness: 0.5,
+              ),
+            ],
+          ),
 
-            decoration: BoxDecoration(),
-          );
+          decoration: BoxDecoration(),
+        );
 
-        })
+      })
 
-        : Container();
+      : Container();
 
 
 
@@ -167,4 +163,3 @@ Widget groupListItem(BuildContext context, FirebaseUser user, QuerySnapshot grou
 
 
 }
-

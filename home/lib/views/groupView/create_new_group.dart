@@ -106,6 +106,7 @@ class _CreateNewGroupEState extends State<CreateNewGroup> {
                       borderRadius: BorderRadius.circular(20)),
                   onPressed: () {
                     getImage();
+                    groupController.uploadGroupPic(context);
                   },
                   child: Text("Add group photo"),
                 ),
@@ -188,7 +189,6 @@ class _CreateNewGroupEState extends State<CreateNewGroup> {
 
                     // The user is then returned to the list of groups
                     goGroupList(context, widget.user);
-
                   }),
             ),
           ),
