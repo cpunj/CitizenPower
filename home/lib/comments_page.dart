@@ -1,9 +1,9 @@
-import 'package:citizenpower/user.dart';
+import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'Comments/commentsWidget.dart';
+import 'Comments/comments_widget.dart';
 
 class CommentsScreen extends StatefulWidget {
   final DocumentReference documentReference;

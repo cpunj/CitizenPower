@@ -23,7 +23,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:citizenpower/views/electorateViews/electorate_selector_view.dart';
-import '../newcommentspage.dart';
+import '../new_comments_page.dart';
 import '../views/electorateViews/electorate_view.dart';
 
 import '../views/settings.dart';

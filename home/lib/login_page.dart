@@ -1,7 +1,7 @@
 import 'package:citizenpower/app_home.dart';
 import 'package:citizenpower/databaseServices/database.dart';
 import 'package:citizenpower/databaseServices/helperfunctions.dart';
-import 'package:citizenpower/forgotpassword.dart';
+import 'package:citizenpower/forgot_password.dart';
 import 'package:citizenpower/text_styles.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';

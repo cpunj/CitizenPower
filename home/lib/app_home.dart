@@ -1,4 +1,4 @@
-import 'package:citizenpower/newcommentspage.dart';
+import 'package:citizenpower/new_comments_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';

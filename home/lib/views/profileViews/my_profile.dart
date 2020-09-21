@@ -11,7 +11,7 @@ import '../create_post_view.dart';
 import '../commentsPage.dart';
 
 import 'package:citizenpower/comments_page.dart';
-import 'package:citizenpower/user.dart';
+import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/models/user.dart';
 
 //Handles profile downloading methods and storage
 ProfileController profileController = ProfileController();
