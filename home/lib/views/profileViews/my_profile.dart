@@ -8,7 +8,7 @@ import 'package:time_formatter/time_formatter.dart';
 import '../../constants.dart';
 import '../../text_styles.dart';
 import '../create_post_view.dart';
-import '../commentsPage.dart';
+import '../comments_page_2.dart';
 
 import 'package:citizenpower/comments_page.dart';
 import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/models/user.dart';

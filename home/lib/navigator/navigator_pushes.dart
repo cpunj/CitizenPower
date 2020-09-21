@@ -17,7 +17,7 @@ import 'package:citizenpower/views/profileViews/Profile.dart';
 import 'package:citizenpower/views/groupView/create_new_group.dart';
 import 'package:citizenpower/views/groupView/group_view.dart';
 import 'package:citizenpower/views/profileViews/profile_list.dart';
-import 'package:citizenpower/views/profileViews/searchProfile.dart';
+import 'package:citizenpower/views/profileViews/search_profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
