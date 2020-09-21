@@ -39,7 +39,7 @@ class _SocialMenuState extends State<SocialMenu> {
                   child: MaterialButton(
                     elevation: 8.0,
                     onPressed: () {
-                      Navigator.pushNamed(context, "/f");
+                      goEvent(context, widget.user);
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),

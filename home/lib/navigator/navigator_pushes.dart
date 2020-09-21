@@ -10,6 +10,9 @@ import 'package:citizenpower/views/social_menu.dart';
 import 'package:citizenpower/models/profile.dart';
 import 'package:citizenpower/views/electorateViews/electorate.dart';
 import 'package:citizenpower/views/groupView/group_page.dart';
+import 'package:citizenpower/views/eventView/create_new_event.dart';
+import 'package:citizenpower/views/eventView/event_page.dart';
+import 'package:citizenpower/views/eventView/event_view.dart';
 import 'package:citizenpower/views/profileViews/Profile.dart';
 import 'package:citizenpower/views/groupView/create_new_group.dart';
 import 'package:citizenpower/views/groupView/group_view.dart';
@@ -130,6 +133,16 @@ goMessage(BuildContext context, FirebaseUser user) {
       context, MaterialPageRoute(builder: (context) => HomeScreen(user: user)));
 }
 
+goEvent(BuildContext context, FirebaseUser user) {
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => EventView(user: user)));
+}
+
+createEvent(BuildContext context, FirebaseUser user) {
+  Navigator.push(context,
+      MaterialPageRoute(builder: (context) => CreateNewEvent(user: user)));
+}
+
 goElectorateView(BuildContext context, FirebaseUser user) {
   Navigator.push(
       context,
@@ -169,20 +182,24 @@ goEditProfile(BuildContext context, FirebaseUser user, Profile myProfile) {
   );
 }
 
-goCreateGroup (BuildContext context, FirebaseUser user) {
-  Navigator.push(
-      context, MaterialPageRoute(builder: (context) => CreateNewGroup(user: user)));
+goCreateGroup(BuildContext context, FirebaseUser user) {
+  Navigator.push(context,
+      MaterialPageRoute(builder: (context) => CreateNewGroup(user: user)));
 }
 
-goGroupList (BuildContext context, FirebaseUser user) {
+goGroupList(BuildContext context, FirebaseUser user) {
   Navigator.push(
       context, MaterialPageRoute(builder: (context) => GroupView(user: user)));
 }
 
-goGroupView(BuildContext context, FirebaseUser user, String groupID, QuerySnapshot groupSnapshot, int index) {
+goGroupView(BuildContext context, FirebaseUser user, String groupID,
+    QuerySnapshot groupSnapshot, int index) {
   Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) => GroupPage(user: user, groupID: groupID, groupSnapshot: groupSnapshot, index: index)));
-
+          builder: (context) => GroupPage(
+              user: user,
+              groupID: groupID,
+              groupSnapshot: groupSnapshot,
+              index: index)));
 }
