@@ -22,7 +22,6 @@ class _GroupViewState extends State<GroupView> {
   int currentIndex = 3;
   QuerySnapshot groupListSnapshot;
 
-
   getGroupList() {
     if (groupListSnapshot == null) {
       databaseMethods.getGroupList().then((val) {
@@ -32,19 +31,14 @@ class _GroupViewState extends State<GroupView> {
           print(groupListSnapshot.documents.length);
         });
       });
-
-
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
-
     if (groupListSnapshot == null) {
       getGroupList();
     }
-
 
     return Scaffold(
       appBar: AppBar(
@@ -73,13 +67,10 @@ class _GroupViewState extends State<GroupView> {
               onPressed: () {
                 goCreateGroup(context, widget.user);
               },
-
-
             ),
           ),
         ],
       ),
-
       body: SingleChildScrollView(
         physics: PageScrollPhysics(),
         scrollDirection: Axis.vertical,
@@ -87,11 +78,9 @@ class _GroupViewState extends State<GroupView> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             groupListItem(context, widget.user, groupListSnapshot),
-
           ],
         ),
       ),
-
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,
           type: BottomNavigationBarType.fixed,
@@ -101,65 +90,62 @@ class _GroupViewState extends State<GroupView> {
               onTap(index, context, widget.user, currentIndex);
             });
           }
-        //onTap: _onTap,
-      ),
+          //onTap: _onTap,
+          ),
     );
   }
 }
 
-Widget groupListItem(BuildContext context, FirebaseUser user, QuerySnapshot groupListSnapshot) {
+Widget groupListItem(
+    BuildContext context, FirebaseUser user, QuerySnapshot groupListSnapshot) {
   return groupListSnapshot != null
       ? ListView.builder(
-      physics: NeverScrollableScrollPhysics(),
-      itemCount: groupListSnapshot.documents.length,
-      shrinkWrap: true,
-      itemBuilder: (context, index) {
-
-        return Container(
-          child: Column(
-            children: <Widget>[
-              GestureDetector(
-                onTap: (){
-                  print(groupListSnapshot.documents[index].data["name"]);
-                  goGroupView(context, user, groupListSnapshot.documents[index].documentID, groupListSnapshot, index);
-                },
-                child: ListTile(
-
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(groupListSnapshot.documents[index].data["imageLink"]),
-                    radius: 25,
-                  ),
-
-                  title: Text(groupListSnapshot.documents[index].data["name"],),
-                  subtitle: Text(groupListSnapshot.documents[index].data["description"]),
-
-
-                  trailing: IconButton(
-                    icon: Icon(Icons.menu),
-                    onPressed: () {
-                      print(groupListSnapshot.documents[index].data["name"]+ " settings clicked");
-
+          physics: NeverScrollableScrollPhysics(),
+          itemCount: groupListSnapshot.documents.length,
+          shrinkWrap: true,
+          itemBuilder: (context, index) {
+            return Container(
+              child: Column(
+                children: <Widget>[
+                  GestureDetector(
+                    onTap: () {
+                      print(groupListSnapshot.documents[index].data["name"]);
+                      goGroupView(
+                          context,
+                          user,
+                          groupListSnapshot.documents[index].documentID,
+                          groupListSnapshot,
+                          index);
                     },
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        backgroundImage: NetworkImage(groupListSnapshot
+                            .documents[index].data["imageLink"]),
+                        radius: 25,
+                      ),
+                      title: Text(
+                        groupListSnapshot.documents[index].data["name"],
+                      ),
+                      subtitle: Text(groupListSnapshot
+                          .documents[index].data["description"]),
+                      trailing: IconButton(
+                        icon: Icon(Icons.menu),
+                        onPressed: () {
+                          print(
+                              groupListSnapshot.documents[index].data["name"] +
+                                  " settings clicked");
+                        },
+                      ),
+                    ),
                   ),
-                ),
+                  Divider(
+                    height: 5,
+                    thickness: 0.5,
+                  ),
+                ],
               ),
-              Divider(
-                height: 5,
-                thickness: 0.5,
-              ),
-            ],
-          ),
-
-          decoration: BoxDecoration(),
-        );
-
-      })
-
+              decoration: BoxDecoration(),
+            );
+          })
       : Container();
-
-
-
-
-
-
 }
