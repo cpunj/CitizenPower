@@ -2,7 +2,7 @@ import 'package:citizenpower/views/social_menu.dart';
 import 'package:citizenpower/constants.dart';
 import 'package:citizenpower/databaseServices/constants.dart';
 import 'package:citizenpower/databaseServices/database.dart';
-import 'package:citizenpower/databaseServices/helperfunctions.dart';
+import 'package:citizenpower/databaseServices/helper_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:citizenpower/views/messageViews/search.dart';

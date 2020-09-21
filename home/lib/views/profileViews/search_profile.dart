@@ -4,7 +4,7 @@ import 'package:citizenpower/layouts/generic_layouts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:citizenpower/databaseServices/helperfunctions.dart';
+import 'package:citizenpower/databaseServices/helper_functions.dart';
 import 'package:citizenpower/navigator/navigator_pushes.dart';
 
 class SearchView extends StatefulWidget {
@@ -52,7 +52,6 @@ class _SearchScreenState extends State<SearchView> {
                 uID: searchSnapshot.documents[index].documentID,
               );
             })
-
         : Container();
   }
 

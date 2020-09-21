@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'conversation_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:citizenpower/databaseServices/helperfunctions.dart';
+import 'package:citizenpower/databaseServices/helper_functions.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key key, @required this.user}) : super(key: key);

@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import '../../constants.dart';
 import '../../databaseServices/constants.dart';
 import '../../databaseServices/database.dart';
-import '../../databaseServices/helperfunctions.dart';
+import '../../databaseServices/helper_functions.dart';
 import '../../text_styles.dart';
 import '../create_post_view.dart';
 

@@ -1,10 +1,10 @@
-import 'package:citizenpower/login_page.dart';
+import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/loginViews/login_page.dart';
 import 'package:flutter/material.dart';
-import 'layouts/generic_layouts.dart';
-import 'constants.dart';
+import '../../layouts/generic_layouts.dart';
+import '../../constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'databaseServices/database.dart';
-import 'text_styles.dart';
+import '../../databaseServices/database.dart';
+import '../../text_styles.dart';
 
 ProfileDatabaseMethods profileDatabaseMethods = ProfileDatabaseMethods();
 

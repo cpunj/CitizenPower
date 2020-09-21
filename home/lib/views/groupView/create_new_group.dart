@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'dart:ui';
-import 'package:citizenpower/controllers/groupController.dart';
+import 'package:citizenpower/controllers/group_controller.dart';
 import 'package:citizenpower/navigator/navigator_pushes.dart';
 
 import '../../models/group.dart';

@@ -1,12 +1,12 @@
 import 'package:citizenpower/app_home.dart';
 import 'package:citizenpower/databaseServices/database.dart';
-import 'package:citizenpower/databaseServices/helperfunctions.dart';
-import 'package:citizenpower/forgot_password.dart';
+import 'package:citizenpower/databaseServices/helper_functions.dart';
+import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/loginViews/forgot_password.dart';
 import 'package:citizenpower/text_styles.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'registration.dart';
-import 'constants.dart';
+import '../../constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 //Adding this to master branch #1

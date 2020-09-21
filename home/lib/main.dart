@@ -1,6 +1,6 @@
 import 'package:citizenpower/views/settings.dart';
 
-import 'package:citizenpower/login_page.dart';
+import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/loginViews/login_page.dart';
 import 'package:citizenpower/views/electorateViews/electorate.dart';
 import 'package:citizenpower/views/eventView/finding_events.dart';
 import 'views/groupView/create_new_group.dart';
