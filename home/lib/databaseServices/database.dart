@@ -269,6 +269,16 @@ class ProfileDatabaseMethods {
         .snapshots();
   }
 
+  createFollowRoom(String followRoomId, followRoomMap) {
+    Firestore.instance
+        .collection("followers")
+        .document(followRoomId)
+        .setData(followRoomMap)
+        .catchError((e) {
+      print(e.toString());
+    });
+  }
+
   ///GENERIC, can be used for any functionality that needs to upload an image to Firebase Storage
   //Takes a file and uploads it to Firebase Storage (Same function could be used for more than just profile pic!)
   //Returns a Future class as the DownloadURL string make be loaded first
