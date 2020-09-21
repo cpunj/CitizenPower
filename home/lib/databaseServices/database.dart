@@ -1,8 +1,7 @@
-<<<<<<< HEAD
 import 'package:citizenpower/models/group.dart';
-=======
+
 import 'package:citizenpower/models/event.dart';
->>>>>>> creatingEvents
+
 import 'package:citizenpower/models/post.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -260,11 +259,8 @@ class ProfileDatabaseMethods {
   }
 
   getGroupList() async {
-    return await Firestore.instance
-        .collection('groups')
-        .getDocuments();
+    return await Firestore.instance.collection('groups').getDocuments();
   }
-
 
   getChatRooms(String userEmail) async {
     return await Firestore.instance
@@ -310,13 +306,13 @@ class ProfileDatabaseMethods {
         .add(postMap);
   }
 
-<<<<<<< HEAD
   uploadGroup(Group newGroup) {
     //Converts the post's data to a Map for Firebase upload.
 
-    if (newGroup.imagelink == null){
+    if (newGroup.imagelink == null) {
       print("Group image upload failed, assigning default image");
-      newGroup.imagelink = "https://firebasestorage.googleapis.com/v0/b/citizen-f9cda.appspot.com/o/IMG_20200914_174646.jpg?alt=media&token=9e29f755-3e64-4c23-8468-de58078b7332";
+      newGroup.imagelink =
+          "https://firebasestorage.googleapis.com/v0/b/citizen-f9cda.appspot.com/o/IMG_20200914_174646.jpg?alt=media&token=9e29f755-3e64-4c23-8468-de58078b7332";
     }
 
     Map<String, dynamic> groupMap = {
@@ -324,12 +320,10 @@ class ProfileDatabaseMethods {
       "description": newGroup.groupdescription,
       "imageLink": newGroup.imagelink,
       "privacy": newGroup.privacylevel,
-
     };
 
     print('uploading GroupMap');
     //Uploads the post data as a map within the current user's list of posts in their profile
-
 
     Firestore.instance
         .collection("groups")
@@ -338,12 +332,8 @@ class ProfileDatabaseMethods {
         .catchError((e) {
       print(e.toString());
     });
-
   }
 
-
-
-=======
   uploadEvent(Event newEvent) {
     //Converts the post's data to a Map for Firebase document upload.
     Map<String, dynamic> eventMap = {
@@ -357,5 +347,4 @@ class ProfileDatabaseMethods {
     //Uploads the post data as a map within the current user's list of posts in their profile
     Firestore.instance.collection("events").add(eventMap);
   }
->>>>>>> creatingEvents
 }
