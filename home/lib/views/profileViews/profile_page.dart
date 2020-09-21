@@ -1,4 +1,4 @@
-import 'package:citizenpower/layouts/generic_layouts.dart';
+import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/genericWidgets/generic_layouts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

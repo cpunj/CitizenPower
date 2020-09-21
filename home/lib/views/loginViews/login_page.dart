@@ -1,4 +1,4 @@
-import 'package:citizenpower/app_home.dart';
+import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/homeDashboardView/app_home.dart';
 import 'package:citizenpower/databaseServices/database.dart';
 import 'package:citizenpower/databaseServices/helper_functions.dart';
 import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/loginViews/forgot_password.dart';

@@ -1,9 +1,9 @@
 import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/models/user.dart';
-import 'package:citizenpower/views/create_post_view.dart';
+import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/createNewPostView/create_post_view.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import "dart:async";
-import "main.dart"; //for current user
+import '../../../main.dart'; //for current user
 
 class CommentScreen extends StatefulWidget {
   final String posts;

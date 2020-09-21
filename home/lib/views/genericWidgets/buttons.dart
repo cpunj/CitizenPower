@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../text_styles.dart';
-import '../constants.dart';
+import '../../text_styles.dart';
+import '../../constants.dart';
 
 //Button style 1
 //Parameters include the string that the button will display in the button

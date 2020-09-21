@@ -1,5 +1,5 @@
 import 'package:citizenpower/controllers/profile_controller.dart';
-import 'package:citizenpower/layouts/generic_layouts.dart';
+import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/genericWidgets/generic_layouts.dart';
 import 'package:citizenpower/navigator/navigator_pushes.dart';
 import 'package:citizenpower/views/messageViews/search.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,7 +10,7 @@ import '../../databaseServices/constants.dart';
 import '../../databaseServices/database.dart';
 import '../../databaseServices/helper_functions.dart';
 import '../../text_styles.dart';
-import '../create_post_view.dart';
+import '../createNewPostView/create_post_view.dart';
 
 //Handles profile downloading methods and storage
 ProfileController profileController = ProfileController();

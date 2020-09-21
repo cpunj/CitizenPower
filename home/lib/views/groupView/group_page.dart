@@ -4,12 +4,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import '../../app_home.dart';
-import '../../comments_page.dart';
+import '../homeDashboardView/app_home.dart';
+import '../postViews/commentViews/comments_page.dart';
 
 class GroupPage extends StatefulWidget {
-
-  const GroupPage({Key key, @required this.user, this.groupID, this.groupSnapshot, this.index}) : super(key: key);
+  const GroupPage(
+      {Key key,
+      @required this.user,
+      this.groupID,
+      this.groupSnapshot,
+      this.index})
+      : super(key: key);
   final FirebaseUser user;
   final String groupID;
   final QuerySnapshot groupSnapshot;
@@ -20,7 +25,6 @@ class GroupPage extends StatefulWidget {
 }
 
 class _GroupPageState extends State<GroupPage> {
-
   _openGallary() {}
 
   _openCamera() {}
@@ -56,11 +60,11 @@ class _GroupPageState extends State<GroupPage> {
 
   @override
   Widget build(BuildContext context) {
-
     final maxLines = 10;
     return Scaffold(
       appBar: AppBar(
-          title: Text(widget.groupSnapshot.documents[widget.index].data["name"]),
+          title:
+              Text(widget.groupSnapshot.documents[widget.index].data["name"]),
           elevation: 1.0,
           actions: <Widget>[
             CircleAvatar(
@@ -89,20 +93,16 @@ class _GroupPageState extends State<GroupPage> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-
-          Container(
-          height: 200,
-          decoration: BoxDecoration(
-            //borderRadius: BorderRadius.circular(2),
-            image: DecorationImage(
-                image: NetworkImage(widget.groupSnapshot.documents[widget.index].data["imageLink"]),
-                fit: BoxFit.cover
-
+            Container(
+              height: 200,
+              decoration: BoxDecoration(
+                //borderRadius: BorderRadius.circular(2),
+                image: DecorationImage(
+                    image: NetworkImage(widget.groupSnapshot
+                        .documents[widget.index].data["imageLink"]),
+                    fit: BoxFit.cover),
+              ),
             ),
-          ),
-        ),
-
-
             Container(
               margin: EdgeInsets.all(12),
               height: maxLines * 20.0,
@@ -160,8 +160,7 @@ class _GroupPageState extends State<GroupPage> {
                               Icons.send,
                               color: darkGold,
                             ),
-                            label: Text("Post")
-                        ),
+                            label: Text("Post")),
                       ],
                     ),
                   )

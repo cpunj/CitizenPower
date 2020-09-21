@@ -1,4 +1,4 @@
-import 'package:citizenpower/views/settings.dart';
+import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/settingsView/settings.dart';
 
 import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/loginViews/login_page.dart';
 import 'package:citizenpower/views/electorateViews/electorate.dart';
@@ -12,8 +12,8 @@ import 'views/eventView/event_view.dart';
 import 'views/groupView/group_page.dart';
 import 'views/groupView/group_view.dart';
 import 'views/helpView/help_page.dart';
-import 'app_home.dart';
-import 'detail.dart';
+import 'views/homeDashboardView/app_home.dart';
+import 'views/postViews/detail.dart';
 import 'views/aboutCitizen/aboutCitizenWidgets/donate_page.dart';
 import 'views/electorateViews/contact_view.dart';
 import 'views/electorateViews/electorate_profile_details.dart';

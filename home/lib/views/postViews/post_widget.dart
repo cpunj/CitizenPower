@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../app_home.dart';
-import '../comments_page.dart';
+import '../homeDashboardView/app_home.dart';
+import 'commentViews/comments_page.dart';
 
 //Generic Post widget to be used in all dashboard list building
 

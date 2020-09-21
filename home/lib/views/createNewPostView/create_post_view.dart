@@ -1,7 +1,7 @@
 import 'package:citizenpower/constants.dart';
 import 'package:citizenpower/controllers/post_controller.dart';
 import 'package:citizenpower/controllers/profile_controller.dart';
-import 'package:citizenpower/layouts/generic_layouts.dart';
+import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/genericWidgets/generic_layouts.dart';
 import 'package:citizenpower/models/post.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';

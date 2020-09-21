@@ -1,4 +1,4 @@
-import 'package:citizenpower/views/social_menu.dart';
+import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/socialMenuView/social_menu.dart';
 import 'package:citizenpower/constants.dart';
 import 'package:citizenpower/databaseServices/constants.dart';
 import 'package:citizenpower/databaseServices/database.dart';

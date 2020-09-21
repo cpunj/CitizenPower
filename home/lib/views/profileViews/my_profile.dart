@@ -1,16 +1,16 @@
 import 'package:citizenpower/controllers/profile_controller.dart';
-import 'package:citizenpower/layouts/generic_layouts.dart';
+import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/genericWidgets/generic_layouts.dart';
 import 'package:citizenpower/navigator/navigator_pushes.dart';
-import 'package:citizenpower/views/post_widget.dart';
+import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/postViews/post_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:time_formatter/time_formatter.dart';
 import '../../constants.dart';
 import '../../text_styles.dart';
-import '../create_post_view.dart';
-import '../comments_page_2.dart';
+import '../createNewPostView/create_post_view.dart';
+import '../postViews/commentViews/comments_page_2.dart';
 
-import 'package:citizenpower/comments_page.dart';
+import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/postViews/commentViews/comments_page.dart';
 import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/models/user.dart';
 
 //Handles profile downloading methods and storage

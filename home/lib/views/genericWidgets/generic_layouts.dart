@@ -2,8 +2,8 @@ import 'package:citizenpower/navigator/navigator_pushes.dart';
 import 'package:citizenpower/views/profileViews/profile_list.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../constants.dart';
-import '../text_styles.dart';
+import '../../constants.dart';
+import '../../text_styles.dart';
 
 String getFirstWord(String text) {
   int index = text.indexOf(' ');
