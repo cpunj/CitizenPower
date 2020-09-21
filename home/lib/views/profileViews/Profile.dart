@@ -6,6 +6,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';
+import '../../databaseServices/constants.dart';
+import '../../databaseServices/database.dart';
+import '../../databaseServices/helperfunctions.dart';
 import '../../text_styles.dart';
 import '../create_post_view.dart';
 
@@ -24,6 +27,24 @@ class ProfileView extends StatefulWidget {
   _MyProfilePageState createState() => _MyProfilePageState();
 }
 
+FollowUserAndCreateFollowersList(BuildContext context,
+    {BuildContext text, String myUserName}) {
+  //if username isn't equal to an empty string
+
+  if (myUserName != null) {
+    String followRoomId =
+        getFollowRoomId(myUserName, profileController.getEmail());
+    print("Doing something");
+    List<String> user = [myUserName, profileController.getEmail()];
+
+    Map<String, dynamic> followRoomMap = {
+      "users": user,
+      "followRoomId": followRoomId
+    };
+    ProfileDatabaseMethods().createFollowRoom(followRoomId, followRoomMap);
+  }
+}
+
 class _MyProfilePageState extends State<ProfileView> {
   //Used for Bio expansion
   bool isExpanded = true;
@@ -37,6 +58,8 @@ class _MyProfilePageState extends State<ProfileView> {
       //'then()' only runs once FS data for view has been downloaded
       setState(() {});
     });
+    bool follow = false;
+    bool following = false;
     //While profileSnapshot is downloading loading indicator is shown instead, setState reruns to
     //build actual view once data is downloaded
     return profileController.profileSnapshot != null
@@ -95,16 +118,25 @@ class _MyProfilePageState extends State<ProfileView> {
                           ],
                         ),
                         MaterialButton(
-                          child: Text(
-                            getFirstWord(
-                                "Follow" + profileController.getName()),
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                          color: darkGold,
-                          onPressed: () {},
-                        ),
+                            shape: new RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(18.0),
+                                side: BorderSide(color: Colors.orangeAccent)),
+                            color: follow
+                                ? Colors.orangeAccent
+                                : Colors.orangeAccent,
+                            textColor: Colors.white,
+                            child:
+                                following ? Text("follow") : Text("following"),
+                            //    style: TextStyle(fontSize: 14)
+                            onPressed: () {
+                              print(widget.user);
+                              FollowUserAndCreateFollowersList(context,
+                                  myUserName: widget.user.email);
+                              setState(() {
+                                follow = !following;
+                                following = !follow;
+                              });
+                            })
                       ],
                     ),
                   ),
@@ -185,5 +217,13 @@ class _MyProfilePageState extends State<ProfileView> {
               child: CircularProgressIndicator(),
             ),
           );
+  }
+}
+
+getFollowRoomId(String a, String b) {
+  if (a.substring(0, 1).codeUnitAt(0) > b.substring(0, 1).codeUnitAt(0)) {
+    return "$b\_$a";
+  } else {
+    return "$a\_$b";
   }
 }
