@@ -45,17 +45,16 @@ class LoginPageState extends State<LoginPage> {
           fit: StackFit.expand,
           children: <Widget>[
             new Form(
-              key: _formKey,
-              child: new Theme(
-                data: new ThemeData(
-                  brightness: Brightness.light,
-                ),
-                child: new Container(
-                  padding: const EdgeInsets.only(top: 25),
-                  height: 160,
-                  width: 100,
-                  child: new Column(
-                    children: <Widget>[
+                key: _formKey,
+                child: new Theme(
+                  data: new ThemeData(
+                    brightness: Brightness.light,
+                  ),
+                  child: new Container(
+                    padding: const EdgeInsets.only(top: 25),
+                    height: 160,
+                    width: 100,
+                    child: new Column(children: <Widget>[
                       new TextFormField(
                           decoration: new InputDecoration(
                               contentPadding:
@@ -66,7 +65,7 @@ class LoginPageState extends State<LoginPage> {
                               errorStyle: errorTextStyle1(),
                               labelText: "Email",
                               hintText: "Enter Email address"),
-                          onSaved: (input) => emailController.text = input,
+                          controller: emailController,
                           keyboardType: TextInputType.emailAddress,
                           validator: (val) {
                             if (val.isEmpty ||
@@ -98,7 +97,7 @@ class LoginPageState extends State<LoginPage> {
                               hintText: "Insert password",
                             ),
                             keyboardType: TextInputType.text,
-                            onSaved: (input) => passController.text = input,
+                            controller: passController,
                             validator: (val) =>
                                 val.length < 6 ? 'Invalid Password' : null,
                             obscureText: true,
@@ -107,128 +106,145 @@ class LoginPageState extends State<LoginPage> {
                             height: 15.0,
                           ),
                           GestureDetector(
-                              onTap: (){
+                              onTap: () {
                                 showDialog(
-                                    context:context,
-                                    builder: (context){
+                                    context: context,
+                                    builder: (context) {
                                       return Dialog(
-                                        child:Container(
-                                          alignment: Alignment.center,
-                                          padding:EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-                                          height:250,
-                                          child:Column(
-                                            children:<Widget>[
-                                              Text(
-                                                  "Reset Password For...",
-                                                  style: TextStyle(fontSize: 20.0),
-                                                  textAlign: TextAlign.center
-                                              ),
-                                              Container(
-                                                padding:EdgeInsets.symmetric(vertical: 28, horizontal: 16),
-                                                child:new TextFormField(
-                                                    decoration: new InputDecoration(
-                                                        contentPadding:
-                                                        EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
-                                                        border: OutlineInputBorder(
-                                                            borderRadius: BorderRadius.circular(10.0)),
-                                                        hintStyle: TextStyle(color: Colors.white),
-                                                        errorStyle: errorTextStyle1(),
-                                                        labelText: "Email",
-                                                        hintText: "Enter Email address"),
-                                                    onSaved: (input) => email = input,
-                                                    keyboardType: TextInputType.emailAddress,
-                                                    validator: (val) {
-                                                      if (val.isEmpty ||
-                                                          !val.contains('@') ||
-                                                          !val.contains('.') ||
-                                                          val.length < 8) {
-                                                        return "Please enter a valid email";
-                                                      }
-                                                      return null;
-                                                    }),
-                                              ),
-                                              Container(
-                                                padding:EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-                                                child:new MaterialButton(
-                                                    color: darkGold,
-                                                    textColor: Colors.white,
-                                                    child: new Text("Reset"),
-                                                    onPressed: () {
-                                                      //TODO: firebase function for reset password
-                                                    }),
-                                              ),
-                                            ]
-                                          )
-                                        )
-                                      );
-                                    }
-                                );
+                                          child: Container(
+                                              alignment: Alignment.center,
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 16, horizontal: 16),
+                                              height: 250,
+                                              child: Column(children: <Widget>[
+                                                Text("Reset Password For...",
+                                                    style: TextStyle(
+                                                        fontSize: 20.0),
+                                                    textAlign:
+                                                        TextAlign.center),
+                                                Container(
+                                                  padding: EdgeInsets.symmetric(
+                                                      vertical: 28,
+                                                      horizontal: 16),
+                                                  child: new TextFormField(
+                                                      decoration: new InputDecoration(
+                                                          contentPadding:
+                                                              EdgeInsets.fromLTRB(
+                                                                  15.0,
+                                                                  10.0,
+                                                                  15.0,
+                                                                  10.0),
+                                                          border: OutlineInputBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0)),
+                                                          hintStyle: TextStyle(
+                                                              color: Colors
+                                                                  .white),
+                                                          errorStyle:
+                                                              errorTextStyle1(),
+                                                          labelText: "Email",
+                                                          hintText:
+                                                              "Enter Email address"),
+                                                      controller:
+                                                          emailController,
+                                                      keyboardType:
+                                                          TextInputType
+                                                              .emailAddress,
+                                                      validator: (val) {
+                                                        if (val.isEmpty ||
+                                                            !val.contains(
+                                                                '@') ||
+                                                            !val.contains(
+                                                                '.') ||
+                                                            val.length < 8) {
+                                                          return "Please enter a valid email";
+                                                        }
+                                                        return null;
+                                                      }),
+                                                ),
+                                                Container(
+                                                  padding: EdgeInsets.symmetric(
+                                                      vertical: 16,
+                                                      horizontal: 16),
+                                                  child: new MaterialButton(
+                                                      color: darkGold,
+                                                      textColor: Colors.white,
+                                                      child: new Text("Reset"),
+                                                      onPressed: () {
+                                                        //TODO: firebase function for reset password
+                                                      }),
+                                                ),
+                                              ])));
+                                    });
                               },
-                            child: Text(
-                              "Forgot Password?",
-                              style: TextStyle(color: Colors.red),
-                          )
-                      ),
-                      new Padding(
-                        padding: const EdgeInsets.only(top: 80),
-                      ),
-                      Center(
-                        child: Material(
-                          elevation: 5.0,
-                          borderRadius: BorderRadius.circular(40.0),
-                          color: darkGold,
-                          child: new MaterialButton(
-                              textColor: Colors.white,
-                              minWidth: 150,
-                              child: new Text("LOGIN"),
-                              onPressed: () {
-                                signIn();
-                              }),
-                        ),
-                      ),
-                      new Padding(
-                        padding: const EdgeInsets.only(top: 30.0),
-                      ),
-                      Center(
-                        child: Material(
-                          elevation: 5.0,
-                          borderRadius: BorderRadius.circular(40.0),
-                          color: darkGold,
-                          child: new MaterialButton(
-                              textColor: Colors.white,
-                              minWidth: 150,
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.padded,
-                              child: new Text("REGISTER"),
-                              onPressed: () {
-                                if (_formKey.currentState.validate()) {
-                                  // If the form is valid, display a Snackbar.
-                                  Scaffold.of(context).showSnackBar(SnackBar(
-                                      content: Text('Processing Data')));
-                                }
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Registration()),
-                                );
-                              }),
-                        ),
-                      ),
+                              child: Text(
+                                "Forgot Password?",
+                                style: TextStyle(color: Colors.red),
+                              )),
+                          new Padding(
+                            padding: const EdgeInsets.only(top: 80),
+                          ),
+                          Center(
+                            child: Material(
+                              elevation: 5.0,
+                              borderRadius: BorderRadius.circular(40.0),
+                              color: darkGold,
+                              child: new MaterialButton(
+                                  textColor: Colors.white,
+                                  minWidth: 150,
+                                  child: new Text("LOGIN"),
+                                  onPressed: () {
+                                    signIn();
+                                  }),
+                            ),
+                          ),
+                          new Padding(
+                            padding: const EdgeInsets.only(top: 30.0),
+                          ),
+                          Center(
+                            child: Material(
+                              elevation: 5.0,
+                              borderRadius: BorderRadius.circular(40.0),
+                              color: darkGold,
+                              child: new MaterialButton(
+                                  textColor: Colors.white,
+                                  minWidth: 150,
+                                  materialTapTargetSize:
+                                      MaterialTapTargetSize.padded,
+                                  child: new Text("REGISTER"),
+                                  onPressed: () {
+                                    if (_formKey.currentState.validate()) {
+                                      // If the form is valid, display a Snackbar.
+                                      Scaffold.of(context).showSnackBar(
+                                          SnackBar(
+                                              content:
+                                                  Text('Processing Data')));
+                                    }
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Registration()),
+                                    );
+                                  }),
+                            ),
+                          ),
 
-                      //Contains Citizen logo
-                      Center(
-                        child: Container(
-                          height: 200,
-                          padding: EdgeInsets.only(top: 150),
-                          child: new Text("Together We Stand"),
-                        ),
-                      )
-                    ],
+                          //Contains Citizen logo
+                          Center(
+                            child: Container(
+                              height: 200,
+                              padding: EdgeInsets.only(top: 150),
+                              child: new Text("Together We Stand"),
+                            ),
+                          )
+                        ],
+                      ),
+                    ]),
                   ),
-                ]),
-              ),
-            )
-            )],
+                ))
+          ],
         ),
       ),
     );

@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import '../../controllers/electorateControllers/leader_profile_controller.dart';
 import '../../text_styles.dart';
 import '../../constants.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 /*TODO:
 - Create a 'Clark' electorate profile
@@ -51,11 +50,6 @@ class _ElectorateState extends State<Electorate> {
   List<String> _locations = ['Poverty', 'Pollution', 'Homeless'];
   //Used to block bottom nav bar functions
   int currentIndex = 4;
-  final Uri _emailLaunchUri = Uri(
-      scheme: 'mailto',
-      path: 'khernyihjun@gmail.com',
-      queryParameters: {'subject': 'ELECTNOW: Constituent Message'}
-  );
   @override
   Widget build(BuildContext context) {
     //Load the profile based on the selected electorate and leader from previous views.
@@ -267,84 +261,22 @@ class _ElectorateState extends State<Electorate> {
                 ),
               ),
               SliverToBoxAdapter(
-                //child:Container(
-                  child: RaisedButton(
-                      onPressed: () async{
-                        const url = "tel:+61450632382";
-                        if (await canLaunch(url) == true) {
-                          await launch(url);
-                        } else {
-                          throw 'Could not launch $url';
-                        }
-                      },
-                      elevation: 0.0,
-                      padding: EdgeInsets.all(.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.centerRight,
-                              end: Alignment.centerLeft,
-                              colors: [darkGold, brightOrange]
-                            ),
-                            //borderRadius: BorderRadius.circular(30.0),
-                          ),
-                          constraints:
-                          BoxConstraints(maxWidth: double.infinity, minHeight: 40.0),
-                          alignment: Alignment.center,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children:<Widget>[
-                              Icon(
-                                Icons.phone, color: Colors.white
-                              ),
-                              Text("+61 450 632 382",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 24.0,
-                                    fontWeight: FontWeight.w300),
-                              )
-                            ]
-                          ),
-                        ),
-                      ),
-                ),
-              //),
-              SliverToBoxAdapter(
-                child:RaisedButton(
+                child: RaisedButton(
+                  color: darkGold,
+                  textColor: Colors.white,
+                  child: Text('Connect with me'),
                   onPressed: () {
-                    launch(_emailLaunchUri.toString());
+                    goMessage(context, widget.user);
                   },
-                  elevation: 0.0,
-                  padding: EdgeInsets.all(.0),
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 6, horizontal: 16),
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.centerRight,
-                          end: Alignment.centerLeft,
-                          colors: [darkGold, brightOrange]
-                      ),
-                      //borderRadius: BorderRadius.circular(30.0),
-                    ),
-                    constraints:
-                    BoxConstraints(maxWidth: double.infinity, minHeight: 40.0),
-                    alignment: Alignment.center,
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children:<Widget>[
-                          Icon(
-                              Icons.mail, color: Colors.white
-                          ),
-                          Text("khernyihjun@gmail.com",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 24.0,
-                                fontWeight: FontWeight.w300),
-                          )
-                        ]
-                    ),
-                  ),
-                )
+                ),
+              ),
+              SliverToBoxAdapter(
+                child: RaisedButton(
+                  color: darkGold,
+                  textColor: Colors.white,
+                  child: Text('Electorate'),
+                  onPressed: () {},
+                ),
               ),
               SliverToBoxAdapter(
                 child: DropdownButton(
@@ -393,10 +325,9 @@ class _ElectorateState extends State<Electorate> {
                 //onTap: _onTap,
                 ),
           )
-    
+
         //leaderSnapshot not downloaded? Show loading indicator
         : Container(
-
             color: Colors.black,
             child: Center(
               child: CircularProgressIndicator(),

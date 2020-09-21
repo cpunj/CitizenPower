@@ -9,6 +9,8 @@ import 'package:flutter/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../text_styles.dart';
 
+ElectorateController electorateController = ElectorateController();
+
 class ElectorateSelectorView extends StatefulWidget {
   const ElectorateSelectorView({Key key, @required this.user})
       : super(key: key);
@@ -190,12 +192,10 @@ Widget electorateListItem(String stateSelected, FirebaseUser user) {
         scrollDirection: Axis.vertical,
         child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
           Text("Select Electorate", style: headerStyle1()),
-
           ListView.builder(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               itemCount: electorateList.length,
-
               itemBuilder: (context, index) {
                 return Container(
                   height: 60,
@@ -204,7 +204,6 @@ Widget electorateListItem(String stateSelected, FirebaseUser user) {
                       goSelectedElectorate(
                           context, user, stateSelected, electorateList[index]);
                     },
-
                     child: Card(
                         child: new Column(
                       mainAxisSize: MainAxisSize.min,
@@ -217,16 +216,12 @@ Widget electorateListItem(String stateSelected, FirebaseUser user) {
                         ),
                       ],
                     )),
-
                   ),
                 );
-
               })
         ]),
       ),
     ),
-
-
   );
 }
 
