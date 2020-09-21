@@ -101,11 +101,68 @@ class LoginPageState extends State<LoginPage> {
                           SizedBox(
                             height: 15.0,
                           ),
-                          Text(
-                            "Forgot Password?",
-                            style: TextStyle(color: Colors.red),
-                          ),
-                        ],
+                          GestureDetector(
+                              onTap: (){
+                                showDialog(
+                                    context:context,
+                                    builder: (context){
+                                      return Dialog(
+                                        child:Container(
+                                          alignment: Alignment.center,
+                                          padding:EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                                          height:250,
+                                          child:Column(
+                                            children:<Widget>[
+                                              Text(
+                                                  "Reset Password For...",
+                                                  style: TextStyle(fontSize: 20.0),
+                                                  textAlign: TextAlign.center
+                                              ),
+                                              Container(
+                                                padding:EdgeInsets.symmetric(vertical: 28, horizontal: 16),
+                                                child:new TextFormField(
+                                                    decoration: new InputDecoration(
+                                                        contentPadding:
+                                                        EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
+                                                        border: OutlineInputBorder(
+                                                            borderRadius: BorderRadius.circular(10.0)),
+                                                        hintStyle: TextStyle(color: Colors.white),
+                                                        errorStyle: errorTextStyle1(),
+                                                        labelText: "Email",
+                                                        hintText: "Enter Email address"),
+                                                    onSaved: (input) => email = input,
+                                                    keyboardType: TextInputType.emailAddress,
+                                                    validator: (val) {
+                                                      if (val.isEmpty ||
+                                                          !val.contains('@') ||
+                                                          !val.contains('.') ||
+                                                          val.length < 8) {
+                                                        return "Please enter a valid email";
+                                                      }
+                                                      return null;
+                                                    }),
+                                              ),
+                                              Container(
+                                                padding:EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                                                child:new MaterialButton(
+                                                    color: darkGold,
+                                                    textColor: Colors.white,
+                                                    child: new Text("Reset"),
+                                                    onPressed: () {
+                                                      //TODO: firebase function for reset password
+                                                    }),
+                                              ),
+                                            ]
+                                          )
+                                        )
+                                      );
+                                    }
+                                );
+                              },
+                            child: Text(
+                              "Forgot Password?",
+                              style: TextStyle(color: Colors.red),
+                          )
                       ),
                       new Padding(
                         padding: const EdgeInsets.only(top: 80),
@@ -162,10 +219,10 @@ class LoginPageState extends State<LoginPage> {
                       )
                     ],
                   ),
-                ),
+                ]),
               ),
             )
-          ],
+            )],
         ),
       ),
     );

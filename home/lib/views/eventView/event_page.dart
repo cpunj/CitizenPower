@@ -1,4 +1,4 @@
-import 'package:citizenpower/Views/groupview/picture.dart';
+import 'package:citizenpower/views/groupView/picture.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';

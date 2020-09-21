@@ -17,13 +17,22 @@ class ProfileDatabaseMethods {
     return await Firestore.instance.collection("users").document(uID).get();
   }
 
+  //Used for downloading a lead profile for the leader profile view
+  getLeaderByUID(String electorateUID, String leaderUID) async {
+    return await Firestore.instance
+        .collection("electorates")
+        .document(electorateUID)
+        .collection("leaders")
+        .document(leaderUID)
+        .get();
+  }
+
   //Updates the user doc bio field of the given UID with the given bio
   updateUserBio(String bio, String uID) {
     Firestore.instance
         .collection("users")
         .document(uID)
         .updateData({"bio": bio});
-    print('This just ran`');
   }
 
   //Updates the user doc name field of the given UID with the given name
