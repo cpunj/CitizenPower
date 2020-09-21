@@ -1,35 +1,48 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class User {
-  final String email;
-  final String id;
-  final String photoUrl;
-  final String name;
-  final String displayName;
-  final String bio;
-  final Map followers;
-  final Map following;
+  String uid;
+  String email;
+  String photoUrl;
+  String displayName;
+  String followers;
+  String following;
+  String posts;
+  String bio;
+  String phone;
 
-  const User(
-      {this.name,
-      this.id,
-      this.photoUrl,
+  User(
+      {this.uid,
       this.email,
+      this.photoUrl,
       this.displayName,
-      this.bio,
       this.followers,
-      this.following});
+      this.following,
+      this.bio,
+      this.posts,
+      this.phone});
 
-  factory User.fromDocument(DocumentSnapshot document) {
-    return User(
-      email: document['email'],
-      name: document['username'],
-      photoUrl: document['photoUrl'],
-      id: document.documentID,
-      displayName: document['displayName'],
-      bio: document['bio'],
-      followers: document['followers'],
-      following: document['following'],
-    );
+  Map toMap(User user) {
+    var data = Map<String, dynamic>();
+    data['uid'] = user.uid;
+    data['email'] = user.email;
+    data['photoUrl'] = user.photoUrl;
+    data['displayName'] = user.displayName;
+    data['followers'] = user.followers;
+    data['following'] = user.following;
+    data['bio'] = user.bio;
+    data['posts'] = user.posts;
+    data['phone'] = user.phone;
+    return data;
+  }
+
+  User.fromMap(Map<String, dynamic> mapData) {
+    this.uid = mapData['uid'];
+    this.email = mapData['email'];
+    this.photoUrl = mapData['photoUrl'];
+    this.displayName = mapData['displayN qame'];
+    this.followers = mapData['followers'];
+    this.following = mapData['following'];
+    this.bio = mapData['bio'];
+    this.posts = mapData['posts'];
+    this.phone = mapData['phone'];
   }
 }

@@ -1,23 +1,25 @@
+import 'package:citizenpower/user.dart';
+import 'package:citizenpower/views/create_post_view.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import "dart:async";
 import "main.dart"; //for current user
 
 class CommentScreen extends StatefulWidget {
-  final String postId;
+  final String posts;
   final String postOwner;
   final String postMediaUrl;
 
-  const CommentScreen({this.postId, this.postOwner, this.postMediaUrl});
+  const CommentScreen({this.posts, this.postOwner, this.postMediaUrl});
   @override
   _CommentScreenState createState() => _CommentScreenState(
-      postId: this.postId,
+      posts: this.posts,
       postOwner: this.postOwner,
       postMediaUrl: this.postMediaUrl);
 }
 
 class _CommentScreenState extends State<CommentScreen> {
-  final String postId;
+  final String posts;
   final String postOwner;
   final String postMediaUrl;
 
@@ -26,7 +28,7 @@ class _CommentScreenState extends State<CommentScreen> {
 
   final TextEditingController _commentController = TextEditingController();
 
-  _CommentScreenState({this.postId, this.postOwner, this.postMediaUrl});
+  _CommentScreenState({this.posts, this.postOwner, this.postMediaUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -93,9 +95,9 @@ class _CommentScreenState extends State<CommentScreen> {
     List<Comment> comments = [];
 
     QuerySnapshot data = await Firestore.instance
-        .collection("insta_comments")
-        .document(postId)
-        .collection("comments")
+        .collection("users")
+        .document(posts)
+        .collection("posts")
         .getDocuments();
     data.documents.forEach((DocumentSnapshot doc) {
       comments.add(Comment.fromDocument(doc));
@@ -106,30 +108,26 @@ class _CommentScreenState extends State<CommentScreen> {
   addComment(String comment) {
     _commentController.clear();
     Firestore.instance
-        .collection("insta_comments")
-        .document(postId)
+        .collection("users")
+        .document()
         .collection("comments")
         .add({
-      "username": currentUserModel.name,
+      "username": User,
       "comment": comment,
       "timestamp": Timestamp.now(),
-      "avatarUrl": currentUserModel.photoUrl,
-      "userId": currentUserModel.id
+      "avatarUrl": postMediaUrl,
+      "userId": postOwner,
     });
 
     //adds to postOwner's activity feed
-    Firestore.instance
-        .collection("insta_a_feed")
-        .document(postOwner)
-        .collection("items")
-        .add({
-      "username": currentUserModel.name,
-      "userId": currentUserModel.id,
+    Firestore.instance.collection("users").document().collection("items").add({
+      "username": postOwner,
+      "userId": "users",
       "type": "comment",
-      "userProfileImg": currentUserModel.photoUrl,
+      "userProfileImg": postMediaUrl,
       "commentData": comment,
       "timestamp": Timestamp.now(),
-      "postId": postId,
+      "postId": posts,
       "mediaUrl": postMediaUrl,
     });
 
@@ -137,15 +135,15 @@ class _CommentScreenState extends State<CommentScreen> {
     setState(() {
       fetchedComments = List.from(fetchedComments)
         ..add(Comment(
-            username: currentUserModel.name,
+            username: currentUserModel.displayName,
             comment: comment,
             timestamp: Timestamp.now(),
             avatarUrl: currentUserModel.photoUrl,
-            userId: currentUserModel.id));
+            userId: currentUserModel.uid));
     });
   }
 }
-
+// ejaz
 class Comment extends StatelessWidget {
   final String username;
   final String userId;

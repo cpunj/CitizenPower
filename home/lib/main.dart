@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
           "/k": (BuildContext context) => new CreateNewEvent(),
           "/l": (BuildContext context) => new CreateNewGroup(),
           "/m": (BuildContext context) => new FindingEvents(),
-          "donate_page":(BuildContext context) => new Donate(),
+          "donate_page": (BuildContext context) => new Donate(),
           "detail": (BuildContext context) => new DettailWidget(),
         },
         theme: new ThemeData(

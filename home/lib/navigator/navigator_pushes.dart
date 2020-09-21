@@ -16,6 +16,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:citizenpower/views/electorateViews/electorate_selector_view.dart';
+import '../newcommentspage.dart';
 import '../views/electorateViews/electorate_view.dart';
 
 import '../views/settings.dart';
@@ -137,6 +138,11 @@ goElectorateView(BuildContext context, FirebaseUser user) {
 goSearch(BuildContext context, FirebaseUser user) {
   Navigator.push(
       context, MaterialPageRoute(builder: (context) => SearchView(user: user)));
+}
+
+goComment(BuildContext context, FirebaseUser user) {
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => CommentScreen()));
 }
 
 goImageView(BuildContext context, String image) {

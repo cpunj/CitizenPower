@@ -439,7 +439,7 @@ class _makeCommentButtonState extends State<makeCommentButton> {
   _commentButtonPressed() {
     setState(() {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => CommentsPage()));
+          context, MaterialPageRoute(builder: (context) => CommentsScreen()));
     });
   }
 

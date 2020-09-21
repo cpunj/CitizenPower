@@ -8,6 +8,10 @@ import 'package:flutter/material.dart';
 import '../../constants.dart';
 import '../../text_styles.dart';
 import '../create_post_view.dart';
+import '../commentsPage.dart';
+
+import 'package:citizenpower/comments_page.dart';
+import 'package:citizenpower/user.dart';
 
 //Handles profile downloading methods and storage
 ProfileController profileController = ProfileController();
@@ -48,6 +52,8 @@ class _MyProfilePageState extends State<MyProfilePage> {
       },
     );
   }
+
+  // ignore: non_constant_identifier_names
 
   void initState() {
     profileController.getUserPosts(widget.user.uid).then((value) {

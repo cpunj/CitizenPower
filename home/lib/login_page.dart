@@ -1,6 +1,7 @@
 import 'package:citizenpower/app_home.dart';
 import 'package:citizenpower/databaseServices/database.dart';
 import 'package:citizenpower/databaseServices/helperfunctions.dart';
+import 'package:citizenpower/forgotpassword.dart';
 import 'package:citizenpower/text_styles.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -106,9 +107,18 @@ class LoginPageState extends State<LoginPage> {
                           SizedBox(
                             height: 15.0,
                           ),
-                          Text(
-                            "Forgot Password?",
-                            style: TextStyle(color: Colors.red),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          ForgotPasswordScreen()));
+                            },
+                            child: Text(
+                              "Forgot Password?",
+                              style: TextStyle(color: Colors.red),
+                            ),
                           ),
                         ],
                       ),

@@ -1,7 +1,11 @@
+import 'package:citizenpower/main.dart';
+import 'package:citizenpower/navigator/navigator_pushes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../app_home.dart';
+import '../comments_page.dart';
 
 Widget postWidget(BuildContext context, String text, String picLink,
     String name, String profilePicLink) {
@@ -23,7 +27,12 @@ Widget postWidget(BuildContext context, String text, String picLink,
                 ),
               ),
               InkWell(
-                onTap: () => Navigator.of(context).pushNamed('detail'),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CommentsScreen()));
+                },
                 child: Container(
                   child: Column(
                     children: [
