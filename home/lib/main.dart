@@ -1,17 +1,17 @@
-import 'package:citizenpower/Views/settings.dart';
+import 'package:citizenpower/views/settings.dart';
 
 import 'package:citizenpower/login_page.dart';
 import 'package:citizenpower/views/electorateViews/electorate.dart';
 import 'package:citizenpower/views/eventView/finding_events.dart';
-import 'Views/groupView/create_new_group.dart';
+import 'views/groupView/create_new_group.dart';
 import 'package:flutter/material.dart';
-import 'Views/aboutCitizen/about_citizen.dart';
-import 'Views/eventView/create_new_event.dart';
-import 'Views/eventView/event_page.dart';
-import 'Views/eventView/event_view.dart';
-import 'Views/groupview/group_page.dart';
-import 'Views/groupview/group_view.dart';
-import 'Views/helpView/help_page.dart';
+import 'views/aboutCitizen/about_citizen.dart';
+import 'views/eventView/create_new_event.dart';
+import 'views/eventView/event_page.dart';
+import 'views/eventView/event_view.dart';
+import 'views/groupView/group_page.dart';
+import 'views/groupView/group_view.dart';
+import 'views/helpView/help_page.dart';
 import 'app_home.dart';
 import 'detail.dart';
 import 'views/aboutCitizen/aboutCitizenWidgets/donate_page.dart';

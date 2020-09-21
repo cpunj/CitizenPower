@@ -1,11 +1,11 @@
-import 'package:citizenpower/Views/social_menu.dart';
+import 'package:citizenpower/views/social_menu.dart';
 import 'package:citizenpower/constants.dart';
 import 'package:citizenpower/databaseServices/constants.dart';
 import 'package:citizenpower/databaseServices/database.dart';
 import 'package:citizenpower/databaseServices/helperfunctions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:citizenpower/Views/MessageViews/search.dart';
+import 'package:citizenpower/views/messageViews/search.dart';
 import 'conversation_screen.dart';
 
 class HomeScreen extends StatefulWidget {
