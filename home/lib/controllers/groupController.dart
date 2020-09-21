@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:citizenpower/views/groupView/create_new_group.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:citizenpower/databaseServices/database.dart';
 import 'package:citizenpower/models/group.dart';
@@ -9,7 +10,7 @@ class GroupController {
 
   ProfileDatabaseMethods profileDatabaseMethods = ProfileDatabaseMethods();
   Group newGroup = Group();
-  String name;
+  String uid;
   File groupImage;
 
   //Upload group pic function
@@ -33,6 +34,7 @@ class GroupController {
     print(groupImage);
 
 
+
     // Below statements take the text input from the create group view
     // NB: privacy is a bool value
     newGroup.groupname = groupName;
@@ -40,10 +42,14 @@ class GroupController {
     newGroup.groupdescription = groupDescription;
     print(groupDescription);
     newGroup.privacylevel = privacyLevel;
-    print(privacyLevel);
+
+    print(privacyLevel); // False = group is private, True = group is public
+
+    profileDatabaseMethods.uploadGroup(newGroup);
 
 
-    // NOW NEED TO CREATE AN UPLOAD GROUP CLASS
-    //    profileDatabaseMethods.uploadPost(newPost, uID);
+
+    // Wipe the group at the end of the function
+
   }
 }

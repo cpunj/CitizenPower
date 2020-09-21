@@ -109,11 +109,11 @@ class _RegistrationState extends State<Registration> {
                       Center(
                         child: Material(
                           elevation: 5.0,
-                          borderRadius: BorderRadius.circular(20.0),
+                          borderRadius: BorderRadius.circular(40.0),
                           color: darkGold,
                           child: new MaterialButton(
                               textColor: Colors.white,
-                              minWidth: 50,
+                              minWidth: 150,
                               materialTapTargetSize:
                                   MaterialTapTargetSize.padded,
                               child: new Text("REGISTER"),

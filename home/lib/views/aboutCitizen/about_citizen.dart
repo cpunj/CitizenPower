@@ -16,7 +16,7 @@ class _AboutCitizenInfoState extends State<AboutCitizenInfo> {
       appBar: AppBar(
         title: Text("About Citizen Tasmania", style: appBarStyle()),
       ),
-      body: Center(
+      body: SingleChildScrollView(
         child: CitizenInfo(),
       ),
     );

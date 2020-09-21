@@ -8,35 +8,36 @@ class ContactInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 0),
+
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          SizedBox(
-            height: 10,
-          ),
           Text(
             "Contact us",
             style: headerStyle1(),
           ),
           Text(
-            " 4 Battery Square, Battery Point, Tasmania 7004"
+                "Address: 4 Battery Square, Battery Point, Tasmania 7004"
             "                                                   "
-            "0450546136"
+            "Contact: 0450546136"
             "                        "
             "                                                    "
-            "contact@citizentas.org",
+            "E-mail: contact@citizentas.org",
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 20,
             ),
-            textAlign: TextAlign.center,
+            textAlign: TextAlign.left,
           ),
           SizedBox(
             height: 40,
           ),
           MaterialButton(
-            color: darkGold,
+            color: Color(0xFFF57F17),
+            minWidth: 120.0,
+            height: 40,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(40),
+            ),
             onPressed: () {
              Navigator.push(
                context,
@@ -50,7 +51,12 @@ class ContactInfo extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
               ),
+
             ),
+
+          ),
+          SizedBox(
+            height: 40,
           ),
         ],
       ),

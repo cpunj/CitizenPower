@@ -7,8 +7,10 @@ import 'package:flutter/services.dart';
 import '../app_home.dart';
 import '../comments_page.dart';
 
+//Generic Post widget to be used in all dashboard list building
+
 Widget postWidget(BuildContext context, String text, String picLink,
-    String name, String profilePicLink) {
+    String name, String profilePicLink, String time) {
   return Container(
     child: SingleChildScrollView(
       scrollDirection: Axis.vertical,
@@ -69,7 +71,7 @@ Widget postWidget(BuildContext context, String text, String picLink,
                                     height: 3,
                                   ),
                                   Text(
-                                    "1 hour ago",
+                                    time,
                                     style: TextStyle(
                                       fontSize: 15,
                                       color: Colors.grey,

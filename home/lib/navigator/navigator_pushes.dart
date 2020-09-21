@@ -9,9 +9,13 @@ import 'package:citizenpower/Views/profileViews/profile_page_edit.dart';
 import 'package:citizenpower/Views/social_menu.dart';
 import 'package:citizenpower/models/profile.dart';
 import 'package:citizenpower/views/electorateViews/electorate.dart';
+import 'package:citizenpower/views/groupView/group_page.dart';
 import 'package:citizenpower/views/profileViews/Profile.dart';
+import 'package:citizenpower/views/groupView/create_new_group.dart';
+import 'package:citizenpower/views/groupView/group_view.dart';
 import 'package:citizenpower/views/profileViews/profile_list.dart';
 import 'package:citizenpower/views/profileViews/searchProfile.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -58,26 +62,28 @@ goProfileView(BuildContext context, FirebaseUser user, String uID) {
   );
 }
 
-goElectorate(BuildContext context, FirebaseUser user, String electorateUID,
-    String leaderUID) {
-  Navigator.pushReplacement(
+goElectorate(BuildContext context, FirebaseUser user, String stateID,
+    String electorateUID, String leaderUID, bool upper) {
+  Navigator.push(
     context,
     MaterialPageRoute(
         builder: (context) => Electorate(
-              user: user,
-              electorateUID: electorateUID,
-              leaderUID: leaderUID,
-            )),
+            user: user,
+            stateID: stateID,
+            electorateID: electorateUID,
+            leaderUID: leaderUID,
+            upper: upper)),
   );
 }
 
-goSelectedElectorate(
-    BuildContext context, FirebaseUser user, String userElectorate) {
+goSelectedElectorate(BuildContext context, FirebaseUser user, String userState,
+    String userElectorate) {
   Navigator.push(
     context,
     MaterialPageRoute(
         builder: (context) => ElectorateView(
               user: user,
+              stateSelected: userState,
               electorateSelected: userElectorate,
             )),
   );
@@ -161,4 +167,22 @@ goEditProfile(BuildContext context, FirebaseUser user, Profile myProfile) {
               profile: myProfile,
             )),
   );
+}
+
+goCreateGroup (BuildContext context, FirebaseUser user) {
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => CreateNewGroup(user: user)));
+}
+
+goGroupList (BuildContext context, FirebaseUser user) {
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => GroupView(user: user)));
+}
+
+goGroupView(BuildContext context, FirebaseUser user, String groupID, QuerySnapshot groupSnapshot, int index) {
+  Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => GroupPage(user: user, groupID: groupID, groupSnapshot: groupSnapshot, index: index)));
+
 }

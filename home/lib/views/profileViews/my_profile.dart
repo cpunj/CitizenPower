@@ -4,7 +4,7 @@ import 'package:citizenpower/navigator/navigator_pushes.dart';
 import 'package:citizenpower/views/post_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:time_formatter/time_formatter.dart';
 import '../../constants.dart';
 import '../../text_styles.dart';
 import '../create_post_view.dart';
@@ -31,30 +31,41 @@ class _MyProfilePageState extends State<MyProfilePage> {
   bool isExpanded = true;
   //Used to prevent re-entering same view in bottom nav bar
   int currentIndex = 1;
+  //The stream that the postList widget relies on to build
   Stream postsStream;
+  //TODO: Move this function to a higher level file, otherwise this code will be end up being repeated in all dashboard views
+  //TODO: Can't scroll using this widget atm, needs fixing
   Widget postList() {
+    //StreamBuilder takes a Stream<QuerySnapshot> from a Firebase query to build the widgets as the data is downloaded
     return StreamBuilder(
       stream: postsStream,
       builder: (context, snapshot) {
+        //Only build the widget if the data has been downloaded, otherwise return an empty container
         return snapshot.hasData
             ? ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                //Prevents the view breaking
                 shrinkWrap: true,
                 itemCount: snapshot.data.documents.length,
                 itemBuilder: (context, index) {
+                  //TODO: Allow for picLink (and any other parameters) to be null without widget breaking
                   return postWidget(
-                      context,
-                      snapshot.data.documents[index].data["text"],
-                      snapshot.data.documents[index].data["picLink"],
-                      snapshot.data.documents[index].data["name"],
-                      snapshot.data.documents[index].data["profilePicLink"]);
+                    context,
+                    snapshot.data.documents[index].data["text"],
+                    snapshot.data.documents[index].data["picLink"],
+                    snapshot.data.documents[index].data["name"],
+                    snapshot.data.documents[index].data["profilePicLink"],
+                    formatTime(snapshot.data.documents[index].data["time"]),
+                  );
                 })
             : Container();
       },
     );
   }
 
-  // ignore: non_constant_identifier_names
-
+  //Queries Firebase with the curUser's uID for the Stream used to build the post list
+  ///Ideally would be implemented in profileController, but not easily movable due to SetState()
+  ///Again, this code will repeated in a lot of views due to this
   void initState() {
     profileController.getUserPosts(widget.user.uid).then((value) {
       setState(() {
@@ -70,7 +81,6 @@ class _MyProfilePageState extends State<MyProfilePage> {
     //only if snapshot has not already been downloaded
     if (profileController.profileSnapshot == null) {
       profileController.loadProfile(widget.user.uid).then((val) {
-        print(val);
         //'then()' only runs once FS data for view has been downloaded
         setState(() {});
       });

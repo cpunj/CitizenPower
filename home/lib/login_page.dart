@@ -46,17 +46,16 @@ class LoginPageState extends State<LoginPage> {
           fit: StackFit.expand,
           children: <Widget>[
             new Form(
-              key: _formKey,
-              child: new Theme(
-                data: new ThemeData(
-                  brightness: Brightness.light,
-                ),
-                child: new Container(
-                  padding: const EdgeInsets.only(top: 25),
-                  height: 160,
-                  width: 100,
-                  child: new Column(
-                    children: <Widget>[
+                key: _formKey,
+                child: new Theme(
+                  data: new ThemeData(
+                    brightness: Brightness.light,
+                  ),
+                  child: new Container(
+                    padding: const EdgeInsets.only(top: 25),
+                    height: 160,
+                    width: 100,
+                    child: new Column(children: <Widget>[
                       new TextFormField(
                           decoration: new InputDecoration(
                               contentPadding:
@@ -67,7 +66,7 @@ class LoginPageState extends State<LoginPage> {
                               errorStyle: errorTextStyle1(),
                               labelText: "Email",
                               hintText: "Enter Email address"),
-                          onSaved: (input) => emailController.text = input,
+                          controller: emailController,
                           keyboardType: TextInputType.emailAddress,
                           validator: (val) {
                             if (val.isEmpty ||
@@ -99,7 +98,7 @@ class LoginPageState extends State<LoginPage> {
                               hintText: "Insert password",
                             ),
                             keyboardType: TextInputType.text,
-                            onSaved: (input) => passController.text = input,
+                            controller: passController,
                             validator: (val) =>
                                 val.length < 6 ? 'Invalid Password' : null,
                             obscureText: true,
@@ -167,19 +166,19 @@ class LoginPageState extends State<LoginPage> {
                         ),
                       ),
 
-                      //Contains Citizen logo
-                      Center(
-                        child: Container(
-                          height: 200,
-                          padding: EdgeInsets.only(top: 150),
-                          child: new Text("Together We Stand"),
-                        ),
-                      )
-                    ],
+                          //Contains Citizen logo
+                          Center(
+                            child: Container(
+                              height: 200,
+                              padding: EdgeInsets.only(top: 150),
+                              child: new Text("Together We Stand"),
+                            ),
+                          )
+                        ],
+                      ),
+                    ]),
                   ),
-                ),
-              ),
-            )
+                ))
           ],
         ),
       ),

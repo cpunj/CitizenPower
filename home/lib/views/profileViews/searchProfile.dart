@@ -52,6 +52,7 @@ class _SearchScreenState extends State<SearchView> {
                 uID: searchSnapshot.documents[index].documentID,
               );
             })
+
         : Container();
   }
 
