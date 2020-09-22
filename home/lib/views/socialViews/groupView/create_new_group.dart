@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:citizenpower/controllers/group_controller.dart';
 import 'package:citizenpower/navigator/navigator_pushes.dart';
 
-import 'package:citizenpower/models/group.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';

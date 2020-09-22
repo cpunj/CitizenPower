@@ -1,8 +1,6 @@
 import 'package:citizenpower/controllers/electorateControllers/electorate_controller.dart';
-import 'package:citizenpower/databaseServices/database.dart';
 import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/genericWidgets/generic_layouts.dart';
 import 'package:citizenpower/navigator/navigator_pushes.dart';
-import 'package:citizenpower/views/electorateViews/leaders_profile_view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -24,7 +22,6 @@ class _ElectorateSelectorViewState extends State<ElectorateSelectorView> {
   final List<String> _states = ['ACT', 'NSW', 'NT', 'QLD', 'TAS', 'VIC', 'WA'];
 
   String _selectedState;
-  bool _stateSelected;
   int currentIndex = 4;
   String stateID;
 
@@ -139,7 +136,6 @@ class _ElectorateSelectorViewState extends State<ElectorateSelectorView> {
               onChanged: (newValue) {
                 setState(() {
                   _selectedState = newValue;
-                  _stateSelected = true;
                 });
               },
               items: _states.map((location) {

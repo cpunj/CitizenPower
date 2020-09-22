@@ -1,7 +1,5 @@
-import 'package:citizenpower/navigator/navigator_pushes.dart';
 import 'package:citizenpower/views/profileViews/profile_list.dart';
 import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/genericWidgets/generic_layouts.dart';
-import 'package:citizenpower/views/profileViews/profile_list.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

@@ -1,7 +1,6 @@
 import 'package:citizenpower/databaseServices/database.dart';
 import 'package:citizenpower/models/electorateModels/electorate_model.dart';
 import 'package:citizenpower/navigator/navigator_pushes.dart';
-import 'package:citizenpower/views/electorateViews/electorate.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

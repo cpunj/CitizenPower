@@ -7,9 +7,7 @@ import 'package:flutter/material.dart';
 
 import '../../constants.dart';
 import '../../databaseServices/database.dart';
-import '../../databaseServices/helper_functions.dart';
 import '../../text_styles.dart';
-import '../createNewPostView/create_post_view.dart';
 
 //Handles profile downloading methods and storage
 ProfileController profileController = ProfileController();
@@ -26,7 +24,7 @@ class ProfileView extends StatefulWidget {
   _MyProfilePageState createState() => _MyProfilePageState();
 }
 
-FollowUserAndCreateFollowersList(BuildContext context,
+followUserAndCreateFollowersList(BuildContext context,
     {BuildContext text, String myUserName}) {
   //if username isn't equal to an empty string
 
@@ -129,7 +127,7 @@ class _MyProfilePageState extends State<ProfileView> {
                             //    style: TextStyle(fontSize: 14)
                             onPressed: () {
                               print(widget.user);
-                              FollowUserAndCreateFollowersList(context,
+                              followUserAndCreateFollowersList(context,
                                   myUserName: widget.user.email);
                               setState(() {
                                 follow = !following;

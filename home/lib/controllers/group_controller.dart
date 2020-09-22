@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:citizenpower/databaseServices/database.dart';
 import 'package:citizenpower/models/group.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class GroupController {
   ProfileDatabaseMethods profileDatabaseMethods = ProfileDatabaseMethods();

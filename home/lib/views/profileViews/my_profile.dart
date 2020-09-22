@@ -7,11 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:time_formatter/time_formatter.dart';
 import '../../constants.dart';
 import '../../text_styles.dart';
-import '../createNewPostView/create_post_view.dart';
-import '../postViews/commentViews/comments_page_2.dart';
 
-import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/postViews/commentViews/comments_page.dart';
-import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/models/user.dart';
 
 //Handles profile downloading methods and storage
 ProfileController profileController = ProfileController();

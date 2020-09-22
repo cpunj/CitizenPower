@@ -4,8 +4,6 @@ import 'package:citizenpower/models/post.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../databaseServices/database.dart';
-import '../databaseServices/database.dart';
-import 'profile_controller.dart';
 
 class PostController {
   //Stores a post for upload or used for view

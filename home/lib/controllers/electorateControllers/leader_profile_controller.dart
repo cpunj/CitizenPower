@@ -1,6 +1,5 @@
 import 'package:citizenpower/databaseServices/database.dart';
 import 'package:citizenpower/models/electorateModels/leader.dart';
-import 'package:citizenpower/views/profileViews/profile_page_edit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 //Controls the downloading of the leader profile when a
