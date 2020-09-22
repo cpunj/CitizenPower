@@ -1,11 +1,11 @@
-import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/socialMenuView/social_menu.dart';
 import 'package:citizenpower/constants.dart';
 import 'package:citizenpower/databaseServices/constants.dart';
 import 'package:citizenpower/databaseServices/database.dart';
 import 'package:citizenpower/databaseServices/helper_functions.dart';
+import 'package:citizenpower/views/socialViews/messageViews/search.dart';
+import 'package:citizenpower/views/socialViews/socialMenuView/social_menu.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:citizenpower/views/messageViews/search.dart';
 import 'conversation_screen.dart';
 
 class HomeScreen extends StatefulWidget {

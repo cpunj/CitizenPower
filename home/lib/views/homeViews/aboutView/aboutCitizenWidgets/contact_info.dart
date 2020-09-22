@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../../text_styles.dart';
-import '../../../constants.dart';
+import '../../../../text_styles.dart';
 import 'donate_page.dart';
 
 class ContactInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
@@ -17,7 +15,7 @@ class ContactInfo extends StatelessWidget {
             style: headerStyle1(),
           ),
           Text(
-                "Address: 4 Battery Square, Battery Point, Tasmania 7004"
+            "Address: 4 Battery Square, Battery Point, Tasmania 7004"
             "                                                   "
             "Contact: 0450546136"
             "                        "
@@ -39,10 +37,10 @@ class ContactInfo extends StatelessWidget {
               borderRadius: BorderRadius.circular(40),
             ),
             onPressed: () {
-             Navigator.push(
-               context,
-               MaterialPageRoute(builder: (context) => new Donate()),
-             );
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => new Donate()),
+              );
             }, //to donate page
             child: Text(
               "Donate",
@@ -51,9 +49,7 @@ class ContactInfo extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
               ),
-
             ),
-
           ),
           SizedBox(
             height: 40,

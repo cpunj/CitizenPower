@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../text_styles.dart';
+import '../../../../text_styles.dart';
 import 'contact_info.dart';
 
 class CitizenInfo extends StatelessWidget {
@@ -12,7 +12,7 @@ class CitizenInfo extends StatelessWidget {
         children: <Widget>[
           new Container(
             constraints: new BoxConstraints.expand(
-              height:192,
+              height: 192,
             ),
             decoration: new BoxDecoration(
               image: new DecorationImage(
@@ -41,7 +41,7 @@ class CitizenInfo extends StatelessWidget {
           ),
           new Container(
             constraints: new BoxConstraints.expand(
-              height:192,
+              height: 192,
             ),
             decoration: new BoxDecoration(
               image: new DecorationImage(
@@ -67,7 +67,7 @@ class CitizenInfo extends StatelessWidget {
           ),
           new Container(
             constraints: new BoxConstraints.expand(
-              height:192,
+              height: 192,
             ),
             decoration: new BoxDecoration(
               image: new DecorationImage(
@@ -90,7 +90,7 @@ class CitizenInfo extends StatelessWidget {
           ),
           new Container(
             constraints: new BoxConstraints.expand(
-              height:160,
+              height: 160,
             ),
             decoration: new BoxDecoration(
               image: new DecorationImage(

@@ -1,23 +1,23 @@
 import 'package:citizenpower/views/electorateViews/electorate_profile_details.dart';
 //import 'package:citizenpower/Views/ElectorateViews/electorate_view.dart';
 import 'package:citizenpower/views/electorateViews/image_view.dart';
-import 'package:citizenpower/views/messageViews/home_screen.dart';
+import 'package:citizenpower/views/homeViews/homeDashboardView/app_home.dart';
 import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/createNewPostView/create_post_view.dart';
 import 'package:citizenpower/views/profileViews/my_profile.dart';
 import 'package:citizenpower/views/profileViews/profile_page.dart';
 import 'package:citizenpower/views/profileViews/profile_page_edit.dart';
-import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/socialMenuView/social_menu.dart';
 import 'package:citizenpower/models/profile.dart';
 import 'package:citizenpower/views/electorateViews/electorate.dart';
-import 'package:citizenpower/views/groupView/group_page.dart';
-import 'package:citizenpower/views/eventView/create_new_event.dart';
-import 'package:citizenpower/views/eventView/event_page.dart';
-import 'package:citizenpower/views/eventView/event_view.dart';
 import 'package:citizenpower/views/profileViews/Profile.dart';
-import 'package:citizenpower/views/groupView/create_new_group.dart';
-import 'package:citizenpower/views/groupView/group_view.dart';
 import 'package:citizenpower/views/profileViews/profile_list.dart';
 import 'package:citizenpower/views/profileViews/search_profile.dart';
+import 'package:citizenpower/views/socialViews/eventView/create_new_event.dart';
+import 'package:citizenpower/views/socialViews/eventView/event_view.dart';
+import 'package:citizenpower/views/socialViews/groupView/create_new_group.dart';
+import 'package:citizenpower/views/socialViews/groupView/group_page.dart';
+import 'package:citizenpower/views/socialViews/groupView/group_view.dart';
+import 'package:citizenpower/views/socialViews/messageViews/home_screen.dart';
+import 'package:citizenpower/views/socialViews/socialMenuView/social_menu.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,7 +27,6 @@ import '../views/postViews/commentViews/new_comments_page.dart';
 import '../views/electorateViews/electorate_view.dart';
 
 import '../views/settingsView/settings.dart';
-import '../views/homeDashboardView/app_home.dart';
 
 //pushReplacement used for views accessed from bottom nav bar
 

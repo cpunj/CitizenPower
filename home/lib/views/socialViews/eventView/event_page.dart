@@ -1,8 +1,8 @@
-import 'package:citizenpower/views/groupView/picture.dart';
+import 'package:citizenpower/views/socialViews/groupView/picture.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
+import '../../../constants.dart';
 
 class EventPage extends StatefulWidget {
   final FirebaseUser user;

@@ -3,14 +3,13 @@ import 'dart:ui';
 import 'package:citizenpower/controllers/group_controller.dart';
 import 'package:citizenpower/navigator/navigator_pushes.dart';
 
-import '../../models/group.dart';
 import 'package:citizenpower/models/group.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../../constants.dart';
-import '../profileViews/profile_page_edit.dart';
+
+import '../../../constants.dart';
 
 GroupController groupController = new GroupController();
 

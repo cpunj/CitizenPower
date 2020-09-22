@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import '../../../text_styles.dart';
+
+import '../../../../text_styles.dart';
 
 TextStyle questionStyle() {
   // Defines the FAQ Question Header style

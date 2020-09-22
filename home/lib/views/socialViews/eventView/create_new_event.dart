@@ -4,7 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:citizenpower/models/event.dart';
-import '../../constants.dart';
+
+import '../../../constants.dart';
 
 Event event = Event();
 EventController eventController = EventController();

@@ -1,11 +1,10 @@
-import 'package:citizenpower/views/groupView/picture.dart';
 import 'package:citizenpower/constants.dart';
+import 'package:citizenpower/views/homeViews/homeDashboardView/app_home.dart';
+import 'package:citizenpower/views/postViews/commentViews/comments_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import '../homeDashboardView/app_home.dart';
-import '../postViews/commentViews/comments_page.dart';
 
 class GroupPage extends StatefulWidget {
   const GroupPage(

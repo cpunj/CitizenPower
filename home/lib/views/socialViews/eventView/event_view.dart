@@ -3,8 +3,6 @@ import 'package:citizenpower/controllers/event_controller.dart';
 import 'package:citizenpower/controllers/profile_controller.dart';
 import 'package:citizenpower/models/event.dart';
 import 'package:citizenpower/navigator/navigator_pushes.dart';
-import 'package:citizenpower/views/eventView/create_new_event.dart';
-import 'package:citizenpower/views/eventView/finding_events.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

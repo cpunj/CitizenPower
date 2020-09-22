@@ -1,10 +1,10 @@
 import 'package:citizenpower/main.dart';
 import 'package:citizenpower/navigator/navigator_pushes.dart';
+import 'package:citizenpower/views/homeViews/homeDashboardView/app_home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../homeDashboardView/app_home.dart';
 import 'commentViews/comments_page.dart';
 
 //Generic Post widget to be used in all dashboard list building

@@ -1,8 +1,8 @@
-import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/homeDashboardView/app_home.dart';
 import 'package:citizenpower/databaseServices/database.dart';
 import 'package:citizenpower/databaseServices/helper_functions.dart';
 import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/loginViews/forgot_password.dart';
 import 'package:citizenpower/text_styles.dart';
+import 'package:citizenpower/views/homeViews/homeDashboardView/app_home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'registration.dart';

@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../../text_styles.dart';
+
+import '../../../../text_styles.dart';
 
 class Donate extends StatefulWidget {
   @override
