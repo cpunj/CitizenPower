@@ -8,7 +8,6 @@ import 'package:time_formatter/time_formatter.dart';
 import '../../constants.dart';
 import '../../text_styles.dart';
 
-
 //Handles profile downloading methods and storage
 ProfileController profileController = ProfileController();
 
