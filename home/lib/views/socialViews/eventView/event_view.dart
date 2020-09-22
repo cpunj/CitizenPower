@@ -27,97 +27,89 @@ class _EventViewState extends State<EventView> {
         setState(() {});
       });
     }*/
-    return eventController.eventSnapshot != null
-        ? Scaffold(
-            appBar: AppBar(
-              title: Text(" All Events" "              Create New"),
-              elevation: 1.1,
-              actions: <Widget>[
-                Container(
-                  color: brightOrange,
-                  child: CircleAvatar(
-                    backgroundColor: brightOrange,
-                    child: IconButton(
-                        icon: Icon(Icons.add),
-                        onPressed: () {
-                          createEvent(context, widget.user);
-                        }),
-                  ),
-                ),
-              ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(" All Events" "              Create New"),
+        elevation: 1.1,
+        actions: <Widget>[
+          Container(
+            color: brightOrange,
+            child: CircleAvatar(
+              backgroundColor: brightOrange,
+              child: IconButton(
+                  icon: Icon(Icons.add),
+                  onPressed: () {
+                    createEvent(context, widget.user);
+                  }),
             ),
-            body: Column(
-              children: <Widget>[
-                Container(
-                  child: ListTile(
-                    title: Text("abc"),
-                    subtitle: Text(""),
-                    onTap: () {
-                      Navigator.of(context).pushNamed("/j");
-                    },
-                    trailing: IconButton(
-                      icon: Icon(Icons.keyboard_arrow_down),
-                      onPressed: () {},
-                    ),
-                  ),
-                ),
-                Divider(
-                  height: 15,
-                  thickness: 1,
-                ),
-                Container(
-                  child: ListTile(
-                    title: Text("Citizen Night"),
-                    subtitle: Text("Location: 10 Elizabeth st , Hobart CBD "
-                        "                                                                   "
-                        "  1 day left  "),
-                    onTap: () {
-                      Navigator.of(context).pushNamed("/j");
-                    },
-                    trailing: IconButton(
-                      icon: Icon(Icons.keyboard_arrow_down),
-                      onPressed: () {},
-                    ),
-                  ),
-                ),
-                Divider(
-                  height: 15,
-                  thickness: 1,
-                ),
-                Container(
-                  child: ListTile(
-                    title: Text("UTAS Open Day"),
-                    subtitle: Text(
-                        "Location: University of Tasmania, Sandy bay "
-                        "                                                                  "
-                        "  1 day left  "),
-                    onTap: () {
-                      Navigator.of(context).pushNamed("/j");
-                    },
-                    trailing: IconButton(
-                      icon: Icon(Icons.keyboard_arrow_down),
-                      onPressed: () {},
-                    ),
-                  ),
-                ),
-                Divider(
-                  height: 15,
-                  thickness: 1,
-                ),
-              ],
-            ),
-            floatingActionButton: FloatingActionButton(
-              child: Icon(Icons.location_searching),
-              onPressed: () {
-                Navigator.pushNamed(context, "/m");
+          ),
+        ],
+      ),
+      body: Column(
+        children: <Widget>[
+          Container(
+            child: ListTile(
+              title: Text("abc"),
+              subtitle: Text(""),
+              onTap: () {
+                Navigator.of(context).pushNamed("/j");
               },
+              trailing: IconButton(
+                icon: Icon(Icons.keyboard_arrow_down),
+                onPressed: () {},
+              ),
             ),
-          )
-        : Container(
-            color: Colors.black,
-            child: Center(
-              child: CircularProgressIndicator(),
+          ),
+          Divider(
+            height: 15,
+            thickness: 1,
+          ),
+          Container(
+            child: ListTile(
+              title: Text("Citizen Night"),
+              subtitle: Text("Location: 10 Elizabeth st , Hobart CBD "
+                  "                                                                   "
+                  "  1 day left  "),
+              onTap: () {
+                Navigator.of(context).pushNamed("/j");
+              },
+              trailing: IconButton(
+                icon: Icon(Icons.keyboard_arrow_down),
+                onPressed: () {},
+              ),
             ),
-          );
+          ),
+          Divider(
+            height: 15,
+            thickness: 1,
+          ),
+          Container(
+            child: ListTile(
+              title: Text("UTAS Open Day"),
+              subtitle: Text("Location: University of Tasmania, Sandy bay "
+                  "                                                                  "
+                  "  1 day left  "),
+              onTap: () {
+                Navigator.of(context).pushNamed("/j");
+              },
+              trailing: IconButton(
+                icon: Icon(Icons.keyboard_arrow_down),
+                onPressed: () {},
+              ),
+            ),
+          ),
+          Divider(
+            height: 15,
+            thickness: 1,
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.location_searching),
+        onPressed: () {
+          Navigator.pushNamed(context, "/m");
+        },
+      ),
+    );
   }
 }
