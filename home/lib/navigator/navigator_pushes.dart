@@ -26,7 +26,6 @@ import 'package:citizenpower/views/electorateViews/electorate_selector_view.dart
 import '../views/postViews/commentViews/new_comments_page.dart';
 import '../views/electorateViews/leaders_profile_view.dart';
 
-
 //pushReplacement used for views accessed from bottom nav bar
 
 goHome(BuildContext context, FirebaseUser user) {
