@@ -22,6 +22,7 @@ class _RegistrationState extends State<Registration> {
   final mobileController = TextEditingController();
   final passController = TextEditingController();
 
+  //Function needs to be moved to login_controller.dart
   Future<void> registerUser() async {
     final formState = _formKey.currentState;
     if (formState.validate()) {

@@ -1,6 +1,7 @@
 //import 'package:citizenpower/Views/ElectorateViews/leaders_profile_view.dart';
 import 'package:citizenpower/views/electorateViews/image_view.dart';
 import 'package:citizenpower/views/homeViews/homeDashboardView/app_home.dart';
+import 'package:citizenpower/views/homeViews/settingsView/settings.dart';
 import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/createNewPostView/create_post_view.dart';
 import 'package:citizenpower/views/profileViews/my_profile.dart';
 import 'package:citizenpower/views/profileViews/profile_page.dart';
@@ -25,7 +26,6 @@ import 'package:citizenpower/views/electorateViews/electorate_selector_view.dart
 import '../views/postViews/commentViews/new_comments_page.dart';
 import '../views/electorateViews/leaders_profile_view.dart';
 
-import '../views/settingsView/settings.dart';
 
 //pushReplacement used for views accessed from bottom nav bar
 
