@@ -1,3 +1,4 @@
+import 'package:citizenpower/controllers/login_controller.dart';
 import 'package:citizenpower/databaseServices/database.dart';
 import 'package:citizenpower/databaseServices/helper_functions.dart';
 import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/loginViews/forgot_password.dart';
@@ -9,7 +10,7 @@ import 'registration.dart';
 import '../../constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-//Adding this to master branch #1
+LoginController loginController = LoginController();
 
 class LoginPage extends StatefulWidget {
   @override
@@ -18,12 +19,44 @@ class LoginPage extends StatefulWidget {
 
 class LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  //Stores the email data the user enters for login
   final emailController = TextEditingController();
+  //Stores the password data the user enters for login
   final passController = TextEditingController();
+  //Contains all database functions
   ProfileDatabaseMethods databaseMethods = new ProfileDatabaseMethods();
+  //Intended store logging user's snapshot and use to store dat in Shared Preferences
   QuerySnapshot userSnapshot;
+
   @override
   Widget build(BuildContext context) {
+    Future<void> signIn() async {
+      final formState = _formKey.currentState;
+      if (formState.validate()) {
+        HelperFunctions.saveUserEmailSharedPreference(emailController.text);
+
+        formState.save();
+        try {
+          databaseMethods.getUserbyUserEmail(emailController.text).then((val) {
+            userSnapshot = val;
+            HelperFunctions.saveUserNameSharedPreference(
+                userSnapshot.documents[0].data["name"]);
+          });
+          AuthResult result = await FirebaseAuth.instance
+              .signInWithEmailAndPassword(
+                  email: emailController.text, password: passController.text);
+          FirebaseUser user = result.user;
+          HelperFunctions.saveUserLoggedInSharedPreference(true);
+
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => AppHome(user: user)));
+          HelperFunctions.saveUserEmailSharedPreference(user.email);
+        } catch (e) {
+          print(e.message);
+        }
+      }
+    }
+
     //Start of widget tree
     return new Scaffold(
       backgroundColor: Colors.white,
@@ -35,7 +68,7 @@ class LoginPageState extends State<LoginPage> {
         //Move around title as wanted, I think this looks best - Jack
         title: Center(
           child: Text(
-            "Citizen Power",
+            "ElectNow",
             style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
           ),
         ),
@@ -132,7 +165,8 @@ class LoginPageState extends State<LoginPage> {
                             textColor: Colors.white,
                             child: new Text("LOGIN"),
                             onPressed: () {
-                              signIn();
+                              loginController.signIn(context, _formKey,
+                                  emailController.text, passController.text);
                             }),
                       ),
                     ),
@@ -180,32 +214,5 @@ class LoginPageState extends State<LoginPage> {
         ]),
       ),
     );
-  }
-
-  Future<void> signIn() async {
-    final formState = _formKey.currentState;
-    if (formState.validate()) {
-      HelperFunctions.saveUserEmailSharedPreference(emailController.text);
-
-      formState.save();
-      try {
-        databaseMethods.getUserbyUserEmail(emailController.text).then((val) {
-          userSnapshot = val;
-          HelperFunctions.saveUserNameSharedPreference(
-              userSnapshot.documents[0].data["name"]);
-        });
-        AuthResult result = await FirebaseAuth.instance
-            .signInWithEmailAndPassword(
-                email: emailController.text, password: passController.text);
-        FirebaseUser user = result.user;
-        HelperFunctions.saveUserLoggedInSharedPreference(true);
-
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => AppHome(user: user)));
-        HelperFunctions.saveUserEmailSharedPreference(user.email);
-      } catch (e) {
-        print(e.message);
-      }
-    }
   }
 }
