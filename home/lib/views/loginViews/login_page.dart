@@ -3,6 +3,7 @@ import 'package:citizenpower/databaseServices/database.dart';
 import 'package:citizenpower/databaseServices/helper_functions.dart';
 import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/loginViews/forgot_password.dart';
 import 'package:citizenpower/text_styles.dart';
+import 'package:citizenpower/views/genericWidgets/generic_layouts.dart';
 import 'package:citizenpower/views/homeViews/homeDashboardView/app_home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -30,49 +31,12 @@ class LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    Future<void> signIn() async {
-      final formState = _formKey.currentState;
-      if (formState.validate()) {
-        HelperFunctions.saveUserEmailSharedPreference(emailController.text);
-
-        formState.save();
-        try {
-          databaseMethods.getUserbyUserEmail(emailController.text).then((val) {
-            userSnapshot = val;
-            HelperFunctions.saveUserNameSharedPreference(
-                userSnapshot.documents[0].data["name"]);
-          });
-          AuthResult result = await FirebaseAuth.instance
-              .signInWithEmailAndPassword(
-                  email: emailController.text, password: passController.text);
-          FirebaseUser user = result.user;
-          HelperFunctions.saveUserLoggedInSharedPreference(true);
-
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => AppHome(user: user)));
-          HelperFunctions.saveUserEmailSharedPreference(user.email);
-        } catch (e) {
-          print(e.message);
-        }
-      }
-    }
-
     //Start of widget tree
     return new Scaffold(
       backgroundColor: Colors.white,
       //Prevents pixels error
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        backgroundColor: brightOrange,
-        iconTheme: IconThemeData(color: Colors.white),
-        //Move around title as wanted, I think this looks best - Jack
-        title: Center(
-          child: Text(
-            "ElectNow",
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-          ),
-        ),
-      ),
+      appBar: topAppBarLayout("ElectNow"),
       //Q: Any particular reason for using a stack rather than a column here? -Jack
       body: SafeArea(
         child: new Stack(fit: StackFit.expand, children: <Widget>[
@@ -197,7 +161,6 @@ class LoginPageState extends State<LoginPage> {
                             }),
                       ),
                     ),
-
                     //Contains Citizen logo
                     Center(
                       child: Container(
