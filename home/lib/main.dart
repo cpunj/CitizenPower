@@ -15,9 +15,8 @@ import 'package:citizenpower/views/socialViews/groupView/group_view.dart';
 import 'package:flutter/material.dart';
 import 'views/postViews/detail.dart';
 import 'views/electorateViews/contact_view.dart';
-import 'views/electorateViews/electorate_profile_details.dart';
 import 'views/electorateViews/electorate_selector_view.dart';
-import 'views/electorateViews/electorate_view.dart';
+import 'views/electorateViews/leaders_profile_view.dart';
 import 'constants.dart';
 import 'models/user.dart';
 //Testing Github: Hello I am changing this comment
@@ -36,9 +35,6 @@ class MyApp extends StatelessWidget {
         //Secondary method for pushing between State Widgets
         routes: <String, WidgetBuilder>{
           "/a": (BuildContext context) => new AboutMe(),
-          "/b": (BuildContext context) => new ElectorateDetails(
-                user: null,
-              ),
           "/e": (BuildContext context) => new AboutCitizenInfo(),
           "/c": (BuildContext context) => new HelpView(),
           "/x": (BuildContext context) => new AppHome(user: null),

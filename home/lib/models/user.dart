@@ -1,3 +1,6 @@
+
+///Not used in any implementation currently
+
 class User {
   String uid;
   String email;

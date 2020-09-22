@@ -1,5 +1,4 @@
-import 'package:citizenpower/views/electorateViews/electorate_profile_details.dart';
-//import 'package:citizenpower/Views/ElectorateViews/electorate_view.dart';
+//import 'package:citizenpower/Views/ElectorateViews/leaders_profile_view.dart';
 import 'package:citizenpower/views/electorateViews/image_view.dart';
 import 'package:citizenpower/views/homeViews/homeDashboardView/app_home.dart';
 import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/createNewPostView/create_post_view.dart';
@@ -24,7 +23,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:citizenpower/views/electorateViews/electorate_selector_view.dart';
 import '../views/postViews/commentViews/new_comments_page.dart';
-import '../views/electorateViews/electorate_view.dart';
+import '../views/electorateViews/leaders_profile_view.dart';
 
 import '../views/settingsView/settings.dart';
 
@@ -95,13 +94,6 @@ goSettings(BuildContext context, FirebaseUser user) {
   Navigator.push(
     context,
     MaterialPageRoute(builder: (context) => Setting(user: user)),
-  );
-}
-
-goElectorateDetails(BuildContext context, FirebaseUser user) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => ElectorateDetails(user: user)),
   );
 }
 

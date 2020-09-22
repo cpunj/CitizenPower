@@ -139,10 +139,6 @@ Widget leaderDrawer(BuildContext context, FirebaseUser user) {
           title: new Text("About me "),
           onTap: () => goContactDetails(context, user),
         ),
-        new ListTile(
-          title: new Text("Electorate details"),
-          onTap: () => goElectorateDetails(context, user),
-        ),
       ],
     ),
   );

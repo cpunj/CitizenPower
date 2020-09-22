@@ -33,3 +33,7 @@ class ProfileOptions {
     Settings,
   ];
 }
+
+class Constants {
+  static String myName = "";
+}

@@ -6,7 +6,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';
-import '../../databaseServices/constants.dart';
 import '../../databaseServices/database.dart';
 import '../../databaseServices/helper_functions.dart';
 import '../../text_styles.dart';

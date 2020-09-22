@@ -1,5 +1,4 @@
 import 'package:citizenpower/constants.dart';
-import 'package:citizenpower/databaseServices/constants.dart';
 import 'package:citizenpower/databaseServices/database.dart';
 import 'package:citizenpower/databaseServices/helper_functions.dart';
 import 'package:citizenpower/views/socialViews/messageViews/search.dart';
