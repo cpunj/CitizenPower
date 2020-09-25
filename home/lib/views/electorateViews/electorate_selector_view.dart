@@ -1,5 +1,5 @@
 import 'package:citizenpower/controllers/electorateControllers/electorate_controller.dart';
-import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/genericWidgets/generic_layouts.dart';
+import 'package:citizenpower/views/genericWidgets/generic_layouts.dart';
 import 'package:citizenpower/navigator/navigator_pushes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';

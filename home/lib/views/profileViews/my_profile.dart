@@ -1,7 +1,7 @@
 import 'package:citizenpower/controllers/profile_controller.dart';
-import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/genericWidgets/generic_layouts.dart';
+import 'package:citizenpower/views/genericWidgets/generic_layouts.dart';
 import 'package:citizenpower/navigator/navigator_pushes.dart';
-import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/postViews/post_widget.dart';
+import 'package:citizenpower/views/postViews/post_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:time_formatter/time_formatter.dart';

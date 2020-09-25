@@ -2,7 +2,7 @@
 import 'package:citizenpower/views/electorateViews/image_view.dart';
 import 'package:citizenpower/views/homeViews/homeDashboardView/app_home.dart';
 import 'package:citizenpower/views/homeViews/settingsView/settings.dart';
-import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/createNewPostView/create_post_view.dart';
+import 'package:citizenpower/views/createNewPostView/create_post_view.dart';
 import 'package:citizenpower/views/profileViews/my_profile.dart';
 import 'package:citizenpower/views/profileViews/profile_page.dart';
 import 'package:citizenpower/views/profileViews/profile_page_edit.dart';

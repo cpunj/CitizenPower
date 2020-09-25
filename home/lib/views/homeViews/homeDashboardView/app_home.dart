@@ -1,7 +1,7 @@
 import 'package:citizenpower/views/genericWidgets/generic_layouts.dart';
 
 import '../../../constants.dart';
-import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/postViews/commentViews/new_comments_page.dart';
+import 'package:citizenpower/views/postViews/commentViews/new_comments_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';

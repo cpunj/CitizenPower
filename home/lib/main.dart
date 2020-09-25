@@ -1,4 +1,4 @@
-import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/loginViews/login_page.dart';
+import 'package:citizenpower/views/loginViews/login_page.dart';
 import 'package:citizenpower/views/homeViews/aboutView/aboutCitizenWidgets/donate_page.dart';
 import 'package:citizenpower/views/homeViews/aboutView/about_citizen.dart';
 import 'package:citizenpower/views/homeViews/helpView/help_page.dart';
@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     //All Widgets are contained within a 'Material App'P
     return new MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: new LoginPage(),
         //Secondary method for pushing between State Widgets
         ///These methods will need to be changed to navigator_pushes.dart method

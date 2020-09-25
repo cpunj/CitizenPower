@@ -1,6 +1,6 @@
 import 'package:citizenpower/databaseServices/database.dart';
 import '../../../constants.dart';
-import 'file:///C:/Users/jackl/AndroidStudioProjects/CitizenPower/home/lib/views/genericWidgets/generic_layouts.dart';
+import 'package:citizenpower/views/genericWidgets/generic_layouts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
