@@ -54,7 +54,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 20, right: 20),
+
                   child: RaisedButton(
+                    
                     onPressed: () {
                       if (_formKey.currentState.validate()) {
                         FirebaseAuth.instance

@@ -127,6 +127,7 @@ class LoginPageState extends State<LoginPage> {
                         color: darkGold,
                         child: new MaterialButton(
                             textColor: Colors.white,
+                            minWidth: 120,
                             child: new Text("LOGIN"),
                             onPressed: () {
                               loginController.signIn(context, _formKey,
@@ -144,7 +145,7 @@ class LoginPageState extends State<LoginPage> {
                         color: darkGold,
                         child: new MaterialButton(
                             textColor: Colors.white,
-                            minWidth: 150,
+                            minWidth: 120,
                             materialTapTargetSize: MaterialTapTargetSize.padded,
                             child: new Text("REGISTER"),
                             onPressed: () {
