@@ -206,22 +206,25 @@ Widget bioLayout(String info) {
 
 Widget bioLayout2(String info, bool expanded) {
   return Card(
-    elevation: 2.5,
+    elevation: 2,
     margin: EdgeInsets.symmetric(vertical: 3.0, horizontal: 20.0),
-    child: Column(
-      children: <Widget>[
-        Text(
-          'Bio:',
-        ),
-        Padding(padding: EdgeInsets.only(top: 0)),
-        info != null
-            ? Text(
-                '$info',
-                overflow: TextOverflow.ellipsis,
-                maxLines: expanded ? null : 100,
-              )
-            : Container(),
-      ],
+    child: Container(
+      padding: EdgeInsets.symmetric(vertical: 3, horizontal: 5),
+      child: Column(
+        children: <Widget>[
+          Text(
+            'Bio:',
+          ),
+          Padding(padding: EdgeInsets.only(top: 0)),
+          info != null
+              ? Text(
+                  '$info',
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: expanded ? null : 100,
+                )
+              : Container(),
+        ],
+      ),
     ),
   );
 }

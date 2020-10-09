@@ -1,6 +1,7 @@
 import 'package:citizenpower/constants.dart';
 import 'package:citizenpower/controllers/post_controller.dart';
 import 'package:citizenpower/controllers/profile_controller.dart';
+import 'package:citizenpower/text_styles.dart';
 import 'package:citizenpower/views/genericWidgets/generic_layouts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,6 +11,8 @@ import 'package:image_picker/image_picker.dart';
 //Stores the data the user is uploading in their post
 PostController postController = PostController();
 ProfileController profileController = ProfileController();
+
+bool postUploaded = false;
 
 class NewPost extends StatefulWidget {
   final FirebaseUser user;
@@ -22,6 +25,7 @@ class NewPost extends StatefulWidget {
 class _NewPostState extends State<NewPost> {
   //GIve the postController the text the user has entered
   final postTextController = TextEditingController();
+
 
   int currentIndex = 2;
 
@@ -86,25 +90,26 @@ class _NewPostState extends State<NewPost> {
         title: Text("Create New Post"),
         elevation: 1.0,
         actions: <Widget>[
-          CircleAvatar(
-              backgroundColor: Colors.white30,
-              child: IconButton(
-                //When user has finished post creating, pressing this uploads the post to their profile
-                //in Firebase
-                onPressed: () {
-                  postController.uploadPost(
-                      context,
-                      postTextController.text,
-                      widget.user.uid,
-                      profileController.getName(),
-                      profileController.getPic());
-                },
-                icon: Icon(
-                  Icons.send,
-                  size: 22,
-                  color: Color.fromRGBO(195, 195, 195, 1),
-                ),
-              ))
+          IconButton(
+            //When user has finished post creating, pressing this uploads the post to their profile
+            //in Firebase
+            onPressed: () {
+              postController.uploadPost(
+                  context,
+                  postTextController.text,
+                  widget.user.uid,
+                  profileController.getName(),
+                  profileController.getPic());
+              setState(() {
+                postUploaded = true;
+              });
+            },
+            icon: Icon(
+              Icons.send,
+              size: 30,
+              color: Colors.white,
+            ),
+          )
         ],
       ),
       body: Container(
@@ -127,7 +132,7 @@ class _NewPostState extends State<NewPost> {
                 maxLines: maxLines,
                 minLines: 5,
                 decoration:
-                    InputDecoration(hintText: "whats on your mind today?"),
+                    InputDecoration(hintText: "What's on your mind today?"),
                 controller: postTextController,
               ),
               //Has the user given an image? Show it in the new post view
@@ -181,6 +186,10 @@ class _NewPostState extends State<NewPost> {
                       label: Text("Location")),
                 ],
               ),
+              postUploaded == true?
+              Text("Post uploaded!", style: infoTextStyle1(),):
+                  Container(),
+              SizedBox(height: 10,)
             ],
           ),
         ),
