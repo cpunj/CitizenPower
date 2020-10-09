@@ -3,8 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class OtherProfileScreen extends StatefulWidget {
-  const OtherProfileScreen({Key key, @required this.user}) : super(key: key);
+  const OtherProfileScreen({Key key, @required this.user, this.selectedUserID}) : super(key: key);
   final FirebaseUser user;
+  final String selectedUserID;
 
   @override
   State createState() => new OtherProfileScreenState();

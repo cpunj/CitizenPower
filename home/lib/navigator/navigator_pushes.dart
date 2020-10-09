@@ -4,7 +4,7 @@ import 'package:citizenpower/views/homeViews/homeDashboardView/app_home.dart';
 import 'package:citizenpower/views/homeViews/settingsView/settings.dart';
 import 'package:citizenpower/views/createNewPostView/create_post_view.dart';
 import 'package:citizenpower/views/profileViews/my_profile.dart';
-import 'package:citizenpower/views/profileViews/profile_page.dart';
+import 'package:citizenpower/views/profileViews/other_profile.dart';
 import 'package:citizenpower/views/profileViews/profile_page_edit.dart';
 import 'package:citizenpower/models/profile.dart';
 import 'package:citizenpower/views/electorateViews/electorate.dart';
@@ -36,10 +36,10 @@ goHome(BuildContext context, FirebaseUser user) {
       ));
 }
 
-goOtherProfile(BuildContext context, FirebaseUser user) {
+goOtherProfile(BuildContext context, FirebaseUser user, String, selectedUserID) {
   Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => OtherProfileScreen(user: user)),
+    MaterialPageRoute(builder: (context) => OtherProfileScreen(user: user, selectedUserID: selectedUserID,)),
   );
 }
 

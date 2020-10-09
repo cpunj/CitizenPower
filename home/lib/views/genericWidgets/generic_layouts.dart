@@ -85,7 +85,7 @@ Widget topProfileLayout(BuildContext context, FirebaseUser user) {
               ),
               color: darkGold,
               onPressed: () {
-                goOtherProfile(context, user);
+               // goOtherProfile(context, user);
               },
             ),
             SizedBox(

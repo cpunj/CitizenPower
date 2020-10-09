@@ -27,7 +27,7 @@ class _AppHomeState extends State<AppHome> {
               currentAccountPicture: new CircleAvatar(
                 backgroundColor: darkGold,
                 child: new Text(
-                  "ElectNow",
+                  "Electnow",
                   style: TextStyle(color: Colors.black87),
                 ),
               ),
@@ -35,7 +35,7 @@ class _AppHomeState extends State<AppHome> {
 
             //1st ListTile() navigates to About Citizen view
             new ListTile(
-              title: new Text("About Citzen "),
+              title: new Text("About Citizen "),
               onTap: () => Navigator.of(context).pushNamed("/e"),
             ),
             //2nd ListTile() navigates to Settings view

@@ -146,7 +146,7 @@ class SearchTile extends StatelessWidget {
           Spacer(),
           GestureDetector(
               onTap: () {
-                goProfileView(context, user, uID);
+                goOtherProfile(context, user, String, uID);
               },
               child: Container(
                 decoration: BoxDecoration(

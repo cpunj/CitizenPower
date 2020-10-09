@@ -35,7 +35,7 @@ class AppState extends State<ProfileList> {
       //Trying to push to the edit profile page, user class not transferring properly
       body: GestureDetector(
         onTap: () {
-          goOtherProfile(context, widget.user);
+         // goOtherProfile(context, widget.user);
         },
         child: new Container(
           child: new ListView.builder(
