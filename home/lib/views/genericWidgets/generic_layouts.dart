@@ -85,7 +85,7 @@ Widget topProfileLayout(BuildContext context, FirebaseUser user) {
               ),
               color: darkGold,
               onPressed: () {
-                goProfile(context, user);
+                goOtherProfile(context, user);
               },
             ),
             SizedBox(
@@ -232,7 +232,7 @@ void onTap(
   if (index == 0 && currentIndex != 0) {
     goHome(context, user);
   } else if (index == 1 && currentIndex != 1) {
-    goProfilePage(context, user);
+    goMyProfilePage(context, user);
   } else if (index == 2) {
     goNewPost(context, user);
   } else if (index == 3 && currentIndex != 3) {

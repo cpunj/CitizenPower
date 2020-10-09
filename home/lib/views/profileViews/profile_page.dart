@@ -2,15 +2,15 @@ import 'package:citizenpower/views/genericWidgets/generic_layouts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key key, @required this.user}) : super(key: key);
+class OtherProfileScreen extends StatefulWidget {
+  const OtherProfileScreen({Key key, @required this.user}) : super(key: key);
   final FirebaseUser user;
 
   @override
-  State createState() => new ProfileScreenState();
+  State createState() => new OtherProfileScreenState();
 }
 
-class ProfileScreenState extends State<ProfileScreen> {
+class OtherProfileScreenState extends State<OtherProfileScreen> {
   var profileOptions = ['Edit'];
   var currentItemSelected = 'Edit';
   bool isExpanded = true;

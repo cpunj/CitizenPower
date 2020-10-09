@@ -36,7 +36,7 @@ class LoginPageState extends State<LoginPage> {
       backgroundColor: Colors.white,
       //Prevents pixels error
       resizeToAvoidBottomInset: false,
-      appBar: topAppBarLayout("ElectNow"),
+      appBar: topAppBarLayout("Electnow"),
       //Q: Any particular reason for using a stack rather than a column here? -Jack
       body: SafeArea(
         child: new Stack(fit: StackFit.expand, children: <Widget>[

@@ -9,7 +9,7 @@ import '../../constants.dart';
 import '../../text_styles.dart';
 
 //Handles profile downloading methods and storage
-ProfileController profileController = ProfileController();
+ProfileController myProfileController = ProfileController();
 
 class MyProfilePage extends StatefulWidget {
   const MyProfilePage({Key key, @required this.user, this.toggleView})
@@ -62,7 +62,7 @@ class _MyProfilePageState extends State<MyProfilePage> {
   ///Ideally would be implemented in profileController, but not easily movable due to SetState()
   ///Again, this code will repeated in a lot of views due to this
   void initState() {
-    profileController.getUserPosts(widget.user.uid).then((value) {
+    myProfileController.getUserPosts(widget.user.uid).then((value) {
       setState(() {
         postsStream = value;
       });
@@ -74,15 +74,16 @@ class _MyProfilePageState extends State<MyProfilePage> {
   Widget build(BuildContext context) {
     //Gets profile data to fill in ProfilePageEdit View
     //only if snapshot has not already been downloaded
-    if (profileController.profileSnapshot == null) {
-      profileController.loadProfile(widget.user.uid).then((val) {
+    if (myProfileController.profileSnapshot == null) {
+      print("loading my profile");
+      myProfileController.loadProfile(widget.user.uid).then((val) {
         //'then()' only runs once FS data for view has been downloaded
         setState(() {});
       });
     }
     //While profileSnapshot is downloading loading indicator is shown instead, setState reruns to
     //build actual view once data is downloaded
-    return profileController.profileSnapshot != null
+    return myProfileController.profileSnapshot != null
         ? Scaffold(
             appBar: topAppBarLayout('Profile'),
             drawer: new Drawer(),
@@ -100,11 +101,11 @@ class _MyProfilePageState extends State<MyProfilePage> {
                           children: <Widget>[
                             Padding(
                               padding: const EdgeInsets.only(left: 20),
-                              child: (profileController.getPic() != null)
+                              child: (myProfileController.getPic() != null)
                                   ? CircleAvatar(
                                       radius: 50.0,
                                       backgroundImage: NetworkImage(
-                                          profileController.getPic()),
+                                          myProfileController.getPic()),
                                     )
                                   //TODO:Get this widget to actually show when loading the profile pic
                                   : CircularProgressIndicator(),
@@ -117,9 +118,9 @@ class _MyProfilePageState extends State<MyProfilePage> {
                             SizedBox(
                               height: 10.0,
                             ),
-                            profileController.getName() != null
+                            myProfileController.getName() != null
                                 ? Text(
-                                    profileController.getName(),
+                                    myProfileController.getName(),
                                     style: profileNameStyle(),
                                   )
                                 : Container(),
@@ -127,10 +128,10 @@ class _MyProfilePageState extends State<MyProfilePage> {
                               height: 10.0,
                             ),
                             MaterialButton(
-                              child: profileController.getName() != null
+                              child: myProfileController.getName() != null
                                   ? Text(
                                       getFirstWord(
-                                              profileController.getName()) +
+                                              myProfileController.getName()) +
                                           "'s Community",
                                       style: TextStyle(
                                         color: Colors.white,
@@ -158,7 +159,7 @@ class _MyProfilePageState extends State<MyProfilePage> {
                         });
                       },
                       child:
-                          bioLayout2(profileController.getBio(), isExpanded)),
+                          bioLayout2(myProfileController.getBio(), isExpanded)),
                   SizedBox(height: 9),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -166,7 +167,7 @@ class _MyProfilePageState extends State<MyProfilePage> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: RaisedButton(
-                            child: profileController.getName() != null
+                            child: myProfileController.getName() != null
                                 ? Text(
                                     "Edit",
                                   )
@@ -178,9 +179,9 @@ class _MyProfilePageState extends State<MyProfilePage> {
                             onPressed: () {
                               //Sets snapshot to null so my profile re downloads the profile data after editing is complete
                               //in profile_page_edit
-                              profileController.profileSnapshot = null;
+                              myProfileController.profileSnapshot = null;
                               goEditProfile(context, widget.user,
-                                  profileController.getProfile());
+                                  myProfileController.getProfile());
                             }),
                       ),
                     ],

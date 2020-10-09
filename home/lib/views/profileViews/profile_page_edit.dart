@@ -14,7 +14,7 @@ FirebaseStorage storage = FirebaseStorage();
 ProfileDatabaseMethods profileDatabaseMethods = ProfileDatabaseMethods();
 
 //Handles profile downloading methods and storage
-ProfileController profileController = ProfileController();
+ProfileController editProfileController = ProfileController();
 
 class ProfilePageEdit extends StatefulWidget {
   const ProfilePageEdit(
@@ -41,28 +41,31 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
   //the normal button, only really relevant for profile pic upload
   bool uploadingChanges = false;
 
-  final bioController = TextEditingController();
-  final nameController = TextEditingController();
+  final bioCtr = TextEditingController();
+  final nameCtr = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     //Used profile downloaded in my_profile.dart to fill text
     // controllers with the users current information as well as the current profile pic
-    bioController.text = widget.profile.bio;
-    nameController.text = widget.profile.name;
-    profileController.profile.picLink = widget.profile.picLink;
-
+    bioCtr.text = widget.profile.bio;
+    nameCtr.text = widget.profile.name;
+    if (changedPic != true) {
+      editProfileController.profile.picLink = widget.profile.picLink;
+    }
     //Should probably be in database methods but it's here for now
     //Takes data external to the app (device gallery)so returns a Future through the use of 'async' function marker
     //This allows the main program thread to continue running and stops breaking from null errors and such
     Future getImage() async {
+      print("start GetImage");
       var image = await ImagePicker.pickImage(source: ImageSource.gallery);
       //Stores the file in the profile controller
       //And reruns state build to show the selected picture
       setState(() {
-        profileController.profileImage = image;
+        editProfileController.profileImage = image;
         changedPic = true;
       });
+      print("end GetImage");
     }
 
     return Scaffold(
@@ -86,20 +89,31 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
                             radius: 50.0,
                             //Has the user selected a profile pic from gallery since entering the edit view?
                             // Then show that.
-                            backgroundImage: (profileController.profileImage !=
+                            backgroundImage: (editProfileController.profileImage !=
                                     null)
-                                ? FileImage(profileController.profileImage)
+                                ? FileImage(editProfileController.profileImage)
                                 //User has not selected a pic, do the already have a profile pic uploaded?
                                 //Then show that.
-                                : (profileController.getPic() != null)
-                                    ? NetworkImage(profileController.getPic())
+                                : (editProfileController.getPic() != null)
+                                    ? NetworkImage(editProfileController.getPic())
                                     //User does not currently have any pic selected OR downloaded?
                                     //Show placeholder
                                     : AssetImage('pentagramBW.png'),
                           ),
                         ),
                         onPressed: () {
-                          getImage();
+
+                          getImage().then((completeFunc) {
+                            setState(() {
+                              uploadingChanges = true;
+                            });
+                            editProfileController.uploadProfilePic(widget.user, context, changedPic).whenComplete (() {
+                              setState(() {
+                                uploadingChanges = false;
+                                changedPic = true;
+                              });
+                            });
+                          });
                         },
                       ),
                     ],
@@ -114,7 +128,7 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
                           child: TextFormField(
                             minLines: 1,
                             decoration: textFormDec(label: 'Name'),
-                            controller: nameController,
+                            controller: nameCtr,
                           ))
                     ],
                   ),
@@ -135,7 +149,7 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
                 minLines: 1,
                 maxLines: 10,
                 decoration: textFormDec(label: 'Bio'),
-                controller: bioController,
+                controller: bioCtr,
               ),
             ),
           ),
@@ -163,29 +177,17 @@ class _ProfilePageEditState extends State<ProfilePageEdit> {
                     //Upload all the data the is currently present in the edit view
                     //Add more functions if profile view fields are expanded
                     onPressed: () {
-                      profileController.updateName(
-                          widget.user.uid, nameController.text);
+                      print("profile's link is");
+                      editProfileController.updateEditedProfile(widget.user.uid, nameCtr.text, bioCtr.text).then((funcComplete) {
+                        goMyProfilePage(context, widget.user);
+                      });
                       //Keeps Form Field looking the same during loading
-                      widget.profile.name = nameController.text;
-                      profileController.updateBio(
-                          widget.user.uid, bioController.text);
-                      //Keeps Form Field looking the same during loading
-                      widget.profile.bio = bioController.text;
+                      widget.profile.name = nameCtr.text;
+                      widget.profile.bio = bioCtr.text;
                       setState(() {
                         //Shows loading icon while profile data is uploaded
                         uploadingChanges = true;
                       });
-                      profileController
-                          .uploadProfilePic(
-                              context, widget.user.uid, changedPic)
-                          .then((val) {
-                        //Only go to my profile once data has been uploaded completely
-                        //Currently arbitairy time is used to decide this, not the firebase function itself
-                        goProfilePage(context, widget.user);
-                      });
-                      //'then()' only runs once FS data for view has been downloaded
-
-                      //Goes to back to my profile to show the newly uploaded data
                     }),
               ),
             ],

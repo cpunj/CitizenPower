@@ -185,24 +185,24 @@ class ProfileDatabaseMethods {
   }
 
   //Updates the user doc bio field of the given UID with the given bio
-  updateUserBio(String bio, String uID) {
-    Firestore.instance
+  updateUserBio(String bio, String uID) async {
+    await Firestore.instance
         .collection("users")
         .document(uID)
         .setData({"bio": bio}, merge: true);
   }
 
   //Updates the user doc name field of the given UID with the given name
-  updateUserName(String name, String uID) {
-    Firestore.instance
+  updateUserName(String name, String uID) async {
+    await Firestore.instance
         .collection("users")
         .document(uID)
         .setData({"name": name}, merge: true);
   }
 
   //Updates the picLink doc bio field of the given UID with the given picLink
-  updatePicLink(String picLink, String uID) {
-    Firestore.instance
+  updatePicLink(String picLink, String uID) async {
+    return await Firestore.instance
         .collection("users")
         .document(uID)
         .setData({"picLink": picLink}, merge: true);
@@ -283,6 +283,7 @@ class ProfileDatabaseMethods {
   //Takes a file and uploads it to Firebase Storage (Same function could be used for more than just profile pic!)
   //Returns a Future class as the DownloadURL string make be loaded first
   Future uploadPic(BuildContext context, File image) async {
+    print("start uploadPicDatabase");
     //Changes the file name to the original name on the device when uploaded to FB Storage
     String fileName = basename(image.path);
     //Uses ref().child(fileName) to create a reference necessary for upload
@@ -294,7 +295,9 @@ class ProfileDatabaseMethods {
     StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
     //once uploadTask.onComplete is complete return the string downloadURL for upload to profile's
     //picLink field
+    print("end uploadPicDatabase");
     return taskSnapshot.ref.getDownloadURL();
+
   }
 
   uploadPost(Post newPost, String uID) {

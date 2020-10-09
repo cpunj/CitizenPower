@@ -36,10 +36,10 @@ goHome(BuildContext context, FirebaseUser user) {
       ));
 }
 
-goProfile(BuildContext context, FirebaseUser user) {
+goOtherProfile(BuildContext context, FirebaseUser user) {
   Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => ProfileScreen(user: user)),
+    MaterialPageRoute(builder: (context) => OtherProfileScreen(user: user)),
   );
 }
 
@@ -108,7 +108,7 @@ goProfileList(BuildContext context, FirebaseUser user) {
       MaterialPageRoute(builder: (context) => ProfileList(user: null)));
 }
 
-goProfilePage(BuildContext context, FirebaseUser user) {
+goMyProfilePage(BuildContext context, FirebaseUser user) {
   Navigator.pushReplacement(context,
       MaterialPageRoute(builder: (context) => MyProfilePage(user: user)));
 }
@@ -162,7 +162,7 @@ goImageView(BuildContext context, String image) {
 }
 
 goEditProfile(BuildContext context, FirebaseUser user, Profile myProfile) {
-  Navigator.push(
+  Navigator.pushReplacement(
     context,
     MaterialPageRoute(
         builder: (context) => ProfilePageEdit(
